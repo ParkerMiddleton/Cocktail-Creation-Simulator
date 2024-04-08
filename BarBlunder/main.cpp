@@ -1,13 +1,16 @@
 #include "mainwindow.h"
+#include "barmodel.h"
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	QApplication a(argc, argv);
-	MainWindow w;
+	QApplication application(argc, argv);
 
-	w.show();
+	BarModel bar;
+	MainWindow window(&bar);
+	window.show();
+	bar.initialize();
 
-	return a.exec();
+	return application.exec();
 }

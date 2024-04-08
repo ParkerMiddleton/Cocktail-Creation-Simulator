@@ -10,11 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    barmodel.cpp
 
 HEADERS += \
+    barmodel.h \
     mainwindow.h \
-    qt_pch.h
+    qt_pch.h \
+    barmodel.h
 
 FORMS += \
     mainwindow.ui
