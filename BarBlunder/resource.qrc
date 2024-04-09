@@ -4,5 +4,8 @@
         <file>sounds/ragtime.mp3</file>
         <file>sounds/lofi.mp3</file>
         <file>images/bar.png</file>
+        <file>images/wood.jpg</file>
+        <file>images/steel.jpg</file>
+        <file>images/restaurant.jpg</file>
     </qresource>
 </RCC>

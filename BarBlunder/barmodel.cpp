@@ -4,6 +4,7 @@ BarModel::BarModel(QObject *parent)
 	: QObject{parent}
 {
 
+
 }
 
 void BarModel::initialize()

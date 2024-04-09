@@ -18,7 +18,7 @@ MainWindow::MainWindow(BarModel *bar, GameWindow *gw, QWidget *parent)
     player->setSource(QUrl("qrc:/sounds/lofi.mp3"));
     audioOutput->setVolume(10);
     player->setLoops(QMediaPlayer::Infinite);
-    player->play();
+   // player->play();
 
     // Filepath testing. Remove later.
     //QPixmap sampleImagePixmap(":/images/sampleimage.png");
@@ -61,10 +61,10 @@ void MainWindow::printMessage()
 void MainWindow::on_startGameButton_clicked()
 {
     // stop start menu music
-    player->stop();
-    // start bar game music (some music we decide on for game music)
-    player->setSource(QUrl("qrc:/sounds/ragtime.mp3"));
-    player->play();
+   //  player->stop();
+   //  // start bar game music (some music we decide on for game music)
+   // // player->setSource(QUrl("qrc:/sounds/ragtime.mp3"));
+   //  player->play();
     // Hide start menu
     hide();
     // Show the GameWindow
@@ -73,10 +73,10 @@ void MainWindow::on_startGameButton_clicked()
 
 void MainWindow::handleBackButtonClicked() {
     // stop bar game music
-    player->stop();
-    // start menu music
-    player->setSource(QUrl("qrc:/sounds/lofi.mp3"));
-    player->play();
+   //  player->stop();
+   //  // start menu music
+   // // player->setSource(QUrl("qrc:/sounds/lofi.mp3"));
+   //  player->play();
     // Hide game window
     gameWindow->hide();
     // Show start menu
