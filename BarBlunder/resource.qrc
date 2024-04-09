@@ -6,6 +6,17 @@
         <file>images/bar.png</file>
         <file>images/wood.jpg</file>
         <file>images/steel.jpg</file>
-        <file>images/restaurant.jpg</file>
+        <file>images/titos.png</file>
+        <file>images/gin.png</file>
+        <file>images/rum.png</file>
+        <file>images/burbon.png</file>
+        <file>images/tequila.png</file>
+        <file>images/stainless.jpg</file>
+        <file>images/collins.png</file>
+        <file>images/lime-wedges-in-glass.png</file>
+        <file>images/martini.png</file>
+        <file>images/olives.png</file>
+        <file>images/orangePeeles.png</file>
+        <file>images/shakertin.png</file>
     </qresource>
 </RCC>
