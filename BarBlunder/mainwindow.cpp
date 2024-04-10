@@ -24,19 +24,15 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 
 	QVBoxLayout *layout = new QVBoxLayout();
 	layout->addWidget(pageStack);
-	this->setLayout(layout);
+	//this->setLayout(layout);
 	this->setCentralWidget(pageStack);
 
 	// Setup music and its volume.
-	player = new QMediaPlayer;
-	audioOutput = new QAudioOutput;
+	player = new QMediaPlayer(this);
+	audioOutput = new QAudioOutput(this);
 	player->setAudioOutput(audioOutput);
 	player->setLoops(QMediaPlayer::Infinite);
 	audioOutput->setVolume(0);
-
-	// Filepath testing. Remove later.
-	//QPixmap sampleImagePixmap(":/images/sampleimage.png");
-	//qDebug() << sampleImagePixmap;
 
 	// Connections
 	connect(bar, &BarModel::barOpened
@@ -53,7 +49,9 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-	player->stop();
+	if (player->isPlaying())
+		player->stop();
+
 	delete player;
 	delete audioOutput;
 	delete ui;

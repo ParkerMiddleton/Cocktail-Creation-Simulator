@@ -44,8 +44,10 @@ private:
 	// Audio Fields
 	QMediaPlayer *player;
 	QAudioOutput *audioOutput;
-	QMediaPlayer *soundBoard;
-	QAudioOutput *audioOutputSB;
+
+	// For sound effects.
+	//QMediaPlayer *soundBoard;
+	//QAudioOutput *audioOutputSB;
 
 };
 
