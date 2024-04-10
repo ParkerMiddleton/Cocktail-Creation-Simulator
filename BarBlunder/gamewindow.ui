@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1159</width>
-    <height>755</height>
+    <height>779</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,14 +34,15 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>390</y>
+      <y>350</y>
       <width>51</width>
       <height>381</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(83, 99, 99);
-border: 2px solid black;
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+opacity: 10%;
+border: 3.5px solid black;
 </string>
     </property>
     <property name="text">
@@ -52,13 +53,16 @@ border: 2px solid black;
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>390</y>
+      <y>350</y>
       <width>51</width>
-      <height>381</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(83, 99, 99);</string>
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+opacity: 10%;
+border: 3.5px solid black;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -68,9 +72,9 @@ border: 2px solid black;
     <property name="geometry">
      <rect>
       <x>-10</x>
-      <y>600</y>
-      <width>1191</width>
-      <height>111</height>
+      <y>640</y>
+      <width>1171</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -103,7 +107,7 @@ border-image: url(:/images/wood.jpg);</string>
       <x>0</x>
       <y>430</y>
       <width>1161</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -246,14 +250,17 @@ background-image: url(:/images/steel.jpg);</string>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>640</y>
-      <width>1161</width>
+      <x>190</x>
+      <y>630</y>
+      <width>751</width>
       <height>111</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(130, 130, 130);</string>
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+border-left:2px solid black;
+border-right:2px solid black;
+border-top:2px solid black;</string>
     </property>
     <property name="text">
      <string/>
@@ -262,7 +269,7 @@ background-image: url(:/images/steel.jpg);</string>
    <widget class="QPushButton" name="RocksGlassButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>270</y>
       <width>51</width>
       <height>111</height>
@@ -291,27 +298,33 @@ background-image: url(:/images/steel.jpg);</string>
    <widget class="QPushButton" name="OliveButton">
     <property name="geometry">
      <rect>
-      <x>960</x>
+      <x>980</x>
       <y>350</y>
       <width>51</width>
       <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Olives</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="OrangeButton">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>940</x>
       <y>330</y>
       <width>51</width>
       <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Oranges</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
@@ -332,18 +345,17 @@ border:2px solid black;
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="backgroundImage">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>1211</width>
-      <height>371</height>
+      <y>-70</y>
+      <width>1156</width>
+      <height>514</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/images/bar.png);
-background-size: 50% auto; </string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
@@ -504,23 +516,6 @@ color: black;
      <string>OLiquor</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>430</y>
-      <width>731</width>
-      <height>211</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(230, 255, 246,100);
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="CopperMugButton">
     <property name="geometry">
      <rect>
@@ -537,28 +532,14 @@ color: black;
    <widget class="QPushButton" name="BittersButton">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>1030</x>
       <y>320</y>
       <width>51</width>
       <height>61</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Bitters</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_14">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>430</y>
-      <width>1201</width>
-      <height>211</height>
-     </rect>
-    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(230, 255, 246,100);
-</string>
+     <string notr="true">background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -569,17 +550,119 @@ color: black;
      <rect>
       <x>160</x>
       <y>300</y>
-      <width>51</width>
+      <width>81</width>
       <height>111</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Shaker</string>
+     <string/>
     </property>
    </widget>
-   <zorder>label_14</zorder>
-   <zorder>label_13</zorder>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>510</y>
+      <width>211</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/icewell.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>-30</x>
+      <y>590</y>
+      <width>191</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/trash.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>450</y>
+      <width>721</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(78, 78, 78, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>560</y>
+      <width>721</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(38, 38, 38);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>460</y>
+      <width>1161</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/underBar.jpg);
+ background-color: rgba(255, 255, 255, 0.5);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IceButton">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>570</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label</zorder>
+   <zorder>label_22</zorder>
+   <zorder>label_23</zorder>
+   <zorder>backgroundImage</zorder>
    <zorder>label_9</zorder>
    <zorder>label_7</zorder>
    <zorder>label_2</zorder>
@@ -596,7 +679,6 @@ color: black;
    <zorder>CollinsGlassButton</zorder>
    <zorder>RocksGlassButton</zorder>
    <zorder>LimeButton</zorder>
-   <zorder>OliveButton</zorder>
    <zorder>OrangeButton</zorder>
    <zorder>label_11</zorder>
    <zorder>label_12</zorder>
@@ -609,10 +691,14 @@ color: black;
    <zorder>GinButton</zorder>
    <zorder>KahluaButton</zorder>
    <zorder>OrangeLiqorButton</zorder>
-   <zorder>label_10</zorder>
    <zorder>CopperMugButton</zorder>
    <zorder>BittersButton</zorder>
    <zorder>ShakertinButton</zorder>
+   <zorder>OliveButton</zorder>
+   <zorder>label_20</zorder>
+   <zorder>label_21</zorder>
+   <zorder>label_10</zorder>
+   <zorder>IceButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

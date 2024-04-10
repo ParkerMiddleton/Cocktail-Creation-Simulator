@@ -21,7 +21,7 @@ MainWindow::MainWindow(BarModel *bar, GameWindow *gw, QWidget *parent)
    // player->play();
 
     // Filepath testing. Remove later.
-    //QPixmap sampleImagePixmap(":/images/sampleimage.png");
+    QPixmap sampleImagePixmap(":/images/sampleimage.png");
     //qDebug() << sampleImagePixmap;
 
     // Load the image into a QPixmap

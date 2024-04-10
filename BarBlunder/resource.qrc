@@ -18,5 +18,11 @@
         <file>images/olives.png</file>
         <file>images/orangePeeles.png</file>
         <file>images/shakertin.png</file>
+        <file>images/bitters.png</file>
+        <file>images/icewell.png</file>
+        <file>images/trash.png</file>
+        <file>images/underBar.jpg</file>
+        <file>images/witheredStainless.jpg</file>
+        <file>images/ice.png</file>
     </qresource>
 </RCC>
