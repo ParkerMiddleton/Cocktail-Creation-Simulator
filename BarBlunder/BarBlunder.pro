@@ -1,5 +1,4 @@
-QT       += core gui
-QT       += multimedia
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,20 +9,22 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    gamewindow.cpp \
+    gamepage.cpp \
     main.cpp \
+    mainmenupage.cpp \
     mainwindow.cpp \
     barmodel.cpp
 
 HEADERS += \
     barmodel.h \
-    gamewindow.h \
+    gamepage.h \
+    mainmenupage.h \
     mainwindow.h \
-    qt_pch.h \
-    barmodel.h
+    qt_pch.h
 
 FORMS += \
-    gamewindow.ui \
+    gamepage.ui \
+    mainmenupage.ui \
     mainwindow.ui
 
 # Default rules for deployment.
