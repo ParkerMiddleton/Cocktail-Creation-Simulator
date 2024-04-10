@@ -15,7 +15,7 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 
 	// Setup pages.
 	pageStack = new QStackedWidget();
-
+	
 	mainMenuPage = new MainMenuPage(this);
 	gamePage = new GamePage(this);
 

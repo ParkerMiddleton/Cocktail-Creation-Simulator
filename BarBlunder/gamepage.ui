@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1159</width>
-    <height>712</height>
+    <height>779</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="BackButton">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -33,13 +33,16 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>390</y>
+      <y>350</y>
       <width>51</width>
       <height>381</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(83, 99, 99);</string>
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+opacity: 10%;
+border: 3.5px solid black;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -49,13 +52,16 @@
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>390</y>
+      <y>350</y>
       <width>51</width>
-      <height>381</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(83, 99, 99);</string>
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+opacity: 10%;
+border: 3.5px solid black;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -65,9 +71,9 @@
     <property name="geometry">
      <rect>
       <x>-10</x>
-      <y>600</y>
-      <width>1191</width>
-      <height>111</height>
+      <y>640</y>
+      <width>1171</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -100,17 +106,18 @@ border-image: url(:/images/wood.jpg);</string>
       <x>0</x>
       <y>430</y>
       <width>1161</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(54, 54, 54);</string>
+     <string notr="true">background-color: rgb(54, 54, 54);
+border-bottom: 3px solid black;</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="VodkaButton">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -119,8 +126,11 @@ border-image: url(:/images/wood.jpg);</string>
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Vodka</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -174,7 +184,7 @@ background-image: url(:/images/steel.jpg);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="RumButton">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -183,11 +193,15 @@ background-image: url(:/images/steel.jpg);</string>
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;
+</string>
+    </property>
     <property name="text">
-     <string>Rum</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="BurbonButton">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -196,11 +210,14 @@ background-image: url(:/images/steel.jpg);</string>
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Whiskey</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="TequilaButton">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -209,11 +226,14 @@ background-image: url(:/images/steel.jpg);</string>
       <height>141</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Tequila</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="CollinsGlassButton">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -229,23 +249,26 @@ background-image: url(:/images/steel.jpg);</string>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>640</y>
-      <width>1161</width>
+      <x>190</x>
+      <y>630</y>
+      <width>751</width>
       <height>111</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(130, 130, 130);</string>
+     <string notr="true">background-image: url(:/images/stainless.jpg);
+border-left:2px solid black;
+border-right:2px solid black;
+border-top:2px solid black;</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="RocksGlassButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>270</y>
       <width>51</width>
       <height>111</height>
@@ -255,7 +278,7 @@ background-image: url(:/images/steel.jpg);</string>
      <string>Rocks</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="LimeButton">
     <property name="geometry">
      <rect>
       <x>900</x>
@@ -264,34 +287,43 @@ background-image: url(:/images/steel.jpg);</string>
       <height>61</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Lime</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_9">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>330</y>
-      <width>51</width>
-      <height>61</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
     </property>
     <property name="text">
-     <string>Lemons</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="OliveButton">
     <property name="geometry">
      <rect>
-      <x>960</x>
+      <x>980</x>
       <y>350</y>
       <width>51</width>
       <height>61</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
     <property name="text">
-     <string>Oranges</string>
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="OrangeButton">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>330</y>
+      <width>51</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
@@ -312,13 +344,13 @@ border:2px solid black;
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="backgroundImage">
     <property name="geometry">
      <rect>
-      <x>-460</x>
-      <y>-430</y>
-      <width>1871</width>
-      <height>1161</height>
+      <x>0</x>
+      <y>-70</y>
+      <width>1156</width>
+      <height>514</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -331,7 +363,7 @@ border:2px solid black;
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>1010</x>
       <y>0</y>
       <width>151</width>
       <height>241</height>
@@ -348,36 +380,10 @@ color: black;
      <string>Drink algo here</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="MartiniGlassButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>10</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Martini</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_12">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>10</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Martini</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_13">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
+      <x>240</x>
       <y>10</y>
       <width>51</width>
       <height>51</height>
@@ -467,36 +473,232 @@ color: black;
      <string>Wine Glass</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="GinButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>550</y>
+      <width>51</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="KahluaButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>550</y>
+      <width>51</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Kahlua</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="OrangeLiqorButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>550</y>
+      <width>51</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OLiquor</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CopperMugButton">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Copper</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BittersButton">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>320</y>
+      <width>51</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ShakertinButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>300</y>
+      <width>81</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_20">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>510</y>
+      <width>211</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/icewell.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>-30</x>
+      <y>590</y>
+      <width>191</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/trash.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>450</y>
+      <width>721</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(78, 78, 78, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>560</y>
+      <width>721</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(38, 38, 38);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>460</y>
+      <width>1161</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/underBar.jpg);
+ background-color: rgba(255, 255, 255, 0.5);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IceButton">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>570</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label</zorder>
+   <zorder>label_22</zorder>
+   <zorder>label_23</zorder>
+   <zorder>backgroundImage</zorder>
    <zorder>label_9</zorder>
    <zorder>label_7</zorder>
    <zorder>label_2</zorder>
-   <zorder>pushButton</zorder>
+   <zorder>BackButton</zorder>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
    <zorder>label_6</zorder>
-   <zorder>pushButton_2</zorder>
+   <zorder>VodkaButton</zorder>
    <zorder>label_8</zorder>
-   <zorder>pushButton_3</zorder>
-   <zorder>pushButton_4</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>pushButton_6</zorder>
-   <zorder>label_10</zorder>
-   <zorder>pushButton_7</zorder>
-   <zorder>pushButton_8</zorder>
-   <zorder>pushButton_9</zorder>
-   <zorder>pushButton_10</zorder>
+   <zorder>RumButton</zorder>
+   <zorder>BurbonButton</zorder>
+   <zorder>TequilaButton</zorder>
+   <zorder>CollinsGlassButton</zorder>
+   <zorder>RocksGlassButton</zorder>
+   <zorder>LimeButton</zorder>
+   <zorder>OrangeButton</zorder>
    <zorder>label_11</zorder>
    <zorder>label_12</zorder>
-   <zorder>pushButton_11</zorder>
-   <zorder>pushButton_12</zorder>
-   <zorder>pushButton_13</zorder>
+   <zorder>MartiniGlassButton</zorder>
    <zorder>label_15</zorder>
    <zorder>label_16</zorder>
    <zorder>label_17</zorder>
    <zorder>label_18</zorder>
    <zorder>label_19</zorder>
+   <zorder>GinButton</zorder>
+   <zorder>KahluaButton</zorder>
+   <zorder>OrangeLiqorButton</zorder>
+   <zorder>CopperMugButton</zorder>
+   <zorder>BittersButton</zorder>
+   <zorder>ShakertinButton</zorder>
+   <zorder>OliveButton</zorder>
+   <zorder>label_20</zorder>
+   <zorder>label_21</zorder>
+   <zorder>label_10</zorder>
+   <zorder>IceButton</zorder>
+  </widget>
  </widget>
  <resources/>
  <connections/>
