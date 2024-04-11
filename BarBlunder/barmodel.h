@@ -1,6 +1,7 @@
 #ifndef BARMODEL_H
 #define BARMODEL_H
 
+#include "recipe.h"
 #include <QObject>
 
 /// @brief Educational Application main model class.
@@ -17,14 +18,34 @@ public:
 	/// any signal emitted inside the constructor does not go to its respective slot.
 	void initialize();
 
+
+
 public slots:
+
+    // void bourbonPressed();
+    // void bittersPressed();
+    // void vodkaPressed();
+    // void collinsPressed();
+    // void copperMugPressed();
+
+    void rocksPressed();
+    void whiskeyPressed();
+    void icePoured();
+    void bittersPressed();
+    void stirPressed();
+    void orangePeel();
+
 
 signals:
 	/// @brief When model is initialized.
 	void barOpened();
 
 private:
-
+    QList<recipe> listOfRecipes;
+    recipe assignedRecipe;
+    recipe userRecipe;
+    int stepNumber;
+    void newRound();
 };
 
 #endif // BARMODEL_H

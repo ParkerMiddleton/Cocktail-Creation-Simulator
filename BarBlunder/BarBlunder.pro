@@ -13,14 +13,16 @@ SOURCES += \
     main.cpp \
     mainmenupage.cpp \
     mainwindow.cpp \
-    barmodel.cpp
+    barmodel.cpp \
+    recipe.cpp
 
 HEADERS += \
     barmodel.h \
     gamepage.h \
     mainmenupage.h \
     mainwindow.h \
-    qt_pch.h
+    qt_pch.h \
+    recipe.h
 
 FORMS += \
     gamepage.ui \
@@ -38,3 +40,6 @@ RESOURCES += \
 
 PRECOMPILED_HEADER += \
     qt_pch.h
+
+DISTFILES += \
+    drinks

@@ -1,7 +1,7 @@
 #include "gamepage.h"
 #include "ui_gamepage.h"
 
-GamePage::GamePage(QWidget *parent)
+GamePage::GamePage(QWidget *parent, BarModel *bar)
 	: QWidget{parent}
 	, ui{new Ui::GamePage}
 {
@@ -96,7 +96,15 @@ GamePage::GamePage(QWidget *parent)
 
 	// Connections
 	connect(ui->BackButton, &QPushButton::clicked,
-			this, &GamePage::onBackButtonClicked);
+            this, &GamePage::onBackButtonClicked);
+
+
+
+    connect(ui->BurbonButton, &QPushButton::pressed,
+            model, &BarModel::whiskeyPressed);
+
+    connect(ui->VodkaButton, &QPushButton::released,
+            this, model::onBackButtonClicked);
 }
 
 GamePage::~GamePage()

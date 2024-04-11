@@ -24,5 +24,6 @@
         <file>images/underBar.jpg</file>
         <file>images/witheredStainless.jpg</file>
         <file>images/ice.png</file>
+        <file>drinks</file>
     </qresource>
 </RCC>
