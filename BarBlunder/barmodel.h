@@ -10,7 +10,7 @@ class BarModel : public QObject
 	Q_OBJECT
 public:
 	/// @brief Constructor.
-	explicit BarModel(QObject *parent = nullptr);
+    explicit BarModel(QObject *parent = nullptr);
 
 	/// @brief Used to emit any signals to the view before the application is fully started, if needed.
 	/// Reason why it exists:
@@ -30,10 +30,12 @@ public slots:
 
     void rocksPressed();
     void whiskeyPressed();
+    void whiskeyReleased();
     void icePoured();
     void bittersPressed();
     void stirPressed();
     void orangePeel();
+    void processWhiskey();
 
 
 signals:
@@ -46,6 +48,8 @@ private:
     recipe userRecipe;
     int stepNumber;
     void newRound();
+    bool pressedWhiskey;
+    QTimer timer;
 };
 
 #endif // BARMODEL_H

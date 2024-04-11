@@ -1,7 +1,7 @@
 #include "gamepage.h"
 #include "ui_gamepage.h"
 
-GamePage::GamePage(QWidget *parent, BarModel *bar)
+GamePage::GamePage(BarModel *bar, QWidget *parent)
 	: QWidget{parent}
 	, ui{new Ui::GamePage}
 {
@@ -95,16 +95,15 @@ GamePage::GamePage(QWidget *parent, BarModel *bar)
 	ui->IceButton->setIconSize(iceButtonSize * 1.3);
 
 	// Connections
-	connect(ui->BackButton, &QPushButton::clicked,
+    connect(ui->BackButton, &QPushButton::clicked,
             this, &GamePage::onBackButtonClicked);
 
-
-
+    // start a countdown when pressed is signaled to bar model and start subtracting from ingredient unit unit reaching 0, if negative poured to long. (check at the end of drink made)
     connect(ui->BurbonButton, &QPushButton::pressed,
-            model, &BarModel::whiskeyPressed);
+            bar, &BarModel::whiskeyPressed);
 
-    connect(ui->VodkaButton, &QPushButton::released,
-            this, model::onBackButtonClicked);
+    connect(ui->BurbonButton, &QPushButton::released,
+            bar, &BarModel::whiskeyReleased);
 }
 
 GamePage::~GamePage()

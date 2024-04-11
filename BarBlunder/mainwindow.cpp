@@ -16,8 +16,8 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 	// Setup pages.
 	pageStack = new QStackedWidget();
 	
-	mainMenuPage = new MainMenuPage(this);
-	gamePage = new GamePage(this);
+    mainMenuPage = new MainMenuPage(this);
+    gamePage = new GamePage(bar, this); // passing bar model to game page.
 
 	pageStack->addWidget(mainMenuPage);
 	pageStack->addWidget(gamePage);
@@ -44,7 +44,7 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 	connect(gamePage, &GamePage::gameExitRequested
 			, this, &MainWindow::switchToMainMenuPage);
 
-	this->switchToGamePage();
+    //this->switchToGamePage();
 }
 
 MainWindow::~MainWindow()

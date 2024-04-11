@@ -1,5 +1,9 @@
 #include "recipe.h"
 
+recipe::recipe() {
+
+}
+
 recipe::recipe(QTextStream* recipe) {
 
     drinkName = recipe->readLine();

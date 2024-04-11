@@ -4,7 +4,7 @@
 class recipe
 {
 public:
-
+    recipe();
     recipe(QTextStream* recipeText);
     ~recipe();
     QString drinkName;
