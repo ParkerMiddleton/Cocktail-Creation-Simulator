@@ -32,7 +32,9 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 	audioOutput = new QAudioOutput(this);
 	player->setAudioOutput(audioOutput);
 	player->setLoops(QMediaPlayer::Infinite);
-	audioOutput->setVolume(0);
+    player->setSource(QUrl("qrc:/sounds/lofi.mp3"));
+    audioOutput->setVolume(10);
+    player->play();
 
 	// Connections
 	connect(bar, &BarModel::barOpened
