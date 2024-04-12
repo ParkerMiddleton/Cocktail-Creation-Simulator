@@ -25,5 +25,6 @@
         <file>images/witheredStainless.jpg</file>
         <file>images/ice.png</file>
         <file>drinks</file>
+        <file>images/menu/tri_proto.png</file>
     </qresource>
 </RCC>

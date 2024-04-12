@@ -14,6 +14,7 @@ SOURCES += \
     mainmenupage.cpp \
     mainwindow.cpp \
     barmodel.cpp \
+    menubutton.cpp \
     recipe.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     gamepage.h \
     mainmenupage.h \
     mainwindow.h \
+    menubutton.h \
     qt_pch.h \
     recipe.h
 

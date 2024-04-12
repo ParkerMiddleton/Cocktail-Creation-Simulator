@@ -29,13 +29,22 @@ public slots:
 	/// @brief Prints the message to the console.
 	void printMessage();
 
-	void switchToMainMenuPage();
-	void switchToGamePage();
+	void beginNewEdu();
+	void pause();
+	void unpause();
 
 private:
+	static constexpr int RENDER_NATIVE_WIDTH = 1280;
+	static constexpr int RENDER_NATIVE_HEIGHT = 720;
+	enum class State { Beginning, Paused, Unpaused };
+
+	State currentState;
+
 	Ui::MainWindow *ui;
 
-	QStackedWidget *pageStack;
+	QGraphicsView viewport;
+	QGraphicsScene viewportScene;
+
 	MainMenuPage *mainMenuPage;
 	GamePage *gamePage;
 
@@ -48,6 +57,15 @@ private:
 	// For sound effects.
 	//QMediaPlayer *soundBoard;
 	//QAudioOutput *audioOutputSB;
+
+	void setupViewport();
+	void setupAudio();
+
+	void playMainMenuMusic();
+	void playEduMusic();
+
+	void resizeEvent(QResizeEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
 
 };
 

@@ -14,90 +14,15 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:rgb(0,0,0);</string>
+   <string notr="true">background-color: rgba(0,0,0,0)</string>
   </property>
-  <widget class="QPushButton" name="startButton">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>230</y>
-     <width>171</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Script MT Bold</family>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(255,255,255);
-border: 4px solid;
-border-color:rgb(150, 230, 230);</string>
-   </property>
-   <property name="text">
-    <string>Start</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="infoButton">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>290</y>
-     <width>171</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Script MT Bold</family>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(255,255,255);
-border: 4px solid;
-border-color:rgb(150, 230, 230);</string>
-   </property>
-   <property name="text">
-    <string>Info</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="menuTitle">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>70</y>
-     <width>311</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Script MT Bold</family>
-     <pointsize>24</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(255,255,255);
-border: 4px solid;
-border-color:rgb(150, 230, 230);</string>
-   </property>
-   <property name="text">
-    <string>Bar Blunder</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QLabel" name="menuBarImage">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>380</y>
-     <width>771</width>
-     <height>231</height>
+     <x>-1680</x>
+     <y>660</y>
+     <width>2592</width>
+     <height>720</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -106,8 +31,53 @@ border-color:rgb(150, 230, 230);</string>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="resource.qrc">:/images/bar.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="tri">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>768</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel::disabled {background-color: transparent;}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resource.qrc">:/images/menu/tri_proto.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="pages">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>768</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <widget class="QWidget" name="page"/>
+   <widget class="QWidget" name="page_2"/>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
