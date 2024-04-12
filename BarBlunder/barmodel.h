@@ -28,14 +28,10 @@ public slots:
     // void collinsPressed();
     // void copperMugPressed();
 
-    void rocksPressed();
-    void whiskeyPressed();
-    void whiskeyReleased();
-    void icePoured();
-    void bittersPressed();
-    void stirPressed();
-    void orangePeel();
-    void processWhiskey();
+    void liquorPressed(QString liqourName);
+    void processLiquor();
+    void liquorReleased();
+    void ingredientClicked(QString ingreidentName);
 
 
 signals:
@@ -48,8 +44,9 @@ private:
     recipe userRecipe;
     int stepNumber;
     void newRound();
-    bool pressedWhiskey;
+    bool pressedLiquor;
     QTimer timer;
+    QString liquorSelection;
 };
 
 #endif // BARMODEL_H

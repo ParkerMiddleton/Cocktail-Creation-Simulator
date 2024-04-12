@@ -26,5 +26,6 @@
         <file>images/ice.png</file>
         <file>drinks</file>
         <file>images/menu/tri_proto.png</file>
+        <file>textfiles/drinkingredients.txt</file>
     </qresource>
 </RCC>

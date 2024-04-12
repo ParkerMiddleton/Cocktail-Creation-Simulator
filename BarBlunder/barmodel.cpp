@@ -5,12 +5,12 @@ BarModel::BarModel(QObject *parent)
 	: QObject{parent}
 {
     timer.setInterval(1000); // Set interval to 1000 milliseconds (1 second)
-    connect(&timer, &QTimer::timeout, this, &BarModel::processWhiskey);
+    connect(&timer, &QTimer::timeout, this, &BarModel::processLiquor);
 }
 
 void BarModel::initialize()
 {
-    QFile file(":/drinks");
+    QFile file(":/textfiles/drinkingredients.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file from resources";
         return;
@@ -26,52 +26,57 @@ void BarModel::initialize()
 	emit barOpened();
 }
 
-void BarModel::whiskeyPressed() {
-    pressedWhiskey = true;
+void BarModel::liquorPressed(QString liquorName) {
+    pressedLiquor = true;
+    liquorSelection = liquorName;
+    bool found = false;
+    for (QPair<QString, int> &ingredient : userRecipe.ingredients) {
+        if (ingredient.first == liquorSelection) {
+            found = true;
+        }
+    }
+    if(!found){
+        userRecipe.ingredients.push_back(QPair<QString, int>(liquorSelection, -1));
+    }
+
     // Start a single-shot timer with a delay of 1000 milliseconds (1 second)
     timer.start();
 }
 
-void BarModel::processWhiskey() {
-    if(pressedWhiskey) { // Check if the whiskey button is still pressed
+void BarModel::processLiquor() {
+    if(pressedLiquor) { // Check if the whiskey button is still pressed
         for (QPair<QString, int> &ingredient : userRecipe.ingredients) {
-            if (ingredient.first == "whiskey" && ingredient.second > 0 && pressedWhiskey) {
+            if (ingredient.first == liquorSelection) {
                 ingredient.second--;
-                qDebug() << ingredient.second;
-                // int volume ++
+                qDebug() << liquorSelection << " " << ingredient.second;
             }
         }
-        if(!pressedWhiskey) {
+        if(!pressedLiquor) {
             return;
         }
     }
 }
 
-void BarModel::whiskeyReleased() {
-    pressedWhiskey = false;
+void BarModel::liquorReleased() {
+    pressedLiquor = false;
     timer.stop();
 }
 
-
-void BarModel::rocksPressed() {
-
-}
-
-void BarModel::icePoured() {
-
-}
-
-void BarModel::bittersPressed() {
-
-}
-
-void BarModel::stirPressed() {
+void BarModel::ingredientClicked(QString ingredientName){
+    bool found = false;
+    for (QPair<QString, int> &ingredient : userRecipe.ingredients) {
+        if (ingredient.first == ingredientName) {
+            found = true;
+            ingredient.second--;
+            qDebug() << ingredientName << " " << ingredient.second;
+        }
+    }
+    if(!found){
+        userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
+    }
 
 }
 
-void BarModel::orangePeel() {
-
-}
 
 void BarModel::newRound(){
     // duplicate recipes possible in this case currently.

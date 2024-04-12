@@ -19,7 +19,7 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 	this->setWindowTitle("Bar Blunder");
 
 	this->setupAudio();
-
+	
 	mainMenuPage = new MainMenuPage(this);
 	gamePage = new GamePage(bar); // passing bar model to game page.
 	this->setupViewport();

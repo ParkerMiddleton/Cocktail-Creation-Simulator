@@ -5,31 +5,17 @@ recipe::recipe() {
 }
 
 recipe::recipe(QTextStream* recipe) {
-
     drinkName = recipe->readLine();
     QString line = recipe->readLine();
-    QString builder;
-    QPair<QString, int> ingredient;
-    while(line != ""){
-        bool num = false;
-        foreach(QChar c, line){
-            if(num){
-                if(c != ' '){
-                    builder += c;
-                }
-            }
-            else if(c != ':') {
-                builder += c;
-            }
-            else{
-                ingredient.first = builder;
-                builder = "";
-                num = true;
-            }
+    while (!line.isEmpty()) {
+        QRegularExpression re("(.+):\\s*(\\d+)");
+        QRegularExpressionMatch match = re.match(line);
+        qDebug() << match.captured(1) << " " << match.captured(2);
+        if (match.hasMatch()) {
+            QString ingredientName = match.captured(1);
+            int quantity = match.captured(2).toInt();
+            ingredients.push_back(qMakePair(ingredientName, quantity));
         }
-        ingredient.second = builder.toInt();
-        ingredients.push_back(ingredient);
-        builder = "";
         line = recipe->readLine();
     }
 }

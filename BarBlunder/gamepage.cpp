@@ -98,12 +98,57 @@ GamePage::GamePage(BarModel *bar, QWidget *parent)
     connect(ui->BackButton, &QPushButton::clicked,
             this, &GamePage::onBackButtonClicked);
 
-    // start a countdown when pressed is signaled to bar model and start subtracting from ingredient unit unit reaching 0, if negative poured to long. (check at the end of drink made)
-    connect(ui->BurbonButton, &QPushButton::pressed,
-            bar, &BarModel::whiskeyPressed);
 
+    // start a countdown when pressed is signaled to bar model and start subtracting from ingredient unit unit reaching 0, if negative poured to long. (check at the end of drink made)
+
+    connect(ui->LimeButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("lime");
+    });
+    connect(ui->OrangeButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("orange peeles");
+    });
+    connect(ui->OliveButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("olives");
+    });
+    connect(ui->BittersButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("bitters");
+    });
+
+    connect(ui->IceButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("ice");
+    });
+
+
+    //Liqour connections
+    connect(ui->VodkaButton, &QPushButton::pressed, [ bar]() {
+        bar->liquorPressed("vodka");
+    });
+    connect(ui->VodkaButton, &QPushButton::released,
+            bar, &BarModel::liquorReleased);
+
+    connect(ui->TequilaButton, &QPushButton::pressed, [ bar]() {
+        bar->liquorPressed("tequila");
+    });
+    connect(ui->TequilaButton, &QPushButton::released,
+            bar, &BarModel::liquorReleased);
+
+    connect(ui->GinButton, &QPushButton::pressed, [ bar]() {
+        bar->liquorPressed("gin");
+    });
+    connect(ui->GinButton, &QPushButton::released,
+            bar, &BarModel::liquorReleased);
+
+    connect(ui->BurbonButton, &QPushButton::pressed, [ bar]() {
+        bar->liquorPressed("whiskey");
+    });
     connect(ui->BurbonButton, &QPushButton::released,
-            bar, &BarModel::whiskeyReleased);
+            bar, &BarModel::liquorReleased);
+
+    connect(ui->RumButton, &QPushButton::pressed, [ bar]() {
+        bar->liquorPressed("rum");
+    });
+    connect(ui->RumButton, &QPushButton::released,
+            bar, &BarModel::liquorReleased);
 }
 
 GamePage::~GamePage()
