@@ -1,70 +1,48 @@
 #ifndef MAINMENUPAGE_H
 #define MAINMENUPAGE_H
 
-// Forward declaration.
-class MenuButton;
-class MainWindow;
+#include <QWidget>
+
+// Forward Declaration.
+class MenuLayer;
+class ApplicationModel;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
-class MainMenuPage;
+class MainMenu;
 }
 QT_END_NAMESPACE
 
+/// @brief Main(as well as Pause) Menu. Part of View.
 class MainMenuPage : public QWidget
 {
 	Q_OBJECT
 
 public:
-	explicit MainMenuPage(QWidget *parent);
+	/// @brief Constructor.
+	/// Setups UI and connects private slots to signals.
+	explicit MainMenuPage(QWidget *parent = nullptr);
+
+	/// @brief Destructor.
 	~MainMenuPage();
 
-	void show();
-	void hide();
+	/// @brief Connects signals to ApplicationModel slots.
+	void setupModelConnections(ApplicationModel *app);
 
-public slots:
-	// Buttons
-	void onResumeButtonClicked();
-	void onBeginButtonClicked();
-
-	// Connections
-
-private slots:
-	void onSettingsButtonClicked();
-	void onQuitButtonClicked();
-	void onBackButtonClicked();
+	/// @brief Transforms Main menu into Pause menu.
+	void showPauseMenuWidgets();
 
 signals:
-	void unpauseRequested();
-    void beginAnewRequested();
-	void quitRequested();
+	/// @brief Notifies that SettingsButton was clicked.
+	void settingsButtonClicked();
+
+private slots:
+	/// @brief Sends a signal if SettingsButton was clicked.
+	void onSettingsButtonClicked();
 
 private:
-	Ui::MainMenuPage *ui;
-
-	QPropertyAnimation *triAnim;
-	QPropertyAnimation *fadeOutAnim;
-
-	QStackedWidget *pages;
-	QWidget *menuPage;
-	QWidget *settingsPage;
-
-	// Menu
-	QLabel *titleLabel;
-	MenuButton *resumeButton;
-	MenuButton *beginButton;
-	MenuButton *settingsButton;
-	MenuButton *quitButton;
-
-	// Settings
-	QSpinBox *volumeSpinBox;
-	QComboBox *windowSizeComboBox;
-	MenuButton *backButton;
-
-	void setupMenuPage();
-	void setupSettingsPage();
-	void setupAnimations();
+	Ui::MainMenu *ui;
 
 };
 

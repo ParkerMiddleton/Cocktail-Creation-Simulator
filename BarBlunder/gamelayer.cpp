@@ -1,11 +1,32 @@
-#include "gamepage.h"
-#include "ui_gamepage.h"
+#include "gamelayer.h"
+#include "ui_gamelayer.h"
 
-GamePage::GamePage(BarModel *bar, QWidget *parent)
+#include "applicationmodel.h"
+
+#include <QPropertyAnimation>
+#include <QGraphicsOpacityEffect>
+
+GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
-	, ui{new Ui::GamePage}
+	, ui{new Ui::GameLayer}
 {
 	ui->setupUi(this);
+
+	BarModel *bar = app->barModel();
+	//this->setDisabled(true);
+
+	connect(app, &ApplicationModel::gamePaused,
+			this, &GamePage::showPauseOverlay);
+
+	connect(app, &ApplicationModel::gameUnpaused,
+			this, &GamePage::hidePauseOverlay);
+
+	/*===== SETUP PAUSE OVERLAY =====*/
+
+	pauseOverlay = new QWidget(this);
+	pauseOverlay->resize(this->size());
+	pauseOverlay->raise();
+	pauseOverlay->setStyleSheet("background-color: rgba(0, 0, 0, 76);");
 
 	////////////// ICONS FOR BUTTONS /////////////////////
 
@@ -95,9 +116,6 @@ GamePage::GamePage(BarModel *bar, QWidget *parent)
 	ui->IceButton->setIconSize(iceButtonSize * 1.3);
 
 	// Connections
-    connect(ui->BackButton, &QPushButton::clicked,
-            this, &GamePage::onBackButtonClicked);
-
     connect(ui->serveDrinkButton, &QPushButton::clicked,
             bar, &::BarModel::serveDrink);
 
@@ -200,9 +218,16 @@ GamePage::~GamePage()
 	delete ui;
 }
 
-void GamePage::onBackButtonClicked()
+void GamePage::showPauseOverlay()
 {
-	emit gameExitRequested();
+	//this->setDisabled(true);
+	pauseOverlay->setVisible(true);
+}
+
+void GamePage::hidePauseOverlay()
+{
+	//this->setDisabled(false);
+	pauseOverlay->setVisible(false);
 }
 void GamePage::updateRecipebox(QString recipe)
 {

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fee671;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: #fee671;
+      }
+    </style>
+  </defs>
+  <g id="box_hover">
+    <rect class="cls-1" x="3" y="3" width="32" height="32" rx="6"/>
+  </g>
+  <g id="check_hover">
+    <path class="cls-2" d="M7.37,19.52l6.9,8.08c.91,1.07,3.74,1.27,4.58,0L29.31,11.89,30.8,9.65C31.87,8.05,27,7.1,26.05,8.6L15.59,24.31l-1.5,2.24h4.58l-6.89-8.08a3.67,3.67,0,0,0-3.38-.73c-.84.21-1.77.9-1,1.77Z"/>
+  </g>
+</svg>

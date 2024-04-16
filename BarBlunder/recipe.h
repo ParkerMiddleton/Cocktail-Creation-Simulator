@@ -1,6 +1,11 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
+#include <QString>
+#include <QList>
+
+class QTextStream;
+
 class recipe
 {
 public:

@@ -1,5 +1,8 @@
 #include "recipe.h"
 
+#include <QTextStream>
+#include <QRegularExpression>
+
 recipe::recipe() {
 
 }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MenuLayer</class>
+ <widget class="QWidget" name="MenuLayer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgba(0,0,0,0)</string>
+  </property>
+  <widget class="QLabel" name="tri">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>768</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel::disabled {background-color: transparent;}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>:/images/menu/tri</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="MenuStack">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>768</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <widget class="SettingsMenuPage" name="SettingsMenu"/>
+   <widget class="MainMenuPage" name="MainMenu"/>
+  </widget>
+  <widget class="QLabel" name="triqa_pause">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>114</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="menugraphics.qrc">:/images/menu/triqa_pause.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="PauseButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>18</y>
+     <width>54</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/menu/pause);
+}
+
+QPushButton::hover {
+image: url(:/images/menu/pause_hover);
+border-image: url(:/images/menu/pause_hover) 1;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>54</width>
+     <height>54</height>
+    </size>
+   </property>
+  </widget>
+  <zorder>triqa_pause</zorder>
+  <zorder>PauseButton</zorder>
+  <zorder>tri</zorder>
+  <zorder>MenuStack</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MainMenuPage</class>
+   <extends>QWidget</extends>
+   <header location="global">mainmenupage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SettingsMenuPage</class>
+   <extends>QWidget</extends>
+   <header location="global">settingsmenupage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="menugraphics.qrc"/>
+ </resources>
+ <connections/>
+</ui>

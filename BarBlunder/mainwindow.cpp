@@ -1,127 +1,79 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "mainmenupage.h"
-#include "gamepage.h"
+#include "menulayer.h"
+#include "gamelayer.h"
 
-#include "barmodel.h"
+#include "applicationmodel.h"
 
-MainWindow::MainWindow(BarModel *bar, QWidget *parent)
+#include <QSize>
+#include <QKeyEvent>
+#include <QResizeEvent>
+#include <QScrollBar>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+
+MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	: QMainWindow{parent}
-	, currentState{State::Beginning}
 	, ui{new Ui::MainWindow}
 	, viewport{this}
 	, viewportScene{0, 0, RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
-	, bar{bar}
+	, windowSize{RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
 {
 	// Setup MainWindow UI.
 	ui->setupUi(this);
 	this->setWindowTitle("Bar Blunder");
+	this->setFixedSize(windowSize);
 
+	// Setup viewport.
+	viewport.horizontalScrollBar()->setEnabled(false);
+	viewport.verticalScrollBar()->setEnabled(false);
+	viewport.setStyleSheet("border: 0px; background-color: black;");
+	//viewport.setFocusPolicy(Qt::NoFocus);
+	this->setCentralWidget(&viewport);
+
+	// Setup layers.
+	gameLayer = new GamePage(app);
+	menuLayer = new MenuLayer(app);
+	viewportScene.addWidget(gameLayer);
+	viewportScene.addWidget(menuLayer);
+	viewport.setScene(&viewportScene);
+
+	// Setup audio.
 	this->setupAudio();
-	
-	mainMenuPage = new MainMenuPage(this);
-	gamePage = new GamePage(bar); // passing bar model to game page.
-	this->setupViewport();
 
 	// Connections
-	connect(bar, &BarModel::barOpened
-			, this, &MainWindow::printMessage);
+	connect(app, &ApplicationModel::gamePaused
+			, this, &MainWindow::playMenuMusic);
 
-    connect(mainMenuPage, &MainMenuPage::beginAnewRequested
-			, this, &MainWindow::beginNewEdu);
+	connect(app, &ApplicationModel::gameUnpaused
+			, this, &MainWindow::playGameMusic);
 
-	connect(mainMenuPage, &MainMenuPage::unpauseRequested
-			, this, &MainWindow::unpause);
+	connect(app, &ApplicationModel::audioVolumeChanged
+			, audioOutput, &QAudioOutput::setVolume);
 
-	connect(mainMenuPage, &MainMenuPage::quitRequested
+	connect(app, &ApplicationModel::fullscreenModeChanged
+			, this, &MainWindow::setFullscreenMode);
+
+	connect(app, &ApplicationModel::windowSizeChanged
+			, this, &MainWindow::setSize);
+
+	connect(app, &ApplicationModel::applicationExitRequested
 			, this, &MainWindow::close);
 
-	connect(gamePage, &GamePage::gameExitRequested
-			, this, &MainWindow::pause);
+	connect(this, &MainWindow::escapeKeyPressed
+			, app, &ApplicationModel::switchPauseState);
 
-    // inform bar to restart game
-    connect(mainMenuPage, &MainMenuPage::beginAnewRequested
-            , bar, &BarModel::restartGame);
-
-	gamePage->setDisabled(true);
-	this->playMainMenuMusic();
+	// Play music.
+	this->playMenuMusic();
 }
 
 MainWindow::~MainWindow()
 {
-	if (player->isPlaying())
-		player->stop();
-
-	delete player;
-	delete audioOutput;
 	delete ui;
 }
 
-void MainWindow::printMessage()
-{
-	QTextStream(stdout) << "Welcome!" << "\n";
-}
-
-void MainWindow::beginNewEdu()
-{
-	currentState = State::Unpaused;
-
-	// TODO: Setup Logic for setting up new instance of education.
-
-	this->unpause(); // Temp
-}
-
-void MainWindow::pause()
-{
-	currentState = State::Paused;
-
-	this->playMainMenuMusic();
-
-	// Switch to main menu page.
-	gamePage->setDisabled(true);
-	mainMenuPage->show();
-}
-
-void MainWindow::unpause()
-{
-	currentState = State::Unpaused;
-
-	this->playEduMusic();
-
-	// Switch to game page.
-	gamePage->setDisabled(false);
-	mainMenuPage->hide();
-}
-
-void MainWindow::setupViewport()
-{
-	// Disable QGraphicsView scrollbars.
-	viewport.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	viewport.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	viewport.horizontalScrollBar()->setEnabled(false);
-	viewport.verticalScrollBar()->setEnabled(false);
-
-	viewport.setStyleSheet("border: 0px;"\
-						   "background-color: black;");
-	this->setCentralWidget(&viewport);
-
-	// Setup layers.
-	viewportScene.addWidget(gamePage);
-	viewportScene.addWidget(mainMenuPage);
-	viewport.setScene(&viewportScene);
-}
-
-void MainWindow::setupAudio()
-{
-	player = new QMediaPlayer(this);
-	audioOutput = new QAudioOutput(this);
-	player->setAudioOutput(audioOutput);
-	player->setLoops(QMediaPlayer::Infinite);
-    audioOutput->setVolume(0);
-}
-
-void MainWindow::playMainMenuMusic()
+void MainWindow::playMenuMusic()
 {
 	// Stop bar game music.
 	if (player->isPlaying())
@@ -132,7 +84,7 @@ void MainWindow::playMainMenuMusic()
 	player->play();
 }
 
-void MainWindow::playEduMusic()
+void MainWindow::playGameMusic()
 {
 	// Stop main menu music.
 	if (player->isPlaying())
@@ -141,6 +93,37 @@ void MainWindow::playEduMusic()
 	// Start bar game music (some music we decide on for game music).
 	player->setSource(QUrl("qrc:/sounds/ragtime.mp3"));
 	player->play();
+}
+
+void MainWindow::setFullscreenMode(bool state)
+{
+	if (state && !this->isFullScreen())
+	{
+		QSize screenSize = QApplication::primaryScreen()->size();
+		this->setFixedSize(screenSize);
+		this->showFullScreen();
+	}
+	else if (!state && this->isFullScreen())
+	{
+		this->showNormal();
+		this->setFixedSize(windowSize);
+	}
+}
+
+void MainWindow::setSize(const QSize &newSize)
+{
+	QPoint positionCenter;
+	positionCenter.setX(this->pos().x() + (this->width() / 2));
+	positionCenter.setY(this->pos().y() + (this->height() / 2));
+
+	windowSize = newSize;
+	this->setFixedSize(newSize);
+
+	// Adjust position.
+	QPoint newPosition;
+	newPosition.setX(positionCenter.x() - (this->width() / 2));
+	newPosition.setY(positionCenter.y() - (this->height() / 2));
+	this->move(newPosition);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -158,13 +141,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
 	if (event->key() == Qt::Key_Escape)
 	{
-		if (currentState == State::Unpaused)
-		{
-			this->pause();
-		}
-		else if (currentState == State::Paused)
-		{
-			this->unpause();
-		}
+		emit escapeKeyPressed();
 	}
+}
+
+void MainWindow::setupAudio()
+{
+	player = new QMediaPlayer(this);
+	audioOutput = new QAudioOutput(this);
+	player->setAudioOutput(audioOutput);
+	player->setLoops(QMediaPlayer::Infinite);
+	audioOutput->setVolume(0.0f);
 }
