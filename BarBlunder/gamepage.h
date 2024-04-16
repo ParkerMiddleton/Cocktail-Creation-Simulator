@@ -1,7 +1,12 @@
 #ifndef GAMEPAGE_H
 #define GAMEPAGE_H
 
-#include "barmodel.h"
+#include <QWidget>
+
+// Forward Declaration.
+class ApplicationModel;
+
+class QPropertyAnimation;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -14,17 +19,19 @@ class GamePage : public QWidget
 {
 	Q_OBJECT
 public:
-    explicit GamePage(BarModel *bar, QWidget *parent = nullptr);
+	explicit GamePage(ApplicationModel *app, QWidget *parent = nullptr);
 	~GamePage();
 
 public slots:
-	void onBackButtonClicked();
+	void showPauseOverlay();
+	void hidePauseOverlay();
 
 signals:
-	void gameExitRequested();
 
 private:
 	Ui::GamePage *ui;
+
+	QWidget *pauseOverlay;
 
 };
 

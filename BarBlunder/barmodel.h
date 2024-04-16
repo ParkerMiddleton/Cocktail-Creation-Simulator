@@ -2,9 +2,11 @@
 #define BARMODEL_H
 
 #include "recipe.h"
-#include <QObject>
 
-/// @brief Educational Application main model class.
+#include <QObject>
+#include <QTimer>
+
+/// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
 {
 	Q_OBJECT
@@ -18,7 +20,8 @@ public:
 	/// any signal emitted inside the constructor does not go to its respective slot.
 	void initialize();
 
-
+	void pause();
+	void unpause();
 
 public slots:
 
@@ -35,8 +38,6 @@ public slots:
 
 
 signals:
-	/// @brief When model is initialized.
-	void barOpened();
 
 private:
     QList<recipe> listOfRecipes;

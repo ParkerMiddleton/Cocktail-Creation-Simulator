@@ -1,6 +1,10 @@
 #include "barmodel.h"
 #include "recipe.h"
 
+#include <QFile>
+#include <QDebug>
+#include <QRandomGenerator>
+
 BarModel::BarModel(QObject *parent)
 	: QObject{parent}
 {
@@ -22,8 +26,17 @@ void BarModel::initialize()
     }
     delete in;
 
-    newRound();
-	emit barOpened();
+	newRound();
+}
+
+void BarModel::pause()
+{
+
+}
+
+void BarModel::unpause()
+{
+
 }
 
 void BarModel::liquorPressed(QString liquorName) {

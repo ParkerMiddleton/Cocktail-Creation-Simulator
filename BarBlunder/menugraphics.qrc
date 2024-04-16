@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/menu/checkbox_checked.svg</file>
+        <file>images/menu/checkbox_checked_hover.svg</file>
+        <file>images/menu/checkbox_unchecked.svg</file>
+        <file>images/menu/checkbox_unchecked_hover.svg</file>
+        <file>images/menu/combobox_arrow.svg</file>
+        <file>images/menu/spinbox_arrow_left.svg</file>
+        <file>images/menu/spinbox_arrow_left_hover.svg</file>
+        <file>images/menu/spinbox_arrow_right.svg</file>
+        <file>images/menu/spinbox_arrow_right_hover.svg</file>
+        <file>images/menu/title.png</file>
+        <file>images/menu/tri.svg</file>
+        <file>images/menu/pause.svg</file>
+        <file>images/menu/pause_hover.svg</file>
+        <file>images/menu/triqa_pause.svg</file>
+    </qresource>
+</RCC>

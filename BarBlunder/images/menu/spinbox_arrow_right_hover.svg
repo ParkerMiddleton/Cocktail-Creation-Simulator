@@ -1,0 +1,12 @@
+<svg id="right_arrow_hovered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fee671;
+        stroke: #fee671;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M33.13,21.75l-24,13A2,2,0,0,1,6.2,33V7a2,2,0,0,1,3-1.76l24,13A2,2,0,0,1,33.13,21.75Z"/>
+</svg>

@@ -1,10 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMainWindow>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
 // Forward declaration.
-class MainMenuPage;
+class MenuLayer;
 class GamePage;
-class BarModel;
+class ApplicationModel;
+
+class QMediaPlayer;
+class QAudioOutput;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -13,59 +20,66 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-/// @brief Educational Application main window.
+/// @brief Educational Application main window. Part of View.
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	/// @brief Constructor. Initializes the UI and all of the signal to slot connections.
-	MainWindow(BarModel *bar, QWidget *parent = nullptr);
+	/// @brief Constructor.
+	/// Initializes the UI and connections.
+	MainWindow(ApplicationModel *app, QWidget *parent = nullptr);
 
 	/// @brief Destructor.
 	~MainWindow();
 
 public slots:
-	/// @brief Prints the message to the console.
-	void printMessage();
+	/// @brief Stops game music and starts playing menu music.
+	void playMenuMusic();
 
-	void beginNewEdu();
-	void pause();
-	void unpause();
+	/// @brief Stops menu music and starts playing game music.
+	void playGameMusic();
+
+	/// @brief Enables and disables fullscreen mode.
+	/// @param state If true, enables. If false, disables.
+	void setFullscreenMode(bool state);
+
+	/// @brief Sets a new size for window mode.
+	/// @param newSize New size.
+	void setSize(const QSize &newSize);
+
+signals:
+	/// @brief Notifies that Escape key on keyboard was pressed.
+	void escapeKeyPressed();
+
+protected:
+	void resizeEvent(QResizeEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
 
 private:
 	static constexpr int RENDER_NATIVE_WIDTH = 1280;
 	static constexpr int RENDER_NATIVE_HEIGHT = 720;
-	enum class State { Beginning, Paused, Unpaused };
-
-	State currentState;
 
 	Ui::MainWindow *ui;
 
 	QGraphicsView viewport;
 	QGraphicsScene viewportScene;
 
-	MainMenuPage *mainMenuPage;
-	GamePage *gamePage;
+	MenuLayer *menuLayer;
+	GamePage *gameLayer;
 
-	BarModel *bar;
+	QSize windowSize;
 
-	// Audio Fields
+	// Music
 	QMediaPlayer *player;
 	QAudioOutput *audioOutput;
 
-	// For sound effects.
+	// Sound effects
 	//QMediaPlayer *soundBoard;
 	//QAudioOutput *audioOutputSB;
 
-	void setupViewport();
+	/// @brief Helper method to initialize audio fields.
 	void setupAudio();
-
-	void playMainMenuMusic();
-	void playEduMusic();
-
-	void resizeEvent(QResizeEvent *event) override;
-	void keyPressEvent(QKeyEvent *event) override;
 
 };
 
