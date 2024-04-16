@@ -106,14 +106,17 @@ private:
 	QPropertyAnimation *menuStackAnim;
 
 	// Music
-	QMediaPlayer *player;
-	QAudioOutput *audioOutput;
+	QAudioOutput *menuMusicOutput;
+	QAudioOutput *gameMusicOutput;
+	QMediaPlayer *menuMusic;
+	QMediaPlayer *gameMusic;
+	QPropertyAnimation *gameVolumeFadeInAnim;
 
 	/// @brief Helper method to initialize animation fields.
 	void setupOverlayMenuAnimations();
 
 	/// @brief Helper method to initialize audio fields.
-	void setupAudio();
+	void setupMusic();
 
 };
 

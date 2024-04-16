@@ -36,7 +36,7 @@ void ApplicationModel::startNewGame()
 {
 	if (currentState == State::NotStarted)
 	{
-		emit gameStarted();
+		emit newGameStarted();
 	}
 
 	bar.restartGame();

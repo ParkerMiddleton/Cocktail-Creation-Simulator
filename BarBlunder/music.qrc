@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>music/lofi.wav</file>
-        <file>music/ragtime.wav</file>
+        <file>music/lofi.mp3</file>
+        <file>music/ragtime.mp3</file>
+        <file>music/bpm_test.mp3</file>
     </qresource>
 </RCC>

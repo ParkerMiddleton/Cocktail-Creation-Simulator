@@ -31,7 +31,7 @@ public slots:
 
 signals:
 	void settingsLoaded(float audioVolume, bool fullscreenState, const QSize &windowSize);
-	void gameStarted();
+	void newGameStarted();
 
 	void gamePaused();
 	void gameUnpaused();

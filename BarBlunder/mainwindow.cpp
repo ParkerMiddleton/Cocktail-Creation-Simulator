@@ -54,7 +54,7 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	this->setupOverlayMenuAnimations();
 
 	// Setup audio.
-	this->setupAudio();
+	this->setupMusic();
 
 	// Connections for the overlay menu.
 	connect(&mainMenu, &MainMenuPage::settingsButtonClicked,
@@ -63,7 +63,7 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	connect(&settingsMenu, &SettingsMenuPage::backButtonClicked,
 			this, &MainWindow::switchOverlayMenuToMain);
 
-	connect(app, &ApplicationModel::gameStarted,
+	connect(app, &ApplicationModel::newGameStarted,
 			this, &MainWindow::enableOverlayMenuPauseLayout);
 
 	connect(app, &ApplicationModel::gamePaused,
@@ -80,7 +80,13 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 			, this, &MainWindow::playGameMusic);
 
 	connect(app, &ApplicationModel::audioVolumeChanged
-			, audioOutput, &QAudioOutput::setVolume);
+			, menuMusicOutput, &QAudioOutput::setVolume);
+
+	connect(app, &ApplicationModel::audioVolumeChanged
+			, gameMusicOutput, &QAudioOutput::setVolume);
+
+	connect(app, &ApplicationModel::audioVolumeChanged
+			, gameVolumeFadeInAnim, &QPropertyAnimation::setEndValue);
 
 	connect(app, &ApplicationModel::fullscreenModeChanged
 			, this, &MainWindow::setFullscreenMode);
@@ -167,24 +173,28 @@ void MainWindow::switchOverlayMenuToSettings()
 
 void MainWindow::playMenuMusic()
 {
-	// Stop bar game music.
-	if (player->isPlaying())
-		player->stop();
+	// Pause game music.
+	if (gameMusic->isPlaying())
+	{
+		gameVolumeFadeInAnim->stop();
+		gameMusic->pause();
+	}
 
-	// Start main menu music.
-	player->setSource(QUrl("qrc:/music/lofi.wav"));
-	player->play();
+	// Start menu music.
+	menuMusic->setPosition(0);
+	menuMusic->play();
 }
 
 void MainWindow::playGameMusic()
 {
-	// Stop main menu music.
-	if (player->isPlaying())
-		player->stop();
+	// Pause menu music.
+	if (menuMusic->isPlaying())
+		menuMusic->pause();
 
-	// Start bar game music (some music we decide on for game music).
-	player->setSource(QUrl("qrc:/music/ragtime.wav"));
-	player->play();
+	// Resume game music (some music we decide on for game music).
+	gameVolumeFadeInAnim->start();
+	gameMusic->play();
+
 }
 
 void MainWindow::setFullscreenMode(bool state)
@@ -251,11 +261,24 @@ void MainWindow::setupOverlayMenuAnimations()
 	menuStackAnim->setEasingCurve(QEasingCurve::OutSine);
 }
 
-void MainWindow::setupAudio()
+void MainWindow::setupMusic()
 {
-	player = new QMediaPlayer(this);
-	audioOutput = new QAudioOutput(this);
-	player->setAudioOutput(audioOutput);
-	player->setLoops(QMediaPlayer::Infinite);
-	audioOutput->setVolume(0.0f);
+	menuMusicOutput = new QAudioOutput(this);
+	menuMusic = new QMediaPlayer(this);
+	menuMusic->setAudioOutput(menuMusicOutput);
+	menuMusic->setLoops(QMediaPlayer::Infinite);
+	menuMusicOutput->setVolume(0.0f);
+	menuMusic->setSource(QUrl("qrc:/music/lofi.mp3"));
+
+	gameMusicOutput = new QAudioOutput(this);
+	gameMusic = new QMediaPlayer(this);
+	gameMusic->setAudioOutput(gameMusicOutput);
+	gameMusic->setLoops(QMediaPlayer::Infinite);
+	gameMusicOutput->setVolume(0.0f);
+	gameMusic->setSource(QUrl("qrc:/music/ragtime.mp3"));
+
+	gameVolumeFadeInAnim = new QPropertyAnimation(gameMusicOutput, "volume", this);
+	gameVolumeFadeInAnim->setDuration(350);
+	gameVolumeFadeInAnim->setStartValue(0.0f);
+	gameVolumeFadeInAnim->setEndValue(gameMusicOutput->volume());
 }
