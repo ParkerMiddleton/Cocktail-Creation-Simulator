@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/sampleimage.png</file>
-        <file>sounds/ragtime.mp3</file>
-        <file>sounds/lofi.mp3</file>
         <file>images/bar.png</file>
         <file>images/wood.jpg</file>
         <file>images/steel.jpg</file>
@@ -24,6 +22,5 @@
         <file>images/underBar.jpg</file>
         <file>images/witheredStainless.jpg</file>
         <file>images/ice.png</file>
-        <file>textfiles/drinkingredients.txt</file>
     </qresource>
 </RCC>

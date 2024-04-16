@@ -59,7 +59,7 @@ color: #5e5e5e;
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resource.qrc">:/images/menu/title</pixmap>
+    <pixmap>:/images/menu/title</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -86,7 +86,7 @@ color: #5e5e5e;
     <enum>Qt::StrongFocus</enum>
    </property>
    <property name="text">
-    <string>BEGIN</string>
+    <string>START</string>
    </property>
   </widget>
   <widget class="QPushButton" name="SettingsButton">
@@ -168,8 +168,6 @@ color: #5e5e5e;
   <tabstop>QuitButton</tabstop>
   <tabstop>SettingsButton</tabstop>
  </tabstops>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

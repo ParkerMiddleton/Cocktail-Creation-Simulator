@@ -5,6 +5,8 @@
 
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
@@ -29,14 +31,6 @@ GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	pauseOverlay->setStyleSheet("background-color: rgba(0, 0, 0, 76);");
 
 	////////////// ICONS FOR BUTTONS /////////////////////
-
-	// background image
-	QPixmap bkgImage(":/images/bar.png");
-	int backgroundHeight = 400;
-	int backgroundWidth = 1156;
-	bkgImage = bkgImage.scaled(backgroundWidth, backgroundHeight, Qt::KeepAspectRatioByExpanding);
-	ui->backgroundImage->setPixmap(bkgImage);
-
 
 	//Vodka
 	QIcon vodkaIcon(":/images/titos.png");

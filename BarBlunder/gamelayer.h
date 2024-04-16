@@ -7,6 +7,8 @@
 class ApplicationModel;
 
 class QPropertyAnimation;
+class QMediaPlayer;
+class QAudioOutput;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -33,6 +35,10 @@ private:
 	Ui::GameLayer *ui;
 
 	QWidget *pauseOverlay;
+
+	// Sound effects
+	//QMediaPlayer *soundBoard;
+	//QAudioOutput *audioOutputSB;
 
 };
 

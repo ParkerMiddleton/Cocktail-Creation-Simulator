@@ -16,19 +16,6 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QPushButton" name="BackButton">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
@@ -223,11 +210,19 @@ background-image: url(:/images/steel.jpg);</string>
      <x>360</x>
      <y>550</y>
      <width>51</width>
-     <height>141</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+border-image: url(:/images/tequila.png) 1;
+}
+
+QPushButton::hover {
+border-image: url(:/images/tequila.png) 1;
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -347,10 +342,10 @@ border:2px solid black;
   <widget class="QLabel" name="backgroundImage">
    <property name="geometry">
     <rect>
-     <x>-50</x>
-     <y>-90</y>
-     <width>1156</width>
-     <height>514</height>
+     <x>-60</x>
+     <y>-50</y>
+     <width>1341</width>
+     <height>411</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -358,6 +353,12 @@ border:2px solid black;
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="DrinkAlgoBox">
@@ -736,7 +737,6 @@ background-color: transparent;</string>
   <zorder>label_9</zorder>
   <zorder>label_7</zorder>
   <zorder>label_2</zorder>
-  <zorder>BackButton</zorder>
   <zorder>label_3</zorder>
   <zorder>label_4</zorder>
   <zorder>label_5</zorder>
@@ -775,6 +775,8 @@ background-color: transparent;</string>
   <zorder>GingerBeerButton</zorder>
   <zorder>SinkButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="gamegraphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

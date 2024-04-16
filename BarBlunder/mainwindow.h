@@ -74,10 +74,6 @@ private:
 	QMediaPlayer *player;
 	QAudioOutput *audioOutput;
 
-	// Sound effects
-	//QMediaPlayer *soundBoard;
-	//QAudioOutput *audioOutputSB;
-
 	/// @brief Helper method to initialize audio fields.
 	void setupAudio();
 

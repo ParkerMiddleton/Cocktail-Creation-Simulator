@@ -34,7 +34,7 @@ void MainMenuPage::setupModelConnections(ApplicationModel *app)
 void MainMenuPage::showPauseMenuWidgets()
 {
 	ui->ResumeButton->setVisible(true);
-	ui->BeginButton->setText("BEGIN ANEW");
+	ui->BeginButton->setText("RESTART GAME");
 }
 
 void MainMenuPage::onSettingsButtonClicked()
