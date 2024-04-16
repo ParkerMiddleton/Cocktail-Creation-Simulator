@@ -25,6 +25,7 @@ public:
 public slots:
 	void showPauseOverlay();
 	void hidePauseOverlay();
+    void updateRecipebox(QString recipe);
 
 signals:
 

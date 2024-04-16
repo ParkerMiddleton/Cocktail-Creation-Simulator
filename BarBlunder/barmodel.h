@@ -31,23 +31,31 @@ public slots:
     // void collinsPressed();
     // void copperMugPressed();
 
-    void liquorPressed(QString liqourName);
+    void ingredientPressed(QString liqourName);
     void processLiquor();
-    void liquorReleased();
+    void ingredientReleased();
     void ingredientClicked(QString ingreidentName);
-
+    void serveDrink();
+    void emptyDrink();
+    void restartGame();
 
 signals:
+    void newDrink(QString recipe);
 
 private:
     QList<recipe> listOfRecipes;
     recipe assignedRecipe;
     recipe userRecipe;
     int stepNumber;
-    void newRound();
+    int score;
+    bool outOfOrder;
     bool pressedLiquor;
     QTimer timer;
     QString liquorSelection;
+    void newRound();
+    void newGame();
+    void getRandomRecipe();
+
 };
 
 #endif // BARMODEL_H

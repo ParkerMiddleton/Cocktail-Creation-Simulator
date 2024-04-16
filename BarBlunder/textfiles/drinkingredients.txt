@@ -1,15 +1,31 @@
+Old Fashioned.
+1. Take one rocks glass.
+2. Pour 2 oz of whiskey
+3. Add Ice
+4. Add 6 bitters.
+5. Stir.
+6. Garnish with orange peel.
+
 Old Fashioned
 rocks glass: 1
-whiskey: 2000
-ice: 50
+whiskey: 2
+ice: 1
 bitters: 6
-stir: 10
-orange peel: 1
+stir: 1
+orange peeles: 1
+
+Moscow Mule.
+1. Take one copper mug.
+2. Pour 1 oz of lime Juice.
+3. Pour 2 oz of vodka.
+4. Fill glass with ice.
+5. Pour 4 oz of ginger beer.
+6. garnish with a lime wedge.
 
 Moscow Mule
 copper mug: 1
 lime juice: 1
 vodka: 2
-ice: 100
-ginger beer: 1
+ice: 1
+ginger beer: 4
 lime wedge: 1

@@ -14,6 +14,8 @@ public:
     ~recipe();
     QString drinkName;
     QList<QPair<QString, int>> ingredients;
+    QString recipeAsString;
+    bool checkServedDrink(recipe correctRecipe);
 };
 
 #endif // RECIPE_H

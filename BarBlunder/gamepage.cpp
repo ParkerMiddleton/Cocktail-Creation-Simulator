@@ -75,10 +75,10 @@ GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 
 	//Lime Wedge Container
 	QIcon limeIcon(":/images/lime-wedges-in-glass.png");
-	ui->LimeButton->setIcon(limeIcon);
-	ui->LimeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize limeButtonSize(ui->LimeButton->size());
-	ui->LimeButton->setIconSize(limeButtonSize*1.3);
+    ui->LimeWedgeButton->setIcon(limeIcon);
+    ui->LimeWedgeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    QSize limeButtonSize(ui->LimeWedgeButton->size());
+    ui->LimeWedgeButton->setIconSize(limeButtonSize*1.3);
 
 	// Orange Peele container
 	QIcon orangeIcon(":/images/orangePeeles.png");
@@ -116,57 +116,101 @@ GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	ui->IceButton->setIconSize(iceButtonSize * 1.3);
 
 	// Connections
+    connect(ui->serveDrinkButton, &QPushButton::clicked,
+            bar, &::BarModel::serveDrink);
 
-    // start a countdown when pressed is signaled to bar model and start subtracting from ingredient unit unit reaching 0, if negative poured to long. (check at the end of drink made)
+    connect(bar, &BarModel::newDrink
+            , this, &GamePage::updateRecipebox);
 
-    connect(ui->LimeButton, &QPushButton::clicked, [ bar](){
-        bar->ingredientClicked("lime");
+    // Button connections
+    
+    connect(ui->LimeWedgeButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("lime wedge");
     });
-    connect(ui->OrangeButton, &QPushButton::clicked, [ bar](){
-        bar->ingredientClicked("orange peeles");
+    connect(ui->OrangeButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("orange peeles");
     });
-    connect(ui->OliveButton, &QPushButton::clicked, [ bar](){
-        bar->ingredientClicked("olives");
+    connect(ui->OliveButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("olives");
     });
-    connect(ui->BittersButton, &QPushButton::clicked, [ bar](){
-        bar->ingredientClicked("bitters");
+    connect(ui->BittersButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("bitters");
     });
-
-    connect(ui->IceButton, &QPushButton::clicked, [ bar](){
-        bar->ingredientClicked("ice");
+    connect(ui->IceButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("ice");
     });
+    connect(ui->RocksGlassButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("rocks glass");
+    });
+    connect(ui->CollinsGlassButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("collins glass");
+    });
+    connect(ui->CopperMugButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("copper mug");
+    });
+    connect(ui->MartiniGlassButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("martini glass");
+    });
+    connect(ui->ShakertinButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("shake");
+    });
+    connect(ui->StirButton, &QPushButton::clicked,
+            bar, [bar]() {bar->ingredientClicked("stir");
+    });
+    connect(ui->SinkButton, &QPushButton::clicked,
+            bar, &BarModel::emptyDrink);
 
 
     //Liqour connections
-    connect(ui->VodkaButton, &QPushButton::pressed, [ bar]() {
-        bar->liquorPressed("vodka");
+    connect(ui->OrangeLiquorButton, &QPushButton::pressed,
+            bar, [bar](){ bar->ingredientPressed("orange liquor");
+    });
+
+    connect(ui->KahluaButton, &QPushButton::pressed,
+            bar, [bar](){bar->ingredientPressed("kahlua");
+    });
+
+    connect(ui->VodkaButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("vodka");
     });
     connect(ui->VodkaButton, &QPushButton::released,
-            bar, &BarModel::liquorReleased);
+            bar, &BarModel::ingredientReleased);
 
-    connect(ui->TequilaButton, &QPushButton::pressed, [ bar]() {
-        bar->liquorPressed("tequila");
+    connect(ui->TequilaButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("tequila");
     });
     connect(ui->TequilaButton, &QPushButton::released,
-            bar, &BarModel::liquorReleased);
+            bar, &BarModel::ingredientReleased);
 
-    connect(ui->GinButton, &QPushButton::pressed, [ bar]() {
-        bar->liquorPressed("gin");
+    connect(ui->GinButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("gin");
     });
     connect(ui->GinButton, &QPushButton::released,
-            bar, &BarModel::liquorReleased);
+            bar, &BarModel::ingredientReleased);
 
-    connect(ui->BurbonButton, &QPushButton::pressed, [ bar]() {
-        bar->liquorPressed("whiskey");
+    connect(ui->BurbonButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("whiskey");
     });
     connect(ui->BurbonButton, &QPushButton::released,
-            bar, &BarModel::liquorReleased);
+            bar, &BarModel::ingredientReleased);
 
-    connect(ui->RumButton, &QPushButton::pressed, [ bar]() {
-        bar->liquorPressed("rum");
+    connect(ui->RumButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("rum");
     });
     connect(ui->RumButton, &QPushButton::released,
-            bar, &BarModel::liquorReleased);
+            bar, &BarModel::ingredientReleased);
+
+    connect(ui->LimeJuiceButton, &QPushButton::pressed,
+            bar, [bar]() {bar->ingredientPressed("lime juice");
+    });
+    connect(ui->LimeJuiceButton, &QPushButton::released,
+            bar, &BarModel::ingredientReleased);
+
+    connect(ui->GingerBeerButton, &QPushButton::pressed,
+            bar, [ bar]() {bar->ingredientPressed("ginger beer");
+    });
+    connect(ui->GingerBeerButton, &QPushButton::released,
+            bar, &BarModel::ingredientReleased);
 }
 
 GamePage::~GamePage()
@@ -184,4 +228,8 @@ void GamePage::hidePauseOverlay()
 {
 	//this->setDisabled(false);
 	pauseOverlay->setVisible(false);
+}
+void GamePage::updateRecipebox(QString recipe)
+{
+    ui->DrinkAlgoBox->setText(recipe);
 }

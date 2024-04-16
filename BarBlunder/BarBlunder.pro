@@ -52,4 +52,5 @@ RESOURCES += \
 PRECOMPILED_HEADER += \
     qt_pch.h
 
-DISTFILES +=
+DISTFILES += \
+    uml.qmodel
