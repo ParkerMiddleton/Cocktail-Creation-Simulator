@@ -32,21 +32,24 @@ public slots:
     void processLiquor();
     void liquorReleased();
     void ingredientClicked(QString ingreidentName);
-
+    void serveDrink();
 
 signals:
 	/// @brief When model is initialized.
 	void barOpened();
+    void newDrink(QString recipe);
 
 private:
     QList<recipe> listOfRecipes;
     recipe assignedRecipe;
     recipe userRecipe;
     int stepNumber;
-    void newRound();
+    bool outOfOrder;
     bool pressedLiquor;
     QTimer timer;
     QString liquorSelection;
+    void newRound();
+
 };
 
 #endif // BARMODEL_H

@@ -18,7 +18,8 @@ public:
 	~GamePage();
 
 public slots:
-	void onBackButtonClicked();
+    void onBackButtonClicked();
+    void updateRecipebox(QString recipe);
 
 signals:
 	void gameExitRequested();

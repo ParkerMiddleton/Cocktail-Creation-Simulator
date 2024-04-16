@@ -98,7 +98,11 @@ GamePage::GamePage(BarModel *bar, QWidget *parent)
     connect(ui->BackButton, &QPushButton::clicked,
             this, &GamePage::onBackButtonClicked);
 
+    connect(ui->serveDrinkButton, &QPushButton::clicked,
+            bar, &::BarModel::serveDrink);
 
+    connect(bar, &BarModel::newDrink
+            , this, &GamePage::updateRecipebox);
     // start a countdown when pressed is signaled to bar model and start subtracting from ingredient unit unit reaching 0, if negative poured to long. (check at the end of drink made)
 
     connect(ui->LimeButton, &QPushButton::clicked, [ bar](){
@@ -117,9 +121,33 @@ GamePage::GamePage(BarModel *bar, QWidget *parent)
     connect(ui->IceButton, &QPushButton::clicked, [ bar](){
         bar->ingredientClicked("ice");
     });
+    connect(ui->RocksGlassButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("rocks glass");
+    });
+    connect(ui->CollinsGlassButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("collins glass");
+    });
+    connect(ui->CopperMugButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("copper mug");
+    });
+    connect(ui->MartiniGlassButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("martini glass");
+    });
+    connect(ui->ShakertinButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("shake");
+    });
+    connect(ui->StirButton, &QPushButton::clicked, [ bar](){
+        bar->ingredientClicked("stir");
+    });
 
 
     //Liqour connections
+    connect(ui->OrangeLiquorButton, &QPushButton::pressed, [ bar](){
+        bar->liquorPressed("orange liquor");
+    });
+    connect(ui->KahluaButton, &QPushButton::pressed, [ bar](){
+        bar->liquorPressed("kahlua");
+    });
     connect(ui->VodkaButton, &QPushButton::pressed, [ bar]() {
         bar->liquorPressed("vodka");
     });
@@ -159,4 +187,8 @@ GamePage::~GamePage()
 void GamePage::onBackButtonClicked()
 {
 	emit gameExitRequested();
+}
+void GamePage::updateRecipebox(QString recipe)
+{
+    ui->DrinkAlgoBox->setText(recipe);
 }
