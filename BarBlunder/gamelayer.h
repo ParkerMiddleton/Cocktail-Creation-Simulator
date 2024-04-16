@@ -6,7 +6,6 @@
 // Forward Declaration.
 class ApplicationModel;
 
-class QPropertyAnimation;
 class QMediaPlayer;
 class QAudioOutput;
 
@@ -20,16 +19,16 @@ QT_END_NAMESPACE
 class GameLayer : public QWidget
 {
 	Q_OBJECT
+
 public:
 	explicit GameLayer(ApplicationModel *app, QWidget *parent = nullptr);
 	~GameLayer();
 
 public slots:
+	void updateRecipebox(const QString &recipe);
+
 	void showPauseOverlay();
 	void hidePauseOverlay();
-    void updateRecipebox(QString recipe);
-
-signals:
 
 private:
 	Ui::GameLayer *ui;

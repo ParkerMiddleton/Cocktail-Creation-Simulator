@@ -283,9 +283,8 @@ image: url(:/images/liquor/burbon_hover);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-left:2px solid black;
-border-right:2px solid black;
-border-top:2px solid black;</string>
+    <string notr="true">border: 2px solid black;
+border-bottom: none;</string>
    </property>
    <property name="text">
     <string/>
@@ -392,7 +391,7 @@ image: url(:/images/garnish/orange_peels_hover);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border:2px solid black;</string>
+    <string notr="true">border: 2px solid black;</string>
    </property>
    <property name="text">
     <string/>
@@ -440,7 +439,6 @@ image: url(:/images/garnish/orange_peels_hover);
 background-color: rgb(250, 255, 155);
 border: 2px dotted black;
 color: black;
-visible: false;
 </string>
    </property>
    <property name="text">
@@ -879,7 +877,7 @@ image: url(:/images/liquor/tequila_hover);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>

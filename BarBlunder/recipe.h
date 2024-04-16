@@ -6,16 +6,18 @@
 
 class QTextStream;
 
-class recipe
+class Recipe
 {
 public:
-    recipe();
-    recipe(QTextStream* recipeText);
-    ~recipe();
-    QString drinkName;
-    QList<QPair<QString, int>> ingredients;
-    QString recipeAsString;
-    bool checkServedDrink(recipe correctRecipe);
+	Recipe();
+	Recipe(QTextStream &recipeText);
+	~Recipe();
+
+	bool checkServedDrink(Recipe correctRecipe);
+
+	QString drinkName;
+	QList<QPair<QString, int>> ingredients;
+	QString recipeAsString;
 };
 
 #endif // RECIPE_H

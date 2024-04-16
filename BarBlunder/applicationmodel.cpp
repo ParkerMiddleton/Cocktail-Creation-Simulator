@@ -22,11 +22,9 @@ void ApplicationModel::initialize()
 	emit windowSizeChanged(windowSize);
 	emit fullscreenModeChanged(isFullscreen);
 
-	bar.initialize();
-
 	// ! README !
 	// If you want to skip the menu when launching, uncomment the line below!
-	this->startNewGame();
+	//this->startNewGame();
 }
 
 BarModel* ApplicationModel::barModel()
