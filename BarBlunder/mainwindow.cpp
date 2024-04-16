@@ -191,10 +191,9 @@ void MainWindow::playGameMusic()
 	if (menuMusic->isPlaying())
 		menuMusic->pause();
 
-	// Resume game music (some music we decide on for game music).
+	// Resume game music.
 	gameVolumeFadeInAnim->start();
 	gameMusic->play();
-
 }
 
 void MainWindow::setFullscreenMode(bool state)
