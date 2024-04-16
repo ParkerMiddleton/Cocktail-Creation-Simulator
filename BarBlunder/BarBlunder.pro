@@ -37,8 +37,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resource.qrc \
-    sounds.qrc
+    resource.qrc
 
 PRECOMPILED_HEADER += \
     qt_pch.h

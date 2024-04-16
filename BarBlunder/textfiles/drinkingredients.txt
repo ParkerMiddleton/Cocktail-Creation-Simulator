@@ -19,7 +19,7 @@ Moscow Mule.
 2. Pour 1 oz of lime Juice.
 3. Pour 2 oz of vodka.
 4. Fill glass with ice.
-5. Pour 1 oz of ginger beer.
+5. Pour 4 oz of ginger beer.
 6. garnish with a lime wedge.
 
 Moscow Mule
@@ -27,4 +27,5 @@ copper mug: 1
 lime juice: 1
 vodka: 2
 ice: 1
+ginger beer: 4
 lime wedge: 1

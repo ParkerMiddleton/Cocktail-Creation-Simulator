@@ -28,7 +28,7 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 	connect(bar, &BarModel::barOpened
 			, this, &MainWindow::printMessage);
 
-	connect(mainMenuPage, &MainMenuPage::beginAnewRequested
+    connect(mainMenuPage, &MainMenuPage::beginAnewRequested
 			, this, &MainWindow::beginNewEdu);
 
 	connect(mainMenuPage, &MainMenuPage::unpauseRequested
@@ -39,6 +39,10 @@ MainWindow::MainWindow(BarModel *bar, QWidget *parent)
 
 	connect(gamePage, &GamePage::gameExitRequested
 			, this, &MainWindow::pause);
+
+    // inform bar to restart game
+    connect(mainMenuPage, &MainMenuPage::beginAnewRequested
+            , bar, &BarModel::restartGame);
 
 	gamePage->setDisabled(true);
 	this->playMainMenuMusic();
@@ -114,7 +118,7 @@ void MainWindow::setupAudio()
 	audioOutput = new QAudioOutput(this);
 	player->setAudioOutput(audioOutput);
 	player->setLoops(QMediaPlayer::Infinite);
-	audioOutput->setVolume(0);
+    audioOutput->setVolume(0);
 }
 
 void MainWindow::playMainMenuMusic()

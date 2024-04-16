@@ -42,7 +42,8 @@ void MainMenuPage::show()
 	if (!resumeButton->isVisible())
 	{
 		resumeButton->setVisible(true);
-		beginButton->setText("BEGIN ANEW");
+        beginButton->setText("RESTART GAME");
+        // somehow inform gamemodel to call new game
 	}
 
 	triAnim->setDirection(QAbstractAnimation::Backward);
@@ -91,7 +92,7 @@ void MainMenuPage::onResumeButtonClicked()
 
 void MainMenuPage::onBeginButtonClicked()
 {
-	emit beginAnewRequested();
+    emit beginAnewRequested();
 }
 
 void MainMenuPage::onSettingsButtonClicked()

@@ -22,11 +22,11 @@ void BarModel::initialize()
     }
     delete in;
 
-    newRound();
+    //newGame();
 	emit barOpened();
 }
 
-void BarModel::liquorPressed(QString liquorName) {
+void BarModel::ingredientPressed(QString liquorName) {
     pressedLiquor = true;
     liquorSelection = liquorName;
     bool found = false;
@@ -35,6 +35,7 @@ void BarModel::liquorPressed(QString liquorName) {
         found = true;
     }
     if(!found){
+        qDebug() << "wrong ingredient clicked" << liquorName;
         outOfOrder = true;
         userRecipe.ingredients.push_back(QPair<QString, int>(liquorSelection, -1));
     }
@@ -59,7 +60,7 @@ void BarModel::processLiquor() {
     }
 }
 
-void BarModel::liquorReleased() {
+void BarModel::ingredientReleased() {
     pressedLiquor = false;
     timer.stop();
 }
@@ -74,15 +75,28 @@ void BarModel::ingredientClicked(QString ingredientName){
         qDebug() << stepNumber;
     }
     else{
+        qDebug() << "wrong ingredient clicked" << ingredientName;
         userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
     }
 
 }
 
-
 void BarModel::newRound(){
+    qDebug() << "------------- NEW ROUND -------------------------";
     stepNumber = 0;
     outOfOrder = false;
+    getRandomRecipe();
+}
+
+void BarModel::newGame(){
+    qDebug() << "------------- NEW GAME -------------------------";
+    stepNumber = 0;
+    outOfOrder = false;
+    score = 0;
+    getRandomRecipe();
+}
+
+void BarModel::getRandomRecipe() {
     // duplicate recipes possible in this case currently.
     int randomNumber = QRandomGenerator::global()->bounded(listOfRecipes.size());
     while(true){
@@ -94,10 +108,14 @@ void BarModel::newRound(){
         }
     }
 
-    assignedRecipe = listOfRecipes[0]; // debug purposes
+    assignedRecipe = listOfRecipes[randomNumber]; // debug purposes
     userRecipe = assignedRecipe;
     //assignedRecipe = listOfRecipes[randomNumber];
     emit newDrink(assignedRecipe.recipeAsString);
+}
+
+void BarModel::restartGame() {
+    newGame();
 }
 
 void BarModel::serveDrink() {
@@ -105,12 +123,22 @@ void BarModel::serveDrink() {
     bool correctDrink = userRecipe.checkServedDrink(assignedRecipe);
     // if it is correct call new round without resetting game
     if(correctDrink && !outOfOrder){
-        newRound();
-        qDebug() << "Congratulations!";
+        qDebug() << "Congratulations! you made the drink correct";
+        score++;
+        newRound();       
     }
     else{
-        qDebug() << "Order is out of order: " << outOfOrder;
-        qDebug() << "Correct drink: " << correctDrink;
+        qDebug() << "Drink ingredients is out of order: " << outOfOrder;
+        qDebug() << "Correct drink portions: " << correctDrink;
+        newRound();
     }
     // else maybe give a error that they made the drink incorrect and start new game or retry that recipe
+}
+
+void BarModel::emptyDrink() {
+    qDebug() << "drink emptied";
+    // reassign user drink to assigned recipe effectivly emptying the drink.
+    userRecipe = assignedRecipe;
+    stepNumber = 0;
+    outOfOrder = false;
 }

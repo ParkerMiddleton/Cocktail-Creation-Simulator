@@ -28,11 +28,13 @@ public slots:
     // void collinsPressed();
     // void copperMugPressed();
 
-    void liquorPressed(QString liqourName);
+    void ingredientPressed(QString liqourName);
     void processLiquor();
-    void liquorReleased();
+    void ingredientReleased();
     void ingredientClicked(QString ingreidentName);
     void serveDrink();
+    void emptyDrink();
+    void restartGame();
 
 signals:
 	/// @brief When model is initialized.
@@ -44,11 +46,14 @@ private:
     recipe assignedRecipe;
     recipe userRecipe;
     int stepNumber;
+    int score;
     bool outOfOrder;
     bool pressedLiquor;
     QTimer timer;
     QString liquorSelection;
     void newRound();
+    void newGame();
+    void getRandomRecipe();
 
 };
 

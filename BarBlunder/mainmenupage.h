@@ -37,7 +37,7 @@ private slots:
 
 signals:
 	void unpauseRequested();
-	void beginAnewRequested();
+    void beginAnewRequested();
 	void quitRequested();
 
 private:

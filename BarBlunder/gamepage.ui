@@ -249,9 +249,9 @@ background-image: url(:/images/steel.jpg);</string>
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>-10</x>
      <y>630</y>
-     <width>751</width>
+     <width>981</width>
      <height>111</height>
     </rect>
    </property>
@@ -278,7 +278,7 @@ border-top:2px solid black;</string>
     <string>Rocks</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="LimeButton">
+  <widget class="QPushButton" name="LimeWedgeButton">
    <property name="geometry">
     <rect>
      <x>900</x>
@@ -577,11 +577,11 @@ background-color: transparent;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_21">
+  <widget class="QLabel" name="TrashLabel">
    <property name="geometry">
     <rect>
-     <x>-30</x>
-     <y>590</y>
+     <x>920</x>
+     <y>570</y>
      <width>191</width>
      <height>221</height>
     </rect>
@@ -599,7 +599,7 @@ background-color: transparent;</string>
     <rect>
      <x>190</x>
      <y>450</y>
-     <width>721</width>
+     <width>731</width>
      <height>181</height>
     </rect>
    </property>
@@ -686,6 +686,49 @@ background-color: rgb(78, 78, 78);</string>
     <string>SPOON</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="LimeJuiceButton">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>560</y>
+     <width>51</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>lime juice</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GingerBeerButton">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>560</y>
+     <width>51</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ginger beer</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SinkButton">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>510</y>
+     <width>231</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/images/icewell.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_22</zorder>
   <zorder>label_23</zorder>
@@ -705,7 +748,7 @@ background-color: rgb(78, 78, 78);</string>
   <zorder>TequilaButton</zorder>
   <zorder>CollinsGlassButton</zorder>
   <zorder>RocksGlassButton</zorder>
-  <zorder>LimeButton</zorder>
+  <zorder>LimeWedgeButton</zorder>
   <zorder>OrangeButton</zorder>
   <zorder>label_11</zorder>
   <zorder>DrinkAlgoBox</zorder>
@@ -723,11 +766,14 @@ background-color: rgb(78, 78, 78);</string>
   <zorder>ShakertinButton</zorder>
   <zorder>OliveButton</zorder>
   <zorder>label_20</zorder>
-  <zorder>label_21</zorder>
+  <zorder>TrashLabel</zorder>
   <zorder>label_10</zorder>
   <zorder>IceButton</zorder>
   <zorder>serveDrinkButton</zorder>
   <zorder>StirButton</zorder>
+  <zorder>LimeJuiceButton</zorder>
+  <zorder>GingerBeerButton</zorder>
+  <zorder>SinkButton</zorder>
  </widget>
  <resources/>
  <connections/>
