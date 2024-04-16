@@ -14,7 +14,7 @@ BarModel::BarModel(QObject *parent)
 
 void BarModel::initialize()
 {
-    QFile file(":/textfiles/drinkingredients.txt");
+	QFile file(":/text/drinkingredients.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file from resources";
         return;

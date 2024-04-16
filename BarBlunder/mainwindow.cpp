@@ -80,7 +80,7 @@ void MainWindow::playMenuMusic()
 		player->stop();
 
 	// Start main menu music.
-	player->setSource(QUrl("qrc:/sounds/lofi.mp3"));
+	player->setSource(QUrl("qrc:/music/lofi.mp3"));
 	player->play();
 }
 
@@ -91,7 +91,7 @@ void MainWindow::playGameMusic()
 		player->stop();
 
 	// Start bar game music (some music we decide on for game music).
-	player->setSource(QUrl("qrc:/sounds/ragtime.mp3"));
+	player->setSource(QUrl("qrc:/music/ragtime.mp3"));
 	player->play();
 }
 

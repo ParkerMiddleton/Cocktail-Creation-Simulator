@@ -46,10 +46,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     gamegraphics.qrc \
-    misc.qrc \
-    music.qrc \
     menugraphics.qrc \
-    sounds.qrc
+    music.qrc \
+    sounds.qrc \
+    misc.qrc
 
 PRECOMPILED_HEADER += \
     qt_pch.h

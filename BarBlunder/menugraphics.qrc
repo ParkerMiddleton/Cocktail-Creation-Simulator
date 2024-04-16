@@ -14,48 +14,5 @@
         <file>images/menu/pause.svg</file>
         <file>images/menu/pause_hover.svg</file>
         <file>images/menu/triqa_pause.svg</file>
-        <file>images/menu/ButtonIcons/Background/bar.png</file>
-        <file>images/menu/ButtonIcons/Bar/icewell.png</file>
-        <file>images/menu/ButtonIcons/Bar/stainless.jpg</file>
-        <file>images/menu/ButtonIcons/Bar/steel.jpg</file>
-        <file>images/menu/ButtonIcons/Bar/underBar.jpg</file>
-        <file>images/menu/ButtonIcons/Bar/witheredStainless.jpg</file>
-        <file>images/menu/ButtonIcons/Bar/wood.jpg</file>
-        <file>images/menu/ButtonIcons/Garnish/lime-wedges-in-glass.png</file>
-        <file>images/menu/ButtonIcons/Garnish/olives.png</file>
-        <file>images/menu/ButtonIcons/Garnish/orangePeeles.png</file>
-        <file>images/menu/ButtonIcons/garnishOnHover/lime-wedges-in-glass.png</file>
-        <file>images/menu/ButtonIcons/garnishOnHover/olivesOnHover.png</file>
-        <file>images/menu/ButtonIcons/garnishOnHover/orangePeelsOnHover.png</file>
-        <file>images/menu/ButtonIcons/Glasses/collins.png</file>
-        <file>images/menu/ButtonIcons/Glasses/martini.png</file>
-        <file>images/menu/ButtonIcons/Glasses/rockglass.png</file>
-        <file>images/menu/ButtonIcons/Glasses/wineglass.png</file>
-        <file>images/menu/ButtonIcons/Ingredients/bitters.png</file>
-        <file>images/menu/ButtonIcons/Ingredients/ice.png</file>
-        <file>images/menu/ButtonIcons/IngredientsOnHover/bittersOnHover.png</file>
-        <file>images/menu/ButtonIcons/Liquor/burbon.png</file>
-        <file>images/menu/ButtonIcons/Liquor/gin.png</file>
-        <file>images/menu/ButtonIcons/Liquor/Kahlua.png</file>
-        <file>images/menu/ButtonIcons/Liquor/rum.png</file>
-        <file>images/menu/ButtonIcons/Liquor/tequila.png</file>
-        <file>images/menu/ButtonIcons/Liquor/titos.png</file>
-        <file>images/menu/ButtonIcons/OnHoverGlasses/collins.png</file>
-        <file>images/menu/ButtonIcons/OnHoverGlasses/martiniOnHoverBotDown.png</file>
-        <file>images/menu/ButtonIcons/OnHoverGlasses/martiniOnHoverBotUp.png</file>
-        <file>images/menu/ButtonIcons/OnHoverGlasses/rocksglassOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverGlasses/wineglassOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/burbonOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/ginOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/KahluaOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/rumOnHover.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/tequila.png</file>
-        <file>images/menu/ButtonIcons/OnHoverLiquor/titos.png</file>
-        <file>images/menu/ButtonIcons/Tools/icewell.png</file>
-        <file>images/menu/ButtonIcons/Tools/shakertin.png</file>
-        <file>images/menu/ButtonIcons/Tools/trash.png</file>
-        <file>images/menu/ButtonIcons/toolsOnHover/icewellOnHover.png</file>
-        <file>images/menu/ButtonIcons/toolsOnHover/shakertinOnHover.png</file>
-        <file>images/menu/ButtonIcons/toolsOnHover/trashOnHover.png</file>
     </qresource>
 </RCC>

@@ -354,9 +354,6 @@ border:2px solid black;
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="gamegraphics.qrc">:/images/bar.png</pixmap>
-   </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
@@ -781,8 +778,6 @@ background-color: transparent;</string>
   <zorder>GingerBeerButton</zorder>
   <zorder>SinkButton</zorder>
  </widget>
- <resources>
-  <include location="gamegraphics.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
