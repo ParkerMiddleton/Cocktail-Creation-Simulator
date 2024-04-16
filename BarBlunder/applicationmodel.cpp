@@ -41,6 +41,8 @@ void ApplicationModel::startNewGame()
 		emit gameStarted();
 	}
 
+	bar.restartGame();
+
 	// TODO: Setup Logic for setting up new game.
 	this->unpause(); // TEMP
 }
