@@ -313,10 +313,10 @@ border-top:2px solid black;</string>
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>950</x>
-     <y>330</y>
-     <width>80</width>
-     <height>60</height>
+     <x>850</x>
+     <y>320</y>
+     <width>100</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -337,10 +337,10 @@ image: url(:/images/garnish/lime_wedges_hover);
   <widget class="QPushButton" name="d_OliveButton">
    <property name="geometry">
     <rect>
-     <x>1110</x>
+     <x>1070</x>
      <y>320</y>
-     <width>80</width>
-     <height>80</height>
+     <width>100</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -361,10 +361,10 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>1030</x>
-     <y>370</y>
-     <width>80</width>
-     <height>60</height>
+     <x>960</x>
+     <y>350</y>
+     <width>100</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -385,9 +385,9 @@ image: url(:/images/garnish/orange_peels_hover);
   <widget class="QLabel" name="DrinkMakeArea">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>490</x>
      <y>370</y>
-     <width>400</width>
+     <width>231</width>
      <height>50</height>
     </rect>
    </property>
@@ -621,10 +621,10 @@ image: url(:/images/liquor/gin_hover);
   <widget class="QPushButton" name="d_BittersButton">
    <property name="geometry">
     <rect>
-     <x>1190</x>
-     <y>330</y>
-     <width>80</width>
-     <height>80</height>
+     <x>350</x>
+     <y>310</y>
+     <width>100</width>
+     <height>100</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -783,7 +783,7 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>850</x>
+     <x>740</x>
      <y>370</y>
      <width>75</width>
      <height>31</height>
