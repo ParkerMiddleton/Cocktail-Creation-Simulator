@@ -3,7 +3,7 @@
 
 #include "applicationmodel.h"
 
-MainMenuPage::MainMenuPage(QWidget *parent)
+MainMenuPage::MainMenuPage(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
 	, ui{new Ui::MainMenu}
 {
@@ -12,15 +12,8 @@ MainMenuPage::MainMenuPage(QWidget *parent)
 
 	connect(ui->SettingsButton, &QPushButton::clicked,
 			this, &MainMenuPage::onSettingsButtonClicked);
-}
 
-MainMenuPage::~MainMenuPage()
-{
-	delete ui;
-}
-
-void MainMenuPage::setupModelConnections(ApplicationModel *app)
-{
+	// Model
 	connect(ui->ResumeButton, &QPushButton::clicked,
 			app, &ApplicationModel::unpause);
 
@@ -29,6 +22,11 @@ void MainMenuPage::setupModelConnections(ApplicationModel *app)
 
 	connect(ui->QuitButton, &QPushButton::clicked,
 			app, &ApplicationModel::exitApplication);
+}
+
+MainMenuPage::~MainMenuPage()
+{
+	delete ui;
 }
 
 void MainMenuPage::showPauseMenuWidgets()

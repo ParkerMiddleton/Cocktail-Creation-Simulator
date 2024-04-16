@@ -1,15 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "gameLayer.h"
+#include "mainmenupage.h"
+#include "settingsmenupage.h"
+
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
+#include <QLabel>
+#include <QPushButton>
+#include <QStackedWidget>
+
 // Forward declaration.
-class MenuLayer;
-class GameLayer;
 class ApplicationModel;
 
+class QPropertyAnimation;
 class QMediaPlayer;
 class QAudioOutput;
 
@@ -30,12 +37,28 @@ friend class LayersEventsFilter;
 public:
 	/// @brief Constructor.
 	/// Initializes the UI and connections.
+	/// @param app Model responsible for managing states and settings.
 	MainWindow(ApplicationModel *app, QWidget *parent = nullptr);
 
 	/// @brief Destructor.
 	~MainWindow();
 
 public slots:
+	/// @brief Enabled Pause menu layout in MainMenuPage.
+	void enableOverlayMenuPauseLayout();
+
+	/// @brief Unhides the overlay menu with main and settings menus with animation.
+	void showOverlayMenu();
+
+	/// @brief Hides the overlay menu with main and settings menus with animation.
+	void hideOverlayMenu();
+
+	/// @brief Switches the overlay menu to MainMenuPage.
+	void switchOverlayMenuToMain();
+
+	/// @brief Switches the overlay menu to SettingsMenuPage.
+	void switchOverlayMenuToSettings();
+
 	/// @brief Stops game music and starts playing menu music.
 	void playMenuMusic();
 
@@ -62,19 +85,32 @@ private:
 	static constexpr int RENDER_NATIVE_WIDTH = 1280;
 	static constexpr int RENDER_NATIVE_HEIGHT = 720;
 
+	static constexpr int OVERLAY_MENU_WIDTH = 768;
+	static constexpr int OVERLAY_MENU_HEIGHT = 720;
+
 	Ui::MainWindow *ui;
 
 	QGraphicsView viewport;
 	QGraphicsScene viewportScene;
-
-	MenuLayer *menuLayer;
-	GameLayer *gameLayer;
-
 	QSize windowSize;
+
+	GameLayer gameLayer;
+	QLabel tri;
+	QStackedWidget menuStack;
+	MainMenuPage mainMenu;
+	SettingsMenuPage settingsMenu;
+	bool isOverlayMenuPauseLayoutEnabled;
+
+	// Overlay Menu Animation
+	QPropertyAnimation *triAnim;
+	QPropertyAnimation *menuStackAnim;
 
 	// Music
 	QMediaPlayer *player;
 	QAudioOutput *audioOutput;
+
+	/// @brief Helper method to initialize animation fields.
+	void setupOverlayMenuAnimations();
 
 	/// @brief Helper method to initialize audio fields.
 	void setupAudio();

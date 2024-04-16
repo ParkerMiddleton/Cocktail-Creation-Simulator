@@ -17,7 +17,6 @@ SOURCES += \
     mainmenupage.cpp \
     mainwindow.cpp \
     barmodel.cpp \
-    menulayer.cpp \
     recipe.cpp \
     settingsmenupage.cpp
 
@@ -27,7 +26,6 @@ HEADERS += \
     gamelayer.h \
     mainmenupage.h \
     mainwindow.h \
-    menulayer.h \
     qt_pch.h \
     recipe.h \
     settingsmenupage.h
@@ -36,7 +34,6 @@ FORMS += \
     gamelayer.ui \
     mainmenupage.ui \
     mainwindow.ui \
-    menulayer.ui \
     settingsmenupage.ui
 
 # Default rules for deployment.

@@ -3,7 +3,7 @@
 
 #include "applicationmodel.h"
 
-SettingsMenuPage::SettingsMenuPage(QWidget *parent)
+SettingsMenuPage::SettingsMenuPage(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
 	, ui{new Ui::SettingsMenu}
 {
@@ -23,6 +23,19 @@ SettingsMenuPage::SettingsMenuPage(QWidget *parent)
 
 	connect(ui->BackButton, &QPushButton::clicked,
 			this, &SettingsMenuPage::onBackButtonClicked);
+
+	// Model
+	connect(app, &ApplicationModel::settingsLoaded,
+			this, &SettingsMenuPage::setCurrentValues);
+
+	connect(this, &SettingsMenuPage::volumeSpinBoxValueChanged,
+			app, &ApplicationModel::setAudioVolume);
+
+	connect(this, &SettingsMenuPage::fullscreenCheckBoxStateChanged,
+			app, &ApplicationModel::setIsFullscreen);
+
+	connect(this, &SettingsMenuPage::windowSizeComboBoxIndexChanged,
+			app, &ApplicationModel::setWindowSize);
 }
 
 SettingsMenuPage::~SettingsMenuPage()
@@ -62,21 +75,6 @@ void SettingsMenuPage::setCurrentValues(float audioVolume, bool fullscreenState,
 	{
 		ui->WindowSizeComboBox->setCurrentIndex(1);
 	}
-}
-
-void SettingsMenuPage::setupModelConnections(ApplicationModel *app)
-{
-	connect(app, &ApplicationModel::settingsLoaded,
-			this, &SettingsMenuPage::setCurrentValues);
-
-	connect(this, &SettingsMenuPage::volumeSpinBoxValueChanged,
-			app, &ApplicationModel::setAudioVolume);
-
-	connect(this, &SettingsMenuPage::fullscreenCheckBoxStateChanged,
-			app, &ApplicationModel::setIsFullscreen);
-
-	connect(this, &SettingsMenuPage::windowSizeComboBoxIndexChanged,
-			app, &ApplicationModel::setWindowSize);
 }
 
 void SettingsMenuPage::checkVolumeSpinBoxValue(int volume)

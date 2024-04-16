@@ -21,14 +21,12 @@ class SettingsMenuPage : public QWidget
 
 public:
 	/// @brief Constructor.
-	/// Setups UI and connects private slots to signals.
-	explicit SettingsMenuPage(QWidget *parent = nullptr);
+	/// Initializes the UI and connections.
+	/// @param app Model responsible for managing states and settings.
+	explicit SettingsMenuPage(ApplicationModel *app, QWidget *parent = nullptr);
 
 	/// @brief Destructor.
 	~SettingsMenuPage();
-
-	/// @brief Connects signals to ApplicationModel slots.
-	void setupModelConnections(ApplicationModel *app);
 
 public slots:
 	/// @brief Sets the current values of all settings to the given ones.

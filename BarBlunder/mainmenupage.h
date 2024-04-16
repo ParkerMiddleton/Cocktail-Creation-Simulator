@@ -21,14 +21,12 @@ class MainMenuPage : public QWidget
 
 public:
 	/// @brief Constructor.
-	/// Setups UI and connects private slots to signals.
-	explicit MainMenuPage(QWidget *parent = nullptr);
+	/// Initializes the UI and connections.
+	/// @param app Model responsible for managing states and settings.
+	explicit MainMenuPage(ApplicationModel *app, QWidget *parent = nullptr);
 
 	/// @brief Destructor.
 	~MainMenuPage();
-
-	/// @brief Connects signals to ApplicationModel slots.
-	void setupModelConnections(ApplicationModel *app);
 
 	/// @brief Transforms Main menu into Pause menu.
 	void showPauseMenuWidgets();

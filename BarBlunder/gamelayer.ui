@@ -878,6 +878,9 @@ image: url(:/images/liquor/tequila_hover);
      <height>94</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -952,12 +955,12 @@ border-image: url(:/images/menu/pause_hover) 1;
   <zorder>d_GingerBeerButton</zorder>
   <zorder>d_SinkButton</zorder>
   <zorder>d_TequilaButton</zorder>
-  <zorder>triqa_pause</zorder>
-  <zorder>PauseButton</zorder>
   <zorder>d_VodkaButton</zorder>
   <zorder>d_RumButton</zorder>
   <zorder>d_BurbonButton</zorder>
   <zorder>DrinksPanel</zorder>
+  <zorder>triqa_pause</zorder>
+  <zorder>PauseButton</zorder>
  </widget>
  <resources>
   <include location="gamegraphics.qrc"/>

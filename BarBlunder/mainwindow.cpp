@@ -1,15 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "menulayer.h"
 #include "gamelayer.h"
-
 #include "applicationmodel.h"
 
 #include <QSize>
 #include <QKeyEvent>
 #include <QResizeEvent>
 #include <QScrollBar>
+#include <QPropertyAnimation>
 #include <QMediaPlayer>
 #include <QAudioOutput>
 
@@ -19,6 +18,10 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	, viewport{this}
 	, viewportScene{0, 0, RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
 	, windowSize{RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
+	, gameLayer{app}
+	, mainMenu{app}
+	, settingsMenu{app}
+	, isOverlayMenuPauseLayoutEnabled{false}
 {
 	// Setup MainWindow UI.
 	ui->setupUi(this);
@@ -29,25 +32,47 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	viewport.horizontalScrollBar()->setEnabled(false);
 	viewport.verticalScrollBar()->setEnabled(false);
 	viewport.setStyleSheet("border: 0px; background-color: black;");
-	//viewport.setFocusPolicy(Qt::NoFocus);
 	this->setCentralWidget(&viewport);
 
+	// Setup overlay menu.
+	tri.resize({OVERLAY_MENU_WIDTH, OVERLAY_MENU_HEIGHT});
+	tri.setStyleSheet("background-color: transparent; image: url(:/images/menu/tri);");
+	tri.setFocusPolicy(Qt::NoFocus);
+
+	menuStack.resize({OVERLAY_MENU_WIDTH, OVERLAY_MENU_HEIGHT});
+	menuStack.setStyleSheet("background-color: transparent;");
+	menuStack.addWidget(&mainMenu);
+	menuStack.addWidget(&settingsMenu);
+
 	// Setup layers.
-	gameLayer = new GameLayer(app);
-	menuLayer = new MenuLayer(app);
-	viewportScene.addWidget(gameLayer);
-	viewportScene.addWidget(menuLayer);
-	menuLayer->setAcceptDrops(true);
-	//menuLayer->setWindowFlags(menuLayer->windowFlags() | Qt::WindowTransparentForInput);
-	//menuLayer->installEventFilter(&lef);
-	//gameLayer->installEventFilter(&lef);
-	//menuLayer->setAttribute(Qt::WA_TransparentForMouseEvents);
+	viewportScene.addWidget(&gameLayer);
+	viewportScene.addWidget(&tri);
+	viewportScene.addWidget(&menuStack);
 	viewport.setScene(&viewportScene);
+
+	// Setup Animations
+	this->setupOverlayMenuAnimations();
 
 	// Setup audio.
 	this->setupAudio();
 
-	// Connections
+	// Connections for the overlay menu.
+	connect(&mainMenu, &MainMenuPage::settingsButtonClicked,
+			this, &MainWindow::switchOverlayMenuToSettings);
+
+	connect(&settingsMenu, &SettingsMenuPage::backButtonClicked,
+			this, &MainWindow::switchOverlayMenuToMain);
+
+	connect(app, &ApplicationModel::gameStarted,
+			this, &MainWindow::enableOverlayMenuPauseLayout);
+
+	connect(app, &ApplicationModel::gamePaused,
+			this, &MainWindow::showOverlayMenu);
+
+	connect(app, &ApplicationModel::gameUnpaused,
+			this, &MainWindow::hideOverlayMenu);
+
+	// Connections for the window itself.
 	connect(app, &ApplicationModel::gamePaused
 			, this, &MainWindow::playMenuMusic);
 
@@ -78,6 +103,68 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
+void MainWindow::enableOverlayMenuPauseLayout()
+{
+	isOverlayMenuPauseLayoutEnabled = true;
+}
+
+void MainWindow::showOverlayMenu()
+{
+	if (isOverlayMenuPauseLayoutEnabled)
+	{
+		mainMenu.showPauseMenuWidgets();
+	}
+
+	triAnim->setDirection(QAbstractAnimation::Backward);
+	triAnim->setEasingCurve(QEasingCurve::InCirc);
+
+	if (triAnim->state() == QAbstractAnimation::Stopped)
+	{
+		triAnim->start();
+	}
+
+	menuStack.setVisible(true);
+
+	if (menuStackAnim->state() == QAbstractAnimation::Stopped)
+	{
+		menuStackAnim->start();
+	}
+}
+
+void MainWindow::hideOverlayMenu()
+{
+	triAnim->setDirection(QAbstractAnimation::Forward);
+	triAnim->setEasingCurve(QEasingCurve::OutQuad);
+
+	if (triAnim->state() == QAbstractAnimation::Stopped)
+	{
+		triAnim->start();
+	}
+
+	if (menuStackAnim->state() == QAbstractAnimation::Running)
+	{
+		menuStackAnim->stop();
+		menuStack.move(0, 0);
+	}
+
+	if (menuStack.currentWidget() == &settingsMenu)
+	{
+		menuStack.setCurrentWidget(&mainMenu);
+	}
+
+	menuStack.setVisible(false);
+}
+
+void MainWindow::switchOverlayMenuToMain()
+{
+	menuStack.setCurrentWidget(&mainMenu);
+}
+
+void MainWindow::switchOverlayMenuToSettings()
+{
+	menuStack.setCurrentWidget(&settingsMenu);
+}
+
 void MainWindow::playMenuMusic()
 {
 	// Stop bar game music.
@@ -85,7 +172,7 @@ void MainWindow::playMenuMusic()
 		player->stop();
 
 	// Start main menu music.
-	player->setSource(QUrl("qrc:/music/lofi.mp3"));
+	player->setSource(QUrl("qrc:/music/lofi.wav"));
 	player->play();
 }
 
@@ -96,7 +183,7 @@ void MainWindow::playGameMusic()
 		player->stop();
 
 	// Start bar game music (some music we decide on for game music).
-	player->setSource(QUrl("qrc:/music/ragtime.mp3"));
+	player->setSource(QUrl("qrc:/music/ragtime.wav"));
 	player->play();
 }
 
@@ -148,6 +235,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 	{
 		emit escapeKeyPressed();
 	}
+}
+
+void MainWindow::setupOverlayMenuAnimations()
+{
+	triAnim = new QPropertyAnimation(&tri, "pos", this);
+	triAnim->setDuration(350);
+	triAnim->setStartValue(QPoint(0, 0));
+	triAnim->setEndValue(QPoint(-808, 0)); // Prev: -768
+
+	menuStackAnim = new QPropertyAnimation(&menuStack, "pos", this);
+	menuStackAnim->setDuration(250);
+	menuStackAnim->setStartValue(QPoint(-50, 0));
+	menuStackAnim->setEndValue(QPoint(0, 0));
+	menuStackAnim->setEasingCurve(QEasingCurve::OutSine);
 }
 
 void MainWindow::setupAudio()
