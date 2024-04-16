@@ -17,12 +17,12 @@ class GameLayer;
 }
 QT_END_NAMESPACE
 
-class GamePage : public QWidget
+class GameLayer : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit GamePage(ApplicationModel *app, QWidget *parent = nullptr);
-	~GamePage();
+	explicit GameLayer(ApplicationModel *app, QWidget *parent = nullptr);
+	~GameLayer();
 
 public slots:
 	void showPauseOverlay();

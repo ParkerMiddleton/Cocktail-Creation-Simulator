@@ -16,51 +16,61 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="UnderBarColLeft">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>350</y>
+     <y>390</y>
      <width>51</width>
-     <height>381</height>
+     <height>341</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/stainless.jpg);
-opacity: 10%;
+    <string notr="true">opacity: 10%;
 border: 3.5px solid black;
 </string>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="UnderBarColRight">
    <property name="geometry">
     <rect>
-     <x>920</x>
-     <y>350</y>
+     <x>1079</x>
+     <y>390</y>
      <width>51</width>
-     <height>361</height>
+     <height>321</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/stainless.jpg);
-opacity: 10%;
+    <string notr="true">opacity: 10%;
 border: 3.5px solid black;
 </string>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="UnderBarCenterVeryBottom">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>640</y>
-     <width>1171</width>
-     <height>151</height>
+     <x>0</x>
+     <y>701</y>
+     <width>1280</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -70,29 +80,34 @@ border: 3.5px solid black;
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="BarTop">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>360</y>
-     <width>1161</width>
+     <width>1280</width>
      <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-border-image: url(:/images/wood.jpg);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/wood.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="BarTopBottomLine">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>430</y>
-     <width>1161</width>
+     <width>1280</width>
      <height>31</height>
     </rect>
    </property>
@@ -104,248 +119,62 @@ border-bottom: 3px solid black;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="VodkaButton">
+  <widget class="QPushButton" name="d_VodkaButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>550</y>
-     <width>51</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>0</y>
-     <width>21</width>
-     <height>381</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-background-image: url(:/images/steel.jpg);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>0</y>
-     <width>871</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-background-image: url(:/images/steel.jpg);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>980</x>
-     <y>0</y>
-     <width>21</width>
-     <height>381</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-background-image: url(:/images/steel.jpg);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="RumButton">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>550</y>
-     <width>51</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="BurbonButton">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>550</y>
-     <width>51</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="TequilaButton">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>550</y>
-     <width>51</width>
-     <height>121</height>
+     <x>340</x>
+     <y>580</y>
+     <width>122</width>
+     <height>125</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
 background-color: transparent;
 border: none;
-border-image: url(:/images/tequila.png) 1;
+image: url(:/images/liquor/vodka);
 }
 
 QPushButton::hover {
-border-image: url(:/images/tequila.png) 1;
+image: url(:/images/liquor/vodka_hover);
 }</string>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>147</width>
+     <height>162</height>
+    </size>
+   </property>
   </widget>
-  <widget class="QPushButton" name="CollinsGlassButton">
+  <widget class="QLabel" name="TopColLeft">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>240</y>
-     <width>51</width>
-     <height>141</height>
+     <x>130</x>
+     <y>0</y>
+     <width>21</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="text">
-    <string>Collins </string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_10">
+  <widget class="QLabel" name="TopColCentre">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>630</y>
+     <x>150</x>
+     <y>0</y>
      <width>981</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/stainless.jpg);
-border-left:2px solid black;
-border-right:2px solid black;
-border-top:2px solid black;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="RocksGlassButton">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>270</y>
-     <width>51</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Rocks</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="LimeWedgeButton">
-   <property name="geometry">
-    <rect>
-     <x>900</x>
-     <y>310</y>
-     <width>51</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="OliveButton">
-   <property name="geometry">
-    <rect>
-     <x>980</x>
-     <y>350</y>
-     <width>51</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="OrangeButton">
-   <property name="geometry">
-    <rect>
-     <x>940</x>
-     <y>330</y>
-     <width>51</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>370</y>
-     <width>501</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/steel.jpg);
-border:2px solid black;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="backgroundImage">
-   <property name="geometry">
-    <rect>
-     <x>-60</x>
-     <y>-50</y>
-     <width>1341</width>
-     <height>411</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -354,21 +183,261 @@ border:2px solid black;
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="DrinkAlgoBox">
+  <widget class="QLabel" name="TopColRight">
    <property name="geometry">
     <rect>
-     <x>990</x>
+     <x>1129</x>
      <y>0</y>
+     <width>21</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_RumButton">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>580</y>
+     <width>75</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/rum);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/rum_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_BurbonButton">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>580</y>
+     <width>125</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/burbon);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/burbon_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_CollinsGlassButton">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>250</y>
+     <width>51</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Collins </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DrinksPanel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>690</y>
+     <width>1081</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-left:2px solid black;
+border-right:2px solid black;
+border-top:2px solid black;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_RocksGlassButton">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>280</y>
+     <width>51</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Rocks</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_LimeWedgeButton">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>330</y>
+     <width>80</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/garnish/lime_wedges);
+}
+
+QPushButton::hover {
+image: url(:/images/garnish/lime_wedges_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_OliveButton">
+   <property name="geometry">
+    <rect>
+     <x>1110</x>
+     <y>320</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/garnish/olives);
+}
+
+QPushButton::hover {
+image: url(:/images/garnish/olives_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_OrangeButton">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>370</y>
+     <width>80</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/garnish/orange_peels);
+}
+
+QPushButton::hover {
+image: url(:/images/garnish/orange_peels_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DrinkMakeArea">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>370</y>
+     <width>400</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid black;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/steel.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Background">
+   <property name="geometry">
+    <rect>
+     <x>-170</x>
+     <y>-20</y>
+     <width>1479</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/background.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="d_DrinkAlgoBox">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>10</y>
      <width>171</width>
      <height>241</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(250, 255, 155);
+    <string notr="true">/*background-color: rgb(250, 255, 155);*/
+background-color: rgb(250, 255, 155);
 border: 2px dotted black;
 color: black;
 visible: false;
@@ -378,7 +447,7 @@ visible: false;
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="MartiniGlassButton">
+  <widget class="QPushButton" name="d_MartiniGlassButton">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -471,30 +540,47 @@ visible: false;
     <string>Wine Glass</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="GinButton">
+  <widget class="QPushButton" name="d_GinButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>550</y>
-     <width>51</width>
-     <height>141</height>
+     <x>530</x>
+     <y>570</y>
+     <width>77</width>
+     <height>133</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/gin);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/gin_hover);
+}</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="KahluaButton">
+  <widget class="QPushButton" name="d_KahluaButton">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>550</y>
-     <width>51</width>
+     <x>660</x>
+     <y>570</y>
+     <width>81</width>
      <height>141</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>Kahlua</string>
+   </property>
+   <property name="toolTipDuration">
+    <number>5</number>
+   </property>
+   <property name="whatsThis">
+    <string/>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton:hover
@@ -506,12 +592,12 @@ visible: false;
     <string>Kahlua</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="OrangeLiquorButton">
+  <widget class="QPushButton" name="d_OrangeLiquorButton">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>550</y>
-     <width>51</width>
+     <x>740</x>
+     <y>570</y>
+     <width>101</width>
      <height>141</height>
     </rect>
    </property>
@@ -519,7 +605,7 @@ visible: false;
     <string>OLiquor</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="CopperMugButton">
+  <widget class="QPushButton" name="d_CopperMugButton">
    <property name="geometry">
     <rect>
      <x>670</x>
@@ -532,79 +618,83 @@ visible: false;
     <string>Copper</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="BittersButton">
+  <widget class="QPushButton" name="d_BittersButton">
    <property name="geometry">
     <rect>
-     <x>1030</x>
-     <y>320</y>
-     <width>51</width>
-     <height>61</height>
+     <x>1190</x>
+     <y>330</y>
+     <width>80</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/ingredients/bitters);
+}
+
+QPushButton::hover {
+image: url(:/images/ingredients/bitters_hover);
+}</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="ShakertinButton">
+  <widget class="QPushButton" name="d_ShakertinButton">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>300</y>
-     <width>81</width>
-     <height>111</height>
+     <x>220</x>
+     <y>319</y>
+     <width>91</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/tools/shakertin);
+}
+
+QPushButton::hover {
+image: url(:/images/tools/shakertin_hover);
+}</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_20">
+  <widget class="QLabel" name="d_TrashLabel">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>510</y>
-     <width>211</width>
-     <height>181</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/icewell.png);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="TrashLabel">
-   <property name="geometry">
-    <rect>
-     <x>920</x>
-     <y>570</y>
+     <x>1070</x>
+     <y>580</y>
      <width>191</width>
      <height>221</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/trash.png);
-background-color: transparent;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/tools/trash.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_22">
+  <widget class="QLabel" name="UnderBarCenter">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>450</y>
-     <width>731</width>
-     <height>181</height>
+     <x>200</x>
+     <y>460</y>
+     <width>881</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -615,13 +705,13 @@ background-color: rgb(78, 78, 78);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_23">
+  <widget class="QLabel" name="UnderBarCenterBottom">
    <property name="geometry">
     <rect>
      <x>200</x>
      <y>560</y>
-     <width>721</width>
-     <height>171</height>
+     <width>881</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -631,43 +721,56 @@ background-color: rgb(78, 78, 78);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="UnderBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>460</y>
-     <width>1161</width>
+     <width>1280</width>
      <height>271</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/underBar.jpg);
- background-color: rgba(255, 255, 255, 0.5);</string>
+    <string notr="true">background-color: rgba(255, 255, 255, 0.5);</string>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/under_bar.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QPushButton" name="IceButton">
+  <widget class="QPushButton" name="d_IceButton">
    <property name="geometry">
     <rect>
-     <x>760</x>
-     <y>570</y>
-     <width>141</width>
-     <height>51</height>
+     <x>880</x>
+     <y>550</y>
+     <width>225</width>
+     <height>225</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/tools/icewell);
+}
+
+QPushButton::hover {
+image: url(:/images/tools/icewell_hover);
+}</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="serveDrinkButton">
+  <widget class="QPushButton" name="d_ServeDrinkButton">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>560</x>
      <y>160</y>
      <width>151</width>
      <height>81</height>
@@ -677,11 +780,11 @@ background-color: rgb(78, 78, 78);</string>
     <string>Serve</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="StirButton">
+  <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>380</y>
+     <x>850</x>
+     <y>370</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -690,12 +793,12 @@ background-color: rgb(78, 78, 78);</string>
     <string>SPOON</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="LimeJuiceButton">
+  <widget class="QPushButton" name="d_LimeJuiceButton">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>560</y>
-     <width>51</width>
+     <x>790</x>
+     <y>490</y>
+     <width>131</width>
      <height>71</height>
     </rect>
    </property>
@@ -703,12 +806,12 @@ background-color: rgb(78, 78, 78);</string>
     <string>lime juice</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="GingerBeerButton">
+  <widget class="QPushButton" name="d_GingerBeerButton">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>560</y>
-     <width>51</width>
+     <x>650</x>
+     <y>490</y>
+     <width>121</width>
      <height>71</height>
     </rect>
    </property>
@@ -716,68 +819,149 @@ background-color: rgb(78, 78, 78);</string>
     <string>ginger beer</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="SinkButton">
+  <widget class="QPushButton" name="d_SinkButton">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>510</y>
-     <width>231</width>
-     <height>121</height>
+     <x>0</x>
+     <y>550</y>
+     <width>225</width>
+     <height>225</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/icewell.png);
-background-color: transparent;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/bar/empty_icewell);
+}</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <zorder>label</zorder>
-  <zorder>label_22</zorder>
-  <zorder>label_23</zorder>
-  <zorder>backgroundImage</zorder>
-  <zorder>label_9</zorder>
-  <zorder>label_7</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_6</zorder>
-  <zorder>VodkaButton</zorder>
-  <zorder>label_8</zorder>
-  <zorder>RumButton</zorder>
-  <zorder>BurbonButton</zorder>
-  <zorder>TequilaButton</zorder>
-  <zorder>CollinsGlassButton</zorder>
-  <zorder>RocksGlassButton</zorder>
-  <zorder>LimeWedgeButton</zorder>
-  <zorder>OrangeButton</zorder>
-  <zorder>label_11</zorder>
-  <zorder>DrinkAlgoBox</zorder>
-  <zorder>MartiniGlassButton</zorder>
+  <widget class="QPushButton" name="d_TequilaButton">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>590</y>
+     <width>122</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/tequila);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/tequila_hover);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="triqa_pause">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>114</width>
+     <height>94</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="menugraphics.qrc">:/images/menu/triqa_pause.svg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="PauseButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>18</y>
+     <width>54</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/menu/pause);
+}
+
+QPushButton::hover {
+image: url(:/images/menu/pause_hover);
+border-image: url(:/images/menu/pause_hover) 1;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>Background</zorder>
+  <zorder>TopColCentre</zorder>
+  <zorder>UnderBar</zorder>
+  <zorder>UnderBarCenter</zorder>
+  <zorder>UnderBarCenterBottom</zorder>
+  <zorder>TopColRight</zorder>
+  <zorder>TopColLeft</zorder>
+  <zorder>UnderBarColLeft</zorder>
+  <zorder>UnderBarColRight</zorder>
+  <zorder>UnderBarCenterVeryBottom</zorder>
+  <zorder>BarTop</zorder>
+  <zorder>BarTopBottomLine</zorder>
+  <zorder>d_CollinsGlassButton</zorder>
+  <zorder>d_RocksGlassButton</zorder>
+  <zorder>d_LimeWedgeButton</zorder>
+  <zorder>d_OrangeButton</zorder>
+  <zorder>DrinkMakeArea</zorder>
+  <zorder>d_DrinkAlgoBox</zorder>
+  <zorder>d_MartiniGlassButton</zorder>
   <zorder>label_15</zorder>
   <zorder>label_16</zorder>
   <zorder>label_17</zorder>
   <zorder>label_18</zorder>
   <zorder>label_19</zorder>
-  <zorder>GinButton</zorder>
-  <zorder>KahluaButton</zorder>
-  <zorder>OrangeLiquorButton</zorder>
-  <zorder>CopperMugButton</zorder>
-  <zorder>BittersButton</zorder>
-  <zorder>ShakertinButton</zorder>
-  <zorder>OliveButton</zorder>
-  <zorder>label_20</zorder>
-  <zorder>TrashLabel</zorder>
-  <zorder>label_10</zorder>
-  <zorder>IceButton</zorder>
-  <zorder>serveDrinkButton</zorder>
-  <zorder>StirButton</zorder>
-  <zorder>LimeJuiceButton</zorder>
-  <zorder>GingerBeerButton</zorder>
-  <zorder>SinkButton</zorder>
+  <zorder>d_GinButton</zorder>
+  <zorder>d_KahluaButton</zorder>
+  <zorder>d_OrangeLiquorButton</zorder>
+  <zorder>d_CopperMugButton</zorder>
+  <zorder>d_BittersButton</zorder>
+  <zorder>d_ShakertinButton</zorder>
+  <zorder>d_OliveButton</zorder>
+  <zorder>d_TrashLabel</zorder>
+  <zorder>d_IceButton</zorder>
+  <zorder>d_ServeDrinkButton</zorder>
+  <zorder>d_StirButton</zorder>
+  <zorder>d_LimeJuiceButton</zorder>
+  <zorder>d_GingerBeerButton</zorder>
+  <zorder>d_SinkButton</zorder>
+  <zorder>d_TequilaButton</zorder>
+  <zorder>triqa_pause</zorder>
+  <zorder>PauseButton</zorder>
+  <zorder>d_VodkaButton</zorder>
+  <zorder>d_RumButton</zorder>
+  <zorder>d_BurbonButton</zorder>
+  <zorder>DrinksPanel</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="gamegraphics.qrc"/>
+  <include location="menugraphics.qrc"/>
+ </resources>
  <connections/>
 </ui>

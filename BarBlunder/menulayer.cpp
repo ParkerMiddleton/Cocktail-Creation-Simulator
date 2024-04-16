@@ -16,6 +16,8 @@ MenuLayer::MenuLayer(ApplicationModel *app, QWidget *parent)
 	, isPauseLayoutEnabled{false}
 {
 	ui->setupUi(this);
+	ui->triqa_pause->setVisible(false);
+	ui->PauseButton->setVisible(false);
 
 	menuStack = ui->MenuStack;
 	mainMenu = ui->MainMenu;
@@ -59,6 +61,8 @@ void MenuLayer::enablePauseMenuLayout()
 
 void MenuLayer::showMainOverlay()
 {
+	this->setVisible(true);
+
 	// Disable game pause button.
 	ui->PauseButton->setDisabled(true);
 
@@ -85,6 +89,8 @@ void MenuLayer::showMainOverlay()
 
 void MenuLayer::hideMainOverlay()
 {
+	this->setVisible(false);
+
 	// Enable game pause button.
 	ui->PauseButton->setDisabled(false);
 

@@ -33,10 +33,15 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	this->setCentralWidget(&viewport);
 
 	// Setup layers.
-	gameLayer = new GamePage(app);
+	gameLayer = new GameLayer(app);
 	menuLayer = new MenuLayer(app);
 	viewportScene.addWidget(gameLayer);
 	viewportScene.addWidget(menuLayer);
+	menuLayer->setAcceptDrops(true);
+	//menuLayer->setWindowFlags(menuLayer->windowFlags() | Qt::WindowTransparentForInput);
+	//menuLayer->installEventFilter(&lef);
+	//gameLayer->installEventFilter(&lef);
+	//menuLayer->setAttribute(Qt::WA_TransparentForMouseEvents);
 	viewport.setScene(&viewportScene);
 
 	// Setup audio.

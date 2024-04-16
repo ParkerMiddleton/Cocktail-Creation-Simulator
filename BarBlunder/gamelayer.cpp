@@ -8,7 +8,7 @@
 #include <QMediaPlayer>
 #include <QAudioOutput>
 
-GamePage::GamePage(ApplicationModel *app, QWidget *parent)
+GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
 	, ui{new Ui::GameLayer}
 {
@@ -17,11 +17,14 @@ GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	BarModel *bar = app->barModel();
 	//this->setDisabled(true);
 
+	connect(ui->PauseButton, &QPushButton::clicked,
+			app, &ApplicationModel::pause);
+
 	connect(app, &ApplicationModel::gamePaused,
-			this, &GamePage::showPauseOverlay);
+			this, &GameLayer::showPauseOverlay);
 
 	connect(app, &ApplicationModel::gameUnpaused,
-			this, &GamePage::hidePauseOverlay);
+			this, &GameLayer::hidePauseOverlay);
 
 	/*===== SETUP PAUSE OVERLAY =====*/
 
@@ -32,198 +35,158 @@ GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 
 	////////////// ICONS FOR BUTTONS /////////////////////
 
-	//Vodka
-    QIcon vodkaIcon(":/images/ButtonIcons/Liquor/titos.png");
-	ui->VodkaButton->setIcon(vodkaIcon);
-	ui->VodkaButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize vodkaButtonSize(ui->VodkaButton->size());
-	ui->VodkaButton->setIconSize(vodkaButtonSize * 2.85);
-
-	//Tequila
-    QIcon tequilaIcon(":/images/ButtonIcons/Liquor/tequila.png");
-	ui->TequilaButton->setIcon(tequilaIcon);
-	ui->TequilaButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize tequilaButtonSize(ui->TequilaButton->size());
-	ui->TequilaButton->setIconSize(tequilaButtonSize * 2.8);
-
-	//Gin
-    QIcon ginIcon(":/images/ButtonIcons/Liquor/gin.png");
-	ui->GinButton->setIcon(ginIcon);
-	ui->GinButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize ginButtonSize(ui->GinButton->size());
-	ui->GinButton->setIconSize(ginButtonSize * .85);
-
-	//Burbon
-    QIcon burbonIcon(":/images/ButtonIcons/Liquor/burbon.png");
-	ui->BurbonButton->setIcon(burbonIcon);
-	ui->BurbonButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize burbonButtonSize(ui->BurbonButton->size());
-	ui->BurbonButton->setIconSize(burbonButtonSize * 2.3);
-
-	//Rum
-    QIcon rumIcon(":/images/ButtonIcons/Liquor/rum.png");
-	ui->RumButton->setIcon(rumIcon);
-	ui->RumButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize rumButtonSize(ui->RumButton->size());
-	ui->RumButton->setIconSize(rumButtonSize * 2.5);
-
 	//Lime Wedge Container
 	QIcon limeIcon(":/images/lime-wedges-in-glass.png");
-    ui->LimeWedgeButton->setIcon(limeIcon);
-    ui->LimeWedgeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    QSize limeButtonSize(ui->LimeWedgeButton->size());
-    ui->LimeWedgeButton->setIconSize(limeButtonSize*1.3);
+	ui->d_LimeWedgeButton->setIcon(limeIcon);
+	ui->d_LimeWedgeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	QSize limeButtonSize(ui->d_LimeWedgeButton->size());
+	ui->d_LimeWedgeButton->setIconSize(limeButtonSize*1.3);
 
 	// Orange Peele container
     QIcon orangeIcon(":/images/ButtonIcons/Garnish/orangePeeles.png");
-	ui->OrangeButton->setIcon(orangeIcon);
-	ui->OrangeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize orangeButtonSize(ui->OrangeButton->size());
-	ui->OrangeButton->setIconSize(orangeButtonSize*1.7);
+	ui->d_OrangeButton->setIcon(orangeIcon);
+	ui->d_OrangeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	QSize orangeButtonSize(ui->d_OrangeButton->size());
+	ui->d_OrangeButton->setIconSize(orangeButtonSize*1.7);
 
 	// Olive container
 	QIcon oliveIcon(":/images/olives.png");
-	ui->OliveButton->setIcon(oliveIcon);
-	ui->OliveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize oliveButtonSize(ui->OliveButton->size());
-	ui->OliveButton->setIconSize(oliveButtonSize*1.7);
+	ui->d_OliveButton->setIcon(oliveIcon);
+	ui->d_OliveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	QSize oliveButtonSize(ui->d_OliveButton->size());
+	ui->d_OliveButton->setIconSize(oliveButtonSize*1.7);
 
 	//bitters bottle
     QIcon bittersIcon(":/images/ButtonIcons/Garnish/olives.png");
-	ui->BittersButton->setIcon(bittersIcon);
-	ui->BittersButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize BittersButtonSize(ui->BittersButton->size());
-	ui->BittersButton->setIconSize(BittersButtonSize*1.7);
+	ui->d_BittersButton->setIcon(bittersIcon);
+	ui->d_BittersButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	QSize BittersButtonSize(ui->d_BittersButton->size());
+	ui->d_BittersButton->setIconSize(BittersButtonSize*1.7);
 
 	//shakertin
     QIcon shakertinIcon(":/images/ButtonIcons/Tools/shakertin.png");
-	ui->ShakertinButton->setIcon(shakertinIcon);
-	ui->ShakertinButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize shakertinButtonSize(ui->ShakertinButton->size());
-	ui->ShakertinButton->setIconSize(shakertinButtonSize*.95);
-
-	// ice cubes
-    QIcon iceIcon(":/images/ButtonIcons/Ingredients/ice.png");
-	ui->IceButton->setIcon(iceIcon);
-	ui->IceButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize iceButtonSize(ui->IceButton->size());
-	ui->IceButton->setIconSize(iceButtonSize * 1.3);
+	ui->d_ShakertinButton->setIcon(shakertinIcon);
+	ui->d_ShakertinButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	QSize shakertinButtonSize(ui->d_ShakertinButton->size());
+	ui->d_ShakertinButton->setIconSize(shakertinButtonSize*.95);
 
 	// Connections
-    connect(ui->serveDrinkButton, &QPushButton::clicked,
+	connect(ui->d_ServeDrinkButton, &QPushButton::clicked,
             bar, &::BarModel::serveDrink);
 
     connect(bar, &BarModel::newDrink
-            , this, &GamePage::updateRecipebox);
+			, this, &GameLayer::updateRecipebox);
 
     // Button connections
-    
-    connect(ui->LimeWedgeButton, &QPushButton::clicked,
+
+	connect(ui->d_LimeWedgeButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("lime wedge");
     });
-    connect(ui->OrangeButton, &QPushButton::clicked,
+	connect(ui->d_OrangeButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("orange peeles");
     });
-    connect(ui->OliveButton, &QPushButton::clicked,
+	connect(ui->d_OliveButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("olives");
     });
-    connect(ui->BittersButton, &QPushButton::clicked,
+	connect(ui->d_BittersButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("bitters");
     });
-    connect(ui->IceButton, &QPushButton::clicked,
+	connect(ui->d_IceButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("ice");
     });
-    connect(ui->RocksGlassButton, &QPushButton::clicked,
+	connect(ui->d_RocksGlassButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("rocks glass");
     });
-    connect(ui->CollinsGlassButton, &QPushButton::clicked,
+	connect(ui->d_CollinsGlassButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("collins glass");
     });
-    connect(ui->CopperMugButton, &QPushButton::clicked,
+	connect(ui->d_CopperMugButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("copper mug");
     });
-    connect(ui->MartiniGlassButton, &QPushButton::clicked,
+	connect(ui->d_MartiniGlassButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("martini glass");
     });
-    connect(ui->ShakertinButton, &QPushButton::clicked,
+	connect(ui->d_ShakertinButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("shake");
     });
-    connect(ui->StirButton, &QPushButton::clicked,
+	connect(ui->d_StirButton, &QPushButton::clicked,
             bar, [bar]() {bar->ingredientClicked("stir");
     });
-    connect(ui->SinkButton, &QPushButton::clicked,
+	connect(ui->d_SinkButton, &QPushButton::clicked,
             bar, &BarModel::emptyDrink);
 
 
     //Liqour connections
-    connect(ui->OrangeLiquorButton, &QPushButton::pressed,
+	connect(ui->d_OrangeLiquorButton, &QPushButton::pressed,
             bar, [bar](){ bar->ingredientPressed("orange liquor");
     });
 
-    connect(ui->KahluaButton, &QPushButton::pressed,
+	connect(ui->d_KahluaButton, &QPushButton::pressed,
             bar, [bar](){bar->ingredientPressed("kahlua");
     });
 
-    connect(ui->VodkaButton, &QPushButton::pressed,
+	connect(ui->d_VodkaButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("vodka");
     });
-    connect(ui->VodkaButton, &QPushButton::released,
+	connect(ui->d_VodkaButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->TequilaButton, &QPushButton::pressed,
+	connect(ui->d_TequilaButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("tequila");
     });
-    connect(ui->TequilaButton, &QPushButton::released,
+	connect(ui->d_TequilaButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->GinButton, &QPushButton::pressed,
+	connect(ui->d_GinButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("gin");
     });
-    connect(ui->GinButton, &QPushButton::released,
+	connect(ui->d_GinButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->BurbonButton, &QPushButton::pressed,
+	connect(ui->d_BurbonButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("whiskey");
     });
-    connect(ui->BurbonButton, &QPushButton::released,
+	connect(ui->d_BurbonButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->RumButton, &QPushButton::pressed,
+	connect(ui->d_RumButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("rum");
     });
-    connect(ui->RumButton, &QPushButton::released,
+	connect(ui->d_RumButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->LimeJuiceButton, &QPushButton::pressed,
+	connect(ui->d_LimeJuiceButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("lime juice");
     });
-    connect(ui->LimeJuiceButton, &QPushButton::released,
+	connect(ui->d_LimeJuiceButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->GingerBeerButton, &QPushButton::pressed,
+	connect(ui->d_GingerBeerButton, &QPushButton::pressed,
             bar, [ bar]() {bar->ingredientPressed("ginger beer");
     });
-    connect(ui->GingerBeerButton, &QPushButton::released,
+	connect(ui->d_GingerBeerButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 }
 
-GamePage::~GamePage()
+GameLayer::~GameLayer()
 {
 	delete ui;
 }
 
-void GamePage::showPauseOverlay()
+void GameLayer::showPauseOverlay()
 {
 	//this->setDisabled(true);
+	pauseOverlay->setDisabled(false);
 	pauseOverlay->setVisible(true);
 }
 
-void GamePage::hidePauseOverlay()
+void GameLayer::hidePauseOverlay()
 {
 	//this->setDisabled(false);
+	pauseOverlay->setDisabled(true);
 	pauseOverlay->setVisible(false);
 }
-void GamePage::updateRecipebox(QString recipe)
+void GameLayer::updateRecipebox(QString recipe)
 {
-    ui->DrinkAlgoBox->setText(recipe);
+	ui->d_DrinkAlgoBox->setText(recipe);
 }

@@ -1,16 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>images/bar/empty_icewell.png</file>
-        <file>images/bar/stainless.jpg</file>
-        <file>images/bar/steel.jpg</file>
-        <file>images/bar/under_bar.jpg</file>
-        <file>images/bar/withered_stainless.jpg</file>
-        <file>images/bar/wood.jpg</file>
         <file>images/garnish/lime_wedges.png</file>
         <file>images/garnish/lime_wedges_hover.png</file>
         <file>images/garnish/olives.png</file>
         <file>images/garnish/olives_hover.png</file>
-        <file>images/garnish/orange_peeles.png</file>
         <file>images/garnish/orange_peels.png</file>
         <file>images/glasses/collins.png</file>
         <file>images/glasses/collins_hover.png</file>
@@ -34,8 +28,6 @@
         <file>images/liquor/rum_hover.png</file>
         <file>images/liquor/tequila.png</file>
         <file>images/liquor/tequila_hover.png</file>
-        <file>images/liquor/titos.png</file>
-        <file>images/liquor/titos_hover.png</file>
         <file>images/tools/icewell.png</file>
         <file>images/tools/icewell_hover.png</file>
         <file>images/tools/shakertin.png</file>
@@ -43,5 +35,12 @@
         <file>images/tools/trash.png</file>
         <file>images/tools/trash_hover.png</file>
         <file>images/background.png</file>
+        <file>images/bar/steel.png</file>
+        <file>images/bar/under_bar.png</file>
+        <file>images/bar/withered_stainless.png</file>
+        <file>images/bar/wood.png</file>
+        <file>images/liquor/vodka.png</file>
+        <file>images/liquor/vodka_hover.png</file>
+        <file>images/garnish/orange_peels_hover.png</file>
     </qresource>
 </RCC>

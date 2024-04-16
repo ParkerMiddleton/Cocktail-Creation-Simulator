@@ -7,7 +7,7 @@
 
 // Forward declaration.
 class MenuLayer;
-class GamePage;
+class GameLayer;
 class ApplicationModel;
 
 class QMediaPlayer;
@@ -24,6 +24,8 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
+
+friend class LayersEventsFilter;
 
 public:
 	/// @brief Constructor.
@@ -66,7 +68,7 @@ private:
 	QGraphicsScene viewportScene;
 
 	MenuLayer *menuLayer;
-	GamePage *gameLayer;
+	GameLayer *gameLayer;
 
 	QSize windowSize;
 

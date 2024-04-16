@@ -26,7 +26,7 @@ void ApplicationModel::initialize()
 
 	// ! README !
 	// If you want to skip the menu when launching, uncomment the line below!
-	//this->startNewGame();
+	this->startNewGame();
 }
 
 BarModel* ApplicationModel::barModel()
