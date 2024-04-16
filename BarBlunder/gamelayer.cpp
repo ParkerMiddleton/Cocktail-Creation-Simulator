@@ -33,43 +33,6 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	pauseOverlay->raise();
 	pauseOverlay->setStyleSheet("background-color: rgba(0, 0, 0, 76);");
 
-	////////////// ICONS FOR BUTTONS /////////////////////
-
-	//Lime Wedge Container
-	QIcon limeIcon(":/images/lime-wedges-in-glass.png");
-	ui->d_LimeWedgeButton->setIcon(limeIcon);
-	ui->d_LimeWedgeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize limeButtonSize(ui->d_LimeWedgeButton->size());
-	ui->d_LimeWedgeButton->setIconSize(limeButtonSize*1.3);
-
-	// Orange Peele container
-    QIcon orangeIcon(":/images/ButtonIcons/Garnish/orangePeeles.png");
-	ui->d_OrangeButton->setIcon(orangeIcon);
-	ui->d_OrangeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize orangeButtonSize(ui->d_OrangeButton->size());
-	ui->d_OrangeButton->setIconSize(orangeButtonSize*1.7);
-
-	// Olive container
-	QIcon oliveIcon(":/images/olives.png");
-	ui->d_OliveButton->setIcon(oliveIcon);
-	ui->d_OliveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize oliveButtonSize(ui->d_OliveButton->size());
-	ui->d_OliveButton->setIconSize(oliveButtonSize*1.7);
-
-	//bitters bottle
-    QIcon bittersIcon(":/images/ButtonIcons/Garnish/olives.png");
-	ui->d_BittersButton->setIcon(bittersIcon);
-	ui->d_BittersButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize BittersButtonSize(ui->d_BittersButton->size());
-	ui->d_BittersButton->setIconSize(BittersButtonSize*1.7);
-
-	//shakertin
-    QIcon shakertinIcon(":/images/ButtonIcons/Tools/shakertin.png");
-	ui->d_ShakertinButton->setIcon(shakertinIcon);
-	ui->d_ShakertinButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	QSize shakertinButtonSize(ui->d_ShakertinButton->size());
-	ui->d_ShakertinButton->setIconSize(shakertinButtonSize*.95);
-
 	// Connections
 	connect(ui->d_ServeDrinkButton, &QPushButton::clicked,
             bar, &::BarModel::serveDrink);
