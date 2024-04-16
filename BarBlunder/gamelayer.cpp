@@ -1,5 +1,5 @@
-#include "gamepage.h"
-#include "ui_gamepage.h"
+#include "gamelayer.h"
+#include "ui_gamelayer.h"
 
 #include "applicationmodel.h"
 
@@ -8,7 +8,7 @@
 
 GamePage::GamePage(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
-	, ui{new Ui::GamePage}
+	, ui{new Ui::GameLayer}
 {
 	ui->setupUi(this);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GamePage</class>
- <widget class="QWidget" name="GamePage">
+ <class>GameLayer</class>
+ <widget class="QWidget" name="GameLayer">
   <property name="geometry">
    <rect>
     <x>0</x>

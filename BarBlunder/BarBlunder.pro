@@ -12,7 +12,7 @@ RC_ICONS = barblunder.ico
 
 SOURCES += \
     applicationmodel.cpp \
-    gamepage.cpp \
+    gamelayer.cpp \
     main.cpp \
     mainmenupage.cpp \
     mainwindow.cpp \
@@ -24,7 +24,7 @@ SOURCES += \
 HEADERS += \
     applicationmodel.h \
     barmodel.h \
-    gamepage.h \
+    gamelayer.h \
     mainmenupage.h \
     mainwindow.h \
     menulayer.h \
@@ -33,7 +33,7 @@ HEADERS += \
     settingsmenupage.h
 
 FORMS += \
-    gamepage.ui \
+    gamelayer.ui \
     mainmenupage.ui \
     mainwindow.ui \
     menulayer.ui \

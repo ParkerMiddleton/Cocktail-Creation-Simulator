@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "menulayer.h"
-#include "gamepage.h"
+#include "gamelayer.h"
 
 #include "applicationmodel.h"
 

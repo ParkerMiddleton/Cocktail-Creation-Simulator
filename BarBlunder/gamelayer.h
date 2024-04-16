@@ -1,5 +1,5 @@
-#ifndef GAMEPAGE_H
-#define GAMEPAGE_H
+#ifndef GAMELAYER_H
+#define GAMELAYER_H
 
 #include <QWidget>
 
@@ -11,7 +11,7 @@ class QPropertyAnimation;
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
-class GamePage;
+class GameLayer;
 }
 QT_END_NAMESPACE
 
@@ -30,10 +30,10 @@ public slots:
 signals:
 
 private:
-	Ui::GamePage *ui;
+	Ui::GameLayer *ui;
 
 	QWidget *pauseOverlay;
 
 };
 
-#endif // GAMEPAGE_H
+#endif // GAMELAYER_H
