@@ -499,6 +499,12 @@ visible: false;
      <height>141</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover
+{
+	background-image:
+}</string>
+   </property>
    <property name="text">
     <string>Kahlua</string>
    </property>
