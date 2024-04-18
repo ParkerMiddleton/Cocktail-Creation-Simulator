@@ -23,6 +23,9 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(ui->PauseButton, &QPushButton::clicked,
 			app, &ApplicationModel::pause);
 
+	connect(app, &ApplicationModel::newGameStarted,
+			this, &GameLayer::hidePauseOverlay);
+
 	connect(app, &ApplicationModel::gamePaused,
 			this, &GameLayer::showPauseOverlay);
 
