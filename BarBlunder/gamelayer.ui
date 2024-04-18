@@ -312,8 +312,8 @@ border-bottom: none;</string>
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>320</y>
+     <x>360</x>
+     <y>480</y>
      <width>100</width>
      <height>80</height>
     </rect>
@@ -336,8 +336,8 @@ image: url(:/images/garnish/lime_wedges_hover);
   <widget class="QPushButton" name="d_OliveButton">
    <property name="geometry">
     <rect>
-     <x>1070</x>
-     <y>320</y>
+     <x>440</x>
+     <y>460</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -360,8 +360,8 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>960</x>
-     <y>350</y>
+     <x>540</x>
+     <y>490</y>
      <width>100</width>
      <height>80</height>
     </rect>
@@ -619,8 +619,8 @@ image: url(:/images/liquor/gin_hover);
   <widget class="QPushButton" name="d_BittersButton">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>310</y>
+     <x>300</x>
+     <y>460</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -644,7 +644,7 @@ image: url(:/images/ingredients/bitters_hover);
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>319</y>
+     <y>470</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -768,8 +768,8 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_ServeDrinkButton">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>160</y>
+     <x>970</x>
+     <y>290</y>
      <width>151</width>
      <height>81</height>
     </rect>
@@ -781,8 +781,8 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>740</x>
-     <y>370</y>
+     <x>970</x>
+     <y>510</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -914,6 +914,19 @@ border-image: url(:/images/menu/pause_hover) 1;
     <string/>
    </property>
   </widget>
+  <widget class="QGraphicsView" name="drinkGraphicsView">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>130</y>
+     <width>601</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:transparent;</string>
+   </property>
+  </widget>
   <zorder>Background</zorder>
   <zorder>TopColCentre</zorder>
   <zorder>UnderBar</zorder>
@@ -959,6 +972,7 @@ border-image: url(:/images/menu/pause_hover) 1;
   <zorder>DrinksPanel</zorder>
   <zorder>triqa_pause</zorder>
   <zorder>PauseButton</zorder>
+  <zorder>drinkGraphicsView</zorder>
  </widget>
  <resources>
   <include location="gamegraphics.qrc"/>
