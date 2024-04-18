@@ -2,6 +2,5 @@
     <qresource prefix="/">
         <file>music/lofi.mp3</file>
         <file>music/ragtime.mp3</file>
-        <file>music/bpm_test.mp3</file>
     </qresource>
 </RCC>

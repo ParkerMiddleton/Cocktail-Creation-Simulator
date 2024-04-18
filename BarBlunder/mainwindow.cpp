@@ -73,32 +73,35 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 			this, &MainWindow::hideOverlayMenu);
 
 	// Connections for the window itself.
-	connect(app, &ApplicationModel::gamePaused
-			, this, &MainWindow::playMenuMusic);
+	connect(app, &ApplicationModel::newGameStarted,
+			this, &MainWindow::setupNewGame);
 
-	connect(app, &ApplicationModel::gameUnpaused
-			, this, &MainWindow::playGameMusic);
+	connect(app, &ApplicationModel::gamePaused,
+			this, &MainWindow::playMenuMusic);
 
-	connect(app, &ApplicationModel::audioVolumeChanged
-			, menuMusicOutput, &QAudioOutput::setVolume);
+	connect(app, &ApplicationModel::gameUnpaused,
+			this, &MainWindow::playGameMusic);
 
-	connect(app, &ApplicationModel::audioVolumeChanged
-			, gameMusicOutput, &QAudioOutput::setVolume);
+	connect(app, &ApplicationModel::audioVolumeChanged,
+			menuMusicOutput, &QAudioOutput::setVolume);
 
-	connect(app, &ApplicationModel::audioVolumeChanged
-			, gameVolumeFadeInAnim, &QPropertyAnimation::setEndValue);
+	connect(app, &ApplicationModel::audioVolumeChanged,
+			gameMusicOutput, &QAudioOutput::setVolume);
 
-	connect(app, &ApplicationModel::fullscreenModeChanged
-			, this, &MainWindow::setFullscreenMode);
+	connect(app, &ApplicationModel::audioVolumeChanged,
+			gameVolumeFadeInAnim, &QPropertyAnimation::setEndValue);
 
-	connect(app, &ApplicationModel::windowSizeChanged
-			, this, &MainWindow::setSize);
+	connect(app, &ApplicationModel::fullscreenModeChanged,
+			this, &MainWindow::setFullscreenMode);
 
-	connect(app, &ApplicationModel::applicationExitRequested
-			, this, &MainWindow::close);
+	connect(app, &ApplicationModel::windowSizeChanged,
+			this, &MainWindow::setSize);
 
-	connect(this, &MainWindow::escapeKeyPressed
-			, app, &ApplicationModel::switchPauseState);
+	connect(app, &ApplicationModel::applicationExitRequested,
+			this, &MainWindow::close);
+
+	connect(this, &MainWindow::escapeKeyPressed,
+			app, &ApplicationModel::switchPauseState);
 
 	// Play music.
 	this->playMenuMusic();
@@ -169,6 +172,21 @@ void MainWindow::switchOverlayMenuToMain()
 void MainWindow::switchOverlayMenuToSettings()
 {
 	menuStack.setCurrentWidget(&settingsMenu);
+}
+
+void MainWindow::setupNewGame()
+{
+	menuMusic->pause();
+
+	if (gameMusic->isPlaying())
+	{
+		gameVolumeFadeInAnim->stop();
+		gameMusic->stop();
+	}
+
+	gameMusic->setSource(QUrl("qrc:/music/ragtime.mp3"));
+	gameMusic->play();
+	this->hideOverlayMenu();
 }
 
 void MainWindow::playMenuMusic()
@@ -274,7 +292,6 @@ void MainWindow::setupMusic()
 	gameMusic->setAudioOutput(gameMusicOutput);
 	gameMusic->setLoops(QMediaPlayer::Infinite);
 	gameMusicOutput->setVolume(0.0f);
-	gameMusic->setSource(QUrl("qrc:/music/ragtime.mp3"));
 
 	gameVolumeFadeInAnim = new QPropertyAnimation(gameMusicOutput, "volume", this);
 	gameVolumeFadeInAnim->setDuration(350);

@@ -59,6 +59,9 @@ public slots:
 	/// @brief Switches the overlay menu to SettingsMenuPage.
 	void switchOverlayMenuToSettings();
 
+	/// @brief Resets the game music and hides the overlay menu.
+	void setupNewGame();
+
 	/// @brief Stops game music and starts playing menu music.
 	void playMenuMusic();
 
