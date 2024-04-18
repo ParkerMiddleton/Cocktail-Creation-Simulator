@@ -34,15 +34,10 @@ BarModel* ApplicationModel::barModel()
 
 void ApplicationModel::startNewGame()
 {
-	if (currentState == State::NotStarted)
-	{
-		emit newGameStarted();
-	}
-
 	bar.restartGame();
+	currentState = State::Unpaused;
 
-	// TODO: Setup Logic for setting up new game.
-	this->unpause(); // TEMP
+	emit newGameStarted();
 }
 
 void ApplicationModel::pause()
