@@ -42,5 +42,17 @@
         <file>images/liquor/vodka.png</file>
         <file>images/liquor/vodka_hover.png</file>
         <file>images/garnish/orange_peels_hover.png</file>
+        <file>images/ingredients/GingerBeer.png</file>
+        <file>images/ingredients/GingerBeer_Hover.png</file>
+        <file>images/tools/Spoon.png</file>
+        <file>images/tools/Spoon_Hover.png</file>
+        <file>images/glasses/CopperMug.png</file>
+        <file>images/glasses/CopperMug_Hover.png</file>
+        <file>images/glasses/wineUpsideDown.png</file>
+        <file>images/ingredients/LimeJuice.png</file>
+        <file>images/ingredients/LimeJuice_Hover.png</file>
+        <file>images/glasses/martiniFlipped.png</file>
+        <file>images/ingredients/tripleSec.png</file>
+        <file>images/ingredients/tripleSec_Hover.png</file>
     </qresource>
 </RCC>
