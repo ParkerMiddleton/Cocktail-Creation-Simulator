@@ -37,6 +37,12 @@ public slots:
     //updates physics numnbers per iteration
     void updateWorld();
 
+    //spawn glassware
+    void spawnRocksGlass();
+    void spawnCollinsGlass();
+    void spawnMartiniGlass();
+
+
 signals:
     void heightChanged(int x , int y);
 

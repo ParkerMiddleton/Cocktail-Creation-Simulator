@@ -5,6 +5,8 @@
 
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
 
 GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	: QWidget{parent}
@@ -125,12 +127,23 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 			bar, &BarModel::ingredientReleased);
 
 
+    //Glassware Spawns
+
+    connect(ui->d_RocksGlassButton, &QPushButton::pressed, this, &GameLayer::spawnRocksGlass);
+    connect(ui->d_MartiniGlassButton, &QPushButton::pressed, this, &GameLayer::spawnMartiniGlass);
+    connect(ui->d_CollinsGlassButton, &QPushButton::pressed, this, &GameLayer::spawnCollinsGlass);
 
 
+
+    // instantiate the scene
+    scene  = new QGraphicsScene(ui->drinkGraphicsView);
+    ui->drinkGraphicsView->setScene(scene);
+    ui->drinkGraphicsView->show();
+    ui->drinkGraphicsView->setSceneRect(0,0, 0,0); // position on screne, width and height of box
 
     /***********************PARKER MESS AROUND SPACE ***************/
 
-
+/*
     QPolygonF rocks;
     rocks
         <<QPointF(50,50)
@@ -170,16 +183,14 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
         <<QPointF(74,130)
         <<QPointF(74,90);
 
-    // instantiate the scene
-    scene  = new QGraphicsScene(this);
+
 
     // //Create the glassware object
     glass = new Glassware(collins);
 
     //add the glassware to the gview
     scene->addItem(glass);
-    ui->drinkGraphicsView->setScene(scene);
-    ui->drinkGraphicsView->show();
+
 
 
     //create the "world"
@@ -232,6 +243,8 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 
     // connect(this, &GameLayer::heightChanged
     //         , glass, &QGraphicsItem::setPos);
+*/
+
 }
 
 void GameLayer::updateWorld()
@@ -263,8 +276,8 @@ void GameLayer::updateWorld()
 GameLayer::~GameLayer()
 {
 	delete ui;
-    delete surfaceBodyDef;
-    delete surfaceBox;
+    // delete surfaceBodyDef;
+    // delete surfaceBox;
 
 }
 
@@ -282,3 +295,98 @@ void GameLayer::hidePauseOverlay()
 {
 	pauseOverlay->setVisible(false);
 }
+
+void GameLayer::spawnRocksGlass(){
+    //rocks glass specs
+    QPolygonF rocks;
+    rocks
+        <<QPointF(50,50)
+        <<QPointF(60,50)
+        <<QPointF(60,90)
+        <<QPointF(90,90)
+        <<QPointF(90,50)
+        <<QPointF(100,50)
+        <<QPointF(100,100)
+        <<QPointF(50,100);
+
+    //removes the old glass, if adctive
+
+    if(glass){
+        scene->removeItem(glass);
+        delete glass;
+        glass = nullptr;
+    }
+
+    //assign to current glass
+    glass= new Glassware(rocks);
+    scene->addItem(glass);
+    scene->update();
+
+}
+
+
+void GameLayer::spawnCollinsGlass(){
+    //rocks glass specs
+    QPolygonF collins;
+    collins
+        <<QPointF(50,0)
+        <<QPointF(60,0)
+        <<QPointF(60,90)
+        <<QPointF(90,90)
+        <<QPointF(90,0)
+        <<QPointF(100,0)
+        <<QPointF(100,100)
+        <<QPointF(50,100);
+
+    //removes the old glass, if adctive
+
+    if(glass){
+        scene->removeItem(glass);
+        delete glass;
+        glass = nullptr;
+    }
+
+    //assign to current glass
+    glass= new Glassware(collins);
+    scene->addItem(glass);
+    scene->update();
+
+}
+
+
+void GameLayer::spawnMartiniGlass(){
+    //rocks glass specs
+    QPolygonF martini;
+    martini
+        <<QPointF(50,50)
+        <<QPointF(50,40)
+        <<QPointF(74,80)
+        <<QPointF(76,80)
+        <<QPointF(100,40)
+        <<QPointF(100,50)
+        <<QPointF(76,90)
+        <<QPointF(76,130)
+        <<QPointF(100,130)
+        <<QPointF(100,131)
+        <<QPointF(50,131)
+        <<QPointF(50,130)
+        <<QPointF(74,130)
+        <<QPointF(74,90);
+
+
+    //removes the old glass, if adctive
+
+    if(glass){
+        scene->removeItem(glass);
+        delete glass;
+        glass = nullptr;
+    }
+
+    //assign to current glass
+    glass= new Glassware(martini);
+    scene->addItem(glass);
+    scene->update();
+
+}
+
+

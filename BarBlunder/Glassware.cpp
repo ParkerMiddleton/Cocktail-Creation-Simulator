@@ -3,7 +3,7 @@
 
 Glassware::Glassware(const QPolygonF& polygon, QGraphicsItem *parent)
 : QGraphicsPolygonItem(polygon, parent){
-     setFlags(QGraphicsItem::GraphicsItemFlag::ItemIsMovable);
+
     m_brush = QBrush(Qt::white);
      m_pen = QPen(Qt::black);
      m_pen.setWidth(2);
