@@ -34,21 +34,26 @@ public slots:
 
 signals:
 	void newDrink(const QString &recipe);
+    void sendVolume(int v);
+    void sendDrinkName(const QString ingredient);
+    void informEmptyDrink();
 
 private:
-	QList<Recipe> listOfRecipes;
-	Recipe assignedRecipe;
-	Recipe userRecipe;
-	int stepNumber;
-	int score;
-	bool outOfOrder;
-	bool pressedLiquor;
-	QTimer timer;
-	QString liquorSelection;
+    QList<Recipe> listOfRecipes;
+    Recipe assignedRecipe;
+    Recipe userRecipe;
+    int stepNumber;
+    int score;
+    int volume;
+    bool outOfOrder;
+    bool pressedLiquor;
+    bool doublePour;
+    QTimer timer;
+    QString liquorSelection;
 
-	void newRound();
-	void newGame();
-	void getRandomRecipe();
+    void newRound();
+    void newGame();
+    void getRandomRecipe();
 
 };
 

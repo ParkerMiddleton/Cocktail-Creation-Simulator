@@ -7,6 +7,7 @@
 #include "Box2D/Box2D.h"
 #include "Glassware.h"
 #include <QTimer>
+#include "liquidmodel.h"
 // Forward Declaration.
 class ApplicationModel;
 
@@ -34,17 +35,20 @@ public slots:
 	void showPauseOverlay();
 	void hidePauseOverlay();
 
+    void setLiquid();
+
     //updates physics numnbers per iteration
-    void updateWorld();
+    // void updateWorld();
 
     //spawn glassware
-    void spawnRocksGlass();
-    void spawnCollinsGlass();
-    void spawnMartiniGlass();
+    // void spawnRocksGlass();
+    // void spawnCollinsGlass();
+    // void spawnMartiniGlass();
 
 
 signals:
     void heightChanged(int x , int y);
+    void addLiquidRequested();
 
 private:
 	Ui::GameLayer *ui;
@@ -52,28 +56,29 @@ private:
 	QWidget *pauseOverlay;
 
     QGraphicsScene* scene;
-    Glassware* glass;
 
-    //surface physics
-    b2BodyDef* surfaceBodyDef;
-    b2Body* surfaceBody;
-    b2FixtureDef* surfaceFixtureDef;
-    b2PolygonShape* surfaceBox;
+    LiquidModel* l;
+    void spawnRocksGlass();
+    void emptyRocksGlass();
 
-    //glass physics
-    b2BodyDef* glassBodyDef;
-    b2Body* glassBody;
-    b2FixtureDef* glassFixtureDef;
-    b2PolygonShape* glassShape;
+    // Glassware* glass;
 
+    // //surface physics
+    // b2BodyDef* surfaceBodyDef;
+    // b2Body* surfaceBody;
+    // b2FixtureDef* surfaceFixtureDef;
+    // b2PolygonShape* surfaceBox;
 
-    b2World* world;
-    //update world Timer
-    QTimer timer;
-
-
+    // //glass physics
+    // b2BodyDef* glassBodyDef;
+    // b2Body* glassBody;
+    // b2FixtureDef* glassFixtureDef;
+    // b2PolygonShape* glassShape;
 
 
+    // b2World* world;
+    // //update world Timer
+    // QTimer timer;
 
 	// Sound effects
 	//QMediaPlayer *soundBoard;

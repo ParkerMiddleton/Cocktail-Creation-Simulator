@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "gameLayer.h"
+#include "liquidlayer.h"
 #include "mainmenupage.h"
 #include "settingsmenupage.h"
 
@@ -99,6 +100,7 @@ private:
 
 	GameLayer gameLayer;
 	QLabel tri;
+    LiquidLayer* l;
 	QStackedWidget menuStack;
 	MainMenuPage mainMenu;
 	SettingsMenuPage settingsMenu;
