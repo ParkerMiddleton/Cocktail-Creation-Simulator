@@ -57,5 +57,7 @@
         <file>images/bar/empty_icewell_Hover.png</file>
         <file>images/glasses/CopperMugCut.png</file>
         <file>images/glasses/CopperMugTransparent.png</file>
+        <file>images/liquor/whiskey.png</file>
+        <file>images/liquor/whiskey_Hover.png</file>
     </qresource>
 </RCC>
