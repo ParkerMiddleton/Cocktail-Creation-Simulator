@@ -23,6 +23,7 @@ public:
 
 public slots:
 	void updateLiquidDisplay(const QPixmap &pixmap);
+    void removeLiquidDisplay();
 	void updateGlasswareImage(const Glassware &glassware);
 	void removeGlasswareImage();
 

@@ -22,18 +22,14 @@ public:
 	LiquidModel* liquidModel();
 
 public slots:
-	// void bourbonPressed();
-	// void bittersPressed();
-	// void vodkaPressed();
-	// void collinsPressed();
-	// void copperMugPressed();
-
 	void ingredientPressed(const QString &liqourName);
 	void ingredientReleased();
 	void ingredientClicked(const QString &ingredientName);
 
 	void serveDrink();
 	void emptyDrink();
+    void hideDrink();
+    void exposeDrink();
 
 signals:
 	void newDrink(const QString &recipe);

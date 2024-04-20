@@ -32,6 +32,9 @@ void DrinkView::initializeConnections(BarModel *bar)
 	connect(bar->liquidModel(), &LiquidModel::simulationUpdated,
 			this, &DrinkView::updateLiquidDisplay);
 
+    connect(bar->liquidModel(), &LiquidModel::removeLiquid,
+            this, &DrinkView::removeLiquidDisplay);
+
 	connect(bar, &BarModel::glasswareUpdated,
 			this, &DrinkView::updateGlasswareImage);
 
@@ -42,6 +45,10 @@ void DrinkView::initializeConnections(BarModel *bar)
 void DrinkView::updateLiquidDisplay(const QPixmap &pixmap)
 {
 	gLiquid.setPixmap(pixmap);
+}
+
+void DrinkView::removeLiquidDisplay(){
+    gLiquid.setPixmap(emptyPixmap);
 }
 
 void DrinkView::updateGlasswareImage(const Glassware &glassware)
