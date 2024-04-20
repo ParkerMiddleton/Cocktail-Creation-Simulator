@@ -263,9 +263,9 @@ image: url(:/images/liquor/burbon_hover);
   <widget class="QPushButton" name="d_CollinsGlassButton">
    <property name="geometry">
     <rect>
-     <x>1000</x>
-     <y>270</y>
-     <width>61</width>
+     <x>200</x>
+     <y>260</y>
+     <width>71</width>
      <height>141</height>
     </rect>
    </property>
@@ -310,9 +310,9 @@ border-bottom: none;</string>
   <widget class="QPushButton" name="d_RocksGlassButton">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>300</y>
-     <width>71</width>
+     <x>290</x>
+     <y>320</y>
+     <width>91</width>
      <height>111</height>
     </rect>
    </property>
@@ -358,7 +358,7 @@ image: url(:/images/garnish/lime_wedges_hover);
   <widget class="QPushButton" name="d_OliveButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>470</x>
      <y>460</y>
      <width>100</width>
      <height>100</height>
@@ -382,8 +382,8 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>490</y>
+     <x>570</x>
+     <y>480</y>
      <width>100</width>
      <height>80</height>
     </rect>
@@ -406,7 +406,7 @@ image: url(:/images/garnish/orange_peels_hover);
   <widget class="QLabel" name="DrinkMakeArea">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>490</x>
      <y>370</y>
      <width>231</width>
      <height>50</height>
@@ -450,8 +450,8 @@ image: url(:/images/garnish/orange_peels_hover);
   <widget class="QLabel" name="d_DrinkAlgoBox">
    <property name="geometry">
     <rect>
-     <x>960</x>
-     <y>10</y>
+     <x>10</x>
+     <y>120</y>
      <width>171</width>
      <height>241</height>
     </rect>
@@ -470,8 +470,8 @@ color: black;
   <widget class="QPushButton" name="d_MartiniGlassButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>300</y>
+     <x>910</x>
+     <y>320</y>
      <width>51</width>
      <height>91</height>
     </rect>
@@ -483,7 +483,7 @@ color: black;
   <widget class="QPushButton" name="d_GinButton">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>520</x>
      <y>570</y>
      <width>77</width>
      <height>133</height>
@@ -507,7 +507,7 @@ image: url(:/images/liquor/gin_hover);
   <widget class="QPushButton" name="d_KahluaButton">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>600</x>
      <y>570</y>
      <width>81</width>
      <height>141</height>
@@ -540,7 +540,7 @@ image: url(:/images/liquor/kahlua_hover);
   <widget class="QPushButton" name="d_OrangeLiquorButton">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>760</x>
      <y>570</y>
      <width>101</width>
      <height>141</height>
@@ -564,10 +564,10 @@ image: url(:/images/ingredients/tripleSec_Hover.png);
   <widget class="QPushButton" name="d_CopperMugButton">
    <property name="geometry">
     <rect>
-     <x>920</x>
-     <y>340</y>
-     <width>51</width>
-     <height>51</height>
+     <x>970</x>
+     <y>320</y>
+     <width>131</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -745,8 +745,8 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_ServeDrinkButton">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>160</y>
+     <x>560</x>
+     <y>50</y>
      <width>91</width>
      <height>51</height>
     </rect>
@@ -758,14 +758,25 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>970</x>
-     <y>510</y>
-     <width>75</width>
-     <height>31</height>
+     <x>770</x>
+     <y>350</y>
+     <width>121</width>
+     <height>81</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/tools/Spoon.png);
+}
+
+QPushButton::hover {
+image: url(:/images/tools/Spoon_Hover.png);
+}</string>
+   </property>
    <property name="text">
-    <string>SPOON</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="d_LimeJuiceButton">
@@ -795,7 +806,7 @@ image: url(:/images/ingredients/LimeJuice_Hover.png);
   <widget class="QPushButton" name="d_GingerBeerButton">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>670</x>
      <y>470</y>
      <width>141</width>
      <height>91</height>
@@ -843,8 +854,8 @@ image: url(:/images/bar/empty_icewell_Hover.png);
   <widget class="QPushButton" name="d_TequilaButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>590</y>
+     <x>420</x>
+     <y>580</y>
      <width>122</width>
      <height>125</height>
     </rect>
@@ -917,41 +928,17 @@ border-image: url(:/images/menu/pause_hover) 1;
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="d_RocksGlassButtonSpawn">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>280</y>
-     <width>101</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-background-color: transparent;
-border: none;
-image: url(:/images/glasses/rocks.png);
-}
-
-QPushButton::hover {
-image: url(:/images/glasses/rocks_hover.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="DrinkViewport" name="v_DrinkViewport">
+  <widget class="DrinkView" name="v_DrinkView">
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>141</y>
+     <y>140</y>
      <width>256</width>
      <height>280</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 2px;
+    <string notr="true">/*border: 0px;*/
 background-color: transparent;</string>
    </property>
   </widget>
@@ -967,11 +954,11 @@ background-color: transparent;</string>
    <property name="styleSheet">
     <string notr="true">background-color: rgba(0, 0, 0,100);</string>
    </property>
-   </widget>
+  </widget>
   <widget class="QPushButton" name="d_WhiskeyButton">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>680</x>
      <y>570</y>
      <width>81</width>
      <height>141</height>
@@ -999,6 +986,21 @@ image: url(:/images/liquor/whiskey_Hover.png);
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="RecipeNote" name="v_RecipeNote" native="true">
+   <property name="geometry">
+    <rect>
+     <x>889</x>
+     <y>20</y>
+     <width>242</width>
+     <height>222</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;
+color: black;
+</string>
    </property>
   </widget>
   <zorder>Background</zorder>
@@ -1041,21 +1043,27 @@ image: url(:/images/liquor/whiskey_Hover.png);
   <zorder>d_BurbonButton</zorder>
   <zorder>triqa_pause</zorder>
   <zorder>PauseButton</zorder>
-  <zorder>v_DrinkViewport</zorder>
-  <zorder>d_RocksGlassButtonSpawn</zorder>
+  <zorder>v_DrinkView</zorder>
   <zorder>d_WhiskeyButton</zorder>
   <zorder>DrinksPanel</zorder>
+  <zorder>v_RecipeNote</zorder>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DrinkViewport</class>
+   <class>DrinkView</class>
    <extends>QGraphicsView</extends>
-   <header>drinkviewport.h</header>
+   <header>drinkview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RecipeNote</class>
+   <extends>QWidget</extends>
+   <header>recipenote.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="gamegraphics.qrc"/>
   <include location="menugraphics.qrc"/>
+  <include location="gamegraphics.qrc"/>
  </resources>
  <connections/>
 </ui>

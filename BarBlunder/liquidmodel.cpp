@@ -1,19 +1,30 @@
 #include "liquidmodel.h"
+#include "box2d_const_values.h"
 
+#include "glassware.h"
+
+#include <QWidget>
+#include <QPainter>
+#include <QPen>
 #include <QPainterPath>
+
+#include <Box2D/Box2D.h> // Please try not to include in any header. It increases the compile time.
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
 	, isDrinkEmpty{false}
 	, volume{0}
-	, liquidPixmap{WIDTH, HEIGHT}
+	, isSimulationPaused{false}
 
-	, physicsGravity{0.0f, 38.81f}
-	, physicsWorld{physicsGravity}
+	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
+	, pouringSource{0.0f, 0.0f}
+
+	, collisionBottom{nullptr}
+	, collisionLeft{nullptr}
+	, collisionRight{nullptr}
 {
-	liquidPixmap.fill(Qt::transparent);
-
-	this->setupBox2D();
+	b2Vec2 gravity(0.0f, 38.81f);
+	world = new b2World(gravity);
 
 	// setup timer
 	updateTimer = new QTimer(this);
@@ -31,9 +42,72 @@ LiquidModel::LiquidModel(QWidget *parent)
 
 LiquidModel::~LiquidModel()
 {
+	delete world;
 }
 
-void LiquidModel::clearDrink()
+void LiquidModel::updateCollisionLayout(const Glassware &glassware)
+{
+	this->removeCollisionLayout();
+
+	pouringSource.setX(glassware.getPhysicsPouringSource().x());
+	pouringSource.setY(DRINKVIEW_HEIGHT - glassware.getPhysicsPouringSource().y());
+
+	const QRectF &bottom_centre = glassware.getPhysicsBottomRect();
+	const QRectF &left = glassware.getPhysicsLeftRect();
+	const QRectF &right = glassware.getPhysicsRightRect();
+
+	// Define the ground body (static)
+	b2BodyDef groundBodyDef;
+	groundBodyDef.position.Set((bottom_centre.left() + (bottom_centre.width() / 2)), (DRINKVIEW_HEIGHT - (bottom_centre.top() + (bottom_centre.height() / 2))));
+	collisionBottom = world->CreateBody(&groundBodyDef);
+
+	b2PolygonShape groundShape;
+	groundShape.SetAsBox((bottom_centre.width() / 2), (bottom_centre.height() / 2)); // Ground dimensions
+	collisionBottom->CreateFixture(&groundShape, 0.0f); // 0 density for static bodies
+
+	// Define the left wall (static)
+	b2BodyDef leftWallBodyDef;
+	leftWallBodyDef.position.Set((left.left() + (left.width() / 2)), (DRINKVIEW_HEIGHT - (left.top() + (left.height() / 2)))); // Position of the left wall
+	collisionLeft = world->CreateBody(&leftWallBodyDef);
+
+	b2PolygonShape leftWallShape;
+	leftWallShape.SetAsBox((left.width() / 2), (left.height() / 2)); // Dimensions of the left wall
+	collisionLeft->CreateFixture(&leftWallShape, 0.0f); // 0 density for static bodies
+
+	// Define the right wall (static)
+	b2BodyDef rightWallBodyDef;
+	rightWallBodyDef.position.Set((right.left() + (right.width() / 2)), (DRINKVIEW_HEIGHT - (right.top() + (right.height() / 2)))); // Position of the right wall
+	collisionRight = world->CreateBody(&rightWallBodyDef);
+
+	b2PolygonShape rightWallShape;
+	rightWallShape.SetAsBox((right.width() / 2), (right.height() / 2)); // Dimensions of the right wall
+	collisionRight->CreateFixture(&rightWallShape, 0.0f); // 0 density for static bodies
+}
+
+void LiquidModel::removeCollisionLayout()
+{
+	if (collisionBottom)
+		world->DestroyBody(collisionBottom);
+
+	if (collisionLeft)
+		world->DestroyBody(collisionLeft);
+
+	if (collisionRight)
+		world->DestroyBody(collisionRight);
+}
+
+void LiquidModel::setVolume(int v)
+{
+	isDrinkEmpty = false;
+	this->addLiquid(v);
+}
+
+void LiquidModel::setDrinkColor(QString drinkName)
+{
+	currentDrink = drinkName;
+}
+
+void LiquidModel::clear()
 {
 	// Iterate through each stored particle system and clear it
 	for (auto particleSystem : particleSystemsList)
@@ -51,10 +125,107 @@ void LiquidModel::clearDrink()
 
 	// Clear the vector storing all particle systems
 	particleSystemsList.clear();
+
+	isDrinkEmpty = true;
+	emit emptyLiquid();
+}
+
+void LiquidModel::setIsSimulationPaused(bool state)
+{
+	isSimulationPaused = state;
+}
+
+void LiquidModel::updateSimulation()
+{
+	if (isSimulationPaused)
+		return;
+
+	// Step the Box2D simulation
+	world->Step(1.0f / 60.0f, 1, 3);
+
+	// THIS CODE IS FOR VISUALIZING THE PHYSICS BOUNDARIES BY DRAWING THEM.
+
+	liquidPixmap.fill(Qt::transparent);
+
+	QPainter painter(&liquidPixmap);
+	painter.setRenderHint(QPainter::Antialiasing);
+	painter.setCompositionMode(QPainter::CompositionMode_Source);
+
+#if 1
+	// Get the body list from the world
+	const b2Body* body = world->GetBodyList();
+
+	// Iterate through all bodies in the world
+	while (body)
+	{
+		// Check if the body is the container
+		if (body->GetType() == b2_staticBody)
+		{
+			// Extract the fixtures from the body
+			const b2Fixture* fixture = body->GetFixtureList();
+			while (fixture)
+			{
+				// Check if the fixture is a polygon shape
+				if (fixture->GetType() == b2Shape::e_polygon)
+				{
+					// Cast the shape to a polygon shape
+					const b2PolygonShape* shape = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
+					if (shape)
+					{
+						// Draw the polygon shape
+						QPainterPath path;
+						for (int i = 0; i < shape->GetVertexCount(); ++i)
+						{
+							b2Vec2 vertex = body->GetWorldPoint(shape->GetVertex(i));
+							if (i == 0)
+								path.moveTo(vertex.x, DRINKVIEW_HEIGHT - vertex.y);
+							else
+								path.lineTo(vertex.x, DRINKVIEW_HEIGHT - vertex.y);
+						}
+						path.closeSubpath();
+						painter.setPen(Qt::black);
+						painter.setBrush(Qt::white); // Set the color of the container
+						painter.drawPath(path);
+					}
+				}
+				// Move to the next fixture
+				fixture = fixture->GetNext();
+			}
+		}
+		// Move to the next body
+		body = body->GetNext();
+	}
+#endif
+
+	// Get the particle system list from the world
+	const b2ParticleSystem *particleSystemList = world->GetParticleSystemList();
+
+	// Retrieve the color corresponding to the current drink
+	QColor ingredientColor = drinkColors[currentDrink];
+
+	// Iterate through all particle systems
+	for (const b2ParticleSystem* particleSystem = particleSystemList; particleSystem; particleSystem = particleSystem->GetNext())
+	{
+		// Iterate through all particles in the current particle system
+		for (int i = 0; i < particleSystem->GetParticleCount(); ++i)
+		{
+			// Get particle position
+			b2Vec2 particlePosition = particleSystem->GetPositionBuffer()[i];
+			painter.setPen(ingredientColor);
+			painter.setBrush(ingredientColor);
+			painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
+		}
+	}
+
+	painter.end();
+
+	emit simulationUpdated(liquidPixmap);
 }
 
 void LiquidModel::setupLiquidParticleSystem()
 {
+	b2ParticleSystemDef particleSystemDef;
+
 	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
 	particleSystemDef.gravityScale = -9.0f;
 	particleSystemDef.radius = 4.25f; // Particle radius
@@ -74,18 +245,13 @@ void LiquidModel::setupLiquidParticleSystem()
 	particleSystemDef.density = 1.0;
 
 	// Create the liquid particle system
-	particleSystem = physicsWorld.CreateParticleSystem(&particleSystemDef);
+	particleSystem = world->CreateParticleSystem(&particleSystemDef);
 	particleSystem->SetGravityScale(-9.0f);
 }
 
 void LiquidModel::addLiquid(int volume)
 {
-	// spawn ball of liquid just above bottom of the glass.
-	//b2Vec2 cupCenter(120.0f, 77.0f);
-	b2Vec2 cupCenter(120, HEIGHT - 165);
-	//b2Vec2 cupCenter(122 / SCALE, (HEIGHT - 130) / SCALE);
-
-	setupLiquidParticleSystem();
+	this->setupLiquidParticleSystem();
 	particleSystemsList.push_back(particleSystem);
 
 	int numParticlesX = 3; // number of particles spawned horizontally
@@ -95,16 +261,21 @@ void LiquidModel::addLiquid(int volume)
 
 	QTimer* timer = new QTimer(); // Allocate QTimer dynamically
 	connect(timer, &QTimer::timeout, this, [=]() {
+		if (isSimulationPaused)
+			return;
 		// Spawn particles for 3 seconds
 		static float elapsedTime = 0.0f;
 		// attempting to use volume
-		if (elapsedTime < volume && !isDrinkEmpty) {
+		if (elapsedTime < volume && !isDrinkEmpty)
+		{
 			// Spawn particles in the loop
-			for (int i = 0; i < numParticlesX; ++i) {
-				for (int j = 0; j < numParticlesY; ++j) {
+			for (int i = 0; i < numParticlesX; ++i)
+			{
+				for (int j = 0; j < numParticlesY; ++j)
+				{
 					b2Vec2 particlePosition;
-					particlePosition.x = cupCenter.x - (numParticlesX / 2.0f) * particleSpacingX + i * particleSpacingX;
-					particlePosition.y = cupCenter.y - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
+					particlePosition.x = pouringSource.x() - (numParticlesX / 2.0f) * particleSpacingX + i * particleSpacingX;
+					particlePosition.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
 
 					// Create a particle
 					b2ParticleDef particleDef;
@@ -116,8 +287,11 @@ void LiquidModel::addLiquid(int volume)
 					particleSystem->CreateParticle(particleDef);
 				}
 			}
+
 			elapsedTime += 0.1; // Increase elapsed time
-		} else {
+		}
+		else
+		{
 			timer->stop(); // Stop the timer after 3 seconds
 			delete timer; // delete timer
 			elapsedTime = 0.0;
@@ -125,101 +299,4 @@ void LiquidModel::addLiquid(int volume)
 	});
 
 	timer->start(100);
-}
-
-void LiquidModel::updateSimulation()
-{
-	// Step the Box2D simulation
-	physicsWorld.Step(1.0f / 60.0f, 1, 3);
-
-	// THIS CODE IS FOR VISUALIZING THE PHYSICS BOUNDARIES BY DRAWING THEM.
-
-	liquidPixmap.fill(Qt::transparent);
-
-	QPen pen;
-	pen.setWidth(1);
-	QPainter painter(&liquidPixmap);
-	painter.setCompositionMode(QPainter::CompositionMode_Source);
-	painter.setRenderHint(QPainter::Antialiasing);
-
-	// Get the particle system list from the world
-	const b2ParticleSystem* particleSystemList = physicsWorld.GetParticleSystemList();
-
-	// Retrieve the color corresponding to the current drink
-	QColor ingredientColor = drinkColors[currentDrink];
-
-	// Iterate through all particle systems
-	for (const b2ParticleSystem* particleSystem = particleSystemList; particleSystem; particleSystem = particleSystem->GetNext())
-	{
-		// Iterate through all particles in the current particle system
-		for (int i = 0; i < particleSystem->GetParticleCount(); ++i)
-		{
-			// Get particle position
-			b2Vec2 particlePosition = particleSystem->GetPositionBuffer()[i];
-			pen.setColor(ingredientColor);
-			painter.setPen(pen);
-			painter.setBrush(ingredientColor);
-			painter.drawEllipse(QPointF(particlePosition.x, HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
-		}
-	}
-
-	painter.end();
-
-	emit simulationUpdated(liquidPixmap);
-}
-
-void LiquidModel::setVolume(int v)
-{
-	isDrinkEmpty = false;
-	this->addLiquid(v);
-}
-
-void LiquidModel::setDrinkColor(QString drinkName)
-{
-	currentDrink = drinkName;
-}
-
-void LiquidModel::emptyDrink()
-{
-	this->clearDrink();
-	isDrinkEmpty = true;
-	emit emptyLiquid();
-}
-
-void LiquidModel::setupBox2D()
-{
-	QRectF bottom_centre(89,  236, 64, 15);
-	QRectF left(80, 168, 9, 68);
-	QRectF right(153, 168, 9, 68);
-
-	/*QRectF bottom_centre(89, 236, 64, 15);
-	QRectF left(80, 168, 9, 68);
-	QRectF right(153, 168, 9, 68);*/
-
-	// Define the ground body (static)
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set((bottom_centre.left() + (bottom_centre.width() / 2)), (HEIGHT - (bottom_centre.top() + (bottom_centre.height() / 2))));
-	b2Body* groundBody = physicsWorld.CreateBody(&groundBodyDef);
-
-	b2PolygonShape groundShape;
-	groundShape.SetAsBox((bottom_centre.width() / 2), (bottom_centre.height() / 2)); // Ground dimensions
-	groundBody->CreateFixture(&groundShape, 0.0f); // 0 density for static bodies
-
-	// Define the left wall (static)
-	b2BodyDef leftWallBodyDef;
-	leftWallBodyDef.position.Set((left.left() + (left.width() / 2)), (HEIGHT - (left.top() + (left.height() / 2)))); // Position of the left wall
-	b2Body* leftWallBody = physicsWorld.CreateBody(&leftWallBodyDef);
-
-	b2PolygonShape leftWallShape;
-	leftWallShape.SetAsBox((left.width() / 2), (left.height() / 2)); // Dimensions of the left wall
-	leftWallBody->CreateFixture(&leftWallShape, 0.0f); // 0 density for static bodies
-
-	// Define the right wall (static)
-	b2BodyDef rightWallBodyDef;
-	rightWallBodyDef.position.Set((right.left() + (right.width() / 2)), (HEIGHT - (right.top() + (right.height() / 2)))); // Position of the right wall
-	b2Body* rightWallBody = physicsWorld.CreateBody(&rightWallBodyDef);
-
-	b2PolygonShape rightWallShape;
-	rightWallShape.SetAsBox((right.width() / 2), (right.height() / 2)); // Dimensions of the right wall
-	rightWallBody->CreateFixture(&rightWallShape, 0.0f); // 0 density for static bodies
 }

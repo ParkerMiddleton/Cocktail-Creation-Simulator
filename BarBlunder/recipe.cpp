@@ -3,50 +3,58 @@
 #include <QTextStream>
 #include <QRegularExpression>
 
-Recipe::Recipe() {
-
-}
-
-Recipe::Recipe(QTextStream &recipe) {
+Recipe::Recipe(QTextStream &recipe)
+{
 	recipeAsString = "";
 	QString line = recipe.readLine();
-	while (!line.isEmpty()) {
+
+	while (!line.isEmpty())
+	{
 		recipeAsString += line + "\n";
 		line = recipe.readLine();
 	}
 
 	drinkName = recipe.readLine();
 	line = recipe.readLine();
-	while (!line.isEmpty()) {
+
+	while (!line.isEmpty())
+	{
 		QRegularExpression re("(.+):\\s*(\\d+)");
 		QRegularExpressionMatch match = re.match(line);
-		if (match.hasMatch()) {
+
+		if (match.hasMatch())
+		{
 			QString ingredientName = match.captured(1);
 			int quantity = match.captured(2).toInt();
 			ingredients.push_back(qMakePair(ingredientName, quantity));
 		}
+
 		line = recipe.readLine();
 	}
 }
 
-Recipe::~Recipe(){
-
-}
-
-bool Recipe::checkServedDrink(Recipe correctRecipe) {
+bool Recipe::checkServedDrink(Recipe correctRecipe)
+{
 	// Different number of ingredients, so it's not a match
-	if (ingredients.size() != correctRecipe.ingredients.size()) {
+	if (ingredients.size() != correctRecipe.ingredients.size())
+	{
 		return false;
 	}
-	for (int i = 0; i < ingredients.size(); ++i) {
+
+	for (int i = 0; i < ingredients.size(); ++i)
+	{
 		// Check if the names of the ingredients match
-		if (ingredients[i].first != correctRecipe.ingredients[i].first) {
+		if (ingredients[i].first != correctRecipe.ingredients[i].first)
+		{
 			return false;
 		}
+
 		// Check if the served amount is within ±10 units of the correct amount
-		if (ingredients[i].second != 0) {
+		if (ingredients[i].second != 0)
+		{
 			return false;
 		}
 	}
+
 	return true;
 }

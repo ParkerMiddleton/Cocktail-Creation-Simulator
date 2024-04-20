@@ -2,30 +2,34 @@
 #define GLASSWARE_H
 
 #include <QPixmap>
+#include <QPointF>
 
-///
-/// \brief The Glassware class creates different glassware polygons to be used
-/// with Box2D. These act as containers for liquids.
-///
-/// Create a glassware object by passing in its corresponding QPolygonF from
-/// barmodel datastructure
-///
+/// @brief Holds physics and rendering properties of various glasses.
 class Glassware
 {
 public:
-	enum class Types { Rocks, Collins, Copper };
+	enum class Type { Rocks, Collins, Copper, Martini };
 
-    /// \brief Glassware Constructor
-    /// \param polygon Polygon to take the shape of the glass
-    /// \param parent graphics scene that the object is housed in.
-	Glassware();
+	/// \brief Constructor
+	Glassware(Glassware::Type type);
+	~Glassware();
 
-protected:
+	const QPixmap& getDisplayPixmap() const;
+	bool isTransparent() const;
 
+	const QPointF& getPhysicsPouringSource() const;
+	const QRectF& getPhysicsBottomRect() const;
+	const QRectF& getPhysicsLeftRect() const;
+	const QRectF& getPhysicsRightRect() const;
 
 private:
+	QPixmap *displayPixmap;
+	bool transparent;
 
-
+	QPointF physicsPouringSource;
+	QRectF physicsBottomRect;
+	QRectF physicsLeftRect;
+	QRectF physicsRightRect;
 
 };
 

@@ -2,35 +2,36 @@
 #define LIQUID_H
 
 #include <QObject>
-#include <QWidget>
 
+#include <Qmap>
 #include <QTimer>
 #include <QPixmap>
-#include <QPainter>
-#include <QPen>
-#include <Qmap>
+#include <QPointF>
 
-#include <QPixmap>
+// Forward declaration.
+class Glassware;
 
-#include <Box2D/Box2D.h>
+class b2World;
+class b2Body;
+class b2Vec2;
+class b2ParticleSystem;
 
 class LiquidModel : public QObject
 {
-	Q_OBJECT // Macro needed for signal-slot mechanism
+	Q_OBJECT
 
 public:
-	explicit LiquidModel(QWidget *parent = nullptr); // Constructor with parent widget
+	explicit LiquidModel(QWidget *parent = nullptr);
 	~LiquidModel();
 
-	void setupLiquidParticleSystem();
-	void clearDrink();
-	void setupBox2D(); // Initiliaze glasses.
+	void updateCollisionLayout(const Glassware &glassware);
+	void removeCollisionLayout();
 
-public slots:
-	void addLiquid(int volume);
 	void setVolume(int v);
 	void setDrinkColor(QString drinkName);
-	void emptyDrink();
+	void clear();
+
+	void setIsSimulationPaused(bool state);
 
 signals:
 	void emptyLiquid();
@@ -40,23 +41,27 @@ private slots:
 	void updateSimulation();
 
 private:
-	static constexpr int WIDTH = 256;
-	static constexpr int HEIGHT = 280;
-
 	bool isDrinkEmpty;
 	int volume;
 	QMap<QString, QColor> drinkColors;
 	QString currentDrink;
 
 	QTimer *updateTimer;
+	bool isSimulationPaused;
+
 	QPixmap liquidPixmap;
+	QPointF pouringSource;
 
 	// Box2D
-	b2ParticleSystemDef particleSystemDef;
-	b2ParticleSystem* particleSystem;
-	b2Vec2 physicsGravity;
-	b2World physicsWorld;
+	b2World *world;
+	b2Body *collisionBottom;
+	b2Body *collisionLeft;
+	b2Body *collisionRight;
+	b2ParticleSystem *particleSystem;
 	std::vector<b2ParticleSystem*> particleSystemsList;
+
+	void setupLiquidParticleSystem();
+	void addLiquid(int volume);
 
 };
 
