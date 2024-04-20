@@ -66,7 +66,7 @@ SOURCES += \
     Box2D/Particle/b2VoronoiDiagram.cpp \
     Box2D/Rope/b2Rope.cpp \
     applicationmodel.cpp \
-    drinkviewport.cpp \
+    drinkview.cpp \
     gamelayer.cpp \
     glassware.cpp \
     liquidmodel.cpp \
@@ -75,6 +75,7 @@ SOURCES += \
     mainwindow.cpp \
     barmodel.cpp \
     recipe.cpp \
+    recipenote.cpp \
     settingsmenupage.cpp
 
 HEADERS += \
@@ -139,7 +140,8 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     applicationmodel.h \
     barmodel.h \
-    drinkviewport.h \
+    box2d_const_values.h \
+    drinkview.h \
     gamelayer.h \
     glassware.h \
     liquidmodel.h \
@@ -147,6 +149,7 @@ HEADERS += \
     mainwindow.h \
     qt_pch.h \
     recipe.h \
+    recipenote.h \
     settingsmenupage.h
 
 FORMS += \

@@ -3,19 +3,14 @@
 
 #include "applicationmodel.h"
 
-#include <QMediaPlayer>
-#include <QAudioOutput>
-#include <QGraphicsScene>
-#include <QGraphicsItem>
+//#include <QMediaPlayer>
+//#include <QAudioOutput>
 
 GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     : QWidget{parent}
     , ui{new Ui::GameLayer}
 {
-    ui->setupUi(this);
-
-    ui->d_RocksGlassButtonSpawn->setVisible(false);
-
+	ui->setupUi(this);
 
     // Pause overlay and button.
     pauseOverlay = new QWidget(this);
@@ -36,13 +31,14 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
             this, &GameLayer::hidePauseOverlay);
 
     // Connections
-    BarModel *bar = app->barModel();
+	BarModel *bar = app->barModel();
+	ui->v_DrinkView->initializeConnections(bar);
 
     connect(ui->d_ServeDrinkButton, &QPushButton::clicked,
             bar, &::BarModel::serveDrink);
 
     connect(bar, &BarModel::newDrink
-            , this, &GameLayer::updateRecipebox);
+			, this, &GameLayer::updateRecipebox);
 
     // Button connections
     connect(ui->d_LimeWedgeButton, &QPushButton::clicked,
@@ -85,14 +81,10 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     connect(ui->d_OrangeLiquorButton, &QPushButton::pressed,
             bar, [bar](){ bar->ingredientPressed("orange liquor");
             });
-    connect(ui->d_OrangeLiquorButton, &QPushButton::released,
-            bar, &BarModel::ingredientReleased);
 
     connect(ui->d_KahluaButton, &QPushButton::pressed,
             bar, [bar](){bar->ingredientPressed("kahlua");
             });
-    connect(ui->d_KahluaButton, &QPushButton::released,
-            bar, &BarModel::ingredientReleased);
 
     connect(ui->d_VodkaButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("vodka");
@@ -112,10 +104,10 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     connect(ui->d_GinButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
-    connect(ui->d_BurbonButton, &QPushButton::pressed,
+	connect(ui->d_WhiskeyButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("whiskey");
             });
-    connect(ui->d_BurbonButton, &QPushButton::released,
+	connect(ui->d_WhiskeyButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
 
     connect(ui->d_RumButton, &QPushButton::pressed,
@@ -134,45 +126,18 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
             bar, [ bar]() {bar->ingredientPressed("ginger beer");
             });
     connect(ui->d_GingerBeerButton, &QPushButton::released,
-            bar, &BarModel::ingredientReleased);
-    // spawn glass
-	/*connect(ui->d_RocksGlassButton, &QPushButton::clicked,
-            this, &GameLayer::spawnRocksGlass);
+			bar, &BarModel::ingredientReleased);
 
-    connect(ui->d_CopperMugButton, &QPushButton::clicked,
-			this, &GameLayer::spawnRocksGlass);*/
-
-	ui->v_DrinkViewport->initializeConnections(app->barModel()->liquidModel());
-
-    // despawn glass
-    // connect(bar, &BarModel::informEmptyDrink,
-    //         this, &GameLayer::emptyRocksGlass);
-
-
-    //updates world view
-    /*onnect(&timer, &QTimer::timeout, this, &GameLayer::updateWorld);
-    timer.start(1000 / 60);*/ // 60 updates per second.
-
-    // connect(this, &GameLayer::heightChanged
-    //         , glass, &QGraphicsItem::setPos);
-
-
+	connect(ui->d_BurbonButton, &QPushButton::pressed,
+			bar, [bar]() {bar->ingredientPressed("burbon");
+			});
+	connect(ui->d_BurbonButton, &QPushButton::released,
+			bar, &BarModel::ingredientReleased);
 }
-
-void GameLayer::setLiquid() {
-
-
-}
-
-
-
 
 GameLayer::~GameLayer()
 {
     delete ui;
-    // delete surfaceBodyDef;
-    // delete surfaceBox;
-
 }
 
 void GameLayer::updateRecipebox(const QString &recipe)
@@ -189,100 +154,3 @@ void GameLayer::hidePauseOverlay()
 {
     pauseOverlay->setVisible(false);
 }
-
-//////////////// PARKERS CODE BELOW, UNSURE IF WE NEED THIS ATM LEAVING IT JUST INCASE /////////////////////////////////////////////
-///
-// void GameLayer::spawnRocksGlass(){
-//     //rocks glass specs
-//     QPolygonF rocks;
-//     rocks
-//         <<QPointF(50,50)
-//         <<QPointF(60,50)
-//         <<QPointF(60,90)
-//         <<QPointF(90,90)
-//         <<QPointF(90,50)
-//         <<QPointF(100,50)
-//         <<QPointF(100,100)
-//         <<QPointF(50,100);
-
-//     //removes the old glass, if adctive
-
-//     if(glass){
-//         scene->removeItem(glass);
-//         delete glass;
-//         glass = nullptr;
-//     }
-
-//     //assign to current glass
-//     glass= new Glassware(rocks);
-//     scene->addItem(glass);
-//     scene->update();
-
-// }
-
-
-// void GameLayer::spawnCollinsGlass(){
-//     //rocks glass specs
-//     QPolygonF collins;
-//     collins
-//         <<QPointF(50,0)
-//         <<QPointF(60,0)
-//         <<QPointF(60,90)
-//         <<QPointF(90,90)
-//         <<QPointF(90,0)
-//         <<QPointF(100,0)
-//         <<QPointF(100,100)
-//         <<QPointF(50,100);
-
-//     //removes the old glass, if adctive
-
-//     if(glass){
-//         scene->removeItem(glass);
-//         delete glass;
-//         glass = nullptr;
-//     }
-
-//     //assign to current glass
-//     glass= new Glassware(collins);
-//     scene->addItem(glass);
-//     scene->update();
-
-// }
-
-
-// void GameLayer::spawnMartiniGlass(){
-//     //rocks glass specs
-//     QPolygonF martini;
-//     martini
-//         <<QPointF(50,50)
-//         <<QPointF(50,40)
-//         <<QPointF(74,80)
-//         <<QPointF(76,80)
-//         <<QPointF(100,40)
-//         <<QPointF(100,50)
-//         <<QPointF(76,90)
-//         <<QPointF(76,130)
-//         <<QPointF(100,130)
-//         <<QPointF(100,131)
-//         <<QPointF(50,131)
-//         <<QPointF(50,130)
-//         <<QPointF(74,130)
-//         <<QPointF(74,90);
-
-
-//     //removes the old glass, if adctive
-
-//     if(glass){
-//         scene->removeItem(glass);
-//         delete glass;
-//         glass = nullptr;
-//     }
-
-//     //assign to current glass
-//     glass= new Glassware(martini);
-//     scene->addItem(glass);
-//     scene->update();
-
-// }
-
-

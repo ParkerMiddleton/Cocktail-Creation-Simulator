@@ -34,8 +34,9 @@ BarModel* ApplicationModel::barModel()
 
 void ApplicationModel::startNewGame()
 {
-	bar.restartGame();
+	bar.startNewGame();
 	currentState = State::Unpaused;
+	bar.setIsPaused(false);
 
 	emit newGameStarted();
 }
@@ -43,7 +44,7 @@ void ApplicationModel::startNewGame()
 void ApplicationModel::pause()
 {
 	currentState = State::Paused;
-	bar.pause();
+	bar.setIsPaused(true);
 
 	emit gamePaused();
 }
@@ -51,7 +52,7 @@ void ApplicationModel::pause()
 void ApplicationModel::unpause()
 {
 	currentState = State::Unpaused;
-	bar.unpause();
+	bar.setIsPaused(false);
 
 	emit gameUnpaused();
 }

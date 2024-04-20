@@ -2,17 +2,12 @@
 #define GAMELAYER_H
 
 #include <QWidget>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include "Box2D/Box2D.h"
-#include "glassware.h"
-#include <QTimer>
-#include "liquidmodel.h"
+
 // Forward Declaration.
 class ApplicationModel;
 
-class QMediaPlayer;
-class QAudioOutput;
+//class QMediaPlayer;
+//class QAudioOutput;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -35,48 +30,10 @@ public slots:
 	void showPauseOverlay();
 	void hidePauseOverlay();
 
-    void setLiquid();
-
-    //updates physics numnbers per iteration
-    // void updateWorld();
-
-    //spawn glassware
-    // void spawnRocksGlass();
-    // void spawnCollinsGlass();
-    // void spawnMartiniGlass();
-
-
-signals:
-    void heightChanged(int x , int y);
-    void addLiquidRequested();
-
 private:
 	Ui::GameLayer *ui;
 
 	QWidget *pauseOverlay;
-
-    QGraphicsScene* scene;
-
-    LiquidModel* l;
-
-    // Glassware* glass;
-
-    // //surface physics
-    // b2BodyDef* surfaceBodyDef;
-    // b2Body* surfaceBody;
-    // b2FixtureDef* surfaceFixtureDef;
-    // b2PolygonShape* surfaceBox;
-
-    // //glass physics
-    // b2BodyDef* glassBodyDef;
-    // b2Body* glassBody;
-    // b2FixtureDef* glassFixtureDef;
-    // b2PolygonShape* glassShape;
-
-
-    // b2World* world;
-    // //update world Timer
-    // QTimer timer;
 
 	// Sound effects
 	//QMediaPlayer *soundBoard;

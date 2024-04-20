@@ -59,5 +59,9 @@
         <file>images/glasses/CopperMugTransparent.png</file>
         <file>images/liquor/whiskey.png</file>
         <file>images/liquor/whiskey_Hover.png</file>
+        <file>images/glasses_liquid/collins_liquid.png</file>
+        <file>images/glasses_liquid/martini_liquid.png</file>
+        <file>images/glasses_liquid/rocks_liquid.png</file>
+        <file>images/glasses_liquid/copper_liquid.png</file>
     </qresource>
 </RCC>

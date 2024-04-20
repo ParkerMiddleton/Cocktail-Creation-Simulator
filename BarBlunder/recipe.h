@@ -9,15 +9,15 @@ class QTextStream;
 class Recipe
 {
 public:
-	Recipe();
+	Recipe() = default;
 	Recipe(QTextStream &recipeText);
-	~Recipe();
 
 	bool checkServedDrink(Recipe correctRecipe);
 
 	QString drinkName;
 	QList<QPair<QString, int>> ingredients;
 	QString recipeAsString;
+
 };
 
 #endif // RECIPE_H

@@ -2,11 +2,11 @@
 #define BARMODEL_H
 
 #include "recipe.h"
+#include "liquidmodel.h"
+#include "glassware.h"
 
 #include <QObject>
 #include <QTimer>
-
-#include "liquidmodel.h"
 
 /// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
@@ -16,8 +16,8 @@ public:
 	/// @brief Constructor.
 	explicit BarModel(QObject *parent = nullptr);
 
-	void pause();
-	void unpause();
+	void startNewGame();
+	void setIsPaused(bool state);
 
 	LiquidModel* liquidModel();
 
@@ -29,21 +29,31 @@ public slots:
 	// void copperMugPressed();
 
 	void ingredientPressed(const QString &liqourName);
-	void processLiquor();
 	void ingredientReleased();
 	void ingredientClicked(const QString &ingredientName);
+
 	void serveDrink();
 	void emptyDrink();
-	void restartGame();
 
 signals:
 	void newDrink(const QString &recipe);
-    void sendVolume(int v);
-    void sendDrinkName(const QString ingredient);
-    void informEmptyDrink();
+	void drinkEmptied();
+
+	void glasswareUpdated(const Glassware &glassware);
+	void glasswareRemoved();
+
+private slots:
+	void processLiquor();
 
 private:
 	LiquidModel liquid;
+	Glassware rocksGlass;
+	Glassware collinsGlass;
+	Glassware copperMug;
+	Glassware martiniGlass;
+
+	bool isGlasswarePlaced;
+	bool isGlasswareEmpty;
 
     QList<Recipe> listOfRecipes;
     Recipe assignedRecipe;
@@ -55,11 +65,11 @@ private:
     bool pressedLiquor;
     bool doublePour;
     QTimer timer;
-    QString liquorSelection;
+	QString liquorSelection;
 
-    void newRound();
-    void newGame();
+	void startNewRound();
     void getRandomRecipe();
+	void removeGlassware();
 
 };
 

@@ -32,7 +32,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
-friend class LayersEventsFilter;
+	friend class LayersEventsFilter;
 
 public:
 	/// @brief Constructor.
