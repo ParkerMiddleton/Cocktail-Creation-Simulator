@@ -643,7 +643,15 @@ image: url(:/images/tools/shakertin_hover);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/tools/trash.png);
+}
+
+QPushButton::hover {
+image: url(:/images/tools/trash_hover.png);
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -822,6 +830,10 @@ image: url(:/images/ingredients/GingerBeer_Hover);
 background-color: transparent;
 border: none;
 image: url(:/images/bar/empty_icewell);
+}
+
+QPushButton::hover {
+image: url(:/images/bar/empty_icewell_Hover.png);
 }</string>
    </property>
    <property name="text">
@@ -972,8 +984,8 @@ image: url(:/images/glasses/rocks_hover.png);
   <zorder>d_RocksGlassButtonSpawn</zorder>
  </widget>
  <resources>
-  <include location="menugraphics.qrc"/>
   <include location="gamegraphics.qrc"/>
+  <include location="menugraphics.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -54,5 +54,8 @@
         <file>images/glasses/martiniFlipped.png</file>
         <file>images/ingredients/tripleSec.png</file>
         <file>images/ingredients/tripleSec_Hover.png</file>
+        <file>images/bar/empty_icewell_Hover.png</file>
+        <file>images/glasses/CopperMugCut.png</file>
+        <file>images/glasses/CopperMugTransparent.png</file>
     </qresource>
 </RCC>
