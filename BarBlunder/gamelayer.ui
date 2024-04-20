@@ -483,7 +483,7 @@ color: black;
   <widget class="QPushButton" name="d_GinButton">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>490</x>
      <y>570</y>
      <width>77</width>
      <height>133</height>
@@ -507,7 +507,7 @@ image: url(:/images/liquor/gin_hover);
   <widget class="QPushButton" name="d_KahluaButton">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>560</x>
      <y>570</y>
      <width>81</width>
      <height>141</height>
@@ -643,7 +643,15 @@ image: url(:/images/tools/shakertin_hover);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/tools/trash.png);
+}
+
+QPushButton::hover {
+image: url(:/images/tools/trash_hover.png);
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -822,6 +830,10 @@ image: url(:/images/ingredients/GingerBeer_Hover);
 background-color: transparent;
 border: none;
 image: url(:/images/bar/empty_icewell);
+}
+
+QPushButton::hover {
+image: url(:/images/bar/empty_icewell_Hover.png);
 }</string>
    </property>
    <property name="text">
@@ -831,7 +843,7 @@ image: url(:/images/bar/empty_icewell);
   <widget class="QPushButton" name="d_TequilaButton">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>400</x>
      <y>590</y>
      <width>122</width>
      <height>125</height>
@@ -955,11 +967,38 @@ background-color: transparent;</string>
    <property name="styleSheet">
     <string notr="true">background-color: rgba(0, 0, 0,100);</string>
    </property>
-   <property name="text">
+   </widget>
+  <widget class="QPushButton" name="d_WhiskeyButton">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>570</y>
+     <width>81</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Whiskey</string>
+   </property>
+   <property name="toolTipDuration">
+    <number>5</number>
+   </property>
+   <property name="whatsThis">
     <string/>
    </property>
-   <property name="scaledContents">
-    <bool>false</bool>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/whiskey.png);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/whiskey_Hover.png);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <zorder>Background</zorder>
@@ -1000,11 +1039,12 @@ background-color: transparent;</string>
   <zorder>d_VodkaButton</zorder>
   <zorder>d_RumButton</zorder>
   <zorder>d_BurbonButton</zorder>
-  <zorder>DrinksPanel</zorder>
   <zorder>triqa_pause</zorder>
   <zorder>PauseButton</zorder>
   <zorder>v_DrinkViewport</zorder>
   <zorder>d_RocksGlassButtonSpawn</zorder>
+  <zorder>d_WhiskeyButton</zorder>
+  <zorder>DrinksPanel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
