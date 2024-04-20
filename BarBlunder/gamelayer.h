@@ -5,7 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include "Box2D/Box2D.h"
-#include "Glassware.h"
+#include "glassware.h"
 #include <QTimer>
 #include "liquidmodel.h"
 // Forward Declaration.
@@ -58,8 +58,6 @@ private:
     QGraphicsScene* scene;
 
     LiquidModel* l;
-    void spawnRocksGlass();
-    void emptyRocksGlass();
 
     // Glassware* glass;
 

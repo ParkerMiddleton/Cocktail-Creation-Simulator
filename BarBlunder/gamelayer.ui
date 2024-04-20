@@ -929,7 +929,41 @@ image: url(:/images/glasses/rocks_hover.png);
     <string/>
    </property>
   </widget>
+  <widget class="DrinkViewport" name="v_DrinkViewport">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>141</y>
+     <width>256</width>
+     <height>280</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 2px;
+background-color: transparent;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Background_2">
+   <property name="geometry">
+    <rect>
+     <x>-50</x>
+     <y>-20</y>
+     <width>1479</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(0, 0, 0,100);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
   <zorder>Background</zorder>
+  <zorder>Background_2</zorder>
   <zorder>TopColCentre</zorder>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
@@ -969,11 +1003,19 @@ image: url(:/images/glasses/rocks_hover.png);
   <zorder>DrinksPanel</zorder>
   <zorder>triqa_pause</zorder>
   <zorder>PauseButton</zorder>
+  <zorder>v_DrinkViewport</zorder>
   <zorder>d_RocksGlassButtonSpawn</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DrinkViewport</class>
+   <extends>QGraphicsView</extends>
+   <header>drinkviewport.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="menugraphics.qrc"/>
   <include location="gamegraphics.qrc"/>
+  <include location="menugraphics.qrc"/>
  </resources>
  <connections/>
 </ui>

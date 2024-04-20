@@ -6,6 +6,8 @@
 #include <QObject>
 #include <QTimer>
 
+#include "liquidmodel.h"
+
 /// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
 {
@@ -16,6 +18,8 @@ public:
 
 	void pause();
 	void unpause();
+
+	LiquidModel* liquidModel();
 
 public slots:
 	// void bourbonPressed();
@@ -39,6 +43,8 @@ signals:
     void informEmptyDrink();
 
 private:
+	LiquidModel liquid;
+
     QList<Recipe> listOfRecipes;
     Recipe assignedRecipe;
     Recipe userRecipe;

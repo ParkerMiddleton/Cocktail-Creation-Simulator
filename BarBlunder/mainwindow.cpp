@@ -3,9 +3,6 @@
 
 #include "gamelayer.h"
 #include "applicationmodel.h"
-#include "liquidlayer.h"
-#include <QGraphicsProxyWidget>
-
 
 #include <QSize>
 #include <QKeyEvent>
@@ -21,7 +18,6 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
     , viewport{this}
     , viewportScene{0, 0, RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
     , windowSize{RENDER_NATIVE_WIDTH, RENDER_NATIVE_HEIGHT}
-    , l{new LiquidLayer(app, this)}
     , gameLayer{app}
     , mainMenu{app}
     , settingsMenu{app}
@@ -51,7 +47,6 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 
     // Setup layers.
     viewportScene.addWidget(&gameLayer);
-    viewportScene.addWidget(l);
     viewportScene.addWidget(&tri);
     viewportScene.addWidget(&menuStack);
     viewport.setScene(&viewportScene);

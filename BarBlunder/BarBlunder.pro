@@ -65,10 +65,10 @@ SOURCES += \
     Box2D/Particle/b2ParticleSystem.cpp \
     Box2D/Particle/b2VoronoiDiagram.cpp \
     Box2D/Rope/b2Rope.cpp \
-    Glassware.cpp \
     applicationmodel.cpp \
+    drinkviewport.cpp \
     gamelayer.cpp \
-    liquidlayer.cpp \
+    glassware.cpp \
     liquidmodel.cpp \
     main.cpp \
     mainmenupage.cpp \
@@ -137,11 +137,11 @@ HEADERS += \
     Box2D/Particle/b2StackQueue.h \
     Box2D/Particle/b2VoronoiDiagram.h \
     Box2D/Rope/b2Rope.h \
-    Glassware.h \
     applicationmodel.h \
     barmodel.h \
+    drinkviewport.h \
     gamelayer.h \
-    liquidlayer.h \
+    glassware.h \
     liquidmodel.h \
     mainmenupage.h \
     mainwindow.h \
@@ -151,7 +151,6 @@ HEADERS += \
 
 FORMS += \
     gamelayer.ui \
-    liquidlayer.ui \
     mainmenupage.ui \
     mainwindow.ui \
     settingsmenupage.ui

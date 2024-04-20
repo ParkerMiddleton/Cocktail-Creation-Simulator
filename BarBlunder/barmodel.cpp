@@ -23,6 +23,15 @@ BarModel::BarModel(QObject *parent)
     {
         listOfRecipes.push_back(Recipe(inStream));
     }
+
+	connect(this, &BarModel::sendVolume,
+			&liquid, &LiquidModel::setVolume);
+
+	connect(this, &BarModel::sendDrinkName,
+			&liquid, &LiquidModel::setDrinkColor);
+
+	connect(this, &BarModel::informEmptyDrink,
+			&liquid, &LiquidModel::emptyDrink);
 }
 
 void BarModel::pause()
@@ -33,6 +42,11 @@ void BarModel::pause()
 void BarModel::unpause()
 {
 
+}
+
+LiquidModel* BarModel::liquidModel()
+{
+	return &liquid;
 }
 
 void BarModel::ingredientPressed(const QString &liquorName) {

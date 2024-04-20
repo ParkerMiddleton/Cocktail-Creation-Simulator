@@ -133,11 +133,13 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
             bar, &BarModel::ingredientReleased);
 
     // spawn glass
-    connect(ui->d_RocksGlassButton, &QPushButton::clicked,
+	/*connect(ui->d_RocksGlassButton, &QPushButton::clicked,
             this, &GameLayer::spawnRocksGlass);
 
     connect(ui->d_CopperMugButton, &QPushButton::clicked,
-            this, &GameLayer::spawnRocksGlass);
+			this, &GameLayer::spawnRocksGlass);*/
+
+	ui->v_DrinkViewport->initializeConnections(app->barModel()->liquidModel());
 
     // despawn glass
     // connect(bar, &BarModel::informEmptyDrink,
@@ -168,14 +170,6 @@ GameLayer::~GameLayer()
     // delete surfaceBodyDef;
     // delete surfaceBox;
 
-}
-
-void GameLayer::spawnRocksGlass() {
-    ui->d_RocksGlassButtonSpawn->setVisible(true);
-}
-
-void GameLayer::emptyRocksGlass() {
-    ui->d_RocksGlassButtonSpawn->setVisible(false);
 }
 
 void GameLayer::updateRecipebox(const QString &recipe)

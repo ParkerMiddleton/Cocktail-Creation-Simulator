@@ -1,10 +1,7 @@
 #ifndef GLASSWARE_H
 #define GLASSWARE_H
-#include <QGraphicsItem>
-#include <QPainter>
-#include <QWidget>
-#include <QMouseEvent>
 
+#include <QPixmap>
 
 ///
 /// \brief The Glassware class creates different glassware polygons to be used
@@ -13,27 +10,20 @@
 /// Create a glassware object by passing in its corresponding QPolygonF from
 /// barmodel datastructure
 ///
-class Glassware : public QGraphicsPolygonItem
+class Glassware
 {
 public:
+	enum class Types { Rocks, Collins, Copper };
 
-    ///
     /// \brief Glassware Constructor
     /// \param polygon Polygon to take the shape of the glass
     /// \param parent graphics scene that the object is housed in.
-    ///
-    Glassware(const QPolygonF& polygon, QGraphicsItem *parent = nullptr);
+	Glassware();
 
 protected:
 
-    //Overrides required for implementing QGraphicsPolygonItem
-    QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
- private:
-
-    QBrush m_brush;
-    QPen m_pen;
+private:
 
 
 
