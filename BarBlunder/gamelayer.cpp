@@ -85,10 +85,14 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     connect(ui->d_OrangeLiquorButton, &QPushButton::pressed,
             bar, [bar](){ bar->ingredientPressed("orange liquor");
             });
+    connect(ui->d_OrangeLiquorButton, &QPushButton::released,
+            bar, &BarModel::ingredientReleased);
 
     connect(ui->d_KahluaButton, &QPushButton::pressed,
             bar, [bar](){bar->ingredientPressed("kahlua");
             });
+    connect(ui->d_KahluaButton, &QPushButton::released,
+            bar, &BarModel::ingredientReleased);
 
     connect(ui->d_VodkaButton, &QPushButton::pressed,
             bar, [bar]() {bar->ingredientPressed("vodka");
@@ -131,7 +135,6 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
             });
     connect(ui->d_GingerBeerButton, &QPushButton::released,
             bar, &BarModel::ingredientReleased);
-
     // spawn glass
 	/*connect(ui->d_RocksGlassButton, &QPushButton::clicked,
             this, &GameLayer::spawnRocksGlass);

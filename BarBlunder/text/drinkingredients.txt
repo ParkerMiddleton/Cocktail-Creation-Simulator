@@ -1,4 +1,4 @@
-Old Fashioned.
+/////////// Old Fashioned //////////////
 1. Take one rocks glass.
 2. Pour 2 oz of whiskey
 3. Add Ice
@@ -29,3 +29,83 @@ vodka: 2
 ice: 1
 ginger beer: 4
 lime wedge: 1
+
+/////////// White Russian //////////////
+1) Grab a rocks glass.
+2) Pour 1 oz vodka
+3) Pour 1 oz Kahlua
+4) Fill with ice
+5) Pour 6 oz half n half
+
+White Russian.
+rocks glass: 1
+vodka: 1
+kahlua: 1
+ice: 1
+half and half: 5
+
+//////////// French 75 /////////////////
+1) Grab a shaker tin.
+2) Fill with ice.
+2) Pour 1 oz symple syrup.
+3) Pour 1 oz lemon juice.
+4) Pour 2 oz Gin.
+5) Shake for 10 seconds
+6) Grab and fill martini glass
+7) Pour 1 oz of prosecco.
+
+French 75:
+shaker tin: 1
+ice: 1
+simple syrup: 1
+lemon juice: 1
+gin: 2
+shake: 10
+martini glass: 1
+prosecco: 1
+
+/////////// Rocks Margarita ////////////
+1) Grab shaker tin.
+2) add ice.
+3) Pour 2 oz Lime Juice
+4) Pour 1 oz Agave Nectar
+5) Pour 1 oz Sweet'n'sour mix
+6) Pour 1.5 oz Tequila
+7) add a splash Orange Liquor
+8) a splash of Orange Juice
+(to add a 'splash; just click)
+9) Shake vigorously for 5 seconds
+10) Grab rocks glass and fill
+(just click the rocks glass)
+11) Garnish with a lime wedge
+
+rocks glass: 1
+ice: 1
+shaker tin: 1
+lime juice: 2
+agave nectar: 1
+sweet and sour mix: 1
+tequilla: 1.5
+orange liquor: .5
+orange juice (splash): 1
+shake: 5
+rocks glass: 1
+lime wedge: 1
+
+/////////// Dirty Martini /////////////
+1) Grab a shaker tin
+2) Pour 2 oz vodka or gin into shakertin
+3) Pour 1 oz olive Juice into shakertin
+4) Pour 0.5 oz dry vermuth into shakertin
+5) Shake vigorosly for 10 seconds
+6) Grab martini glass and fill.
+(just click the glass)
+7) Garnish with 3 olives.
+
+shaker tin: 1
+vodka: 2
+olive juice: 1
+vermuth: 1
+shake: 10
+martini glass: 1
+olives: 3

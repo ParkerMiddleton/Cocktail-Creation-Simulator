@@ -79,7 +79,6 @@ void BarModel::processLiquor() {
                 qDebug() << liquorSelection << " " << ingredient.second;
                 qDebug() << "volume = " << volume;
                 if(ingredient.second == 0) {
-
                     stepNumber++;
                     //qDebug() << "Step Number:" << stepNumber;
                     return;
