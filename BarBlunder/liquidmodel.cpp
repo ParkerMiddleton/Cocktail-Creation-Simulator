@@ -9,7 +9,7 @@
 #include <QPainterPath>
 #include <QDebug>
 
-#include <Box2D/Box2D.h> // Please try not to include in any header. It increases the compile time.
+#include <Box2D/Box2D.h>
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
@@ -37,6 +37,19 @@ LiquidModel::LiquidModel(QWidget *parent)
     drinkColors["vodka"] = QColor(236, 233, 226, 20);		// Vodka color
     drinkColors["gin"] = QColor(236, 233, 226, 20);			// Gin color
     drinkColors["kahlua"] = QColor(28, 1, 2, 220);			//kahlua
+    drinkColors["burbon"] = QColor(255,255,255,255);        //burbon
+    drinkColors["tripe sec"] = QColor(255,255,255,255);     //triple sec
+    drinkColors["sweet n sour"] = QColor(255,255,255,255);  //sweet n sour
+    drinkColors["grenadine"] = QColor(255,255,255,255);     //grenadine
+    drinkColors["simple syrup"] = QColor(255,255,255,255);  //simpe syrup
+    drinkColors["agave nectar"] = QColor(255,255,255,255);  //agave nectar
+    drinkColors["sprite"] = QColor(255,255,255,255);        //sprite
+    drinkColors["coke"] = QColor(255,255,255,255);          //coke
+    drinkColors["half n half"] = QColor(255,255,255,255);   //half n half
+    drinkColors["lime juice"] = QColor(255,255,255,255);    //lime juice
+    drinkColors["ginger beer"] = QColor(255,255,255,255);   //ginger beer
+    drinkColors["olive juice"] = QColor(255,255,255,255);   //olive juice
+    drinkColors["bitters"] = QColor(255,255,255,255);       //bitters
 
     //transparent pixmap for swapping
     //change to Qt::Transparent later
@@ -130,15 +143,14 @@ void LiquidModel::updateSimulation()
 	// Step the Box2D simulation
 	world->Step(1.0f / 60.0f, 1, 3);
 
-	// THIS CODE IS FOR VISUALIZING THE PHYSICS BOUNDARIES BY DRAWING THEM.
-
-	liquidPixmap.fill(Qt::transparent);
-
-
+    //Set up Pixmap
+    liquidPixmap.fill(Qt::transparent);
 	QPainter painter(&liquidPixmap);
 	painter.setRenderHint(QPainter::Antialiasing);
-	painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
 
+
+// THIS CODE IS FOR VISUALIZING THE PHYSICS BOUNDARIES BY DRAWING THEM.
 #if 1
 	// Get the body list from the world
 	const b2Body* body = world->GetBodyList();
@@ -184,12 +196,10 @@ void LiquidModel::updateSimulation()
 		body = body->GetNext();
 	}
 #endif
-
 	// Get the particle system list from the world
 	const b2ParticleSystem *particleSystemList = world->GetParticleSystemList();
 
-    // // Retrieve the color corresponding to the current drink
-    // QColor ingredientColor = drinkColors[currentDrink];
+    // //trying this
 
 	// Iterate through all particle systems
 	for (const b2ParticleSystem* particleSystem = particleSystemList; particleSystem; particleSystem = particleSystem->GetNext())
@@ -203,10 +213,11 @@ void LiquidModel::updateSimulation()
             //this needs to be converted back from a b2Color
             QColor liquorColor(particleSystem->GetColorBuffer()[i].GetColor().r * 255,
                                particleSystem->GetColorBuffer()[i].GetColor().g * 255,
-                               particleSystem->GetColorBuffer()[i].GetColor().b * 255);
+                               particleSystem->GetColorBuffer()[i].GetColor().b * 255,
+                               150);
             painter.setPen(liquorColor);
             painter.setBrush(liquorColor);
-			painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
+            painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
 		}
 	}
 
@@ -244,37 +255,37 @@ void LiquidModel::setupLiquidParticleSystem()
 
 void LiquidModel::addLiquid(int volume)
 {
-	this->setupLiquidParticleSystem();
-	particleSystemsList.push_back(particleSystem);
+    this->setupLiquidParticleSystem();
+    particleSystemsList.push_back(particleSystem);
 
-	int numParticlesX = 3; // number of particles spawned horizontally
-	int numParticlesY = 3; // number of particles spawned vertically
-	float particleSpacingX = 4.5f; // Adjust the spacing between particles in the x direction
-	float particleSpacingY = 4.5f; // Adjust the spacing between particles in the y direction
+    int numParticlesX = 3; // number of particles spawned horizontally
+    int numParticlesY = 3; // number of particles spawned vertically
+    float particleSpacingX = 4.5f; // Adjust the spacing between particles in the x direction
+    float particleSpacingY = 4.5f; // Adjust the spacing between particles in the y direction
 
-	QTimer* timer = new QTimer(); // Allocate QTimer dynamically
-	connect(timer, &QTimer::timeout, this, [=]() {
+    QTimer* timer = new QTimer(); // Allocate QTimer dynamically
+    connect(timer, &QTimer::timeout, this, [=]() {
 
-		if (isSimulationPaused)
-			return;
-		// Spawn particles for 3 seconds
-		static float elapsedTime = 0.0f;
-		// attempting to use volume
-		if (elapsedTime < volume && !isDrinkEmpty)
-		{
-			// Spawn particles in the loop
-			for (int i = 0; i < numParticlesX; ++i)
-			{
-				for (int j = 0; j < numParticlesY; ++j)
-				{
-					b2Vec2 particlePosition;
-					particlePosition.x = pouringSource.x() - (numParticlesX / 2.0f) * particleSpacingX + i * particleSpacingX;
-					particlePosition.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
+        if (isSimulationPaused)
+            return;
+        // Spawn particles for 3 seconds
+        static float elapsedTime = 0.0f;
+        // attempting to use volume
+        if (elapsedTime < volume && !isDrinkEmpty)
+        {
+            // Spawn particles in the loop
+            for (int i = 0; i < numParticlesX; ++i)
+            {
+                for (int j = 0; j < numParticlesY; ++j)
+                {
+                    b2Vec2 particlePosition;
+                    particlePosition.x = pouringSource.x() - (numParticlesX / 2.0f) * particleSpacingX + i * particleSpacingX;
+                    particlePosition.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
 
-					// Create a particle
-					b2ParticleDef particleDef;
-					particleDef.flags = b2_elasticParticle;
-					particleDef.position = particlePosition; // Particle position its spawned at
+                    // Create a particle
+                    b2ParticleDef particleDef;
+                    particleDef.flags = b2_elasticParticle;
+                    particleDef.position = particlePosition; // Particle position its spawned at
 
                     //get current color
                     QColor drinkcolor = drinkColors.value(currentDrink);
@@ -284,21 +295,21 @@ void LiquidModel::addLiquid(int volume)
 
                     particleDef.color = b2c;
 
-					// Spawn the particle
-					particleSystem->CreateParticle(particleDef);
-				}
-			}
-			elapsedTime += 0.1; // Increase elapsed time
-		}
-		else
-		{
-			timer->stop(); // Stop the timer after 3 seconds
-			delete timer; // delete timer
-			elapsedTime = 0.0;
-		}
-	});
+                    // Spawn the particle
+                    particleSystem->CreateParticle(particleDef);
+                }
+            }
+            elapsedTime += 0.1; // Increase elapsed time
+        }
+        else
+        {
+            timer->stop(); // Stop the timer after 3 seconds
+            delete timer; // delete timer
+            elapsedTime = 0.0;
+        }
+    });
 
-	timer->start(100);
+    timer->start(100);
 }
 
 void LiquidModel::hideLiquid(){

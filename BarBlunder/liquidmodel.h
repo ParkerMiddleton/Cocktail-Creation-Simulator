@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <Qmap>
+#include <QMap>
 #include <QTimer>
 #include <QPixmap>
 #include <QPointF>
@@ -62,6 +62,7 @@ private:
 	b2Body *collisionBody;
 	b2ParticleSystem *particleSystem;
     std::vector<b2ParticleSystem*> particleSystemsList;
+
 
 	void setupLiquidParticleSystem();
 	void addLiquid(int volume);

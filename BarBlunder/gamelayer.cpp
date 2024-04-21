@@ -104,6 +104,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connectLiquor(GingerBeerButton,			"ginger beer");
 	connectLiquor(BurbonButton,				"burbon");
 
+
 #undef connectLiquor
 
 	//shakertin
