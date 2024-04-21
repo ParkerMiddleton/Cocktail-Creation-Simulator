@@ -36,22 +36,22 @@ void DrinkView::initializeConnections(BarModel *bar)
             this, &DrinkView::removeLiquidDisplay);
 
 	connect(bar, &BarModel::glasswareUpdated,
-			this, &DrinkView::updateGlasswareImage);
+			this, &DrinkView::updateGlasswareDisplay);
 
 	connect(bar, &BarModel::glasswareRemoved,
-			this, &DrinkView::removeGlasswareImage);
+			this, &DrinkView::removeGlasswareDisplay);
 }
 
-void DrinkView::updateLiquidDisplay(const QPixmap &pixmap)
+void DrinkView::updateLiquidDisplay(const QPixmap &liquid)
 {
-	gLiquid.setPixmap(pixmap);
+	gLiquid.setPixmap(liquid);
 }
 
 void DrinkView::removeLiquidDisplay(){
     gLiquid.setPixmap(emptyPixmap);
 }
 
-void DrinkView::updateGlasswareImage(const Glassware &glassware)
+void DrinkView::updateGlasswareDisplay(const Glassware &glassware)
 {
 	if (glassware.isTransparent())
 	{
@@ -65,7 +65,7 @@ void DrinkView::updateGlasswareImage(const Glassware &glassware)
 	}
 }
 
-void DrinkView::removeGlasswareImage()
+void DrinkView::removeGlasswareDisplay()
 {
 	gMug.setPixmap(emptyPixmap);
 	gGlass.setPixmap(emptyPixmap);

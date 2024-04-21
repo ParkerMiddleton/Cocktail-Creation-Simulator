@@ -12,40 +12,39 @@ class ApplicationModel;
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
-/**
- * @class the layer we play the game on
- * @package Ui
- */
 class GameLayer;
 }
 QT_END_NAMESPACE
 
-/**
- * @brief The GameLayer class reperesnts the layer we play the game on
- */
+/// @brief The viewport layer with game contents. Part of View.
 class GameLayer : public QWidget
 {
 	Q_OBJECT
 
 public:
-    /**
-     * @brief GameLayer - a constructor
-     * @param app - an app model
-     * @param parent -- a widget parent defaults to null
-     */
+	/// @brief Constructor.
+	/// @param app Model responsible for managing states and settings.
 	explicit GameLayer(ApplicationModel *app, QWidget *parent = nullptr);
-    /// @brief destructor for GameLayer
+
+	/// @brief Destructor.
 	~GameLayer();
 
 public slots:
+	/// @brief Sets visible the transparent overlay that stops the game controls from receiving events.
 	void showPauseOverlay();
-    /// @brief hides the pause overlay to resume game
+
+	/// @brief Hides the transparent overlay that stops the game controls from receiving events.
 	void hidePauseOverlay();
 
+	/// @brief Displays a message about the correctly made drink inside the note.
 	void showRoundEndCorrectMessage();
+
+	/// @brief Displays a message about the incorrectly made drink inside the note.
 	void showRoundEndIncorrectMessage();
 
 private slots:
+	/// @brief Displays the recipe note.
+	/// Used after the round end message was displayed for a specified amount of time.
 	void switchToRecipeNote();
 
 private:
@@ -53,7 +52,6 @@ private:
 
 	Ui::GameLayer *ui;
 
-    /// @brief this is a pointer to a QWidget which pauses the overlay
 	QWidget *pauseOverlay;
 
 	// Sound effects

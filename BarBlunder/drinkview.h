@@ -8,60 +8,49 @@
 #include <QPixmap>
 
 // Forward Declaration.
-/// @class the Bar model class
 class BarModel;
-/// @class the glassware clas
 class Glassware;
 
-/**
- * @brief The class for the drink view
- */
+/// @brief Displays liquid with the glassware. Part of View.
 class DrinkView : public QGraphicsView
 {
 	Q_OBJECT
 
 public:
-    /**
-     * @brief DrinkView - the drink view
-     * @param parent - the parent class for user inteface you are using; default is null
-     */
+	/// @brief Constructor.
 	DrinkView(QWidget *parent = nullptr);
-    /// @brief the destructor for the drink view
+
+	/// @brief Destructor.
 	~DrinkView();
-    /**
-     * @brief initializeConnections - inits the connections in the game software
-     * @param bar - a pointer to the bar model instance being used
-     */
+
+	/// @brief Set ups connections between this widget and the given bar model object.
+	/// Must be called after the QT's UI holding the instance of this widget is initialized.
+	/// @param bar Model responsible for game logic.
 	void initializeConnections(BarModel *bar);
 
 public slots:
-    /**
-     * @brief updateLiquidDisplay -this slot updated the display of the liquid
-     * @param pixmap -  a QPixmap of the pixels in the game interface
-     */
-	void updateLiquidDisplay(const QPixmap &pixmap);
-    /// @brief this slot removes the liquid
-    void removeLiquidDisplay();
-    /**
-     * @brief updateGlasswareImage - a updsted image of the glass ware passed in updates of the drink view
-     * @param glassware -  a const ref to the glassware type used
-     */
-	void updateGlasswareImage(const Glassware &glassware);
-    /// @brief this slot removes the glassware image
-	void removeGlasswareImage();
+	/// @brief Displays the given QPixmap of liquid.
+	/// @param liquid New QPixmap to display.
+	void updateLiquidDisplay(const QPixmap &liquid);
+
+	/// @brief Stops displaying the liquid.
+	void removeLiquidDisplay();
+
+	/// @brief Displays the given QPixmap of glassware.
+	/// @param glassware New QPixmap to display.
+	void updateGlasswareDisplay(const Glassware &glassware);
+
+	/// @brief Stops displaying the glassware.
+	void removeGlasswareDisplay();
 
 private:
-    /// @brief the graphics scene
 	QGraphicsScene gScene;
-    /// @brief the graphics item group
 	QGraphicsItemGroup gItemGroup;
-    /// @brief the graphics pixel map of the mug
+
 	QGraphicsPixmapItem gMug;
-    /// @brief the graphics pixel map of the liquid
 	QGraphicsPixmapItem gLiquid;
-    /// @brief the graphics pixel map of the glass
 	QGraphicsPixmapItem gGlass;
-    /// @brief an empty pixmap
+
 	QPixmap emptyPixmap;
 
 };

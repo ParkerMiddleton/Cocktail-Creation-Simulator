@@ -19,10 +19,8 @@ public:
 	/// Must be called after the constructor due to QT limitations.
 	void initialize();
 
-    /**
-     *  @brief Returns a pointer to the bar model.
-     *  @return returns a pointer to a bar model instance
-     */
+	/// @brief Returns a pointer to the bar model.
+	/// @return BarModel*
 	BarModel* barModel();
 
 public slots:
@@ -85,22 +83,14 @@ signals:
 	void windowSizeChanged(const QSize &newSize);
 
 private:
-    /// @brief the model for the bar
 	BarModel bar;
 
-    /**
-     * @brief The State enum
-     */
 	enum class State { NotStarted, Paused, Unpaused };
-    ///@brief this the surrent state as per the enum
 	State currentState;
 
 	// Settings Vars
-    ///@brief the audio volume
 	float audioVolume;
-    /// @brief if it is a full screen
 	bool isFullscreen;
-    ///@brief the qsize that identifies the size of the window
 	QSize windowSize;
 
 	/// @brief Helper for saving settings into JSON formatted file.
