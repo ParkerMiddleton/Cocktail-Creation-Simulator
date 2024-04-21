@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QPointF>
+#include <QList>
 
 /// @brief Holds physics and rendering properties of various glasses.
 class Glassware
@@ -10,57 +11,34 @@ class Glassware
 public:
 	enum class Type { Rocks, Collins, Copper, Martini };
 
-	/**
-	 * @brief Glassware -  constructor
-	 * @param type - the type of glassware
-	 */
+	/// @brief Constructor.
+	/// @param type Type of glassware.
 	Glassware(Glassware::Type type);
-	/// @brief the destructor for a glassware object
+
+	/// @brief Destructor.
 	~Glassware();
-	/**
-	 * @brief a method to ge the display Qpixmap
-	 * @return the QPixmap of the display
-	 */
+
 	const QPixmap& getDisplayPixmap() const;
-	/**
-	 * @brief isTransparent - is glassware is transparen?
-	 * @return if glassware is transparent or not
-	 */
+
+	/// @brief Returns whether this glassware transparent or not.
+	/// @return bool
 	bool isTransparent() const;
-	/**
-	 * @brief getPhysicsPouringSource - gets the source piint of the pouring
-	 * @return the QPoint ref where the poiring is from
-	 */
+
+	/// @brief Returns the coordinates of where the liquid should pour out.
+	/// @return QPointF&
 	const QPointF& getPhysicsPouringSource() const;
-	/**
-	 * @brief getPhysicsBottomRect - getting the bottom rect of the physics
-	 * @return the ref to the QRectF at bottom
-	 */
-	const QRectF& getPhysicsBottomRect() const;
-	/**
-	 * @brief getPhysicsLeftRect - gets left rect of the physics
-	 * @return the ref to the QRectF at left
-	 */
-	const QRectF& getPhysicsLeftRect() const;
-	/**
-	 *@brief getPhysicsLeftRect - gets right rect of the physics
-	 * @return the ref to the QRectF at right
-	 */
-	const QRectF& getPhysicsRightRect() const;
+
+	/// @brief Returns a list of four vertices defining the collision layout of this glassware.
+	/// Vertices ordered from top left to top right.
+	/// @return QList<QPointF>&
+	const QList<QPointF>& getPhysicsCollisionVertices() const;
 
 private:
-	/// @brief the display pixmap
 	QPixmap *displayPixmap;
-	/// @brief is glassware transparent?
 	bool transparent;
-	/// @brief the QPoinF where the pouring is from
+
 	QPointF physicsPouringSource;
-	/// @brief the ref to the QRectF at bottom
-	QRectF physicsBottomRect;
-	/// @brief the ref to the QRectF at left
-	QRectF physicsLeftRect;
-	/// @brief the ref to the QRectF at right
-	QRectF physicsRightRect;
+	QList<QPointF> physicsCollisionVertices;
 
 };
 
