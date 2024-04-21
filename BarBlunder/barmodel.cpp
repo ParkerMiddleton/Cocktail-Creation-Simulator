@@ -264,9 +264,17 @@ void BarModel::getRandomRecipe()
 	emit newDrink(assignedRecipe.recipeSteps);
 }
 
+void BarModel::hideDrink(){
+    liquid.hideLiquid();
+}
+void BarModel::exposeDrink(){
+    liquid.exposeLiquid();
+}
+
 void BarModel::removeGlassware()
 {
 	isGlasswarePlaced = false;
 	liquid.removeCollisionLayout();
 	emit glasswareRemoved();
 }
+

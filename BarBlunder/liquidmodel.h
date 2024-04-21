@@ -32,9 +32,12 @@ public:
 	void clear();
 
 	void setIsSimulationPaused(bool state);
+    void hideLiquid();
+    void exposeLiquid();
 
 signals:
 	void emptyLiquid();
+    void removeLiquid();
 	void simulationUpdated(const QPixmap &pixmap);
 
 private slots:
@@ -50,6 +53,8 @@ private:
 	bool isSimulationPaused;
 
 	QPixmap liquidPixmap;
+    QPixmap blankPixmap;
+
 	QPointF pouringSource;
 
 	// Box2D
@@ -58,7 +63,7 @@ private:
 	b2Body *collisionLeft;
 	b2Body *collisionRight;
 	b2ParticleSystem *particleSystem;
-	std::vector<b2ParticleSystem*> particleSystemsList;
+    std::vector<b2ParticleSystem*> particleSystemsList;
 
 	void setupLiquidParticleSystem();
 	void addLiquid(int volume);

@@ -49,8 +49,136 @@
                          </base-DElement>
                          <object>{9760407a-d6eb-4126-b9dc-3fb87d02a089}</object>
                          <name>recipe</name>
-                         <pos>x:195;y:265</pos>
+                         <pos>x:345;y:360</pos>
                          <rect>x:-140;y:-65;w:280;h:130</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{3fa68298-e06e-4918-a783-9a6402fad8d1}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{eda52e19-1fb7-40e4-851a-26316fe4d47a}</object>
+                         <name>ApplicationModel</name>
+                         <pos>x:-105;y:-305</pos>
+                         <rect>x:-235;y:-220;w:470;h:440</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{667d3619-e2ac-4bea-b65f-ce5eeda41848}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{dfd42bd9-87f2-4cc1-9947-d073359ca45a}</object>
+                         <name>BarModel</name>
+                         <pos>x:305;y:-215</pos>
+                         <rect>x:-155;y:-310;w:310;h:620</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{38a7e38a-8ebe-46d4-9f8e-203399218583}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{b9b4b2c3-f48d-4436-8b85-c21d23705111}</object>
+                         <name>DrinkView</name>
+                         <pos>x:640;y:-410</pos>
+                         <rect>x:-160;y:-115;w:320;h:230</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{e0b97cb4-6eb8-483c-903c-be7ce2e75303}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{e737f1d4-44fa-4e46-becd-3ef695b9b566}</object>
+                         <name>GameLayer</name>
+                         <pos>x:670;y:-205</pos>
+                         <rect>x:-190;y:-75;w:380;h:150</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <namespace>Ui</namespace>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{337c8030-6e9d-4bce-97e7-2c1ad4445732}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{846142ef-e932-4b84-bcf0-a9d5fa2b8939}</object>
+                         <name>Glassware</name>
+                         <pos>x:620;y:10</pos>
+                         <rect>x:-135;y:-125;w:270;h:250</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{d4593e02-74a7-4939-b352-42f8d63d627b}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{b07bf858-5cd8-42ac-b174-6910e96bd6ec}</object>
+                         <name>LiquidModel</name>
+                         <pos>x:-180;y:180</pos>
+                         <rect>x:-155;y:-250;w:310;h:500</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -61,7 +189,7 @@
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1713239349130</last-modified>
+                  <last-modified>1713684866234</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -90,30 +218,1020 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{a37de9b6-b79b-4381-9254-2dbc9fe6e9ff}</uid>
+                    <uid>{21ae62c1-9d0d-4509-96af-f577fa652d60}</uid>
                     <type>1</type>
                     <declaration>QString drinkName</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{44a60923-4eb3-4577-ab65-36acd48bb382}</uid>
+                    <uid>{ad69a8d8-2cc5-4e8a-8162-6c0cbcdfe411}</uid>
                     <type>1</type>
                     <declaration>QList&lt;QPair&lt;QString, int&gt;&gt; ingredients</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5cf291e0-6aa0-4f30-b569-d89c6a36dc86}</uid>
+                    <uid>{4bb395ad-8a55-4b74-b098-a8805e2a03f5}</uid>
                     <type>2</type>
                     <declaration>void addIngredient(QString ingredient, int amount)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{526a05a6-d170-49f9-a7ce-a2715a650ee4}</uid>
+                    <uid>{e21c097c-0b0c-47cf-b494-a149078e7a35}</uid>
                     <type>2</type>
                     <declaration>bool checkRecipe(recipe drinkRecipe)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{eda52e19-1fb7-40e4-851a-26316fe4d47a}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{eda52e19-1fb7-40e4-851a-26316fe4d47a}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>ApplicationModel</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{7cf8e350-75f7-4372-a109-d209d4dc4c65}</uid>
+                    <type>2</type>
+                    <declaration>explicit ApplicationModel(QObject *parent = nullptr)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c2a1f649-9ca9-4fc3-bc84-b99564262852}</uid>
+                    <type>2</type>
+                    <declaration>void initialize()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{62d57d97-9abf-495d-a574-b687d7a9ba20}</uid>
+                    <type>2</type>
+                    <declaration>BarModel* barModel()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{83d894de-e7d8-4833-9db2-58994807ab77}</uid>
+                    <type>2</type>
+                    <declaration>void applicationExitRequested()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d3fba477-a469-4fda-a1d1-006ea364d137}</uid>
+                    <type>2</type>
+                    <declaration>void loadSettings()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5b2d6a6a-9371-4fff-bde9-4da5c1c3b9b1}</uid>
+                    <type>2</type>
+                    <declaration>void saveSettings()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0c4b919e-12d6-408a-a729-a0295568dcea}</uid>
+                    <type>1</type>
+                    <declaration>QSize windowSize</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a1791e3f-944e-4825-a4ea-42f1e6380b26}</uid>
+                    <type>1</type>
+                    <declaration>float audioVolume</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{dbef314c-fb6d-4293-879a-d247ce98842b}</uid>
+                    <type>1</type>
+                    <declaration>State currentState</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{471d2982-d8f1-4ad6-be51-4dde05f12436}</uid>
+                    <type>1</type>
+                    <declaration>BarModel bar</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5a8437e8-a12f-4f3f-ac8f-fb7c201e1f30}</uid>
+                    <type>2</type>
+                    <declaration>void startNewGame()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ec363897-32f8-435c-913a-0f9055f47aa9}</uid>
+                    <type>2</type>
+                    <declaration>void pause()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ad6f5f79-b13d-4b80-8648-42231afd2ea8}</uid>
+                    <type>2</type>
+                    <declaration>void unpause()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7082fc97-6167-42b0-809c-e313470465e2}</uid>
+                    <type>2</type>
+                    <declaration>void switchPauseState()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5eb02120-d4f6-4f78-ac8b-f7a24914fedb}</uid>
+                    <type>2</type>
+                    <declaration>void exitApplication()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{b9f0f45d-b1b1-4134-81d9-d1c5ea5f5d39}</uid>
+                    <type>2</type>
+                    <declaration>void setAudioVolume(float volume)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{08a7ddc4-b9cf-43dd-9596-2989a08e9d6e}</uid>
+                    <type>2</type>
+                    <declaration>void setIsFullscreen(bool state)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d1acf54a-c1cf-4caf-8530-b069543cbe8d}</uid>
+                    <type>2</type>
+                    <declaration>void setWindowSize(const QSize &amp;size)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d2e0b80e-015c-43a4-b170-2b2036463cce}</uid>
+                    <type>2</type>
+                    <declaration>void settingsLoaded(float audioVolume, bool fullscreenState, const QSize &amp;windowSize)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{da9ee6e2-be74-4d47-ad42-5f649e386074}</uid>
+                    <type>2</type>
+                    <declaration>void newGameStarted()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{b5b95f7c-f655-4712-b5e8-b67e81ec549c}</uid>
+                    <type>2</type>
+                    <declaration>void gamePaused()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0df6b584-b93f-45db-addf-0ea00bb11019}</uid>
+                    <type>2</type>
+                    <declaration>void gameUnpaused()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c07ab7a9-6d23-4805-8d7b-deb130d1c5a8}</uid>
+                    <type>2</type>
+                    <declaration>void audioVolumeChanged(float newVolume)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5fec0229-8c18-4185-9053-a8580e16e72d}</uid>
+                    <type>2</type>
+                    <declaration>void fullscreenModeChanged(bool isFullscreen)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{578823c5-57fd-4d0c-92c4-8f8d95eda55a}</uid>
+                    <type>2</type>
+                    <declaration>void windowSizeChanged(const QSize &amp;newSize)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{dfd42bd9-87f2-4cc1-9947-d073359ca45a}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{dfd42bd9-87f2-4cc1-9947-d073359ca45a}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>BarModel</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{1d3fcb76-456d-4b0e-9383-810be1ca24a8}</uid>
+                    <type>2</type>
+                    <declaration>explicit BarModel(QObject *parent = nullptr)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2defdc51-404f-43c9-8dfd-ae593b0be78f}</uid>
+                    <type>2</type>
+                    <declaration>void startNewGame()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{593eb814-04b5-40b9-b7f4-7b46a94c5254}</uid>
+                    <type>2</type>
+                    <declaration>void setIsPaused(bool state)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{911d0c13-617f-4ce8-966e-ce4f081fd189}</uid>
+                    <type>2</type>
+                    <declaration>LiquidModel* liquidModel()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0f20b8ea-c2c7-407d-9a96-c9785811397e}</uid>
+                    <type>2</type>
+                    <declaration>void ingredientPressed(const QString &amp;liqourName)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0e36171e-c6ee-492e-bec0-c131b634acd0}</uid>
+                    <type>2</type>
+                    <declaration>void ingredientReleased()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d035cca0-9b9e-42fe-8daf-4cb62f5b27d1}</uid>
+                    <type>2</type>
+                    <declaration>void ingredientClicked(const QString &amp;ingredientName)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6c2b4e99-84ed-40ad-9978-2a70a4de9458}</uid>
+                    <type>2</type>
+                    <declaration>void serveDrink()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{21faa5d5-d4ba-4939-ac29-9b94878cdbd2}</uid>
+                    <type>2</type>
+                    <declaration>void emptyDrink()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f07b37bc-bc49-4c7c-97b3-9615dba97e1f}</uid>
+                    <type>2</type>
+                    <declaration>void hideDrink()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{4daa30f1-9938-4237-9104-a336702dc30b}</uid>
+                    <type>2</type>
+                    <declaration>void exposeDrink()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1cdffe2d-4969-43a5-ab77-736f6284307b}</uid>
+                    <type>2</type>
+                    <declaration>void newDrink(const QString &amp;recipe)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{190bf014-5ee8-4932-b5b7-65eeb775c01f}</uid>
+                    <type>2</type>
+                    <declaration>void drinkEmptied()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{4d4b7b4b-c3b5-4f09-8f16-262ecf719872}</uid>
+                    <type>2</type>
+                    <declaration>void glasswareUpdated(const Glassware &amp;glassware)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{77acfa79-6e68-4d39-a707-43da0f1994e5}</uid>
+                    <type>2</type>
+                    <declaration>void glasswareRemoved()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{145e80f2-fc81-4110-8ab5-9d6b2c94e6be}</uid>
+                    <type>2</type>
+                    <declaration>void processLiquor()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c2009732-7efb-41fd-a238-bfb7497d5665}</uid>
+                    <type>1</type>
+                    <declaration>LiquidModel liquid</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fc61a8ae-fd84-4826-9f86-dd44b818af0b}</uid>
+                    <type>1</type>
+                    <declaration>Glassware rocksGlass</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{46e16db8-5582-4b30-9356-62716583ffae}</uid>
+                    <type>1</type>
+                    <declaration>Glassware copperMug</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ebec9596-82ff-40b2-962e-3a795a5e34ab}</uid>
+                    <type>1</type>
+                    <declaration>Glassware collinsGlass</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d5e12172-25b0-48b3-baee-8618a63de13b}</uid>
+                    <type>1</type>
+                    <declaration>Glassware martiniGlass</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{26ed1068-fdbb-462c-a3a4-ed16e321ade8}</uid>
+                    <type>1</type>
+                    <declaration>bool isGlasswarePlaced</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d407d242-613a-4270-bc57-1994cbc81f39}</uid>
+                    <type>1</type>
+                    <declaration>bool isGlasswareEmpty</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{406c32be-768e-4198-abd6-d51c409b0784}</uid>
+                    <type>1</type>
+                    <declaration>QList&lt;Recipe&gt; listOfRecipes</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0633d185-fec6-4bfe-962f-d4b0904ce6d4}</uid>
+                    <type>1</type>
+                    <declaration>Recipe assignedRecipe</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{aa7cb9fd-d52d-45fd-93a2-970fb7b70b36}</uid>
+                    <type>1</type>
+                    <declaration>Recipe userRecipe</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7eb98edc-f139-43ec-a4d1-50f745a8c601}</uid>
+                    <type>1</type>
+                    <declaration>int stepNumber</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{13fa53cb-096b-4113-8e12-7836cc20d892}</uid>
+                    <type>1</type>
+                    <declaration>int score</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c3576623-2a2c-45fb-b970-2a2350b3c56d}</uid>
+                    <type>1</type>
+                    <declaration>int volume</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d31fd7b9-8973-448e-b76c-39df59009f42}</uid>
+                    <type>1</type>
+                    <declaration>bool outOfOrder</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{92061fc8-7dff-401a-9e57-67faddc938e4}</uid>
+                    <type>1</type>
+                    <declaration>bool pressedLiquor</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2aef77a1-1e0a-481f-8580-039cab4f3130}</uid>
+                    <type>1</type>
+                    <declaration>bool doublePour</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7a27eeb0-2045-43d5-8101-aac8927556d1}</uid>
+                    <type>1</type>
+                    <declaration>QTimer timer</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{82ad0228-3f73-4dc4-98a1-cdf9101b360f}</uid>
+                    <type>1</type>
+                    <declaration>QString liquorSelection</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{eb9d65dd-b724-431e-b45c-2447da784267}</uid>
+                    <type>2</type>
+                    <declaration>void startNewRound()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{097628fa-035e-4d84-899b-310db92a7aa2}</uid>
+                    <type>2</type>
+                    <declaration>void getRandomRecipe()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{40f80f52-1ac9-4d34-be55-ae171e2b03c8}</uid>
+                    <type>2</type>
+                    <declaration>void removeGlassware()</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{b9b4b2c3-f48d-4436-8b85-c21d23705111}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{b9b4b2c3-f48d-4436-8b85-c21d23705111}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>DrinkView</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{0483ef69-ee0a-45fe-b132-fb644448d009}</uid>
+                    <type>2</type>
+                    <declaration>void initializeConnections(BarModel *bar)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{dd0992f4-baa8-47e0-8d09-e488377037c2}</uid>
+                    <type>2</type>
+                    <declaration>void updateLiquidDisplay(const QPixmap &amp;pixmap)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{680a2a39-c86b-4efe-b21c-42be6c5cfaaa}</uid>
+                    <type>2</type>
+                    <declaration>void removeLiquidDisplay()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{20a6125a-4801-4902-ba7b-004252fa0fbe}</uid>
+                    <type>2</type>
+                    <declaration>void updateGlasswareImage(const Glassware &amp;glassware)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{91f11c30-ae05-4d93-b790-eacde31d730e}</uid>
+                    <type>2</type>
+                    <declaration>void removeGlasswareImage()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0d00a216-a31d-4632-a510-eb95580f5c6e}</uid>
+                    <type>1</type>
+                    <declaration>QGraphicsScene gScene</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6721f847-7892-4360-be5e-95f91d288056}</uid>
+                    <type>1</type>
+                    <declaration>QGraphicsItemGroup gItemGroup</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2711c71c-4137-4f63-92b0-532ca499379a}</uid>
+                    <type>1</type>
+                    <declaration>QGraphicsPixmapItem gMug</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6d9cecf8-3c0a-4a25-b125-c0c8be3cc4c3}</uid>
+                    <type>1</type>
+                    <declaration>QGraphicsPixmapItem gLiquid</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8ea9b992-69ed-48c4-9493-b44557f3988d}</uid>
+                    <type>1</type>
+                    <declaration>QGraphicsPixmapItem gGlass</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e11c910b-c46c-4685-af00-2855c817404a}</uid>
+                    <type>1</type>
+                    <declaration>QPixmap emptyPixmap</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{e737f1d4-44fa-4e46-becd-3ef695b9b566}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{e737f1d4-44fa-4e46-becd-3ef695b9b566}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>GameLayer</name>
+                 </MObject>
+                </base-MObject>
+                <namespace>Ui</namespace>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{3cb2f242-0372-4fea-a086-5ed6d15be402}</uid>
+                    <type>2</type>
+                    <declaration>explicit GameLayer(ApplicationModel *app, QWidget *parent = nullptr)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9f4cab88-a74b-4796-98f5-4f5ac0868f9a}</uid>
+                    <type>2</type>
+                    <declaration>void showPauseOverlay()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{815b9db2-66be-4c7e-b980-fb4e724c2f5c}</uid>
+                    <type>2</type>
+                    <declaration>void hidePauseOverlay()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1e930f0e-6179-4660-8026-086388fb25c1}</uid>
+                    <type>1</type>
+                    <declaration>Ui::GameLayer *ui</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2dd3e5ee-6a9c-485c-9441-77697142f216}</uid>
+                    <type>1</type>
+                    <declaration>QWidget *pauseOverlay</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{846142ef-e932-4b84-bcf0-a9d5fa2b8939}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{846142ef-e932-4b84-bcf0-a9d5fa2b8939}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>Glassware</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{7a616122-4bea-4904-897b-1b3833e5c281}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>const QPixmap&amp; getDisplayPixmap()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a8f35877-ba59-48a5-8c70-b2d2eeaaf0be}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>bool isTransparent()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ad14b928-4e89-4d41-b184-1e1f194c844b}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>const QPointF&amp; getPhysicsPouringSource()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7313bed7-2ccf-4824-b1de-8f8acbfe3c9f}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>const QRectF&amp; getPhysicsBottomRect()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5a20b491-8983-4cd3-b125-99beab8a2b62}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>const QRectF&amp; getPhysicsLeftRect()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{43cb7041-7d4b-414e-aecd-2c4567a2a898}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>const QRectF&amp; getPhysicsRightRect()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{4d2bd929-11bd-42f4-8863-6d4f6638ab49}</uid>
+                    <type>1</type>
+                    <declaration>QPixmap *displayPixmap</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{265602d6-c60c-4a83-b6c5-b401dc95e5f5}</uid>
+                    <type>1</type>
+                    <declaration>bool transparent</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{54939eae-c782-4e66-a2e3-7707dc57b760}</uid>
+                    <type>1</type>
+                    <declaration>QPointF physicsPouringSource</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a9ef9e3d-74c1-4cac-b217-3078be29bd56}</uid>
+                    <type>1</type>
+                    <declaration>QRectF physicsBottomRect</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ceeed283-fe72-448d-aaaf-c46309cf5b0a}</uid>
+                    <type>1</type>
+                    <declaration>QRectF physicsLeftRect</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2bdbc44f-8366-4f30-80ee-a06c06a7ccdb}</uid>
+                    <type>1</type>
+                    <declaration>QRectF physicsRightRect</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{b07bf858-5cd8-42ac-b174-6910e96bd6ec}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{b07bf858-5cd8-42ac-b174-6910e96bd6ec}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>LiquidModel</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{042b7dd7-b236-45c7-8955-47a4d0f79313}</uid>
+                    <type>2</type>
+                    <declaration>void updateCollisionLayout(const Glassware &amp;glassware)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e79cd80d-59da-4677-b636-cf287ffa5618}</uid>
+                    <type>2</type>
+                    <declaration>void removeCollisionLayout()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e5bbf428-7232-42c4-8091-3f1189bd6a48}</uid>
+                    <type>2</type>
+                    <declaration>void setVolume(int v)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a078de59-55f0-4ba5-8697-128a7edb0d1b}</uid>
+                    <type>2</type>
+                    <declaration>void setDrinkColor(QString drinkName)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ad2193d0-1b24-4980-9f1d-c5e47151525e}</uid>
+                    <type>2</type>
+                    <declaration>void clear()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{50b3dcb0-3f92-48ca-812d-96d922d4e7b7}</uid>
+                    <type>2</type>
+                    <declaration>void setIsSimulationPaused(bool state)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{405ac22f-8298-4995-b0d1-dca4d62b2fde}</uid>
+                    <type>2</type>
+                    <declaration>void hideLiquid()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2b256314-2dfb-4246-b44a-92b5d9e07ba0}</uid>
+                    <type>2</type>
+                    <declaration>void exposeLiquid()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{063734bd-fafd-4360-b7b4-8d4e4d4136c7}</uid>
+                    <type>2</type>
+                    <declaration>void emptyLiquid()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{63365c9f-0257-4623-be7b-29a217df937b}</uid>
+                    <type>2</type>
+                    <declaration>void removeLiquid()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{320f7291-9f1b-4de8-8a90-32f337e6909e}</uid>
+                    <type>2</type>
+                    <declaration>void simulationUpdated(const QPixmap &amp;pixmap)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{42c46f52-e4ae-4b3a-96f4-9fa5158682a3}</uid>
+                    <type>2</type>
+                    <declaration>void updateSimulation()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1b9b4273-32bf-4562-8535-8086e7abfc7a}</uid>
+                    <type>1</type>
+                    <declaration>bool isDrinkEmpty</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d53bb0e5-bca9-4d40-9f91-0528e216b757}</uid>
+                    <type>1</type>
+                    <declaration>int volume</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{745da029-4312-4c97-abf3-65c8ab2b817b}</uid>
+                    <type>1</type>
+                    <declaration>QMap&lt;QString, QColor&gt; drinkColors</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1146b78c-96c9-44c8-87d3-60ea945eab58}</uid>
+                    <type>1</type>
+                    <declaration>QString currentDrink</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8179e0de-cc24-4f50-aa82-ab1ea265387b}</uid>
+                    <type>1</type>
+                    <declaration>QTimer *updateTimer</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d3bb468d-de10-41d4-a253-eda024caeb4c}</uid>
+                    <type>1</type>
+                    <declaration>bool isSimulationPaused</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f608909d-d63b-42cc-a74a-5977b5dd4263}</uid>
+                    <type>1</type>
+                    <declaration>QPixmap liquidPixmap</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0283c1cf-f5d7-4c13-8997-b3bebbbbd9e4}</uid>
+                    <type>1</type>
+                    <declaration>QPixmap blankPixmap</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fd8b20d6-c1af-41d1-83f5-f1e626202efa}</uid>
+                    <type>1</type>
+                    <declaration>QPointF pouringSource</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{678862fb-7a33-43c5-ba21-c6939cc48a24}</uid>
+                    <type>1</type>
+                    <declaration>b2World *world</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7aef4b13-7f4a-4d19-86c2-1ff661aa90a3}</uid>
+                    <type>1</type>
+                    <declaration>b2Body *collisionBottom</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5558f849-bfb3-4c08-9262-081a1540aaf2}</uid>
+                    <type>1</type>
+                    <declaration>b2Body *collisionLeft</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3e68697b-28e0-4d8e-8304-5a59ff7d363d}</uid>
+                    <type>1</type>
+                    <declaration>b2Body *collisionRight</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1db42912-7bb5-4ec2-90a3-a4b55b274e2b}</uid>
+                    <type>1</type>
+                    <declaration>b2ParticleSystem *particleSystem</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{156470b6-98cc-421d-b6bf-e9fa6b0ed262}</uid>
+                    <type>1</type>
+                    <declaration>std::vector&lt;b2ParticleSystem*&gt; particleSystemsList</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{630cd1b7-4009-4755-a131-44b896582d5a}</uid>
+                    <type>2</type>
+                    <declaration>void setupLiquidParticleSystem()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9b733802-5c28-4604-a343-82e8794bab17}</uid>
+                    <type>2</type>
+                    <declaration>void addLiquid(int volume)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>

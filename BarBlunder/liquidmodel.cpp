@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QPen>
 #include <QPainterPath>
+#include <QDebug>
 
 #include <Box2D/Box2D.h> // Please try not to include in any header. It increases the compile time.
 
@@ -16,7 +17,8 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, volume{0}
 	, isSimulationPaused{false}
 
-	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
+    , liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
+    , blankPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
 	, pouringSource{0.0f, 0.0f}
 
 	, collisionBottom{nullptr}
@@ -25,7 +27,6 @@ LiquidModel::LiquidModel(QWidget *parent)
 {
 	b2Vec2 gravity(0.0f, 38.81f);
 	world = new b2World(gravity);
-
 	// setup timer
 	updateTimer = new QTimer(this);
 	connect(updateTimer, &QTimer::timeout, this, &LiquidModel::updateSimulation);
@@ -33,11 +34,16 @@ LiquidModel::LiquidModel(QWidget *parent)
 
 	// setup colors for each drink
 	drinkColors["whiskey"] = QColor(165, 113, 10, 190);		// Whiskey color
-	drinkColors["tequila"] = QColor(240, 230, 14, 190);		// Tequila color
-	drinkColors["rum"] = QColor(139, 69, 19, 190);			// Rum color
-	drinkColors["vodka"] = QColor(240, 255, 13, 190);		// Vodka color
-	drinkColors["gin"] = QColor(173, 255, 30, 190);			// Gin color
-	drinkColors["kahlua"] = QColor(70, 40, 0, 190);			//kahlua
+    drinkColors["tequila"] = QColor(172, 73, 25, 190);		// Tequila color
+    drinkColors["rum"] = QColor(236, 233, 226, 20);			// Rum color
+    drinkColors["vodka"] = QColor(236, 233, 226, 20);		// Vodka color
+    drinkColors["gin"] = QColor(236, 233, 226, 20);			// Gin color
+    drinkColors["kahlua"] = QColor(28, 1, 2, 220);			//kahlua
+
+    //transparent pixmap for swapping
+    //change to Qt::Transparent later
+    blankPixmap.fill(Qt::black);
+
 }
 
 LiquidModel::~LiquidModel()
@@ -99,12 +105,13 @@ void LiquidModel::removeCollisionLayout()
 void LiquidModel::setVolume(int v)
 {
 	isDrinkEmpty = false;
-	this->addLiquid(v);
+    this->addLiquid(v); //determines the color of the liquor
 }
 
 void LiquidModel::setDrinkColor(QString drinkName)
 {
-	currentDrink = drinkName;
+    currentDrink = drinkName;
+    qDebug() << currentDrink;
 }
 
 void LiquidModel::clear()
@@ -147,6 +154,7 @@ void LiquidModel::updateSimulation()
 
 	liquidPixmap.fill(Qt::transparent);
 
+
 	QPainter painter(&liquidPixmap);
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setCompositionMode(QPainter::CompositionMode_Source);
@@ -183,8 +191,8 @@ void LiquidModel::updateSimulation()
 								path.lineTo(vertex.x, DRINKVIEW_HEIGHT - vertex.y);
 						}
 						path.closeSubpath();
-						painter.setPen(Qt::black);
-						painter.setBrush(Qt::white); // Set the color of the container
+                        painter.setPen(Qt::transparent);
+                        painter.setBrush(Qt::transparent); // Set the color of the container
 						painter.drawPath(path);
 					}
 				}
@@ -200,8 +208,8 @@ void LiquidModel::updateSimulation()
 	// Get the particle system list from the world
 	const b2ParticleSystem *particleSystemList = world->GetParticleSystemList();
 
-	// Retrieve the color corresponding to the current drink
-	QColor ingredientColor = drinkColors[currentDrink];
+    // // Retrieve the color corresponding to the current drink
+    // QColor ingredientColor = drinkColors[currentDrink];
 
 	// Iterate through all particle systems
 	for (const b2ParticleSystem* particleSystem = particleSystemList; particleSystem; particleSystem = particleSystem->GetNext())
@@ -209,10 +217,15 @@ void LiquidModel::updateSimulation()
 		// Iterate through all particles in the current particle system
 		for (int i = 0; i < particleSystem->GetParticleCount(); ++i)
 		{
+
 			// Get particle position
 			b2Vec2 particlePosition = particleSystem->GetPositionBuffer()[i];
-			painter.setPen(ingredientColor);
-			painter.setBrush(ingredientColor);
+            //this needs to be converted back from a b2Color
+            QColor liquorColor(particleSystem->GetColorBuffer()[i].GetColor().r * 255,
+                               particleSystem->GetColorBuffer()[i].GetColor().g * 255,
+                               particleSystem->GetColorBuffer()[i].GetColor().b * 255);
+            painter.setPen(liquorColor);
+            painter.setBrush(liquorColor);
 			painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
 		}
 	}
@@ -228,7 +241,7 @@ void LiquidModel::setupLiquidParticleSystem()
 
 	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
 	particleSystemDef.gravityScale = -9.0f;
-	particleSystemDef.radius = 4.25f; // Particle radius
+    particleSystemDef.radius = 1.75f; // Particle radius
 	particleSystemDef.dampingStrength = 0.2f; // Particle damping strength
 	particleSystemDef.gravityScale = 1.0f; // Particle gravity scale
 	particleSystemDef.viscousStrength = 0.25f; // Particle viscous strength
@@ -261,6 +274,7 @@ void LiquidModel::addLiquid(int volume)
 
 	QTimer* timer = new QTimer(); // Allocate QTimer dynamically
 	connect(timer, &QTimer::timeout, this, [=]() {
+
 		if (isSimulationPaused)
 			return;
 		// Spawn particles for 3 seconds
@@ -281,13 +295,19 @@ void LiquidModel::addLiquid(int volume)
 					b2ParticleDef particleDef;
 					particleDef.flags = b2_elasticParticle;
 					particleDef.position = particlePosition; // Particle position its spawned at
-					particleDef.color.Set(255, 0, 0, 255); // Particle color (doesnt seem to be doing anything)
+
+                    //get current color
+                    QColor drinkcolor = drinkColors.value(currentDrink);
+                    // convert to a b2color to be used with particleDef
+                    b2ParticleColor b2c;
+                    b2c.Set(drinkcolor.red(),drinkcolor.green(),drinkcolor.blue(),drinkcolor.alpha());
+
+                    particleDef.color = b2c;
 
 					// Spawn the particle
 					particleSystem->CreateParticle(particleDef);
 				}
 			}
-
 			elapsedTime += 0.1; // Increase elapsed time
 		}
 		else
@@ -299,4 +319,14 @@ void LiquidModel::addLiquid(int volume)
 	});
 
 	timer->start(100);
+}
+
+void LiquidModel::hideLiquid(){
+
+    emit removeLiquid();
+}
+
+void LiquidModel::exposeLiquid(){
+   emit simulationUpdated(liquidPixmap);
+
 }
