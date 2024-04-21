@@ -63,5 +63,19 @@
         <file>images/glasses_liquid/martini_liquid.png</file>
         <file>images/glasses_liquid/rocks_liquid.png</file>
         <file>images/glasses_liquid/copper_liquid.png</file>
+        <file>images/ingredients/AgaveNectar.png</file>
+        <file>images/ingredients/AgaveNectar_Hover.png</file>
+        <file>images/ingredients/Coke.png</file>
+        <file>images/ingredients/Coke_Hover.png</file>
+        <file>images/ingredients/Grenadine_Hover.png</file>
+        <file>images/ingredients/Grenedine.png</file>
+        <file>images/ingredients/SimpleSyrup.png</file>
+        <file>images/ingredients/SimpleSyrup_Hover.png</file>
+        <file>images/ingredients/Sprite.png</file>
+        <file>images/ingredients/HalfNHalf.png</file>
+        <file>images/ingredients/HalfNHalf_Hover.png</file>
+        <file>images/ingredients/Sprite_Hover.png</file>
+        <file>images/ingredients/SSMix.png</file>
+        <file>images/ingredients/SSMix_Hover.png</file>
     </qresource>
 </RCC>
