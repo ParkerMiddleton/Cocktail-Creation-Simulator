@@ -112,12 +112,18 @@ void RecipeNote::updateRecipe(const QList<QString> &recipeSteps)
 
 void RecipeNote::showStepIsCorrect(int stepNumber)
 {
+	if (stepNumber < 0 || stepNumber >= steps.size() - 2)
+		return;
+
 	// +1 since the first one is drink's name.
 	steps[stepNumber + 1]->setIsCorrect(true);
 }
 
 void RecipeNote::showStepIsIncorrect(int stepNumber)
 {
+	if (stepNumber < 0 || stepNumber >= steps.size() - 2)
+		return;
+
 	// +1 since the first one is drink's name.
 	steps[stepNumber + 1]->setIsCorrect(false);
 }
