@@ -2,6 +2,9 @@
 #include "ui_gamelayer.h"
 
 #include "applicationmodel.h"
+#include "recipenote.h"
+
+#include <QTimer>
 
 //#include <QMediaPlayer>
 //#include <QAudioOutput>
@@ -11,6 +14,10 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     , ui{new Ui::GameLayer}
 {
 	ui->setupUi(this);
+	
+	RecipeNote *recipeNote = ui->Recipe;
+	recipeNote->setupLayout(ui->Steps);
+	ui->v_Notes->setCurrentWidget(ui->Note1);
 
     // Pause overlay and button.
     pauseOverlay = new QWidget(this);
@@ -38,7 +45,19 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
             bar, &::BarModel::serveDrink);
 
     connect(bar, &BarModel::newDrink
-			, this, &GameLayer::updateRecipebox);
+			, recipeNote, &RecipeNote::updateRecipe);
+
+	connect(bar, &BarModel::correctIngredientUsed
+			, recipeNote, &RecipeNote::showStepIsCorrect);
+
+	connect(bar, &BarModel::incorrectIngredientUsed
+			, recipeNote, &RecipeNote::showStepIsIncorrect);
+
+	connect(bar, &BarModel::drinkIsCorrect
+			, this, &GameLayer::showRoundEndCorrectMessage);
+
+	connect(bar, &BarModel::drinkIsIncorrect
+			, this, &GameLayer::showRoundEndIncorrectMessage);
 
     // Button connections
     connect(ui->d_LimeWedgeButton, &QPushButton::clicked,
@@ -144,11 +163,6 @@ GameLayer::~GameLayer()
     delete ui;
 }
 
-void GameLayer::updateRecipebox(const QString &recipe)
-{
-    ui->d_DrinkAlgoBox->setText(recipe);
-}
-
 void GameLayer::showPauseOverlay()
 {
     pauseOverlay->setVisible(true);
@@ -157,4 +171,23 @@ void GameLayer::showPauseOverlay()
 void GameLayer::hidePauseOverlay()
 {
     pauseOverlay->setVisible(false);
+}
+
+void GameLayer::showRoundEndCorrectMessage()
+{
+	ui->RoundEndMessage->setText("Correct!");
+	ui->v_Notes->setCurrentWidget(ui->Note2);
+	QTimer::singleShot(ROUND_END_MESSAGE_DURATION_MS, this, &GameLayer::switchToRecipeNote);
+}
+
+void GameLayer::showRoundEndIncorrectMessage()
+{
+	ui->RoundEndMessage->setText("Incorrect!");
+	ui->v_Notes->setCurrentWidget(ui->Note2);
+	QTimer::singleShot(ROUND_END_MESSAGE_DURATION_MS, this, &GameLayer::switchToRecipeNote);
+}
+
+void GameLayer::switchToRecipeNote()
+{
+	ui->v_Notes->setCurrentWidget(ui->Note1);
 }

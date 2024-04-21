@@ -1,5 +1,5 @@
 #include "drinkview.h"
-#include "box2d_const_values.h"
+#include "drinkview_size.h"
 
 #include "barmodel.h"
 #include "glassware.h"

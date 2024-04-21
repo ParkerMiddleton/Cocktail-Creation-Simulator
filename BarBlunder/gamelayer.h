@@ -25,12 +25,18 @@ public:
 	~GameLayer();
 
 public slots:
-	void updateRecipebox(const QString &recipe);
-
 	void showPauseOverlay();
 	void hidePauseOverlay();
 
+	void showRoundEndCorrectMessage();
+	void showRoundEndIncorrectMessage();
+
+private slots:
+	void switchToRecipeNote();
+
 private:
+	static constexpr int ROUND_END_MESSAGE_DURATION_MS = 1000;
+
 	Ui::GameLayer *ui;
 
 	QWidget *pauseOverlay;

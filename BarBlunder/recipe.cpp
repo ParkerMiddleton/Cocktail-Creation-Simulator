@@ -5,12 +5,11 @@
 
 Recipe::Recipe(QTextStream &recipe)
 {
-	recipeAsString = "";
 	QString line = recipe.readLine();
 
 	while (!line.isEmpty())
 	{
-		recipeAsString += line + "\n";
+		recipeSteps.push_back(line);
 		line = recipe.readLine();
 	}
 

@@ -140,8 +140,8 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     applicationmodel.h \
     barmodel.h \
-    box2d_const_values.h \
     drinkview.h \
+    drinkview_size.h \
     gamelayer.h \
     glassware.h \
     liquidmodel.h \

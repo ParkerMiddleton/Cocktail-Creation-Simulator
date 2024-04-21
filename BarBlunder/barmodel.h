@@ -36,11 +36,17 @@ public slots:
 	void emptyDrink();
 
 signals:
-	void newDrink(const QString &recipe);
+	void newDrink(const QList<QString> &recipeSteps);
 	void drinkEmptied();
 
 	void glasswareUpdated(const Glassware &glassware);
 	void glasswareRemoved();
+
+	void correctIngredientUsed(int stepNumber);
+	void incorrectIngredientUsed(int stepNumber);
+
+	void drinkIsCorrect();
+	void drinkIsIncorrect();
 
 private slots:
 	void processLiquor();

@@ -447,26 +447,6 @@ image: url(:/images/garnish/orange_peels_hover);
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="d_DrinkAlgoBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>120</y>
-     <width>171</width>
-     <height>241</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">/*background-color: rgb(250, 255, 155);*/
-background-color: rgb(250, 255, 155);
-border: 2px dotted black;
-color: black;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="d_MartiniGlassButton">
    <property name="geometry">
     <rect>
@@ -988,20 +968,90 @@ image: url(:/images/liquor/whiskey_Hover.png);
     <string/>
    </property>
   </widget>
-  <widget class="RecipeNote" name="v_RecipeNote" native="true">
+  <widget class="QStackedWidget" name="v_Notes">
    <property name="geometry">
     <rect>
-     <x>889</x>
-     <y>20</y>
-     <width>242</width>
-     <height>222</height>
+     <x>930</x>
+     <y>0</y>
+     <width>321</width>
+     <height>301</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: white;
-color: black;
-</string>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QStackedWidget
+{
+background-color: white;
+border: 2px dotted black;
+}</string>
+   </property>
+   <widget class="QWidget" name="Note1">
+    <widget class="RecipeNote" name="Recipe">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>321</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="Steps">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>319</width>
+        <height>299</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Note2">
+    <widget class="QLabel" name="RoundEndMessage">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>321</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe Print</family>
+       <pointsize>23</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;
+color: black;</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <zorder>Background</zorder>
   <zorder>Background_2</zorder>
@@ -1021,7 +1071,6 @@ color: black;
   <zorder>d_LimeWedgeButton</zorder>
   <zorder>d_OrangeButton</zorder>
   <zorder>DrinkMakeArea</zorder>
-  <zorder>d_DrinkAlgoBox</zorder>
   <zorder>d_MartiniGlassButton</zorder>
   <zorder>d_GinButton</zorder>
   <zorder>d_KahluaButton</zorder>
@@ -1046,7 +1095,7 @@ color: black;
   <zorder>v_DrinkView</zorder>
   <zorder>d_WhiskeyButton</zorder>
   <zorder>DrinksPanel</zorder>
-  <zorder>v_RecipeNote</zorder>
+  <zorder>v_Notes</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1056,14 +1105,14 @@ color: black;
   </customwidget>
   <customwidget>
    <class>RecipeNote</class>
-   <extends>QWidget</extends>
+   <extends>QScrollArea</extends>
    <header>recipenote.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="menugraphics.qrc"/>
   <include location="gamegraphics.qrc"/>
+  <include location="menugraphics.qrc"/>
  </resources>
  <connections/>
 </ui>

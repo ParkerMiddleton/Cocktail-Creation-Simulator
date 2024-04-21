@@ -75,6 +75,8 @@ void BarModel::ingredientPressed(const QString &liquorName)
 		qDebug() << "wrong ingredient pressed" << liquorName;
 		outOfOrder = true;
 		userRecipe.ingredients.push_back(QPair<QString, int>(liquorSelection, -1));
+
+		emit incorrectIngredientUsed(stepNumber);
 	}
 
 	// dont start timer if clicked
@@ -146,11 +148,15 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 			stepNumber++;
 
 		qDebug() << stepNumber;
+
+		emit correctIngredientUsed(stepNumber);
 	}
 	else
 	{
 		qDebug() << "wrong ingredient clicked" << ingredientName;
 		userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
+
+		emit incorrectIngredientUsed(stepNumber);
 	}
 }
 
@@ -162,12 +168,14 @@ void BarModel::serveDrink()
 	// if it is correct call new round without resetting game
 	if (correctDrink && !outOfOrder)
 	{
+		emit drinkIsCorrect();
 		qDebug() << "Congratulations! you made the drink correct";
 		score++;
 		this->startNewRound();
 	}
 	else
 	{
+		emit drinkIsIncorrect();
 		qDebug() << "Drink ingredients is out of order: " << outOfOrder;
 		qDebug() << "Correct drink portions: " << correctDrink;
 		this->startNewRound();
@@ -207,7 +215,7 @@ void BarModel::processLiquor()
 				qDebug() << liquorSelection << " " << ingredient.second;
 				qDebug() << "volume = " << volume;
 
-				if(ingredient.second == 0)
+				if (ingredient.second == 0)
 				{
 					stepNumber++;
 					//qDebug() << "Step Number:" << stepNumber;
@@ -253,7 +261,7 @@ void BarModel::getRandomRecipe()
 	userRecipe = assignedRecipe;
 
 	//assignedRecipe = listOfRecipes[randomNumber];
-	emit newDrink(assignedRecipe.recipeAsString);
+	emit newDrink(assignedRecipe.recipeSteps);
 }
 
 void BarModel::removeGlassware()
