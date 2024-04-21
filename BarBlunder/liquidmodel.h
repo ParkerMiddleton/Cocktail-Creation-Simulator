@@ -47,6 +47,7 @@ private:
 	bool isDrinkEmpty;
 	int volume;
 	QMap<QString, QColor> drinkColors;
+	QColor liquidColor;
 	QString currentDrink;
 
 	QTimer *updateTimer;
@@ -61,11 +62,12 @@ private:
 	b2World *world;
 	b2Body *collisionBody;
 	b2ParticleSystem *particleSystem;
-    std::vector<b2ParticleSystem*> particleSystemsList;
+	//std::vector<b2ParticleSystem*> particleSystemsList;
 
 
 	void setupLiquidParticleSystem();
 	void addLiquid(int volume);
+	QColor blendColorAlpha(QColor fgc, QColor bgc);
 
 };
 
