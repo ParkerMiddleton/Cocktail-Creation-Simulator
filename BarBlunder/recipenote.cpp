@@ -6,6 +6,8 @@
 
 QFont defaultFont;
 QFont strikedOutFont;
+QString defaultSS;
+QString incorrectSS;
 
 RecipeStep::RecipeStep(const QString &instruction, QWidget *parent)
 	: QWidget{parent}
@@ -13,16 +15,17 @@ RecipeStep::RecipeStep(const QString &instruction, QWidget *parent)
 {
 	int iconSize = 25;
 	this->setFixedHeight(iconSize);
+	this->setStyleSheet("background-color: transparent; padding: 4px;"); //border: 0px solid #444444
 
 	iconLabel.setFixedWidth(iconSize);
 	iconLabel.setFixedHeight(iconSize);
-	textLabel.setFont(defaultFont);
+	iconLabel.setFont(defaultFont);
+	iconLabel.setStyleSheet(defaultSS);
 
 	textLabel.setFixedHeight(iconSize);
 	textLabel.setText(instruction);
 	textLabel.setFont(defaultFont);
-
-	this->setStyleSheet("background-color: transparent; color: black; padding: 4px;"); //border: 0px solid #444444
+	textLabel.setStyleSheet(defaultSS);
 
 	layout.addRow(&iconLabel, &textLabel);
 
@@ -35,11 +38,17 @@ void RecipeStep::setIsCorrect(bool state)
 {
 	if (state)
 	{
+		iconLabel.setStyleSheet(defaultSS);
+		textLabel.setStyleSheet(defaultSS);
+
 		iconLabel.setText("");
 		textLabel.setFont(strikedOutFont);
 	}
 	else
 	{
+		iconLabel.setStyleSheet(incorrectSS);
+		textLabel.setStyleSheet(incorrectSS);
+
 		iconLabel.setText("X");
 	}
 }
@@ -51,11 +60,15 @@ RecipeNote::RecipeNote(QWidget *parent)
 	this->horizontalScrollBar()->setEnabled(false);
 	this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+	// Initalize global variables used by RecipeStep.
 	defaultFont.setFamily("Segoe Print");
 	defaultFont.setBold(true);
 	defaultFont.setPointSize(10);
 	strikedOutFont = defaultFont;
 	strikedOutFont.setStrikeOut(true);
+
+	defaultSS = "color: #2e2e2e;";
+	incorrectSS = "color: red;";
 }
 
 RecipeNote::~RecipeNote()

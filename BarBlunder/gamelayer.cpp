@@ -140,7 +140,7 @@ void GameLayer::showRoundEndCorrectMessage()
 
 void GameLayer::showRoundEndIncorrectMessage()
 {
-	ui->RoundEndMessage->setText("Incorrect!");
+	ui->RoundEndMessage->setText("Incorrect.");
 	ui->v_Notes->setCurrentWidget(ui->Note2);
 	QTimer::singleShot(ROUND_END_MESSAGE_DURATION_MS, this, &GameLayer::switchToRecipeNote);
 }
