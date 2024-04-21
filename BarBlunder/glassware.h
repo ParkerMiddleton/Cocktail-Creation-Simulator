@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QPointF>
+#include <QList>
 
 /// @brief Holds physics and rendering properties of various glasses.
 class Glassware
@@ -10,26 +11,34 @@ class Glassware
 public:
 	enum class Type { Rocks, Collins, Copper, Martini };
 
-	/// \brief Constructor
+	/// @brief Constructor.
+	/// @param type Type of glassware.
 	Glassware(Glassware::Type type);
+
+	/// @brief Destructor.
 	~Glassware();
 
 	const QPixmap& getDisplayPixmap() const;
+
+	/// @brief Returns whether this glassware transparent or not.
+	/// @return bool
 	bool isTransparent() const;
 
+	/// @brief Returns the coordinates of where the liquid should pour out.
+	/// @return QPointF&
 	const QPointF& getPhysicsPouringSource() const;
-	const QRectF& getPhysicsBottomRect() const;
-	const QRectF& getPhysicsLeftRect() const;
-	const QRectF& getPhysicsRightRect() const;
+
+	/// @brief Returns a list of four vertices defining the collision layout of this glassware.
+	/// Vertices ordered from top left to top right.
+	/// @return QList<QPointF>&
+	const QList<QPointF>& getPhysicsCollisionVertices() const;
 
 private:
 	QPixmap *displayPixmap;
 	bool transparent;
 
 	QPointF physicsPouringSource;
-	QRectF physicsBottomRect;
-	QRectF physicsLeftRect;
-	QRectF physicsRightRect;
+	QList<QPointF> physicsCollisionVertices;
 
 };
 

@@ -20,6 +20,7 @@ public:
 	void initialize();
 
 	/// @brief Returns a pointer to the bar model.
+	/// @return BarModel*
 	BarModel* barModel();
 
 public slots:

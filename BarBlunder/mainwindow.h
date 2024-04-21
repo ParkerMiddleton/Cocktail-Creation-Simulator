@@ -32,8 +32,6 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
-	friend class LayersEventsFilter;
-
 public:
 	/// @brief Constructor.
 	/// Initializes the UI and connections.

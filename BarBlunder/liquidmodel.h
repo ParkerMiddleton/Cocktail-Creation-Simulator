@@ -59,9 +59,7 @@ private:
 
 	// Box2D
 	b2World *world;
-	b2Body *collisionBottom;
-	b2Body *collisionLeft;
-	b2Body *collisionRight;
+	b2Body *collisionBody;
 	b2ParticleSystem *particleSystem;
     std::vector<b2ParticleSystem*> particleSystemsList;
 

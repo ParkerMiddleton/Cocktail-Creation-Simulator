@@ -140,14 +140,13 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     applicationmodel.h \
     barmodel.h \
-    box2d_const_values.h \
     drinkview.h \
+    drinkview_size.h \
     gamelayer.h \
     glassware.h \
     liquidmodel.h \
     mainmenupage.h \
     mainwindow.h \
-    qt_pch.h \
     recipe.h \
     recipenote.h \
     settingsmenupage.h
@@ -170,8 +169,7 @@ RESOURCES += \
     sounds.qrc \
     misc.qrc
 
-PRECOMPILED_HEADER += \
-    qt_pch.h
+PRECOMPILED_HEADER +=
 
 DISTFILES += \
     Box2D/Box2D.vcxproj \

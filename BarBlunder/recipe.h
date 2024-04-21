@@ -15,8 +15,8 @@ public:
 	bool checkServedDrink(Recipe correctRecipe);
 
 	QString drinkName;
+	QList<QString> recipeSteps;
 	QList<QPair<QString, int>> ingredients;
-	QString recipeAsString;
 
 };
 
