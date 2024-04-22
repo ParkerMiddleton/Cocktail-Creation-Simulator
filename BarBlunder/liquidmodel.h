@@ -28,11 +28,11 @@ public:
 	void removeCollisionLayout();
 
 	void addIce();
+	void addLiquid(int volume);
 
-	void setVolume(int v);
-	void setDrinkColor(QString drinkName);
 	void clear();
 
+	void updateDrinkColor(const QString &drinkName);
 	void setIsSimulationPaused(bool state);
 
 signals:
@@ -43,21 +43,17 @@ private slots:
 	void updateSimulation();
 
 private:
-	bool isDrinkEmpty;
-	int volume;
-	QMap<QString, QColor> drinkColors;
-	QColor liquidColor;
-	QString currentDrink;
-
-	QTimer *updateTimer;
+	QTimer *simulationUpdateTimer;
 	bool isSimulationPaused;
+	bool isDrinkEmpty;
 
-	QPixmap liquidPixmap;
-    QPixmap blankPixmap;
+	QMap<QString, QColor> drinkColors;
+	QString currentDrink;
+	QColor liquidColor;
 
 	QPointF pouringSource;
-	QPointF iceDropSource;
 
+	QPixmap liquidPixmap;
 	QPixmap *iceTexture;
 
 	// Box2D
@@ -66,8 +62,6 @@ private:
 	b2ParticleSystem *liquidParticles;
 	QList<b2Body*> iceBodies;
 
-	void addLiquid(int volume);
-	void setupLiquidParticleSystem();
 	QColor blendColorAlpha(QColor fgc, QColor bgc);
 
 };

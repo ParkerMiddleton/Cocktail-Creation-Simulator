@@ -61,7 +61,7 @@ void BarModel::ingredientPressed(const QString &liquorName)
 
 	liquorSelection = liquorName;
 	pressedLiquor = true;
-	liquid.setDrinkColor(liquorSelection);
+	liquid.updateDrinkColor(liquorSelection);
 	bool found = false;
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
@@ -232,7 +232,7 @@ void BarModel::processLiquor()
 	}
 
 	// allows to successfully pour but cant clear all particles
-	liquid.setVolume(volume);
+	liquid.addLiquid(volume);
 }
 
 void BarModel::startNewRound()

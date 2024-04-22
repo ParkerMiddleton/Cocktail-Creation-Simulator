@@ -13,16 +13,15 @@
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
-	, isDrinkEmpty{false}
-	, volume{0}
 	, isSimulationPaused{false}
+	, isDrinkEmpty{false}
 
+	, currentDrink{""}
 	, liquidColor{0, 0, 0, 0}
 
-	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
-	, blankPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
 	, pouringSource{0.0f, 0.0f}
-	, iceDropSource{130.0f, 70.0f}
+
+	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
 
 	, collisionBody{nullptr}
 {
@@ -31,30 +30,30 @@ LiquidModel::LiquidModel(QWidget *parent)
 	world = new b2World(gravity);
 
 	// setup timer
-	updateTimer = new QTimer(this);
-	connect(updateTimer, &QTimer::timeout, this, &LiquidModel::updateSimulation);
-	updateTimer->start(16); // Update every 16 milliseconds (approximately 60 FPS)
+	simulationUpdateTimer = new QTimer(this);
+	connect(simulationUpdateTimer, &QTimer::timeout, this, &LiquidModel::updateSimulation);
+	simulationUpdateTimer->start(16); // Update every 16 milliseconds (approximately 60 FPS)
 
 	// setup colors for each drink
-	drinkColors["whiskey"] = QColor(165, 113, 10, 150);		// Whiskey color
-	drinkColors["tequila"] = QColor(172, 73, 25, 150);		// Tequila color
-	drinkColors["rum"] = QColor(236, 233, 226, 150);			// Rum color
-	drinkColors["vodka"] = QColor(236, 233, 226, 150);		// Vodka color
-	drinkColors["gin"] = QColor(236, 233, 226, 150);			// Gin color
-	drinkColors["kahlua"] = QColor(28, 1, 2, 150);			//kahlua
-	drinkColors["burbon"] = QColor(165, 113, 10, 150);        //burbon
-	drinkColors["tripe sec"] = QColor(255,255,255,150);     //triple sec
-	drinkColors["sweet n sour"] = QColor(255,255,255,150);  //sweet n sour
-	drinkColors["grenadine"] = QColor(255,255,255,150);     //grenadine
-	drinkColors["simple syrup"] = QColor(255,255,255,150);  //simpe syrup
-	drinkColors["agave nectar"] = QColor(255,255,255,150);  //agave nectar
-	drinkColors["sprite"] = QColor(255,255,255,150);        //sprite
-	drinkColors["coke"] = QColor(255,255,255,150);          //coke
-	drinkColors["half n half"] = QColor(255,255,255,150);   //half n half
-	drinkColors["lime juice"] = QColor(255,255,255, 150);    //lime juice
-	drinkColors["ginger beer"] = QColor(255,255,255, 150);   //ginger beer
-	drinkColors["olive juice"] = QColor(255,255,255, 150);   //olive juice
-	drinkColors["bitters"] = QColor(255,255,255, 150);       //bitters
+	drinkColors["whiskey"] =		QColor(165, 113, 10);        // Whiskey color
+	drinkColors["tequila"] =		QColor(172, 73, 25);        // Tequila color
+	drinkColors["rum"] =			QColor(236, 233, 226);            // Rum color
+	drinkColors["vodka"] =			QColor(236, 233, 226);        // Vodka color
+	drinkColors["gin"] =			QColor(236, 233, 226);            // Gin color
+	drinkColors["kahlua"] =			QColor(28, 1, 2);            //kahlua
+	drinkColors["burbon"] =			QColor(165, 113, 10);        //burbon
+	drinkColors["tripe sec"] =		QColor(236, 233, 226);     //triple sec
+	drinkColors["sweet n sour"] =	QColor(210, 196, 112);  //sweet n sour
+	drinkColors["grenadine"] =		QColor(180, 19, 41);     //grenadine
+	drinkColors["simple syrup"] =	QColor(236, 233, 226);  //simpe syrup
+	drinkColors["agave nectar"] =	QColor(245, 183, 10);  //agave nectar
+	drinkColors["sprite"] =			QColor(236, 233, 226);        //sprite
+	drinkColors["coke"] =			QColor(56, 45, 43);          //coke
+	drinkColors["half n half"] =	QColor(255, 255, 255);   //half n half
+	drinkColors["lime juice"] =		QColor(158, 180, 80);    //lime juice
+	drinkColors["ginger beer"] =	QColor(253, 237, 115);   //ginger beer
+	drinkColors["olive juice"] =	QColor(207, 178, 112);   //olive juice
+	drinkColors["bitters"] =		QColor(179, 102, 110);       //bitters
 
 	// Setup particle system.
 	b2ParticleSystemDef particleSystemDef;
@@ -128,7 +127,7 @@ void LiquidModel::addIce()
 	b2BodyDef bdef;
 
 	bdef.type = b2_dynamicBody;
-	bdef.position.Set(iceDropSource.x(), DRINKVIEW_HEIGHT - iceDropSource.y());
+	bdef.position.Set(pouringSource.x(), pouringSource.y());
 
 	b2Body *iceBody = world->CreateBody(&bdef);
 	iceBody->CreateFixture(&circle, 15);
@@ -136,134 +135,11 @@ void LiquidModel::addIce()
 	iceBodies.push_back(iceBody);
 }
 
-void LiquidModel::setVolume(int v)
-{
-	isDrinkEmpty = false;
-	this->addLiquid(v); //determines the color of the liquor
-}
-
-void LiquidModel::setDrinkColor(QString drinkName)
-{
-	currentDrink = drinkName;
-	qDebug() << currentDrink;
-}
-
-void LiquidModel::clear()
-{
-	// Destroy ice bodies.
-	for (b2Body *iceBody : iceBodies)
-	{
-		world->DestroyBody(iceBody);
-	}
-
-	iceBodies.clear();
-
-	// Destroy liquid particle system.
-	if (liquidParticles)
-	{
-		int particleCount = liquidParticles->GetParticleCount();
-
-		for (int i = 0; i < particleCount; ++i)
-		{
-			liquidParticles->DestroyParticle(i, true);
-		}
-	}
-
-	isDrinkEmpty = true;
-
-	emit liquidEmptied();
-}
-
-void LiquidModel::setIsSimulationPaused(bool state)
-{
-	isSimulationPaused = state;
-}
-
-void LiquidModel::updateSimulation()
-{
-	if (isSimulationPaused)
-		return;
-
-	// Step the Box2D simulation
-	world->Step(1.0f / 60.0f, 1, 3);
-
-	//Set up Pixmap
-	liquidPixmap.fill(Qt::transparent);
-	QPainter painter(&liquidPixmap);
-	painter.setRenderHint(QPainter::Antialiasing);
-	painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
-
-// THIS CODE IS FOR VISUALIZING THE PHYSICS BOUNDARIES BY DRAWING THEM.
-#if 1
-	// Get the body list from the world
-	const b2Body* body = world->GetBodyList();
-
-	// Iterate through all bodies in the world
-	while (body)
-	{
-		b2Vec2 bodyPos = body->GetPosition();
-
-		int x = bodyPos.x;
-		int y = DRINKVIEW_HEIGHT - bodyPos.y;
-
-		painter.drawPixmap(x, y, *iceTexture);
-		// Check if the body is the container
-		/*if (body->GetType() == b2_staticBody)
-		{
-			// Extract the fixtures from the body
-			const b2Fixture* fixture = body->GetFixtureList();
-			while (fixture)
-			{
-				// Check if the fixture is a polygon shape
-				if (fixture->GetType() == b2Shape::e_polygon)
-				{
-					// Cast the shape to a polygon shape
-					const b2PolygonShape* shape = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
-					if (shape)
-					{
-						// Draw the polygon shape
-						QPainterPath path;
-						for (int i = 0; i < shape->GetVertexCount(); ++i)
-						{
-							b2Vec2 vertex = body->GetWorldPoint(shape->GetVertex(i));
-							if (i == 0)
-								path.moveTo(vertex.x, DRINKVIEW_HEIGHT - vertex.y);
-							else
-								path.lineTo(vertex.x, DRINKVIEW_HEIGHT - vertex.y);
-						}
-						path.closeSubpath();
-						painter.setPen(Qt::transparent);
-						painter.setBrush(Qt::transparent); // Set the color of the container
-						painter.drawPath(path);
-					}
-				}
-				// Move to the next fixture
-				fixture = fixture->GetNext();
-			}
-		}*/
-		// Move to the next body
-		body = body->GetNext();
-	}
-#endif
-
-	// Iterate through all particles in the current particle system
-	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
-	{
-		// Get particle position
-		b2Vec2 particlePosition = liquidParticles->GetPositionBuffer()[i];
-		//this needs to be converted back from a b2Color
-		painter.setPen(liquidColor);
-		painter.setBrush(liquidColor);
-		painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
-	}
-
-	painter.end();
-
-	emit simulationUpdated(liquidPixmap);
-}
-
 void LiquidModel::addLiquid(int volume)
 {
+	if (isDrinkEmpty)
+		isDrinkEmpty = false;
+
 	int numParticlesX = 3; // number of particles spawned horizontally
 	int numParticlesY = 3; // number of particles spawned vertically
 	float particleSpacingX = 4.5f; // Adjust the spacing between particles in the x direction
@@ -320,15 +196,103 @@ void LiquidModel::addLiquid(int volume)
 	timer->start(100);
 }
 
+void LiquidModel::updateDrinkColor(const QString &drinkName)
+{
+	currentDrink = drinkName;
+}
+
+void LiquidModel::clear()
+{
+	// Destroy ice bodies.
+	for (b2Body *iceBody : iceBodies)
+	{
+		world->DestroyBody(iceBody);
+	}
+
+	iceBodies.clear();
+
+	// Destroy liquid particle system.
+	if (liquidParticles)
+	{
+		int particleCount = liquidParticles->GetParticleCount();
+
+		for (int i = 0; i < particleCount; ++i)
+		{
+			liquidParticles->DestroyParticle(i, true);
+		}
+	}
+
+	isDrinkEmpty = true;
+	liquidColor = {0, 0, 0, 0};
+
+	emit liquidEmptied();
+}
+
+void LiquidModel::setIsSimulationPaused(bool state)
+{
+	isSimulationPaused = state;
+}
+
+void LiquidModel::updateSimulation()
+{
+	if (isSimulationPaused)
+		return;
+
+	// Step the Box2D simulation
+	world->Step(1.0f / 60.0f, 1, 3);
+
+	// Draw ice spheres and liquid.
+
+	//Set up Pixmap
+	liquidPixmap.fill(Qt::transparent);
+	QPainter painter(&liquidPixmap);
+	painter.setRenderHint(QPainter::Antialiasing);
+	painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+	// Draw ice spheres.
+	for (b2Body *iceBody : iceBodies)
+	{
+		b2Vec2 bodyPos = iceBody->GetPosition();
+
+		int x = bodyPos.x - (iceTexture->size().width() / 2);
+		int y = DRINKVIEW_HEIGHT - (bodyPos.y + (iceTexture->size().height() / 2));
+
+		painter.drawPixmap(x, y, *iceTexture);
+	}
+
+	// Draw liquid particles
+	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
+	{
+		// Get particle position
+		b2Vec2 particlePosition = liquidParticles->GetPositionBuffer()[i];
+		painter.setPen(Qt::NoPen);
+		painter.setBrush(liquidColor);
+		painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
+	}
+
+	painter.end();
+
+	emit simulationUpdated(liquidPixmap);
+}
 
 QColor LiquidModel::blendColorAlpha(QColor fgc, QColor bgc)
 {
 	// Taken from: https://stackoverflow.com/a/727339
 	// Extremely suboptimal implementation.
+
+	if (fgc.alpha() > 0)
+		fgc.setAlpha(150);
+
+	if (bgc.alpha() > 0)
+		bgc.setAlpha(150);
+
+	// Normalize.
 	struct DClr { double r = 0.0; double g = 0.0; double b = 0.0; double a = 0.0; };
 	DClr result;
 	DClr bg{(double)bgc.red() / 255.0, (double)bgc.green() / 255.0, (double)bgc.blue() / 255.0, (double)bgc.alpha() / 255.0};
 	DClr fg{(double)fgc.red() / 255.0, (double)fgc.green() / 255.0, (double)fgc.blue() / 255.0, (double)fgc.alpha() / 255.0};
+
+	//
 
 	result.a = 1 - (1 - fg.a) * (1 - bg.a);
 
@@ -339,5 +303,5 @@ QColor LiquidModel::blendColorAlpha(QColor fgc, QColor bgc)
 		result.b = fg.b * fg.a / result.a + bg.b * bg.a * (1 - fg.a) / result.a;
 	}
 
-	return QColor{uchar(255.0 * result.r), uchar(255.0 * result.g), uchar(255.0 * result.b), uchar(150)};// uchar(255.0 * result.a)
+	return QColor{uchar(255.0 * result.r), uchar(255.0 * result.g), uchar(255.0 * result.b), 150};
 }
