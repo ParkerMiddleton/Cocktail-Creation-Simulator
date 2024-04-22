@@ -1,6 +1,8 @@
 #ifndef LIQUID_H
 #define LIQUID_H
 
+#include <Box2D/Particle/b2Particle.h>
+
 #include <QObject>
 
 #include <QMap>
@@ -13,7 +15,6 @@ class Glassware;
 
 class b2World;
 class b2Body;
-class b2Vec2;
 class b2ParticleSystem;
 
 class LiquidModel : public QObject
@@ -35,26 +36,31 @@ public:
 	void updateDrinkColor(const QString &drinkName);
 	void setIsSimulationPaused(bool state);
 
+	void stir();
+
+	void update();
+
 signals:
 	void liquidEmptied();
 	void simulationUpdated(const QPixmap &pixmap);
 
-private slots:
-	void updateSimulation();
-
 private:
+	static constexpr float GRAVITY_SCALE = 30.0f;
+	static constexpr float PARTICLE_RADIUS = 3.75f;
+
 	QTimer *simulationUpdateTimer;
 	bool isSimulationPaused;
 	bool isDrinkEmpty;
 
-	QMap<QString, QColor> drinkColors;
+	QMap<QString, b2ParticleColor> drinkColors;
 	QString currentDrink;
-	QColor liquidColor;
 
 	QPointF pouringSource;
 
 	QPixmap liquidPixmap;
 	QPixmap *iceTexture;
+
+	bool isMixing;
 
 	// Box2D
 	b2World *world;
@@ -62,7 +68,7 @@ private:
 	b2ParticleSystem *liquidParticles;
 	QList<b2Body*> iceBodies;
 
-	QColor blendColorAlpha(QColor fgc, QColor bgc);
+	void draw();
 
 };
 

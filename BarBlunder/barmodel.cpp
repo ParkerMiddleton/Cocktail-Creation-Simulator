@@ -51,6 +51,11 @@ LiquidModel* BarModel::liquidModel()
 	return &liquid;
 }
 
+void BarModel::update()
+{
+	liquid.update();
+}
+
 void BarModel::ingredientPressed(const QString &liquorName)
 {
 	if (!isGlasswarePlaced)
@@ -137,6 +142,11 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	if (ingredientName == "ice")
 	{
 		liquid.addIce();
+	}
+
+	if (ingredientName == "stir")
+	{
+		liquid.stir();
 	}
 
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];

@@ -26,6 +26,8 @@ public:
 	/// @brief model of the liquid system
 	LiquidModel* liquidModel();
 
+	void update();
+
 public slots:
 	/// @brief ingredientPressed - slot to handle pressing an ingredient
 	/// @param liqourName -- the string representing that specific ingredient as a qstring

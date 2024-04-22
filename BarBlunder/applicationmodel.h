@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QSize>
+#include <QTimer>
 
 /// @brief Responsible for managing states and settings. Part of Model.
 class ApplicationModel : public QObject
@@ -17,7 +18,7 @@ public:
 
 	/// @brief Loads settings and emits signals to the view.
 	/// Must be called after the constructor due to QT limitations.
-	void initialize();
+	void run();
 
 	/// @brief Returns a pointer to the bar model.
 	/// @return BarModel*
@@ -82,7 +83,12 @@ signals:
 	/// @param newSize Setting value.
 	void windowSizeChanged(const QSize &newSize);
 
+private slots:
+	void update();
+
 private:
+	QTimer updateLoopTimer;
+
 	BarModel bar;
 
 	enum class State { NotStarted, Paused, Unpaused };

@@ -6,21 +6,25 @@
 
 ApplicationModel::ApplicationModel(QObject *parent)
 	: QObject{parent}
+	, updateLoopTimer{this}
 	, currentState{State::NotStarted}
 	, audioVolume{0.0f}
 	, isFullscreen{false}
 	, windowSize{1280, 720}
 {
-
+	connect(&updateLoopTimer, &QTimer::timeout,
+			this, &ApplicationModel::update);
 }
 
-void ApplicationModel::initialize()
+void ApplicationModel::run()
 {
 	this->loadSettings();
 	emit settingsLoaded(audioVolume, isFullscreen, windowSize);
 	emit audioVolumeChanged(audioVolume);
 	emit windowSizeChanged(windowSize);
 	emit fullscreenModeChanged(isFullscreen);
+
+	updateLoopTimer.start(16);
 
 	// ! README !
 	// If you want to skip the menu when launching, uncomment the line below!
@@ -96,6 +100,11 @@ void ApplicationModel::setWindowSize(const QSize &size)
 	windowSize = size;
 	this->saveSettings();
 	emit windowSizeChanged(windowSize);
+}
+
+void ApplicationModel::update()
+{
+	bar.update();
 }
 
 void ApplicationModel::saveSettings()

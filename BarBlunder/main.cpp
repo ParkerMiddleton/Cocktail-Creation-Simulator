@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	ApplicationModel app;
 	MainWindow window(&app);
 	window.show();
-	app.initialize();
+	app.run();
 
 	return application.exec();
 }
