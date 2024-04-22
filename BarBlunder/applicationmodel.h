@@ -34,9 +34,6 @@ public slots:
 	/// @brief Unpauses the game and emits appropriate signal.
 	void unpause();
 
-	/// @brief Switches the pause state of the game.
-	void switchPauseState();
-
 	/// @brief Emits a signal to close the application.
 	void exitApplication();
 
@@ -87,6 +84,8 @@ private slots:
 	void update();
 
 private:
+	static constexpr int DELTA_TIME_MS = 16;
+
 	QTimer updateLoopTimer;
 
 	BarModel bar;

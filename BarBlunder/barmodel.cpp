@@ -41,19 +41,14 @@ void BarModel::startNewGame()
 	qDebug() << "------------- NEW GAME -------------------------";
 }
 
-void BarModel::setIsPaused(bool state)
-{
-	liquid.setIsSimulationPaused(state);
-}
-
 LiquidModel* BarModel::liquidModel()
 {
 	return &liquid;
 }
 
-void BarModel::update()
+void BarModel::update(int deltaTime)
 {
-	liquid.update();
+	liquid.update(deltaTime);
 }
 
 void BarModel::ingredientPressed(const QString &liquorName)
@@ -68,6 +63,7 @@ void BarModel::ingredientPressed(const QString &liquorName)
 	pressedLiquor = true;
 	liquid.updateDrinkColor(liquorSelection);
 	bool found = false;
+	liquid.startPouring();
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
 	if (ingredient.first == liquorSelection)
@@ -98,6 +94,7 @@ void BarModel::ingredientReleased()
 	//emit informEmptyDrink();
 	// allows for successful removal of all particles but cant pour while holding down
 	//emit sendVolume(volume);
+	liquid.stopPouring();
 	pressedLiquor = false;
 	timer.stop();
 	volume = 0;
@@ -112,25 +109,25 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		{
 			isGlasswarePlaced = true;
 			emit glasswareUpdated(rocksGlass);
-			liquid.updateCollisionLayout(rocksGlass);
+			liquid.updateGlassware(rocksGlass);
 		}
 		else if (ingredientName == "collins glass")
 		{
 			isGlasswarePlaced = true;
 			emit glasswareUpdated(collinsGlass);
-			liquid.updateCollisionLayout(collinsGlass);
+			liquid.updateGlassware(collinsGlass);
 		}
 		else if (ingredientName == "copper mug")
 		{
 			isGlasswarePlaced = true;
 			emit glasswareUpdated(copperMug);
-			liquid.updateCollisionLayout(copperMug);
+			liquid.updateGlassware(copperMug);
 		}
 		else if (ingredientName == "martini glass")
 		{
 			isGlasswarePlaced = true;
 			emit glasswareUpdated(martiniGlass);
-			liquid.updateCollisionLayout(martiniGlass);
+			liquid.updateGlassware(martiniGlass);
 		}
 		else if (!isGlasswarePlaced)
 		{
@@ -207,7 +204,7 @@ void BarModel::emptyDrink()
 	volume = 0;
 	outOfOrder = false;
 
-	liquid.clear();
+	liquid.empty();
 
 	// inform view to empty drink
 	emit drinkEmptied();
@@ -240,9 +237,6 @@ void BarModel::processLiquor()
 			}
 		}
 	}
-
-	// allows to successfully pour but cant clear all particles
-	liquid.addLiquid(volume);
 }
 
 void BarModel::startNewRound()
@@ -282,7 +276,7 @@ void BarModel::getRandomRecipe()
 void BarModel::removeGlassware()
 {
 	isGlasswarePlaced = false;
-	liquid.removeCollisionLayout();
+	liquid.removeGlassware();
 	emit glasswareRemoved();
 }
 

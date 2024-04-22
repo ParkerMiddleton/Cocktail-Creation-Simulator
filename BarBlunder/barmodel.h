@@ -19,14 +19,10 @@ public:
 	/// @brief starts game
 	void startNewGame();
 
-	/// @brief setIsPaused pauses the game
-	/// @param state-state if paused
-	void setIsPaused(bool state);
+	void update(int deltaTime);
 
 	/// @brief model of the liquid system
 	LiquidModel* liquidModel();
-
-	void update();
 
 public slots:
 	/// @brief ingredientPressed - slot to handle pressing an ingredient

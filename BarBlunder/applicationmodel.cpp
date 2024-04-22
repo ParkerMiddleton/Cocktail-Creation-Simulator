@@ -24,7 +24,7 @@ void ApplicationModel::run()
 	emit windowSizeChanged(windowSize);
 	emit fullscreenModeChanged(isFullscreen);
 
-	updateLoopTimer.start(16);
+	updateLoopTimer.start(DELTA_TIME_MS);
 
 	// ! README !
 	// If you want to skip the menu when launching, uncomment the line below!
@@ -40,7 +40,6 @@ void ApplicationModel::startNewGame()
 {
 	bar.startNewGame();
 	currentState = State::Unpaused;
-	bar.setIsPaused(false);
 
 	emit newGameStarted();
 }
@@ -48,7 +47,6 @@ void ApplicationModel::startNewGame()
 void ApplicationModel::pause()
 {
 	currentState = State::Paused;
-	bar.setIsPaused(true);
 
 	emit gamePaused();
 }
@@ -56,24 +54,8 @@ void ApplicationModel::pause()
 void ApplicationModel::unpause()
 {
 	currentState = State::Unpaused;
-	bar.setIsPaused(false);
 
 	emit gameUnpaused();
-}
-
-void ApplicationModel::switchPauseState()
-{
-	switch (currentState)
-	{
-	case State::Unpaused:
-		this->pause();
-		break;
-	case State::Paused:
-		this->unpause();
-		break;
-	default:
-		break;
-	}
 }
 
 void ApplicationModel::exitApplication()
@@ -104,7 +86,10 @@ void ApplicationModel::setWindowSize(const QSize &size)
 
 void ApplicationModel::update()
 {
-	bar.update();
+	if (currentState == State::Unpaused)
+	{
+		bar.update(DELTA_TIME_MS);
+	}
 }
 
 void ApplicationModel::saveSettings()

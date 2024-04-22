@@ -32,7 +32,7 @@ MainMenuPage::~MainMenuPage()
 void MainMenuPage::showPauseMenuWidgets()
 {
 	ui->ResumeButton->setVisible(true);
-	ui->BeginButton->setText("RESTART GAME");
+	ui->BeginButton->setText("RESTART");
 }
 
 void MainMenuPage::onSettingsButtonClicked()

@@ -1,14 +1,13 @@
 #ifndef LIQUID_H
 #define LIQUID_H
 
+#include <Box2D/Common/b2Math.h>
 #include <Box2D/Particle/b2Particle.h>
 
 #include <QObject>
 
 #include <QMap>
-#include <QTimer>
 #include <QPixmap>
-#include <QPointF>
 
 // Forward declaration.
 class Glassware;
@@ -25,20 +24,22 @@ public:
 	explicit LiquidModel(QWidget *parent = nullptr);
 	~LiquidModel();
 
-	void updateCollisionLayout(const Glassware &glassware);
-	void removeCollisionLayout();
+	void updateGlassware(const Glassware &glassware);
+	void removeGlassware();
+	void empty();
 
 	void addIce();
-	void addLiquid(int volume);
-
-	void clear();
-
 	void updateDrinkColor(const QString &drinkName);
-	void setIsSimulationPaused(bool state);
-
+	void dashPour(int volume);
 	void stir();
 
-	void update();
+	void startPouring();
+	void stopPouring();
+
+	void startShaking();
+	void stopShaking();
+
+	void update(int deltaTime);
 
 signals:
 	void liquidEmptied();
@@ -47,24 +48,23 @@ signals:
 private:
 	static constexpr float GRAVITY_SCALE = 30.0f;
 	static constexpr float PARTICLE_RADIUS = 3.75f;
+	static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
 
-	QTimer *simulationUpdateTimer;
-	bool isSimulationPaused;
-	bool isDrinkEmpty;
+	bool isStirring;
+	bool isPouring;
+	int pouringElapsedTime;
 
 	QMap<QString, b2ParticleColor> drinkColors;
 	QString currentDrink;
 
-	QPointF pouringSource;
-
 	QPixmap liquidPixmap;
 	QPixmap *iceTexture;
-
-	bool isMixing;
 
 	// Box2D
 	b2World *world;
 	b2Body *collisionBody;
+	b2Vec2 pouringSource;
+
 	b2ParticleSystem *liquidParticles;
 	QList<b2Body*> iceBodies;
 

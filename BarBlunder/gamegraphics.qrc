@@ -79,5 +79,6 @@
         <file>images/ingredients/SSMix_Hover.png</file>
         <file>images/glasses_liquid/icesphere.png</file>
         <file>images/glasses_liquid/icesphere_16.png</file>
+        <file>images/glasses_liquid/icecube_16.png</file>
     </qresource>
 </RCC>
