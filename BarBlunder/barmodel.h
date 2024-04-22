@@ -6,12 +6,12 @@
 #include "glassware.h"
 
 #include <QObject>
-#include <QTimer>
 
 /// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
 {
 	Q_OBJECT
+
 public:
 	/// @brief Constructor.
 	explicit BarModel(QObject *parent = nullptr);

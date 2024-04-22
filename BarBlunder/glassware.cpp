@@ -4,7 +4,7 @@ Glassware::Glassware(Glassware::Type type)
 {
 	if (type == Glassware::Type::Rocks)
 	{
-        displayPixmap = new QPixmap(":/images/glasses_liquid/rocks_liquid.png");
+		displayPixmap = new QPixmap(":/images/maindrink/rocks_liquid.png");
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
@@ -65,7 +65,7 @@ Glassware::Glassware(Glassware::Type type)
 
 	else if (type == Glassware::Type::Collins)
 	{
-		displayPixmap = new QPixmap(":/images/glasses_liquid/collins_liquid.png");
+		displayPixmap = new QPixmap(":/images/maindrink/collins_liquid.png");
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
@@ -125,7 +125,7 @@ Glassware::Glassware(Glassware::Type type)
     }
 	else if (type == Glassware::Type::Copper)
 	{
-		displayPixmap = new QPixmap(":/images/glasses_liquid/copper_liquid.png");
+		displayPixmap = new QPixmap(":/images/maindrink/copper_liquid.png");
 		transparent = false;
 
 		physicsPouringSource.setX(130.0f);
@@ -185,7 +185,7 @@ Glassware::Glassware(Glassware::Type type)
     }
 	else if (type == Glassware::Type::Martini)
 	{
-		displayPixmap = new QPixmap(":/images/glasses_liquid/martini_liquid.png");
+		displayPixmap = new QPixmap(":/images/maindrink/martini_liquid.png");
 		transparent = true;
 
 		physicsPouringSource.setX(166.0f);

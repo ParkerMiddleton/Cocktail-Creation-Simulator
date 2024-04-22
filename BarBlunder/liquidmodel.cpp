@@ -31,7 +31,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, world{nullptr}
 	, liquidParticles{nullptr}
 {
-	iceTexture = new QPixmap(":/images/glasses_liquid/icecube_16.png");
+	iceTexture = new QPixmap(":/images/maindrink/icecube_16.png");
 
 	uchar ALPHA = 200;
 

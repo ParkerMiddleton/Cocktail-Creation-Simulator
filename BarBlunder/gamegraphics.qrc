@@ -59,10 +59,6 @@
         <file>images/glasses/CopperMugTransparent.png</file>
         <file>images/liquor/whiskey.png</file>
         <file>images/liquor/whiskey_Hover.png</file>
-        <file>images/glasses_liquid/collins_liquid.png</file>
-        <file>images/glasses_liquid/martini_liquid.png</file>
-        <file>images/glasses_liquid/rocks_liquid.png</file>
-        <file>images/glasses_liquid/copper_liquid.png</file>
         <file>images/ingredients/AgaveNectar.png</file>
         <file>images/ingredients/AgaveNectar_Hover.png</file>
         <file>images/ingredients/Coke.png</file>
@@ -77,8 +73,10 @@
         <file>images/ingredients/Sprite_Hover.png</file>
         <file>images/ingredients/SSMix.png</file>
         <file>images/ingredients/SSMix_Hover.png</file>
-        <file>images/glasses_liquid/icesphere.png</file>
-        <file>images/glasses_liquid/icesphere_16.png</file>
-        <file>images/glasses_liquid/icecube_16.png</file>
+        <file>images/maindrink/collins_liquid.png</file>
+        <file>images/maindrink/copper_liquid.png</file>
+        <file>images/maindrink/martini_liquid.png</file>
+        <file>images/maindrink/rocks_liquid.png</file>
+        <file>images/maindrink/icecube_16.png</file>
     </qresource>
 </RCC>

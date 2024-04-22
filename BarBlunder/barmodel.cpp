@@ -139,6 +139,7 @@ void BarModel::processLiquor()
 		}
 	}
 }
+
 void BarModel::ingredientReleased()
 {
 	if (!isGlasswarePlaced)
