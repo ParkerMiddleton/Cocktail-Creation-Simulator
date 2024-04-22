@@ -70,7 +70,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 });
 	connectIngredient(LimeWedgeButton,		"lime wedge")
-	connectIngredient(OrangeButton,			"orange peeles")
+    connectIngredient(OrangeButton,			"orange peele")
 	connectIngredient(OliveButton,			"olives")
 	connectIngredient(BittersButton,		"bitters")
 	connectIngredient(IceButton,			"ice")
@@ -102,10 +102,20 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connectLiquor(LimeJuiceButton,			"lime juice");
 	connectLiquor(GingerBeerButton,			"ginger beer");
 	connectLiquor(BurbonButton,				"burbon");
+<<<<<<< Updated upstream
     connectLiquor(HalfNHalf,				"half n half");
     connectLiquor(SweetNSourMix,            "sweet and sour mix");
     connectLiquor(Agave_Nectar,				"agave nectar");
     connectLiquor(ShakertinButton,          "shake");
+=======
+    connectLiquor(Grenadine,                "grenadine");
+    connectLiquor(Agave_Nectar,             "agave nectar")
+    connectLiquor(SimpleSyrup,              "simple syrup");
+    connectLiquor(Sprite,                   "sprite");
+    connectLiquor(Coke,                     "coke");
+    connectLiquor(SweetNSourMix,            "sweet n sour");
+    connectLiquor(HalfNHalf,                "half n half");
+>>>>>>> Stashed changes
 
 
 #undef connectLiquor

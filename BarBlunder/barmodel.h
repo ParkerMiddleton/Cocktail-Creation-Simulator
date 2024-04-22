@@ -69,6 +69,19 @@ private:
 	Glassware collinsGlass;
 	Glassware copperMug;
 	Glassware martiniGlass;
+    Glassware rocksGlassOrange;
+    Glassware rocksGlassLime;
+    Glassware rocksGlassOlives;
+    Glassware collinsGlassLime;
+    Glassware collinsGlassOrange;
+    Glassware collinsGlassOlives;
+    Glassware copperMugLime;
+    Glassware copperMugOlive;
+    Glassware copperMugOrange;
+    Glassware martiniGlassOrange;
+    Glassware martiniGlassLime;
+    Glassware martiniGlassOlives;
+
 
 	bool isGlasswarePlaced;
 	bool isGlasswareEmpty;
@@ -86,6 +99,8 @@ private:
 	bool pressedLiquor;
 	bool doublePour;
 	QString liquorSelection;
+
+    QString currentGlassware;
 
 	/// @brief starts a new round
 	void startNewRound();
