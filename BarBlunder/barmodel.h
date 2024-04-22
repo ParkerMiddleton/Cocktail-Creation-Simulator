@@ -72,6 +72,10 @@ private:
 
 	bool isGlasswarePlaced;
 	bool isGlasswareEmpty;
+
+	bool isProcessing;
+	int processingElapsedTime;
+
 	QList<Recipe> listOfRecipes;
 	Recipe assignedRecipe;
 	Recipe userRecipe;
@@ -81,7 +85,6 @@ private:
 	bool outOfOrder;
 	bool pressedLiquor;
 	bool doublePour;
-	QTimer timer;
 	QString liquorSelection;
 
 	/// @brief starts a new round

@@ -3,11 +3,13 @@
 
 #include <Box2D/Common/b2Math.h>
 #include <Box2D/Particle/b2Particle.h>
+#include <Box2D/Particle/b2ParticleSystem.h>
 
 #include <QObject>
 
 #include <QMap>
 #include <QPixmap>
+#include <QSet>
 
 // Forward declaration.
 class Glassware;
@@ -30,14 +32,11 @@ public:
 
 	void addIce();
 	void updateDrinkColor(const QString &drinkName);
-	void dashPour(int volume);
-	void stir();
+	void dashPour(int ounce);
+	void mix();
 
 	void startPouring();
 	void stopPouring();
-
-	void startShaking();
-	void stopShaking();
 
 	void update(int deltaTime);
 
@@ -61,14 +60,22 @@ private:
 	QPixmap *iceTexture;
 
 	// Box2D
+	bool addIceBody;
+	bool removeIceBodies;
+
+	b2Vec2 gravity;
 	b2World *world;
-	b2Body *collisionBody;
+	b2ParticleSystemDef particleSystemDef;
 	b2Vec2 pouringSource;
 
 	b2ParticleSystem *liquidParticles;
 	QList<b2Body*> iceBodies;
 
 	void draw();
+
+	void spawnParticles();
+	void createIceBody();
+	void destroyIceBodies();
 
 };
 
