@@ -101,10 +101,6 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	connect(app, &ApplicationModel::applicationExitRequested,
 			this, &MainWindow::close);
 
-	connect(this, &MainWindow::escapeKeyPressed,
-			app, &ApplicationModel::switchPauseState);
-
-
 	// Play music.
 	this->playMenuMusic();
 }
@@ -256,14 +252,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 	viewport.scale(scaleFactor, scaleFactor);
 
 	QWidget::resizeEvent(event);
-}
-
-void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-	if (event->key() == Qt::Key_Escape)
-	{
-		emit escapeKeyPressed();
-	}
 }
 
 void MainWindow::setupOverlayMenuAnimations()

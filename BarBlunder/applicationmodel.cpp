@@ -6,15 +6,17 @@
 
 ApplicationModel::ApplicationModel(QObject *parent)
 	: QObject{parent}
+	, updateLoopTimer{this}
 	, currentState{State::NotStarted}
 	, audioVolume{0.0f}
 	, isFullscreen{false}
 	, windowSize{1280, 720}
 {
-
+	connect(&updateLoopTimer, &QTimer::timeout,
+			this, &ApplicationModel::update);
 }
 
-void ApplicationModel::initialize()
+void ApplicationModel::run()
 {
 	this->loadSettings();
 	emit settingsLoaded(audioVolume, isFullscreen, windowSize);
@@ -22,9 +24,11 @@ void ApplicationModel::initialize()
 	emit windowSizeChanged(windowSize);
 	emit fullscreenModeChanged(isFullscreen);
 
+	updateLoopTimer.start(DELTA_TIME_MS);
+
 	// ! README !
 	// If you want to skip the menu when launching, uncomment the line below!
-	//this->startNewGame();
+	this->startNewGame();
 }
 
 BarModel* ApplicationModel::barModel()
@@ -36,7 +40,6 @@ void ApplicationModel::startNewGame()
 {
 	bar.startNewGame();
 	currentState = State::Unpaused;
-	bar.setIsPaused(false);
 
 	emit newGameStarted();
 }
@@ -44,7 +47,6 @@ void ApplicationModel::startNewGame()
 void ApplicationModel::pause()
 {
 	currentState = State::Paused;
-	bar.setIsPaused(true);
 
 	emit gamePaused();
 }
@@ -52,24 +54,8 @@ void ApplicationModel::pause()
 void ApplicationModel::unpause()
 {
 	currentState = State::Unpaused;
-	bar.setIsPaused(false);
 
 	emit gameUnpaused();
-}
-
-void ApplicationModel::switchPauseState()
-{
-	switch (currentState)
-	{
-	case State::Unpaused:
-		this->pause();
-		break;
-	case State::Paused:
-		this->unpause();
-		break;
-	default:
-		break;
-	}
 }
 
 void ApplicationModel::exitApplication()
@@ -96,6 +82,14 @@ void ApplicationModel::setWindowSize(const QSize &size)
 	windowSize = size;
 	this->saveSettings();
 	emit windowSizeChanged(windowSize);
+}
+
+void ApplicationModel::update()
+{
+	if (currentState == State::Unpaused)
+	{
+		bar.update(DELTA_TIME_MS);
+	}
 }
 
 void ApplicationModel::saveSettings()

@@ -84,9 +84,9 @@ border: 3.5px solid black;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>360</y>
+     <y>340</y>
      <width>1280</width>
-     <height>91</height>
+     <height>111</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -311,7 +311,7 @@ border-bottom: none;</string>
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>310</y>
+     <y>300</y>
      <width>91</width>
      <height>111</height>
     </rect>
@@ -407,7 +407,7 @@ image: url(:/images/garnish/orange_peels_hover);
    <property name="geometry">
     <rect>
      <x>490</x>
-     <y>370</y>
+     <y>360</y>
      <width>231</width>
      <height>50</height>
     </rect>
@@ -708,21 +708,57 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_ServeDrinkButton">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>50</y>
-     <width>91</width>
-     <height>51</height>
+     <x>550</x>
+     <y>40</y>
+     <width>121</width>
+     <height>61</height>
     </rect>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ebrima</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: rgba(0, 0, 0, 190);
+border: 1px solid transparent;
+color: #e5e5e5;
+text-align:center;
+font: bold &quot;Ebrima&quot;;
+font-size: 24px;
+}
+
+QPushButton::hover {
+border-color: #FFE770;
+color: #FFE770;
+font-size: 23px;
+}
+
+QPushButton::disabled {
+color: #5e5e5e;
+}</string>
+   </property>
    <property name="text">
-    <string>Serve</string>
+    <string>S e r v e</string>
    </property>
   </widget>
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>350</y>
+     <x>780</x>
+     <y>340</y>
      <width>121</width>
      <height>81</height>
     </rect>
@@ -895,13 +931,13 @@ border-image: url(:/images/menu/pause_hover) 1;
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>140</y>
+     <y>130</y>
      <width>256</width>
      <height>280</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">/*border: 0px;*/
+    <string notr="true">border: 0px;
 background-color: transparent;</string>
    </property>
   </widget>
@@ -1132,7 +1168,7 @@ image: url(:/images/ingredients/Coke_Hover.png);
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="d_Spite">
+  <widget class="QPushButton" name="d_Sprite">
    <property name="geometry">
     <rect>
      <x>920</x>
@@ -1249,7 +1285,7 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <zorder>d_Grenadine</zorder>
   <zorder>d_SimpleSyrup</zorder>
   <zorder>d_Coke</zorder>
-  <zorder>d_Spite</zorder>
+  <zorder>d_Sprite</zorder>
   <zorder>d_SweetNSourMix</zorder>
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>

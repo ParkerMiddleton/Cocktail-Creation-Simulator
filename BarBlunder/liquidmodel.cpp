@@ -6,194 +6,142 @@
 #include <QWidget>
 #include <QPainter>
 #include <QPen>
-#include <QPainterPath>
-#include <QDebug>
 
 #include <Box2D/Box2D.h>
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
-	, isSimulationPaused{false}
-	, isDrinkEmpty{false}
+	, isStirring{false}
+	, isPouring{false}
+	, pouringElapsedTime{0}
 
 	, currentDrink{""}
-	, liquidColor{0, 0, 0, 0}
-
-	, pouringSource{0.0f, 0.0f}
 
 	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
+	, iceTexture{nullptr}
 
-	, collisionBody{nullptr}
+	, addIceBody{false}
+	, removeIceBodies{false}
+
+	, gravity{0.0f, -9.8f * GRAVITY_SCALE}
+	, world{nullptr}
+	, pouringSource{0.0f, 0.0f}
+	, liquidParticles{nullptr}
 {
-	iceTexture = new QPixmap(":/images/glasses_liquid/icesphere_16.png");
-	b2Vec2 gravity(0.0f, -38.81f);
-	world = new b2World(gravity);
+	iceTexture = new QPixmap(":/images/glasses_liquid/icecube_16.png");
 
-	// setup timer
-	simulationUpdateTimer = new QTimer(this);
-	connect(simulationUpdateTimer, &QTimer::timeout, this, &LiquidModel::updateSimulation);
-	simulationUpdateTimer->start(16); // Update every 16 milliseconds (approximately 60 FPS)
+	uchar ALPHA = 200;
 
 	// setup colors for each drink
-	drinkColors["whiskey"] =		QColor(165, 113, 10);        // Whiskey color
-	drinkColors["tequila"] =		QColor(172, 73, 25);        // Tequila color
-	drinkColors["rum"] =			QColor(236, 233, 226);            // Rum color
-	drinkColors["vodka"] =			QColor(236, 233, 226);        // Vodka color
-	drinkColors["gin"] =			QColor(236, 233, 226);            // Gin color
-	drinkColors["kahlua"] =			QColor(28, 1, 2);            //kahlua
-	drinkColors["burbon"] =			QColor(165, 113, 10);        //burbon
-	drinkColors["tripe sec"] =		QColor(236, 233, 226);     //triple sec
-	drinkColors["sweet n sour"] =	QColor(210, 196, 112);  //sweet n sour
-	drinkColors["grenadine"] =		QColor(180, 19, 41);     //grenadine
-	drinkColors["simple syrup"] =	QColor(236, 233, 226);  //simpe syrup
-	drinkColors["agave nectar"] =	QColor(245, 183, 10);  //agave nectar
-	drinkColors["sprite"] =			QColor(236, 233, 226);        //sprite
-	drinkColors["coke"] =			QColor(56, 45, 43);          //coke
-	drinkColors["half n half"] =	QColor(255, 255, 255);   //half n half
-	drinkColors["lime juice"] =		QColor(158, 180, 80);    //lime juice
-	drinkColors["ginger beer"] =	QColor(253, 237, 115);   //ginger beer
-	drinkColors["olive juice"] =	QColor(207, 178, 112);   //olive juice
-	drinkColors["bitters"] =		QColor(179, 102, 110);       //bitters
+	drinkColors["whiskey"] =		{165, 113, 10, ALPHA};				// Whiskey color
+	drinkColors["tequila"] =		{172, 73, 25, ALPHA};				// Tequila color
+	drinkColors["rum"] =			{236, 233, 226, ALPHA};				// Rum color
+	drinkColors["vodka"] =			{236, 233, 226, 50};				// Vodka color
+	drinkColors["gin"] =			{236, 233, 226, ALPHA};				// Gin color
+	drinkColors["kahlua"] =			{28, 1, 2, ALPHA};					//kahlua
+	drinkColors["burbon"] =			{165, 113, 10, ALPHA};				//burbon
+	drinkColors["tripe sec"] =		{236, 233, 226, ALPHA};				//triple sec
+	drinkColors["sweet n sour"] =	{210, 196, 112, ALPHA};				//sweet n sour
+	drinkColors["grenadine"] =		{180, 19, 41, ALPHA};				//grenadine
+	drinkColors["simple syrup"] =	{236, 233, 226, ALPHA};				//simpe syrup
+	drinkColors["agave nectar"] =	{245, 183, 10, ALPHA};				//agave nectar
+	drinkColors["sprite"] =			{236, 233, 226, ALPHA};				//sprite
+	drinkColors["coke"] =			{56, 45, 43, ALPHA};				//coke
+	drinkColors["half n half"] =	{255, 255, 255, ALPHA};				//half n half
+	drinkColors["lime juice"] =		{158, 180, 80, ALPHA};				//lime juice
+	drinkColors["ginger beer"] =	{253, 237, 115, ALPHA};				//ginger beer
+	drinkColors["olive juice"] =	{207, 178, 112, ALPHA};				//olive juice
+	drinkColors["bitters"] =		{179, 102, 110, ALPHA};				//bitters
 
 	// Setup particle system.
-	b2ParticleSystemDef particleSystemDef;
-	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
-	particleSystemDef.gravityScale = -9.0f;
-	particleSystemDef.radius = 3.75f; // Particle radius
-	particleSystemDef.dampingStrength = 0.2f; // Particle damping strength
-	particleSystemDef.gravityScale = 1.0f; // Particle gravity scale
-	particleSystemDef.viscousStrength = 0.25f; // Particle viscous strength
-	particleSystemDef.surfaceTensionPressureStrength = 0.1f; // Particle surface tension pressure strength
-	particleSystemDef.surfaceTensionNormalStrength = 1.0f; // Particle surface tension normal strength
-	particleSystemDef.springStrength = 0.0f; // Particle spring strength
-	particleSystemDef.elasticStrength = 0.1f; // Particle elastic strength
-	particleSystemDef.staticPressureStrength = 0.2f; // Particle dynamic pressure strength
-	particleSystemDef.staticPressureStrength = 0.2f; // Particle static pressure strength
-	particleSystemDef.powderStrength = 0.0f; // Particle powder strength
-	particleSystemDef.viscousStrength = 1.0f; // Particle viscous strength
-	particleSystemDef.colorMixingStrength = 1.0f; // Particle color mixing strength
-	particleSystemDef.destroyByAge = true; // Destroy particles as they age
-	particleSystemDef.density = 1.0f;
+	particleSystemDef.colorMixingStrength = 0.25f;
+	particleSystemDef.destroyByAge = true;
 
-	// Create the liquid particle system
-	liquidParticles = world->CreateParticleSystem(&particleSystemDef);
-	liquidParticles->SetGravityScale(9.0f);
+	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
+	particleSystemDef.dampingStrength = 0.2f; // Particle damping strength
+	particleSystemDef.surfaceTensionPressureStrength = 0.1f;
+	particleSystemDef.surfaceTensionNormalStrength = 1.0f;
+	particleSystemDef.springStrength = 0.0f;
+	particleSystemDef.elasticStrength = 0.1f;
+	particleSystemDef.staticPressureStrength = 0.2f;
+	particleSystemDef.powderStrength = 0.0f;
+	particleSystemDef.viscousStrength = 1.0f;
+
+	particleSystemDef.radius = PARTICLE_RADIUS;
+	particleSystemDef.density = 1.2f;
+	//particleSystemDef.gravityScale = 0.4f;
 }
 
 LiquidModel::~LiquidModel()
 {
 	delete iceTexture;
+
+	this->removeGlassware();
 	delete world;
 }
 
-void LiquidModel::updateCollisionLayout(const Glassware &glassware)
+void LiquidModel::updateGlassware(const Glassware &glassware)
 {
-	this->removeCollisionLayout();
+	this->removeGlassware();
 
-	pouringSource.setX(glassware.getPhysicsPouringSource().x());
-	pouringSource.setY(DRINKVIEW_HEIGHT - glassware.getPhysicsPouringSource().y());
+	world = new b2World(gravity);
+
+	pouringSource.x = glassware.getPhysicsPouringSource().x();
+	pouringSource.y = DRINKVIEW_HEIGHT - glassware.getPhysicsPouringSource().y();
 
 	const QList<QPointF> &qVs = glassware.getPhysicsCollisionVertices();
 
-	b2Vec2 vs[6];
-	vs[0].Set(qVs[0].x(), DRINKVIEW_HEIGHT - qVs[0].y());
-	vs[1].Set(qVs[1].x(), DRINKVIEW_HEIGHT - qVs[1].y());
-	vs[2].Set(qVs[2].x(), DRINKVIEW_HEIGHT - qVs[2].y());
-	vs[3].Set(qVs[3].x(), DRINKVIEW_HEIGHT - qVs[3].y());
+	b2Vec2 collisionVertices[6];
+	collisionVertices[0].Set(qVs[0].x(), DRINKVIEW_HEIGHT - qVs[0].y());
+	collisionVertices[1].Set(qVs[1].x(), DRINKVIEW_HEIGHT - qVs[1].y());
+	collisionVertices[2].Set(qVs[2].x(), DRINKVIEW_HEIGHT - qVs[2].y());
+	collisionVertices[3].Set(qVs[3].x(), DRINKVIEW_HEIGHT - qVs[3].y());
 
 	// To create a loop:
-	vs[4].Set(qVs[2].x(), DRINKVIEW_HEIGHT - qVs[2].y());
-	vs[5].Set(qVs[1].x(), DRINKVIEW_HEIGHT - qVs[1].y());
+	collisionVertices[4].Set(qVs[2].x(), DRINKVIEW_HEIGHT - qVs[2].y());
+	collisionVertices[5].Set(qVs[1].x(), DRINKVIEW_HEIGHT - qVs[1].y());
 
 	b2BodyDef collisionBodyDef;
-	collisionBody = world->CreateBody(&collisionBodyDef);
+	b2Body *collisionBody = world->CreateBody(&collisionBodyDef);
 
 	b2ChainShape collisionShape;
-	collisionShape.CreateLoop(vs, 6);
+	collisionShape.CreateLoop(collisionVertices, 6);
 	collisionBody->CreateFixture(&collisionShape, 0.0f);
+
+	// Create the liquid particle system
+	liquidParticles = world->CreateParticleSystem(&particleSystemDef);
 }
 
-void LiquidModel::removeCollisionLayout()
+void LiquidModel::removeGlassware()
 {
-	if (collisionBody)
-		world->DestroyBody(collisionBody);
+	isPouring = false;
+	delete world;
+
+	world = nullptr;
+	liquidParticles = nullptr;
+	iceBodies.clear();
+}
+
+void LiquidModel::empty()
+{
+	if (!world)
+		return;
+
+	// Destroy ice bodies.
+	removeIceBodies = true;
+
+	// Destroy liquid particle system.
+	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
+	{
+		liquidParticles->SetParticleFlags(i, b2_zombieParticle);
+	}
+
+	emit liquidEmptied();
 }
 
 void LiquidModel::addIce()
 {
-	b2CircleShape circle;
-	circle.m_radius = 8;
-
-	b2BodyDef bdef;
-
-	bdef.type = b2_dynamicBody;
-	bdef.position.Set(pouringSource.x(), pouringSource.y());
-
-	b2Body *iceBody = world->CreateBody(&bdef);
-	iceBody->CreateFixture(&circle, 15);
-
-	iceBodies.push_back(iceBody);
-}
-
-void LiquidModel::addLiquid(int volume)
-{
-	if (isDrinkEmpty)
-		isDrinkEmpty = false;
-
-	int numParticlesX = 3; // number of particles spawned horizontally
-	int numParticlesY = 3; // number of particles spawned vertically
-	float particleSpacingX = 4.5f; // Adjust the spacing between particles in the x direction
-	float particleSpacingY = 4.5f; // Adjust the spacing between particles in the y direction
-
-	liquidColor = this->blendColorAlpha(liquidColor, drinkColors.value(currentDrink));
-
-	QTimer* timer = new QTimer(); // Allocate QTimer dynamically
-	connect(timer, &QTimer::timeout, this, [=]() {
-
-		if (isSimulationPaused)
-			return;
-		// Spawn particles for 3 seconds
-		static float elapsedTime = 0.0f;
-
-		// attempting to use volume
-		if (elapsedTime < volume && !isDrinkEmpty)
-		{
-			// Spawn particles in the loop
-			for (int i = 0; i < numParticlesX; ++i)
-			{
-				for (int j = 0; j < numParticlesY; ++j)
-				{
-					b2Vec2 particlePosition;
-					particlePosition.x = pouringSource.x() - (numParticlesX / 2.0f) * particleSpacingX + i * particleSpacingX;
-					particlePosition.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
-
-					// Create a particle
-					b2ParticleDef particleDef;
-					particleDef.flags = b2_elasticParticle;
-					particleDef.position = particlePosition; // Particle position its spawned at
-
-					//get current color
-					// convert to a b2color to be used with particleDef
-					b2ParticleColor b2c;
-					b2c.Set(liquidColor.red(), liquidColor.green(), liquidColor.blue(), liquidColor.alpha());
-
-					particleDef.color = b2c;
-
-					// Spawn the particle
-					liquidParticles->CreateParticle(particleDef);
-				}
-			}
-			elapsedTime += 0.1; // Increase elapsed time
-		}
-		else
-		{
-			timer->stop(); // Stop the timer after 3 seconds
-			delete timer; // delete timer
-			elapsedTime = 0.0;
-		}
-	});
-
-	timer->start(100);
+	addIceBody = true;
 }
 
 void LiquidModel::updateDrinkColor(const QString &drinkName)
@@ -201,53 +149,93 @@ void LiquidModel::updateDrinkColor(const QString &drinkName)
 	currentDrink = drinkName;
 }
 
-void LiquidModel::clear()
+
+void LiquidModel::dashPour(int ounce)
 {
-	// Destroy ice bodies.
-	for (b2Body *iceBody : iceBodies)
+
+}
+
+void LiquidModel::mix()
+{
+	isStirring = true;
+}
+
+
+void LiquidModel::startPouring()
+{
+	pouringElapsedTime = 0;
+	isPouring = true;
+}
+
+void LiquidModel::stopPouring()
+{
+	isPouring = false;
+}
+
+void LiquidModel::update(int deltaTime)
+{
+	liquidPixmap.fill(Qt::transparent); // Clear pixmap.
+
+	if (world)
 	{
-		world->DestroyBody(iceBody);
-	}
+		world->Step(1.0f / 60.0f, 8, 3); // Step the Box2D simulation
 
-	iceBodies.clear();
-
-	// Destroy liquid particle system.
-	if (liquidParticles)
-	{
-		int particleCount = liquidParticles->GetParticleCount();
-
-		for (int i = 0; i < particleCount; ++i)
+		// Destroy scheduled ice bodies.
+		if (removeIceBodies)
 		{
-			liquidParticles->DestroyParticle(i, true);
+			this->destroyIceBodies();
+			removeIceBodies = false;
 		}
+
+		// Create scheduled ice bodies.
+		if (addIceBody)
+		{
+			this->createIceBody();
+			addIceBody = false;
+		}
+
+		if (isPouring)
+		{
+			// attempting to use volume
+			if (pouringElapsedTime >= 80)
+			{
+				pouringElapsedTime = -deltaTime; // Reset.
+				this->spawnParticles();
+			}
+
+			pouringElapsedTime += deltaTime;
+		}
+
+		this->draw();
 	}
 
-	isDrinkEmpty = true;
-	liquidColor = {0, 0, 0, 0};
+	if (isStirring)
+		isStirring = false;
 
-	emit liquidEmptied();
+	emit simulationUpdated(liquidPixmap);
 }
 
-void LiquidModel::setIsSimulationPaused(bool state)
+void LiquidModel::draw()
 {
-	isSimulationPaused = state;
-}
-
-void LiquidModel::updateSimulation()
-{
-	if (isSimulationPaused)
-		return;
-
-	// Step the Box2D simulation
-	world->Step(1.0f / 60.0f, 1, 3);
-
-	// Draw ice spheres and liquid.
-
-	//Set up Pixmap
-	liquidPixmap.fill(Qt::transparent);
+	// Setup Painter.
 	QPainter painter(&liquidPixmap);
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+	// Draw liquid particles
+	b2Vec2 *posBuffer = liquidParticles->GetPositionBuffer();
+	b2ParticleColor *colorBuffer = liquidParticles->GetColorBuffer();
+
+	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
+	{
+		if (isStirring)
+			liquidParticles->SetParticleFlags(i, b2_elasticParticle | b2_colorMixingParticle);
+
+		b2Vec2 particlePosition = posBuffer[i];
+		painter.setPen(Qt::NoPen);
+		painter.setBrush(QColor(colorBuffer[i].r, colorBuffer[i].g, colorBuffer[i].b, colorBuffer[i].a));
+		painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 5, 5);
+	}
 
 	// Draw ice spheres.
 	for (b2Body *iceBody : iceBodies)
@@ -260,48 +248,58 @@ void LiquidModel::updateSimulation()
 		painter.drawPixmap(x, y, *iceTexture);
 	}
 
-	// Draw liquid particles
-	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
-	{
-		// Get particle position
-		b2Vec2 particlePosition = liquidParticles->GetPositionBuffer()[i];
-		painter.setPen(Qt::NoPen);
-		painter.setBrush(liquidColor);
-		painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 4, 4); // Adjust the size as needed
-	}
-
 	painter.end();
-
-	emit simulationUpdated(liquidPixmap);
 }
 
-QColor LiquidModel::blendColorAlpha(QColor fgc, QColor bgc)
+void LiquidModel::spawnParticles()
 {
-	// Taken from: https://stackoverflow.com/a/727339
-	// Extremely suboptimal implementation.
+	b2Vec2 particlePos;
 
-	if (fgc.alpha() > 0)
-		fgc.setAlpha(150);
-
-	if (bgc.alpha() > 0)
-		bgc.setAlpha(150);
-
-	// Normalize.
-	struct DClr { double r = 0.0; double g = 0.0; double b = 0.0; double a = 0.0; };
-	DClr result;
-	DClr bg{(double)bgc.red() / 255.0, (double)bgc.green() / 255.0, (double)bgc.blue() / 255.0, (double)bgc.alpha() / 255.0};
-	DClr fg{(double)fgc.red() / 255.0, (double)fgc.green() / 255.0, (double)fgc.blue() / 255.0, (double)fgc.alpha() / 255.0};
-
-	//
-
-	result.a = 1 - (1 - fg.a) * (1 - bg.a);
-
-	if (result.a >= 1.0e-6) // If not fully transparent
+	for (int j = 0; j < PARTICLES_NUM_SPAWN_VERTICAL; ++j)
 	{
-		result.r = fg.r * fg.a / result.a + bg.r * bg.a * (1 - fg.a) / result.a;
-		result.g = fg.g * fg.a / result.a + bg.g * bg.a * (1 - fg.a) / result.a;
-		result.b = fg.b * fg.a / result.a + bg.b * bg.a * (1 - fg.a) / result.a;
-	}
+		int a = j % 2;
 
-	return QColor{uchar(255.0 * result.r), uchar(255.0 * result.g), uchar(255.0 * result.b), 150};
+		// Def
+		b2ParticleDef pdef;
+		pdef.color = drinkColors[currentDrink];
+		pdef.flags = b2_elasticParticle;
+		pdef.velocity = {0.0f, -4.9f * GRAVITY_SCALE};
+
+		// Y coordinate.
+		//particlePos.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
+		particlePos.y = (pouringSource.y - (PARTICLE_RADIUS * j)) - PARTICLE_RADIUS * 2;
+
+		// Left Particle
+		particlePos.x = (pouringSource.x - PARTICLE_RADIUS) - ((PARTICLE_RADIUS / 2) * a);
+		pdef.position = particlePos; // Particle position its spawned at.
+		liquidParticles->CreateParticle(pdef); // Spawn
+
+		// Right Particle
+		particlePos.x = (pouringSource.x + PARTICLE_RADIUS) - ((PARTICLE_RADIUS / 2) * a);
+		pdef.position = particlePos; // Particle position its spawned at.
+		liquidParticles->CreateParticle(pdef); // Spawn.
+	}
+}
+
+void LiquidModel::createIceBody()
+{
+	b2BodyDef bdef;
+	bdef.type = b2_dynamicBody;
+	bdef.position.Set(pouringSource.x, pouringSource.y);
+
+	b2Body *iceBody = world->CreateBody(&bdef);
+	b2CircleShape circle;
+	circle.m_radius = 8;
+	iceBody->CreateFixture(&circle, 3.0f);
+	//iceBody->SetLinearVelocity({0.0f, -9.8f * GRAVITY_SCALE});
+
+	iceBodies.push_back(iceBody);
+}
+
+void LiquidModel::destroyIceBodies()
+{
+	for (b2Body *iceBody : iceBodies)
+		world->DestroyBody(iceBody);
+
+	iceBodies.clear();
 }

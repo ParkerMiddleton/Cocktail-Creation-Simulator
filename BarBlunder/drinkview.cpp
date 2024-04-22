@@ -20,6 +20,10 @@ DrinkView::DrinkView(QWidget *parent)
 	gItemGroup.addToGroup(&gGlass);
 	gScene.addItem(&gItemGroup);
 	this->setScene(&gScene);
+
+	this->rotate(5.0f);
+	this->rotate(-5.0f);
+	this->resetTransform();
 }
 
 DrinkView::~DrinkView()
@@ -56,7 +60,7 @@ void DrinkView::updateGlasswareDisplay(const Glassware &glassware)
 		gGlass.setPixmap(glassware.getDisplayPixmap());
 	}
 	else
-	{
+	{    
 		gMug.setPixmap(glassware.getDisplayPixmap());
 		gGlass.setPixmap(emptyPixmap);
 	}

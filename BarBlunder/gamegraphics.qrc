@@ -79,17 +79,6 @@
         <file>images/ingredients/SSMix_Hover.png</file>
         <file>images/glasses_liquid/icesphere.png</file>
         <file>images/glasses_liquid/icesphere_16.png</file>
-        <file>images/glasses/collins_lime.png</file>
-        <file>images/glasses/collins_olive.png</file>
-        <file>images/glasses/collins_orangePeel.png</file>
-        <file>images/glasses/CopperMugCut_lime.png</file>
-        <file>images/glasses/CopperMugCut_olive.png</file>
-        <file>images/glasses/CopperMugCut_orangePeel.png</file>
-        <file>images/glasses/martini_lime.png</file>
-        <file>images/glasses/martini_olive.png</file>
-        <file>images/glasses/martini_OrangePeel.png</file>
-        <file>images/glasses/rocks_lime.png</file>
-        <file>images/glasses/rocks_olive.png</file>
-        <file>images/glasses/rocks_orangePeel.png</file>
+        <file>images/glasses_liquid/icecube_16.png</file>
     </qresource>
 </RCC>

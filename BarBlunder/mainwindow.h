@@ -74,13 +74,8 @@ public slots:
 	/// @param newSize New size.
 	void setSize(const QSize &newSize);
 
-signals:
-	/// @brief Notifies that Escape key on keyboard was pressed.
-	void escapeKeyPressed();
-
 protected:
 	void resizeEvent(QResizeEvent *event) override;
-	void keyPressEvent(QKeyEvent *event) override;
 
 private:
 	static constexpr int RENDER_NATIVE_WIDTH = 1280;
