@@ -9,7 +9,6 @@
 
 #include <QMap>
 #include <QPixmap>
-#include <QSet>
 
 // Forward declaration.
 class Glassware;
@@ -32,11 +31,8 @@ public:
 
 	void addIce();
 	void updateDrinkColor(const QString &drinkName);
-	void dashPour(int ounce);
+	void pour(int ounce);
 	void mix();
-
-	void startPouring();
-	void stopPouring();
 
 	void update(int deltaTime);
 
@@ -48,13 +44,16 @@ private:
 	static constexpr float GRAVITY_SCALE = 30.0f;
 	static constexpr float PARTICLE_RADIUS = 3.75f;
 	static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
+	static constexpr int DROPS_INTERVAL = 80;
+	static constexpr int OUNCE_POURING_DURATION = 1000;
+
+	QMap<QString, b2ParticleColor> drinkColors;
+	QString currentDrink;
 
 	bool isStirring;
 	bool isPouring;
 	int pouringElapsedTime;
-
-	QMap<QString, b2ParticleColor> drinkColors;
-	QString currentDrink;
+	int timeToPour;
 
 	QPixmap liquidPixmap;
 	QPixmap *iceTexture;
@@ -64,18 +63,18 @@ private:
 	bool removeIceBodies;
 
 	b2Vec2 gravity;
-	b2World *world;
 	b2ParticleSystemDef particleSystemDef;
 	b2Vec2 pouringSource;
 
+	b2World *world;
 	b2ParticleSystem *liquidParticles;
 	QList<b2Body*> iceBodies;
 
 	void draw();
 
 	void spawnParticles();
-	void createIceBody();
-	void destroyIceBodies();
+	void checkScheduledAddIceBody();
+	void checkSheduledRemoveIceBodies();
 
 };
 

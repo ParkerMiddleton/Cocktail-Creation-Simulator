@@ -11,11 +11,13 @@
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
+
+	, currentDrink{""}
+
 	, isStirring{false}
 	, isPouring{false}
 	, pouringElapsedTime{0}
-
-	, currentDrink{""}
+	, timeToPour{0}
 
 	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
 	, iceTexture{nullptr}
@@ -24,8 +26,9 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, removeIceBodies{false}
 
 	, gravity{0.0f, -9.8f * GRAVITY_SCALE}
-	, world{nullptr}
 	, pouringSource{0.0f, 0.0f}
+
+	, world{nullptr}
 	, liquidParticles{nullptr}
 {
 	iceTexture = new QPixmap(":/images/glasses_liquid/icecube_16.png");
@@ -57,8 +60,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	particleSystemDef.colorMixingStrength = 0.25f;
 	particleSystemDef.destroyByAge = true;
 
-	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
-	particleSystemDef.dampingStrength = 0.2f; // Particle damping strength
+	particleSystemDef.dampingStrength = 0.2f;
 	particleSystemDef.surfaceTensionPressureStrength = 0.1f;
 	particleSystemDef.surfaceTensionNormalStrength = 1.0f;
 	particleSystemDef.springStrength = 0.0f;
@@ -69,7 +71,6 @@ LiquidModel::LiquidModel(QWidget *parent)
 
 	particleSystemDef.radius = PARTICLE_RADIUS;
 	particleSystemDef.density = 1.2f;
-	//particleSystemDef.gravityScale = 0.4f;
 }
 
 LiquidModel::~LiquidModel()
@@ -77,7 +78,6 @@ LiquidModel::~LiquidModel()
 	delete iceTexture;
 
 	this->removeGlassware();
-	delete world;
 }
 
 void LiquidModel::updateGlassware(const Glassware &glassware)
@@ -115,6 +115,7 @@ void LiquidModel::updateGlassware(const Glassware &glassware)
 void LiquidModel::removeGlassware()
 {
 	isPouring = false;
+	timeToPour = 0;
 	delete world;
 
 	world = nullptr;
@@ -124,19 +125,22 @@ void LiquidModel::removeGlassware()
 
 void LiquidModel::empty()
 {
-	if (!world)
-		return;
+	isPouring = false;
+	timeToPour = 0;
 
-	// Destroy ice bodies.
-	removeIceBodies = true;
-
-	// Destroy liquid particle system.
-	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
+	if (world)
 	{
-		liquidParticles->SetParticleFlags(i, b2_zombieParticle);
-	}
+		// Schedule ice bodies for removal.
+		removeIceBodies = true;
 
-	emit liquidEmptied();
+		// Schedule particles for removal.
+		for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
+		{
+			liquidParticles->SetParticleFlags(i, b2_zombieParticle);
+		}
+
+		emit liquidEmptied();
+	}
 }
 
 void LiquidModel::addIce()
@@ -149,27 +153,16 @@ void LiquidModel::updateDrinkColor(const QString &drinkName)
 	currentDrink = drinkName;
 }
 
-
-void LiquidModel::dashPour(int ounce)
+void LiquidModel::pour(int ounce)
 {
-
+	timeToPour += (ounce * OUNCE_POURING_DURATION);
+	pouringElapsedTime = 0;
+	isPouring = true;
 }
 
 void LiquidModel::mix()
 {
 	isStirring = true;
-}
-
-
-void LiquidModel::startPouring()
-{
-	pouringElapsedTime = 0;
-	isPouring = true;
-}
-
-void LiquidModel::stopPouring()
-{
-	isPouring = false;
 }
 
 void LiquidModel::update(int deltaTime)
@@ -179,31 +172,24 @@ void LiquidModel::update(int deltaTime)
 	if (world)
 	{
 		world->Step(1.0f / 60.0f, 8, 3); // Step the Box2D simulation
+		this->checkSheduledRemoveIceBodies();
+		this->checkScheduledAddIceBody();
 
-		// Destroy scheduled ice bodies.
-		if (removeIceBodies)
+		if (isPouring && timeToPour > 0)
 		{
-			this->destroyIceBodies();
-			removeIceBodies = false;
-		}
-
-		// Create scheduled ice bodies.
-		if (addIceBody)
-		{
-			this->createIceBody();
-			addIceBody = false;
-		}
-
-		if (isPouring)
-		{
-			// attempting to use volume
-			if (pouringElapsedTime >= 80)
+			if (pouringElapsedTime >= DROPS_INTERVAL)
 			{
 				pouringElapsedTime = -deltaTime; // Reset.
 				this->spawnParticles();
 			}
 
 			pouringElapsedTime += deltaTime;
+			timeToPour -= deltaTime;
+		}
+
+		if (timeToPour <= 0)
+		{
+			timeToPour = 0;
 		}
 
 		this->draw();
@@ -237,7 +223,7 @@ void LiquidModel::draw()
 		painter.drawEllipse(QPointF(particlePosition.x, DRINKVIEW_HEIGHT - particlePosition.y), 5, 5);
 	}
 
-	// Draw ice spheres.
+	// Draw ice bodies.
 	for (b2Body *iceBody : iceBodies)
 	{
 		b2Vec2 bodyPos = iceBody->GetPosition();
@@ -281,25 +267,35 @@ void LiquidModel::spawnParticles()
 	}
 }
 
-void LiquidModel::createIceBody()
+void LiquidModel::checkScheduledAddIceBody()
 {
-	b2BodyDef bdef;
-	bdef.type = b2_dynamicBody;
-	bdef.position.Set(pouringSource.x, pouringSource.y);
+	if (addIceBody)
+	{
+		b2BodyDef bdef;
+		bdef.type = b2_dynamicBody;
+		bdef.position.Set(pouringSource.x, pouringSource.y);
 
-	b2Body *iceBody = world->CreateBody(&bdef);
-	b2CircleShape circle;
-	circle.m_radius = 8;
-	iceBody->CreateFixture(&circle, 3.0f);
-	//iceBody->SetLinearVelocity({0.0f, -9.8f * GRAVITY_SCALE});
+		b2Body *iceBody = world->CreateBody(&bdef);
+		b2CircleShape circle;
+		circle.m_radius = 8;
+		iceBody->CreateFixture(&circle, 3.0f);
+		//iceBody->SetLinearVelocity({0.0f, -9.8f * GRAVITY_SCALE});
 
-	iceBodies.push_back(iceBody);
+		iceBodies.push_back(iceBody);
+
+		addIceBody = false;
+	}
 }
 
-void LiquidModel::destroyIceBodies()
+void LiquidModel::checkSheduledRemoveIceBodies()
 {
-	for (b2Body *iceBody : iceBodies)
-		world->DestroyBody(iceBody);
+	if (removeIceBodies)
+	{
+		for (b2Body *iceBody : iceBodies)
+			world->DestroyBody(iceBody);
 
-	iceBodies.clear();
+		iceBodies.clear();
+
+		removeIceBodies = false;
+	}
 }
