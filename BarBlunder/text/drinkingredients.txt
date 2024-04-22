@@ -42,7 +42,7 @@ rocks glass: 1
 vodka: 1
 kahlua: 1
 ice: 1
-half and half: 5
+half n half: 5
 
 To Serve: "Rocks Margarita"
 1. Grab a Rocks Glass
@@ -54,13 +54,13 @@ To Serve: "Rocks Margarita"
 7. Shake for 5 seconds
 8. Garnish with a lime wedge
 
+Rocks Margarita.
 rocks glass: 1
-ice: 1
 lime juice: 2
 agave nectar: 1
 sweet and sour mix: 1
-tequilla: 2
-orange liquor: 1
+tequila: 2
+orange liquor splash: 1
 shake: 5
 lime wedge: 1
 
@@ -71,6 +71,7 @@ To Serve: "Dirty Martini"
 4. Shake vigorosly for 10 seconds
 5. Garnish with an olive skewer
 
+Dirty Martini.
 martini glass: 1
 vodka: 2
 olive juice: 1

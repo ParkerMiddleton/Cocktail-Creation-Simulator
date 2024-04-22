@@ -53,38 +53,70 @@ void BarModel::update(int deltaTime)
 
 void BarModel::ingredientPressed(const QString &liquorName)
 {
-	if (!isGlasswarePlaced)
-		return;
-
-	if (isGlasswareEmpty)
-		isGlasswareEmpty = false;
 
 	liquorSelection = liquorName;
 	pressedLiquor = true;
 	liquid.updateDrinkColor(liquorSelection);
-	bool found = false;
-	liquid.startPouring();
-	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
-	if (ingredient.first == liquorSelection)
-	{
-		found = true;
-	}
-
-	if (!found)
-	{
-		qDebug() << "wrong ingredient pressed" << liquorName;
-		outOfOrder = true;
-		userRecipe.ingredients.push_back(QPair<QString, int>(liquorSelection, -1));
-
-		emit incorrectIngredientUsed(stepNumber);
-	}
 
 	// dont start timer if clicked
 	// Start a single-shot timer with a delay of 1000 milliseconds (1 second)
 	timer.start();
 }
+void BarModel::processLiquor()
+{
+    // TODO:: Review why pressing wrong liquor decrements it by double the amount.
+    if (!isGlasswarePlaced)
+        return;
 
+    if (isGlasswareEmpty)
+        isGlasswareEmpty = false;
+
+    bool found = false;
+    QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
+
+    if (ingredient.first == liquorSelection)
+    {
+        found = true;
+    }
+
+    if (!found)
+    {
+        qDebug() << "wrong ingredient pressed" << liquorSelection;
+        outOfOrder = true;
+        userRecipe.ingredients.push_back(QPair<QString, int>(liquorSelection, -1));
+        emit incorrectIngredientUsed(stepNumber);
+    }
+
+    if (pressedLiquor)
+    { // Check if the whiskey button is still pressed
+        for (QPair<QString, int> &ingredient : userRecipe.ingredients)
+        {
+            if (ingredient.first == liquorSelection)
+            {
+                ingredient.second--;
+                volume++;
+                if(liquorSelection != "shake"){
+                    liquid.addLiquid(1);
+                }
+                qDebug() << liquorSelection << " " << ingredient.second;
+                if (ingredient.second == 0)
+                {
+                    stepNumber++;
+                    qDebug() << "Step Number:" << stepNumber;
+                    emit correctIngredientUsed(stepNumber);
+                }
+                else if(ingredient.second < 0){
+                    stepNumber++;
+                    qDebug() << "Step Number:" << stepNumber;
+                    emit incorrectIngredientUsed(stepNumber);
+                }
+            }
+
+        }
+    }
+    // allows to successfully pour but cant clear all particles
+}
 void BarModel::ingredientReleased()
 {
 	if (!isGlasswarePlaced)
@@ -212,32 +244,7 @@ void BarModel::emptyDrink()
 	qDebug() << "drink emptied";
 }
 
-void BarModel::processLiquor()
-{
-	// TODO:: Review why pressing wrong liquor decrements it by double the amount.
 
-	if (pressedLiquor)
-	{ // Check if the whiskey button is still pressed
-		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
-		{
-			if (ingredient.first == liquorSelection)
-			{
-				ingredient.second--;
-				volume++;
-				qDebug() << liquorSelection << " " << ingredient.second;
-				qDebug() << "volume = " << volume;
-
-				if (ingredient.second == 0)
-				{
-					stepNumber++;
-					//qDebug() << "Step Number:" << stepNumber;
-
-					return;
-				}
-			}
-		}
-	}
-}
 
 void BarModel::startNewRound()
 {
@@ -266,7 +273,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-	assignedRecipe = listOfRecipes[randomNumber]; // debug purposes
+    assignedRecipe = listOfRecipes[4]; // debug purposes
 	userRecipe = assignedRecipe;
 
 	//assignedRecipe = listOfRecipes[randomNumber];

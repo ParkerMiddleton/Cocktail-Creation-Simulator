@@ -112,18 +112,25 @@ void RecipeNote::updateRecipe(const QList<QString> &recipeSteps)
 
 void RecipeNote::showStepIsCorrect(int stepNumber)
 {
-	if (stepNumber < 0 || stepNumber >= steps.size() - 2)
-		return;
+    // if (stepNumber < 0 || stepNumber >= steps.size() - 2)
+    // 	return;
 
 	// +1 since the first one is drink's name.
-	steps[stepNumber + 1]->setIsCorrect(true);
+    steps[stepNumber]->setIsCorrect(true);
+    //qDebug() << "wtf.";
 }
 
 void RecipeNote::showStepIsIncorrect(int stepNumber)
 {
-	if (stepNumber < 0 || stepNumber >= steps.size() - 2)
-		return;
+    //Commenting this out for now, I think it was causing some problems - Tommy
+    /*
+      if (stepNumber < 0 || stepNumber >= steps.size() - 2)
+        return;
+     */
 
 	// +1 since the first one is drink's name.
-	steps[stepNumber + 1]->setIsCorrect(false);
+
+    steps[stepNumber]->setIsCorrect(false);
+    //qDebug() << "wtf.";
+
 }
