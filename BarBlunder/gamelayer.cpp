@@ -69,7 +69,6 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(ui->d_##buttonName, &QPushButton::clicked,		\
 bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 });
-
 	connectIngredient(LimeWedgeButton,		"lime wedge")
 	connectIngredient(OrangeButton,			"orange peeles")
 	connectIngredient(OliveButton,			"olives")
@@ -79,7 +78,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connectIngredient(CollinsGlassButton,	"collins glass")
 	connectIngredient(CopperMugButton,		"copper mug")
 	connectIngredient(MartiniGlassButton,	"martini glass")
-	connectIngredient(ShakertinButton,		"shake")
+    connectIngredient(OrangeLiquorButton,   "orange liquor splash")
 	connectIngredient(StirButton,			"stir")
 
 #undef connectIngredient
@@ -103,6 +102,10 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connectLiquor(LimeJuiceButton,			"lime juice");
 	connectLiquor(GingerBeerButton,			"ginger beer");
 	connectLiquor(BurbonButton,				"burbon");
+    connectLiquor(HalfNHalf,				"half n half");
+    connectLiquor(SweetNSourMix,            "sweet and sour mix");
+    connectLiquor(Agave_Nectar,				"agave nectar");
+    connectLiquor(ShakertinButton,          "shake");
 
 
 #undef connectLiquor
