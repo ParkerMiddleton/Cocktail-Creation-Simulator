@@ -11,6 +11,18 @@ BarModel::BarModel(QObject *parent)
 	, collinsGlass{Glassware::Type::Collins}
 	, copperMug{Glassware::Type::Copper}
 	, martiniGlass{Glassware::Type::Martini}
+    , rocksGlassOrange{Glassware::Type::RocksOrange}
+    , rocksGlassLime{Glassware::Type::RocksLime}
+    , rocksGlassOlives{Glassware::Type::RocksOlives}
+    , collinsGlassLime{Glassware::Type::CollinsLime}
+    , collinsGlassOrange{Glassware::Type::CollinsOrange}
+    , collinsGlassOlives{Glassware::Type::CollinsOlives}
+    , copperMugLime{Glassware::Type::CopperLime}
+    , copperMugOlive{Glassware::Type::CopperOlives}
+    , copperMugOrange{Glassware::Type::CopperOrange}
+    , martiniGlassOrange{Glassware::Type::MartiniOrange}
+    , martiniGlassLime{Glassware::Type::MartiniLime}
+    , martiniGlassOlives{Glassware::Type::MartiniOlives}
 	, isGlasswarePlaced{false}
 	, isGlasswareEmpty{true}
 {
@@ -139,24 +151,28 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		if (ingredientName == "rocks glass")
 		{
 			isGlasswarePlaced = true;
+            currentGlassware = "rocks glass";
 			emit glasswareUpdated(rocksGlass);
 			liquid.updateCollisionLayout(rocksGlass);
 		}
 		else if (ingredientName == "collins glass")
 		{
 			isGlasswarePlaced = true;
+            currentGlassware = "collins glass";
 			emit glasswareUpdated(collinsGlass);
 			liquid.updateCollisionLayout(collinsGlass);
 		}
 		else if (ingredientName == "copper mug")
 		{
 			isGlasswarePlaced = true;
+            currentGlassware = "copper mug";
 			emit glasswareUpdated(copperMug);
 			liquid.updateCollisionLayout(copperMug);
 		}
 		else if (ingredientName == "martini glass")
 		{
 			isGlasswarePlaced = true;
+            currentGlassware = "martini glass";
 			emit glasswareUpdated(martiniGlass);
 			liquid.updateCollisionLayout(martiniGlass);
 		}
@@ -165,12 +181,52 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 			return;
 		}
 	}
-	//
 
 	if (ingredientName == "ice")
 	{
 		liquid.addIce();
 	}
+
+    if(ingredientName == "orange peele" && currentGlassware == "rocks glass"){
+        emit glasswareUpdated(rocksGlassOrange);
+    }
+    if(ingredientName == "lime wedge" && currentGlassware == "rocks glass"){
+        emit glasswareUpdated(rocksGlassLime);
+    }
+    if(ingredientName == "olives" && currentGlassware == "rocks glass"){
+        emit glasswareUpdated(rocksGlassOlives);
+    }
+
+
+    if(ingredientName == "orange peele" && currentGlassware == "collins glass"){
+        emit glasswareUpdated(collinsGlassOrange);
+    }
+    if(ingredientName == "lime wedge" && currentGlassware == "collins glass"){
+        emit glasswareUpdated(collinsGlassLime);
+    }
+    if(ingredientName == "olives" && currentGlassware == "collins glass"){
+        emit glasswareUpdated(collinsGlassOlives);
+    }
+
+    if(ingredientName == "orange peele" && currentGlassware == "copper mug"){
+        emit glasswareUpdated(copperMugOrange);
+    }
+    if(ingredientName == "lime wedge" && currentGlassware == "copper mug"){
+        emit glasswareUpdated(copperMugLime);
+    }
+    if(ingredientName == "olives" && currentGlassware == "copper mug"){
+        emit glasswareUpdated(copperMugOlive);
+    }
+
+    if(ingredientName == "orange peele" && currentGlassware == "martini glass"){
+        emit glasswareUpdated(martiniGlassOrange);
+    }
+    if(ingredientName == "lime wedge" && currentGlassware == "martini glass"){
+        emit glasswareUpdated(martiniGlassLime);
+    }
+    if(ingredientName == "olives" && currentGlassware == "martini glass"){
+        emit glasswareUpdated(martiniGlassOlives);
+    }
 
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 

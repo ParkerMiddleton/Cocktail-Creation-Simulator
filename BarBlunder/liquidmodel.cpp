@@ -55,9 +55,9 @@ LiquidModel::LiquidModel(QWidget *parent)
 	drinkColors["olive juice"] =	QColor(207, 178, 112);   //olive juice
 	drinkColors["bitters"] =		QColor(179, 102, 110);       //bitters
 
-	// Setup particle system.
+    // Setup particle system.
 	b2ParticleSystemDef particleSystemDef;
-	// Define the liquid particle system parameters (idk how many are neccessary here just was messing around)
+    // Define the liquid particle system parameters
 	particleSystemDef.gravityScale = -9.0f;
 	particleSystemDef.radius = 3.75f; // Particle radius
 	particleSystemDef.dampingStrength = 0.2f; // Particle damping strength

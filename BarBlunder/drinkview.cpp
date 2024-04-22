@@ -56,7 +56,7 @@ void DrinkView::updateGlasswareDisplay(const Glassware &glassware)
 		gGlass.setPixmap(glassware.getDisplayPixmap());
 	}
 	else
-	{
+	{    
 		gMug.setPixmap(glassware.getDisplayPixmap());
 		gGlass.setPixmap(emptyPixmap);
 	}

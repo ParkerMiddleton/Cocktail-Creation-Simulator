@@ -38,7 +38,7 @@ public slots:
 
 	/// @brief Displays the given QPixmap of glassware.
 	/// @param glassware New QPixmap to display.
-	void updateGlasswareDisplay(const Glassware &glassware);
+    void updateGlasswareDisplay(const Glassware &glassware);
 
 	/// @brief Stops displaying the glassware.
 	void removeGlasswareDisplay();

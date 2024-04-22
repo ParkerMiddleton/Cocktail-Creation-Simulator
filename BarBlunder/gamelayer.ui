@@ -1132,7 +1132,7 @@ image: url(:/images/ingredients/Coke_Hover.png);
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="d_Spite">
+  <widget class="QPushButton" name="d_Sprite">
    <property name="geometry">
     <rect>
      <x>920</x>
@@ -1249,7 +1249,7 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <zorder>d_Grenadine</zorder>
   <zorder>d_SimpleSyrup</zorder>
   <zorder>d_Coke</zorder>
-  <zorder>d_Spite</zorder>
+  <zorder>d_Sprite</zorder>
   <zorder>d_SweetNSourMix</zorder>
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>

@@ -9,7 +9,11 @@
 class Glassware
 {
 public:
-	enum class Type { Rocks, Collins, Copper, Martini };
+    enum class Type { Rocks, Collins, Copper, Martini,
+                      RocksOrange, RocksLime, RocksOlives,
+CollinsOrange, CollinsLime, CollinsOlives,
+CopperOrange, CopperLime, CopperOlives,
+MartiniLime, MartiniOrange, MartiniOlives };
 
 	/// @brief Constructor.
 	/// @param type Type of glassware.
