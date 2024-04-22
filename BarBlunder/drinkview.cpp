@@ -32,9 +32,6 @@ void DrinkView::initializeConnections(BarModel *bar)
 	connect(bar->liquidModel(), &LiquidModel::simulationUpdated,
 			this, &DrinkView::updateLiquidDisplay);
 
-    connect(bar->liquidModel(), &LiquidModel::removeLiquid,
-            this, &DrinkView::removeLiquidDisplay);
-
 	connect(bar, &BarModel::glasswareUpdated,
 			this, &DrinkView::updateGlasswareDisplay);
 

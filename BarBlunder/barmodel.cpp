@@ -134,6 +134,11 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	}
 	//
 
+	if (ingredientName == "ice")
+	{
+		liquid.addIce();
+	}
+
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
 	if (ingredient.first == ingredientName)
@@ -262,13 +267,6 @@ void BarModel::getRandomRecipe()
 
 	//assignedRecipe = listOfRecipes[randomNumber];
 	emit newDrink(assignedRecipe.recipeSteps);
-}
-
-void BarModel::hideDrink(){
-    liquid.hideLiquid();
-}
-void BarModel::exposeDrink(){
-    liquid.exposeLiquid();
 }
 
 void BarModel::removeGlassware()

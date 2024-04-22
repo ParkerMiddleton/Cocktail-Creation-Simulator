@@ -44,12 +44,6 @@ public slots:
 	/// @brief this slot emties drinks
 	void emptyDrink();
 
-	/// @brief this slot hides drinks
-	void hideDrink();
-
-	/// @brief this slot exposes the drink
-	void exposeDrink();
-
 signals:
 	void newDrink(const QList<QString> &recipeSteps);
 	void drinkEmptied();

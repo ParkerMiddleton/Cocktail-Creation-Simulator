@@ -106,15 +106,6 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 
 
 #undef connectLiquor
-
-	//shakertin
-	// should take away liquid while the user is holding down the shakertin
-	connect(ui->d_ShakertinButton, &QPushButton::pressed,
-			bar, &BarModel::hideDrink);
-
-	connect(ui->d_ShakertinButton, &QPushButton::released,
-			bar, &BarModel::exposeDrink);
-
 }
 
 GameLayer::~GameLayer()
