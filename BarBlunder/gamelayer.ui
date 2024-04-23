@@ -334,7 +334,7 @@ image: url(:/images/glasses/rocks_hover.png);
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>260</x>
      <y>480</y>
      <width>100</width>
      <height>91</height>
@@ -358,7 +358,7 @@ image: url(:/images/garnish/lime_wedges_hover);
   <widget class="QPushButton" name="d_OliveButton">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>340</x>
      <y>470</y>
      <width>100</width>
      <height>100</height>
@@ -382,7 +382,7 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>420</x>
      <y>480</y>
      <width>100</width>
      <height>91</height>
@@ -1240,38 +1240,28 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="d_OliveJuice">
+  <widget class="QPushButton" name="d_OliveJuiceButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>490</y>
-     <width>80</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Olive Juice</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="PourTimer">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>20</y>
-     <width>151</width>
-     <height>71</height>
+     <x>496</x>
+     <y>470</y>
+     <width>91</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(0, 0, 0, 190);
-border: 1px solid transparent;
-color: #e5e5e5;
-text-align:center;
-font: bold &quot;Ebrima&quot;;
-font-size: 14px;</string>
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/ingredients/OliveJuice.png);
+}
+
+QPushButton::hover {
+image: url(:/images/ingredients/OliveJuice_Hover.png);
+}</string>
    </property>
    <property name="text">
-    <string>Pour Timer: </string>
+    <string/>
    </property>
   </widget>
   <zorder>UnderBar</zorder>
@@ -1323,8 +1313,7 @@ font-size: 14px;</string>
   <zorder>d_SweetNSourMix</zorder>
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>
-  <zorder>d_OliveJuice</zorder>
-  <zorder>PourTimer</zorder>
+  <zorder>d_OliveJuiceButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
