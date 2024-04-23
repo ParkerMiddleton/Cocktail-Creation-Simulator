@@ -29,6 +29,8 @@ BarModel::BarModel(QObject *parent)
 	{
 		listOfRecipes.push_back(Recipe(inStream));
 	}
+
+    connect(&pressTimer, &QTimer::timeout, this, &BarModel::updatePressedTimer);
 }
 
 BarModel::~BarModel()
@@ -73,6 +75,11 @@ void BarModel::update(int deltaTime)
 
 void BarModel::ingredientPressed(const QString &liquorName)
 {
+
+    // setup display timer to signal every second.
+    pressTimer.start(1000);
+    elapsedTimer.start();
+
 	currentLiquor = liquorName;
 
 	processingElapsedTime = 0;
@@ -82,66 +89,68 @@ void BarModel::ingredientPressed(const QString &liquorName)
 
 void BarModel::processLiquor()
 {
-	// TODO:: Review why pressing wrong liquor decrements it by double the amount.
-	if (!currentGlassware)
-		return;
+    // TODO:: Review why pressing wrong liquor decrements it by double the amount.
+    if (!currentGlassware)
+        return;
 
-	if (isGlasswareEmpty)
-		isGlasswareEmpty = false;
+    if (isGlasswareEmpty)
+        isGlasswareEmpty = false;
 
-	bool found = false;
-	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
+    bool found = false;
 
-	if (ingredient.first == currentLiquor)
-	{
-		found = true;
-	}
+    QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
-	if (!found)
-	{
-		qDebug() << "wrong ingredient pressed" << currentLiquor;
-		outOfOrder = true;
-		userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
-		emit incorrectIngredientUsed(stepNumber);
-	}
-
-	if (pressedLiquor)
+    if (ingredient.first == currentLiquor)
     {
-		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
-		{
-			if (ingredient.first == currentLiquor)
-			{
-				ingredient.second--;
-				if (currentLiquor != "shake")
-				{
-					liquid.pour(1, currentLiquor);
-                }else{
+        found = true;
+    }
 
+    if (!found)
+    {
+        liquid.pour(1, currentLiquor);
+        qDebug() << "wrong ingredient pressed" << currentLiquor;
+        outOfOrder = true;
+        userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
+        emit incorrectIngredientUsed(stepNumber);
+    }
+    else if (pressedLiquor)
+    { // Check if the whiskey button is still pressed
+        for (QPair<QString, int> &ingredient : userRecipe.ingredients)
+        {
+            if (ingredient.first == currentLiquor)
+            {
+                ingredient.second--;
+                if (currentLiquor != "shake")
+                {
+                    liquid.pour(1, currentLiquor);
                 }
-
-				qDebug() << currentLiquor << " " << ingredient.second;
-				if (ingredient.second == 0)
-				{
-					stepNumber++;
-					qDebug() << "Step Number:" << stepNumber;
-					emit correctIngredientUsed(stepNumber);
-				}
-				else if(ingredient.second < 0)
-				{
-					stepNumber++;
-					qDebug() << "Step Number:" << stepNumber;
-					emit incorrectIngredientUsed(stepNumber);
-				}
-			}
-
-		}
-	}
+                qDebug() << currentLiquor << " " << ingredient.second;
+                if (ingredient.second == 0)
+                {
+                    stepNumber++;
+                    qDebug() << "Step Number 1:" << stepNumber;
+                    emit correctIngredientUsed(stepNumber);
+                }
+                else if(ingredient.second < 0)
+                {
+                    stepNumber++;
+                    qDebug() << "Step Number 2:" << stepNumber;
+                    emit incorrectIngredientUsed(stepNumber);
+                }
+            }
+        }
+    }
 }
 
 void BarModel::ingredientReleased()
 {
 	if (!currentGlassware)
 		return;
+
+    elapsedTimer.invalidate();
+    pressTimer.stop();
+
+    emit elapsedTimePressed(0);
 
 	pressedLiquor = false;
 	isProcessing = false;
@@ -304,4 +313,10 @@ void BarModel::removeGlassware()
 	currentGlassware = nullptr;
 	liquid.removeGlassware();
 	emit currentGlasswareRemoved();
+}
+
+void BarModel::updatePressedTimer() {
+    int elapsedTime = elapsedTimer.elapsed();
+    int roundedTime = qRound(static_cast<qreal>(elapsedTime) / 1000.0); // Round to the nearest second
+    emit elapsedTimePressed(roundedTime);
 }
