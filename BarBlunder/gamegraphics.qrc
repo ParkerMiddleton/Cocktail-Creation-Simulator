@@ -84,5 +84,7 @@
         <file>images/maindrink/icesphere.png</file>
         <file>images/ingredients/OliveJuice.png</file>
         <file>images/ingredients/OliveJuice_Hover.png</file>
+        <file>images/bar/drunk_guy.png</file>
+        <file>images/bar/text_box2.png</file>
     </qresource>
 </RCC>

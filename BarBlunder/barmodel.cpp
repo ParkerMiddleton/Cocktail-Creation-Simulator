@@ -123,6 +123,7 @@ void BarModel::processLiquor()
 		outOfOrder = true;
 		userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
 		emit incorrectIngredientUsed(stepNumber);
+        emit incorrectIngredientName(ingredient.first);
 	}
     else if (pressedLiquor)
 	{ // Check if the whiskey button is still pressed
@@ -144,6 +145,7 @@ void BarModel::processLiquor()
 					stepNumber++;
 					qDebug() << "Step Number 1:" << stepNumber;
 					emit correctIngredientUsed(stepNumber);
+                    emit correctIngredientName(ingredient.first);
 
 					if (currentLiquor == "shake")
 						liquid.mix();
@@ -153,6 +155,7 @@ void BarModel::processLiquor()
 					stepNumber++;
 					qDebug() << "Step Number 2:" << stepNumber;
 					emit incorrectIngredientUsed(stepNumber);
+                    emit correctIngredientName(ingredient.first);
 
 					if (currentLiquor == "shake")
 						liquid.mix();
@@ -219,10 +222,10 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	{
 		liquid.addIce();
 	}
-	else if (ingredientName == "stir")
-	{
-		liquid.mix();
-	}
+    else if (ingredientName == "stir")
+    {
+        liquid.mix();
+    }
 	else if (ingredientName == "bitters" || ingredientName == "orange liquor splash")
 	{
 		liquid.dash(ingredientName);
@@ -244,6 +247,7 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		qDebug() << stepNumber;
 
 		emit correctIngredientUsed(stepNumber);
+        emit correctIngredientName(ingredientName);
 	}
 	else
 	{
@@ -251,6 +255,7 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
 
 		emit incorrectIngredientUsed(stepNumber);
+        emit incorrectIngredientName(ingredientName);
 	}
 }
 
@@ -333,6 +338,7 @@ void BarModel::getRandomRecipe()
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.recipeSteps);
+    emit drinkOrder(assignedRecipe.drinkName);
 }
 
 void BarModel::removeGlassware()

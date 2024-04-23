@@ -65,11 +65,15 @@ signals:
 
 	void correctIngredientUsed(int stepNumber);
 	void incorrectIngredientUsed(int stepNumber);
+    void correctIngredientName(QString currentIngredient);
+    void incorrectIngredientName(QString currentIngredient);
 
 	void drinkIsCorrect();
 	void drinkIsIncorrect();
 
     void elapsedTimePressed(int time);
+
+    void drinkOrder(QString drinkName);
 
 private slots:
 	/// @brief this slot process the the liquor

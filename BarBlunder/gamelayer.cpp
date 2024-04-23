@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include <QRandomGenerator>
 
 //#include <QMediaPlayer>
 //#include <QAudioOutput>
@@ -17,9 +18,11 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 {
 	ui->setupUi(this);
 
+    currentStep = 0;
 	RecipeNote *recipeNote = ui->Recipe;
 	recipeNote->setupLayout(ui->Steps);
 	ui->v_Notes->setCurrentWidget(ui->Note1);
+    ui->DrunkGuyTxtBox->setVisible(false);
 
 	// Pause overlay and button.
 	pauseOverlay = new QWidget(this);
@@ -43,7 +46,10 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 			this, &GameLayer::hidePauseOverlay);
 
     connect(app, &ApplicationModel::audioVolumeChanged,
-            audioOutputSB, &QAudioOutput::setVolume);
+            audioOutputSBClicked, &QAudioOutput::setVolume);
+
+    connect(app, &ApplicationModel::audioVolumeChanged,
+            audioOutputSBPour, &QAudioOutput::setVolume);
 
 	BarModel *bar = app->barModel();
 	ui->v_DrinkView->initializeConnections(bar);
@@ -62,8 +68,14 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(bar, &BarModel::correctIngredientUsed
 			, recipeNote, &RecipeNote::showStepIsCorrect);
 
+    connect(bar, &BarModel::correctIngredientUsed
+            , this, &GameLayer::updateDrunkGuyTextCorrect);
+
 	connect(bar, &BarModel::incorrectIngredientUsed
 			, recipeNote, &RecipeNote::showStepIsIncorrect);
+
+    connect(bar, &BarModel::incorrectIngredientUsed
+            , this, &GameLayer::updateDrunkGuyTextInCorrect);
 
 	connect(bar, &BarModel::drinkIsCorrect
 			, this, &GameLayer::showRoundEndCorrectMessage);
@@ -74,6 +86,9 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     // update pouring timer
     connect(bar, &BarModel::elapsedTimePressed
             , this, &GameLayer::updatePourTimer);
+
+    connect(bar, &BarModel::drinkOrder
+            , this, &GameLayer::currentOrder);
 
 // Glassware buttons connections.
 // "buttonName" without "d_" prefix!
@@ -104,7 +119,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connectIngredient(CopperMugButton,		"copper mug")
 	connectIngredient(MartiniGlassButton,	"martini glass")
     connectIngredient(OrangeLiquorButton,   "orange liquor splash")
-	connectIngredient(StirButton,			"stir")
+    connectIngredient(StirButton,			"stir")
 
 #undef connectIngredient
 
@@ -135,8 +150,8 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectLiquor(Sprite,                   "sprite");
     connectLiquor(Coke,                     "coke");
     connectLiquor(OliveJuiceButton,               "olive juice");
-    connectLiquor(StirButton,               "stir");
-    connectLiquor(OrangeLiquorButton,       "orange liquor splash");
+    // connectLiquor(StirButton,               "stir");
+    // connectLiquor(OrangeLiquorButton,       "orange liquor splash");
 
 
 #undef connectLiquor
@@ -149,6 +164,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     // TODO:: maybe add functionality for sound with ice emptying, and without
     connectSoundButton(IceButton,           "qrc:/soundBoard/ice_cubes.mp3");
     connectSoundButton(SinkButton,          "qrc:/soundBoard/empty_liquid.mp3");
+    connectSoundButton(StirButton,          "qrc:/soundBoard/ice_stir.mp3");
 
 #undef connectSoundButton
 
@@ -156,7 +172,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connect(ui->d_##buttonName, &QPushButton::pressed, \
             this, [this]() { playPourSound(soundFilePath); }); \
         connect(ui->d_##buttonName, &QPushButton::released, \
-                soundBoard, &QMediaPlayer::stop);
+                soundBoardPour, &QMediaPlayer::stop);
 
     // TODO:: add non ice drink mix sound, and add empty drink sound
     connectPourSoundButton(KahluaButton,        "qrc:/soundBoard/liquid_pour_2.mp3");
@@ -173,12 +189,11 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectPourSoundButton(Agave_Nectar,        "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(Grenadine,           "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(SimpleSyrup,         "qrc:/soundBoard/liquid_pour_2.mp3");
-    connectPourSoundButton(OliveJuiceButton,          "qrc:/soundBoard/liquid_pour_2.mp3");
-    connectPourSoundButton(OrangeLiquorButton,  "qrc:/soundBoard/liquid_pour_2.mp3");
+    connectPourSoundButton(OliveJuiceButton,    "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(Sprite,              "qrc:/soundBoard/soda_pour.mp3");
     connectPourSoundButton(Coke,                "qrc:/soundBoard/soda_pour.mp3");
     connectPourSoundButton(ShakertinButton,     "qrc:/soundBoard/shaker_sound.mp3");
-    connectPourSoundButton(StirButton,          "qrc:/soundBoard/ice_stir.mp3");
+    //connectPourSoundButton(StirButton,          "qrc:/soundBoard/ice_stir.mp3");
 
 
 #undef connectPourSoundButton
@@ -224,23 +239,106 @@ void GameLayer::updatePourTimer(int time) {
 }
 
 void GameLayer::setupSoundBoard() {
-    audioOutputSB = new QAudioOutput(this);
-    soundBoard = new QMediaPlayer(this);
-    soundBoard->setAudioOutput(audioOutputSB);
-    audioOutputSB->setVolume(0.0f);
+    audioOutputSBPour = new QAudioOutput(this);
+    soundBoardPour = new QMediaPlayer(this);
+    soundBoardPour->setAudioOutput(audioOutputSBPour);
+    audioOutputSBPour->setVolume(0.0f);
+
+    audioOutputSBClicked = new QAudioOutput(this);
+    soundBoardClicked = new QMediaPlayer(this);
+    soundBoardClicked->setAudioOutput(audioOutputSBClicked);
+    audioOutputSBClicked->setVolume(0.0f);
 }
 
 void GameLayer::playSoundEffect(const QString &soundFilePath) {
-    soundBoard->stop();
-    soundBoard->setSource(QUrl(soundFilePath));
-    soundBoard->play();
+    soundBoardClicked->stop();
+    soundBoardClicked->setSource(QUrl(soundFilePath));
+    soundBoardClicked->play();
 }
 
 void GameLayer::playPourSound(const QString &soundFilePath) {
+    soundBoardClicked->stop();
     // allow for current sound to finish before restarting
-    if (!soundBoard->isPlaying()) {
-        soundBoard->setLoops(QMediaPlayer::Infinite);
-        soundBoard->setSource(QUrl(soundFilePath));
-        soundBoard->play();
+    if (!soundBoardPour->isPlaying()) {
+        soundBoardPour->setLoops(QMediaPlayer::Infinite);
+        soundBoardPour->setSource(QUrl(soundFilePath));
+        soundBoardPour->play();
     }
 }
+
+void GameLayer::updateDrunkGuyTextCorrect(int stepNumber) {
+    // only display text if step is over
+    if(stepNumber != currentStep) {
+        currentStep = stepNumber;
+        QStringList correctPhrases = {
+            "Well done!",
+            "You got it!",
+            "Nice job!",
+            "Great!",
+            "Perfect!",
+            "Excellent!",
+            "Awesome!",
+            "Fantastic!"
+        };
+
+        ui->DrunkGuyTxtBox->setVisible(true);
+        QString correctPhrase = correctPhrases[QRandomGenerator::global()->bounded(correctPhrases.size())];
+        ui->DrunkGuyTxt->setText(correctPhrase);
+
+        QTimer::singleShot(2000, this, [this]() {
+            ui->DrunkGuyTxt->setText("");
+            ui->DrunkGuyTxtBox->setVisible(false);
+        });
+    }
+}
+
+void GameLayer::updateDrunkGuyTextInCorrect(int stepNumber) {
+    // only display text if step is over
+    if(stepNumber != currentStep) {
+        currentStep = stepNumber;
+        QStringList incorrectPhrases = {
+            "Oops!",
+            "Not quite!",
+            "Try again!",
+            "Uh oh!",
+            "Incorrect!",
+            "That's wrong!",
+            "Better luck next time!",
+            "Keep trying!"
+        };
+
+        ui->DrunkGuyTxtBox->setVisible(true);
+        QString incorrectPhrase = incorrectPhrases[QRandomGenerator::global()->bounded(incorrectPhrases.size())];
+        ui->DrunkGuyTxt->setText(incorrectPhrase);
+
+        QTimer::singleShot(2000, this, [this]() {
+            ui->DrunkGuyTxt->setText("");
+            ui->DrunkGuyTxtBox->setVisible(false);
+        });
+    }
+}
+
+
+void GameLayer::currentOrder(QString drinkName) {
+    QStringList addonPhrases = {
+        "Can I get a",
+        "I'd like a",
+        "Give me a",
+        "How about a",
+        "I'll take a",
+        "Could you make me a",
+        "Pour me a",
+        "Fix me a",
+        "Mix up a"
+    };
+
+    ui->DrunkGuyTxtBox->setVisible(true);
+    QString addonPhrase = addonPhrases[QRandomGenerator::global()->bounded(addonPhrases.size())];
+    ui->DrunkGuyTxt->setText(addonPhrase + " " + drinkName);
+
+    QTimer::singleShot(2000, this, [this]() {
+        ui->DrunkGuyTxt->setText("");
+        ui->DrunkGuyTxtBox->setVisible(false);
+    });
+}
+

@@ -48,6 +48,10 @@ public slots:
     void playSoundEffect(const QString &soundFilePath);
     void playPourSound(const QString &soundFilePath);
 
+    void updateDrunkGuyTextCorrect(int stepNumber);
+    void updateDrunkGuyTextInCorrect(int stepNumber);
+    void currentOrder(QString drinkName);
+
 private slots:
 	/// @brief Displays the recipe note.
 	/// Used after the round end message was displayed for a specified amount of time.
@@ -61,10 +65,13 @@ private:
 	QWidget *pauseOverlay;
 
 	// Sound effects
-    QMediaPlayer *soundBoard;
-    QAudioOutput *audioOutputSB;
+    QMediaPlayer *soundBoardPour;
+    QAudioOutput *audioOutputSBPour;
+    QMediaPlayer *soundBoardClicked;
+    QAudioOutput *audioOutputSBClicked;
     void setupSoundBoard();
 
+    int currentStep;
 
 };
 

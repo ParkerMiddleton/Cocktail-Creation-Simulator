@@ -450,7 +450,7 @@ image: url(:/images/garnish/orange_peels_hover);
   <widget class="QPushButton" name="d_MartiniGlassButton">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>200</x>
      <y>290</y>
      <width>121</width>
      <height>121</height>
@@ -557,7 +557,7 @@ image: url(:/images/ingredients/tripleSec_Hover.png);
   <widget class="QPushButton" name="d_CopperMugButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>290</x>
      <y>320</y>
      <width>131</width>
      <height>91</height>
@@ -1267,7 +1267,7 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
   <widget class="QLabel" name="PourTimer">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>790</x>
      <y>20</y>
      <width>141</width>
      <height>71</height>
@@ -1283,6 +1283,69 @@ font-size: 14px;</string>
    </property>
    <property name="text">
     <string>Timer:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DrunkGuy">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>160</y>
+     <width>281</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/drunk_guy.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DrunkGuyTxtBox">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>251</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="gamegraphics.qrc">:/images/bar/text_box2.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DrunkGuyTxt">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>211</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black;</string>
+   </property>
+   <property name="text">
+    <string>Prompt</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -1310,11 +1373,9 @@ font-size: 14px;</string>
   <zorder>d_LimeWedgeButton</zorder>
   <zorder>d_OrangeButton</zorder>
   <zorder>DrinkMakeArea</zorder>
-  <zorder>d_MartiniGlassButton</zorder>
   <zorder>d_GinButton</zorder>
   <zorder>d_KahluaButton</zorder>
   <zorder>d_OrangeLiquorButton</zorder>
-  <zorder>d_CopperMugButton</zorder>
   <zorder>d_BittersButton</zorder>
   <zorder>d_ShakertinButton</zorder>
   <zorder>d_OliveButton</zorder>
@@ -1342,6 +1403,11 @@ font-size: 14px;</string>
   <zorder>d_HalfNHalf</zorder>
   <zorder>d_OliveJuiceButton</zorder>
   <zorder>PourTimer</zorder>
+  <zorder>DrunkGuy</zorder>
+  <zorder>d_CopperMugButton</zorder>
+  <zorder>d_MartiniGlassButton</zorder>
+  <zorder>DrunkGuyTxtBox</zorder>
+  <zorder>DrunkGuyTxt</zorder>
  </widget>
  <customwidgets>
   <customwidget>
