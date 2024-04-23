@@ -173,7 +173,7 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		currentGlassware->placeGarnish(Glassware::Garnish::Lime);
 		emit glasswareUpdated(*currentGlassware);
 	}
-	else if (ingredientName == "orange peele")
+    else if (ingredientName == "orange peel")
 	{
 		currentGlassware->placeGarnish(Glassware::Garnish::Orange);
 		emit glasswareUpdated(*currentGlassware);
