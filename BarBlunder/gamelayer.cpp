@@ -63,6 +63,10 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(bar, &BarModel::drinkIsIncorrect
 			, this, &GameLayer::showRoundEndIncorrectMessage);
 
+    //update pouring timer
+    connect(bar, &BarModel::elapsedTimePressed
+            , this, &GameLayer::updatePourTimer);
+
 	// Ingredient buttons connections.
 	// "buttonName" without "d_" prefix!
 #define connectIngredient(buttonName, ingredientString)		\
@@ -92,7 +96,6 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connect(ui->d_##buttonName, &QPushButton::released,				\
 			bar, &BarModel::ingredientReleased);
 
-	connectLiquor(OrangeLiquorButton,		"orange liquor");
 	connectLiquor(KahluaButton,				"kahlua");
 	connectLiquor(VodkaButton,				"vodka");
 	connectLiquor(TequilaButton,			"tequila");
@@ -110,6 +113,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectLiquor(SimpleSyrup,              "simple syrup");
     connectLiquor(Sprite,                   "sprite");
     connectLiquor(Coke,                     "coke");
+    connectLiquor(OliveJuice,               "olive juice");
 
 
 #undef connectLiquor
@@ -147,4 +151,8 @@ void GameLayer::showRoundEndIncorrectMessage()
 void GameLayer::switchToRecipeNote()
 {
 	ui->v_Notes->setCurrentWidget(ui->Note1);
+}
+
+void GameLayer::updatePourTimer(int time) {
+    ui->PourTimer->setText("Pour time: " + QString::number(time));
 }

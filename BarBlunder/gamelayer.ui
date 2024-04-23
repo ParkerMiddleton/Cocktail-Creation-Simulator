@@ -1240,6 +1240,40 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="d_OliveJuice">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>490</y>
+     <width>80</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Olive Juice</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PourTimer">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>20</y>
+     <width>151</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(0, 0, 0, 190);
+border: 1px solid transparent;
+color: #e5e5e5;
+text-align:center;
+font: bold &quot;Ebrima&quot;;
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>Pour Timer: </string>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1289,6 +1323,8 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <zorder>d_SweetNSourMix</zorder>
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>
+  <zorder>d_OliveJuice</zorder>
+  <zorder>PourTimer</zorder>
  </widget>
  <customwidgets>
   <customwidget>

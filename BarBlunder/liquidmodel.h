@@ -48,7 +48,8 @@ public:
 	/// If already pouring, adds the given amount to the total amount to pour.
 	/// @param ounce Amount to schedule.
 	/// @param drinkName Determines the color of the new liquid to pour.
-	void pour(int ounce, const QString &drinkName);
+    void pour(int ounce, const QString &drinkName);
+
 
 	/// @brief Creates dash particles.
 	void dash();

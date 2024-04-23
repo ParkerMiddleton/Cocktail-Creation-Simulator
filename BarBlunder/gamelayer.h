@@ -42,6 +42,8 @@ public slots:
 	/// @brief Displays a message about the incorrectly made drink inside the note.
 	void showRoundEndIncorrectMessage();
 
+    void updatePourTimer(int time);
+
 private slots:
 	/// @brief Displays the recipe note.
 	/// Used after the round end message was displayed for a specified amount of time.

@@ -103,6 +103,8 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 
 	// Play music.
 	this->playMenuMusic();
+
+
 }
 
 MainWindow::~MainWindow()

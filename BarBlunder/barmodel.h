@@ -7,6 +7,8 @@
 
 #include <QObject>
 #include <QMap>
+#include <QElapsedTimer>
+#include <QTimer>
 
 /// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
@@ -62,9 +64,14 @@ signals:
 	void drinkIsCorrect();
 	void drinkIsIncorrect();
 
+    void elapsedTimePressed(int time);
+
+
 private slots:
 	/// @brief this slot process the the liquor
 	void processLiquor();
+
+    void updatePressedTimer();
 
 private:
 	LiquidModel liquid;
@@ -94,6 +101,9 @@ private:
 	void getRandomRecipe();
 	/// @brief this method removes the glassware
 	void removeGlassware();
+
+    QElapsedTimer elapsedTimer;
+    QTimer pressTimer;
 
 };
 
