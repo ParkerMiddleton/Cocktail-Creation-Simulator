@@ -318,7 +318,6 @@ void GameLayer::updateDrunkGuyTextInCorrect(int stepNumber) {
     }
 }
 
-
 void GameLayer::currentOrder(QString drinkName) {
     QStringList addonPhrases = {
         "Can I get a",

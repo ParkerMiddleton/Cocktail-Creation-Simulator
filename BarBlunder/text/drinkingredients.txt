@@ -3,7 +3,7 @@ To Serve: "Old Fashioned"
 2. Pour 2 oz of whiskey
 3. Add Ice (3 Cubes)
 4. Add 6 bitters
-5. Stir for 5 seconds
+5. Stir
 6. Garnish with orange peel
 
 Old Fashioned
@@ -11,7 +11,7 @@ rocks glass: 1
 whiskey: 2
 ice: 3
 bitters: 6
-stir: 5
+stir: 1
 orange peel: 1
 
 To Serve: "Moscow Mule"
