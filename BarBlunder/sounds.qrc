@@ -1,1 +1,10 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>soundBoard/ice_cubes.mp3</file>
+        <file>soundBoard/liquid_pour_2.mp3</file>
+        <file>soundBoard/soda_pour.mp3</file>
+        <file>soundBoard/shaker_sound.mp3</file>
+        <file>soundBoard/ice_stir.mp3</file>
+        <file>soundBoard/empty_liquid.mp3</file>
+    </qresource>
+</RCC>

@@ -41,7 +41,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	drinkColors["gin"] =			{236, 233, 226, ALPHA};				// Gin color
 	drinkColors["kahlua"] =			{28, 1, 2, ALPHA};					// kahlua
 	drinkColors["burbon"] =			{165, 113, 10, ALPHA};				// burbon
-	drinkColors["tripe sec"] =		{236, 233, 226, ALPHA};				// triple sec
+    drinkColors["orange liquor splash"] =		{236, 233, 226, ALPHA};				// triple sec
     drinkColors["sweet and sour mix"] =	{210, 196, 112, ALPHA};				// sweet n sour
 	drinkColors["grenadine"] =		{180, 19, 41, ALPHA};				// grenadine
 	drinkColors["simple syrup"] =	{236, 233, 226, ALPHA};				// simpe syrup
