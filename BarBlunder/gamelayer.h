@@ -6,8 +6,8 @@
 // Forward Declaration.
 class ApplicationModel;
 
-//class QMediaPlayer;
-//class QAudioOutput;
+class QMediaPlayer;
+class QAudioOutput;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -44,6 +44,9 @@ public slots:
 
     void updatePourTimer(int time);
 
+    void playSoundEffect(const QString &soundFilePath);
+    void playPourSound(const QString &soundFilePath);
+
 private slots:
 	/// @brief Displays the recipe note.
 	/// Used after the round end message was displayed for a specified amount of time.
@@ -57,8 +60,10 @@ private:
 	QWidget *pauseOverlay;
 
 	// Sound effects
-	//QMediaPlayer *soundBoard;
-	//QAudioOutput *audioOutputSB;
+    QMediaPlayer *soundBoard;
+    QAudioOutput *audioOutputSB;
+    void setupSoundBoard();
+
 
 };
 

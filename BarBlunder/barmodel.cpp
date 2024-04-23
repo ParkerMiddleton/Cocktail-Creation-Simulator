@@ -290,10 +290,7 @@ void BarModel::emptyDrink()
 	emit newDrink(assignedRecipe.recipeSteps);
 	this->removeGlassware();
 	qDebug() << "drink emptied";
-
-
 }
-
 
 void BarModel::startNewRound()
 {

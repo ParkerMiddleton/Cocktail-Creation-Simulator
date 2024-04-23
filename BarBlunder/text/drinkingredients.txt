@@ -11,7 +11,7 @@ rocks glass: 1
 whiskey: 2
 ice: 5
 bitters: 6
-stir: 1
+stir: 3
 orange peel: 1
 
 To Serve: "Moscow Mule"

@@ -68,7 +68,6 @@ signals:
 
     void elapsedTimePressed(int time);
 
-
 private slots:
 	/// @brief this slot process the the liquor
 	void processLiquor();
