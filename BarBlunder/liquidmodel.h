@@ -8,6 +8,7 @@
 #include <QObject>
 
 #include <QMap>
+#include <QQueue>
 #include <QPixmap>
 
 // Forward declaration.
@@ -34,7 +35,7 @@ public:
 	/// @param glassware Glassware to initialize the collision of.
 	void updateGlassware(const Glassware &glassware);
 
-	/// @brief Removes the current collision and liquid,
+	/// @brief Removes the current collision and liquid.
 	void removeGlassware();
 
 	/// @brief Removes liquid and ice cubes.
@@ -43,14 +44,11 @@ public:
 	/// @brief Schedules new ice cubes to place in the drink.
 	void addIce();
 
-	/// @brief Sets the color of the new liquid to pour.
-	/// @param drinkName Drink of the color of which to take.
-	void updateDrinkColor(const QString &drinkName);
-
 	/// @brief Schedules the given amount of liquid to pour.
 	/// If already pouring, adds the given amount to the total amount to pour.
 	/// @param ounce Amount to schedule.
-	void pour(int ounce);
+	/// @param drinkName Determines the color of the new liquid to pour.
+	void pour(int ounce, const QString &drinkName);
 
 	/// @brief Mixes the color of different liquids in the drink.
 	void mix();
@@ -69,18 +67,21 @@ signals:
 
 private:
 	static constexpr float GRAVITY_SCALE = 30.0f;
+
 	static constexpr float PARTICLE_RADIUS = 3.75f;
+	static constexpr float PARTICLE_DROP_VELOCITY = -4.9f;
 	static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
+
 	static constexpr int DROPS_INTERVAL = 80;
 	static constexpr int OUNCE_POURING_DURATION = 1000;
 
 	QMap<QString, b2ParticleColor> drinkColors;
-	QString currentDrink;
+	QQueue<QString> scheduledDrinks;
 
 	bool isStirring;
 	bool isPouring;
 	int pouringElapsedTime;
-	int timeToPour;
+	int scheduledLiquidPouringElapsedTime;
 
 	QPixmap liquidPixmap;
 	QPixmap *iceTexture;

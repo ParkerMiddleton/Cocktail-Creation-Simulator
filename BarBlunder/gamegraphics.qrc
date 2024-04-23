@@ -10,11 +10,8 @@
         <file>images/glasses/collins_hover.png</file>
         <file>images/glasses/martini.png</file>
         <file>images/glasses/martini_hover.png</file>
-        <file>images/glasses/martini_hover_flipped.png</file>
         <file>images/glasses/rocks.png</file>
         <file>images/glasses/rocks_hover.png</file>
-        <file>images/glasses/wine.png</file>
-        <file>images/glasses/wine_hover.png</file>
         <file>images/ingredients/bitters.png</file>
         <file>images/ingredients/bitters_hover.png</file>
         <file>images/ingredients/ice.png</file>
@@ -32,8 +29,6 @@
         <file>images/tools/icewell_hover.png</file>
         <file>images/tools/shakertin.png</file>
         <file>images/tools/shakertin_hover.png</file>
-        <file>images/tools/trash.png</file>
-        <file>images/tools/trash_hover.png</file>
         <file>images/background.png</file>
         <file>images/bar/steel.png</file>
         <file>images/bar/under_bar.png</file>
@@ -48,15 +43,11 @@
         <file>images/tools/Spoon_Hover.png</file>
         <file>images/glasses/CopperMug.png</file>
         <file>images/glasses/CopperMug_Hover.png</file>
-        <file>images/glasses/wineUpsideDown.png</file>
         <file>images/ingredients/LimeJuice.png</file>
         <file>images/ingredients/LimeJuice_Hover.png</file>
-        <file>images/glasses/martiniFlipped.png</file>
         <file>images/ingredients/tripleSec.png</file>
         <file>images/ingredients/tripleSec_Hover.png</file>
         <file>images/bar/empty_icewell_Hover.png</file>
-        <file>images/glasses/CopperMugCut.png</file>
-        <file>images/glasses/CopperMugTransparent.png</file>
         <file>images/liquor/whiskey.png</file>
         <file>images/liquor/whiskey_Hover.png</file>
         <file>images/ingredients/AgaveNectar.png</file>

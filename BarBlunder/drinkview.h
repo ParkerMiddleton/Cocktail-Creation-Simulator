@@ -34,13 +34,8 @@ public slots:
 	void updateLiquidDisplay(const QPixmap &liquid);
 
 	/// @brief Displays the given QPixmap of glassware.
-	/// Stores a pointer to the glassware
 	/// @param glassware Contains new QPixmap to display.
-	void setNewGlassware(Glassware *glassware);
-
-	/// @brief Updates dispaly of the current stored glassware.
-	/// Used when olives, limes, and/or orange are placed on glassware.
-	void updateCurrentGlasswareDisplay();
+	void setNewGlassware(const Glassware &glassware);
 
 	/// @brief Stops displaying the glassware.
 	void removeGlasswareDisplay();
@@ -54,8 +49,6 @@ private:
 	QGraphicsPixmapItem gGlass;
 
 	QPixmap emptyPixmap;
-
-	Glassware *currentGlassware;
 
 };
 

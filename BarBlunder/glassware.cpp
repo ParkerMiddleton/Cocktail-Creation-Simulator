@@ -72,8 +72,8 @@ Glassware::Glassware(Glassware::Type type)
 		displayPixmap = glasswarePixmap;
 		transparent = true;
 
-		physicsPouringSource.setX(166.0f);
-		physicsPouringSource.setY(68.0f);
+		physicsPouringSource.setX(130.0f);
+		physicsPouringSource.setY(70.0f);
 
 		// Always Four Vertices.
 		// Starting from top left.

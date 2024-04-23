@@ -51,12 +51,10 @@ signals:
 
 	/// @brief glasswareUpdated this signal updates the glassware by calling a specific type
 	/// @param glassware the specific form of glassware being called
-	void newGlasswarePlaced(Glassware *glassware);
+	void glasswareUpdated(const Glassware &glassware);
 
 	/// @brief this signal removes glassware
 	void currentGlasswareRemoved();
-
-	void currentGlasswareUpdated();
 
 	void correctIngredientUsed(int stepNumber);
 	void incorrectIngredientUsed(int stepNumber);
@@ -72,8 +70,6 @@ private:
 	LiquidModel liquid;
 	QMap<QString, Glassware*> glasswares;
 	Glassware *currentGlassware;
-
-	bool isGlasswarePlaced;
 	bool isGlasswareEmpty;
 
 	bool isProcessing;

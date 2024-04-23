@@ -12,12 +12,10 @@
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
 
-	, currentDrink{""}
-
 	, isStirring{false}
 	, isPouring{false}
 	, pouringElapsedTime{0}
-	, timeToPour{0}
+	, scheduledLiquidPouringElapsedTime{0}
 
 	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
 	, iceTexture{nullptr}
@@ -41,20 +39,20 @@ LiquidModel::LiquidModel(QWidget *parent)
 	drinkColors["rum"] =			{236, 233, 226, ALPHA};				// Rum color
 	drinkColors["vodka"] =			{236, 233, 226, 50};				// Vodka color
 	drinkColors["gin"] =			{236, 233, 226, ALPHA};				// Gin color
-	drinkColors["kahlua"] =			{28, 1, 2, ALPHA};					//kahlua
-	drinkColors["burbon"] =			{165, 113, 10, ALPHA};				//burbon
-	drinkColors["tripe sec"] =		{236, 233, 226, ALPHA};				//triple sec
-	drinkColors["sweet n sour"] =	{210, 196, 112, ALPHA};				//sweet n sour
-	drinkColors["grenadine"] =		{180, 19, 41, ALPHA};				//grenadine
-	drinkColors["simple syrup"] =	{236, 233, 226, ALPHA};				//simpe syrup
-	drinkColors["agave nectar"] =	{245, 183, 10, ALPHA};				//agave nectar
-	drinkColors["sprite"] =			{236, 233, 226, ALPHA};				//sprite
-	drinkColors["coke"] =			{56, 45, 43, ALPHA};				//coke
-	drinkColors["half n half"] =	{255, 255, 255, ALPHA};				//half n half
-	drinkColors["lime juice"] =		{158, 180, 80, ALPHA};				//lime juice
-	drinkColors["ginger beer"] =	{253, 237, 115, ALPHA};				//ginger beer
-	drinkColors["olive juice"] =	{207, 178, 112, ALPHA};				//olive juice
-	drinkColors["bitters"] =		{179, 102, 110, ALPHA};				//bitters
+	drinkColors["kahlua"] =			{28, 1, 2, ALPHA};					// kahlua
+	drinkColors["burbon"] =			{165, 113, 10, ALPHA};				// burbon
+	drinkColors["tripe sec"] =		{236, 233, 226, ALPHA};				// triple sec
+	drinkColors["sweet n sour"] =	{210, 196, 112, ALPHA};				// sweet n sour
+	drinkColors["grenadine"] =		{180, 19, 41, ALPHA};				// grenadine
+	drinkColors["simple syrup"] =	{236, 233, 226, ALPHA};				// simpe syrup
+	drinkColors["agave nectar"] =	{245, 183, 10, ALPHA};				// agave nectar
+	drinkColors["sprite"] =			{236, 233, 226, ALPHA};				// sprite
+	drinkColors["coke"] =			{56, 45, 43, ALPHA};				// coke
+	drinkColors["half n half"] =	{255, 255, 255, ALPHA};				// half n half
+	drinkColors["lime juice"] =		{158, 180, 80, ALPHA};				// lime juice
+	drinkColors["ginger beer"] =	{253, 237, 115, ALPHA};				// ginger beer
+	drinkColors["olive juice"] =	{207, 178, 112, ALPHA};				// olive juice
+	drinkColors["bitters"] =		{179, 102, 110, ALPHA};				// bitters
 
 	// Setup particle system.
 	particleSystemDef.colorMixingStrength = 0.25f;
@@ -115,18 +113,18 @@ void LiquidModel::updateGlassware(const Glassware &glassware)
 void LiquidModel::removeGlassware()
 {
 	isPouring = false;
-	timeToPour = 0;
 	delete world;
 
 	world = nullptr;
 	liquidParticles = nullptr;
 	iceBodies.clear();
+	scheduledDrinks.clear();
 }
 
 void LiquidModel::empty()
 {
 	isPouring = false;
-	timeToPour = 0;
+	scheduledDrinks.clear();
 
 	if (world)
 	{
@@ -148,14 +146,14 @@ void LiquidModel::addIce()
 	addIceBody = true;
 }
 
-void LiquidModel::updateDrinkColor(const QString &drinkName)
+void LiquidModel::pour(int ounce, const QString &drinkName)
 {
-	currentDrink = drinkName;
-}
+	for (int index = 0; index < ounce; ++index)
+	{
+		scheduledDrinks.enqueue(drinkName);
+	}
 
-void LiquidModel::pour(int ounce)
-{
-	timeToPour += (ounce * OUNCE_POURING_DURATION);
+	scheduledLiquidPouringElapsedTime = 0;
 	pouringElapsedTime = 0;
 	isPouring = true;
 }
@@ -175,7 +173,7 @@ void LiquidModel::update(int deltaTime)
 		this->checkSheduledRemoveIceBodies();
 		this->checkScheduledAddIceBody();
 
-		if (isPouring && timeToPour > 0)
+		if (isPouring && !scheduledDrinks.isEmpty())
 		{
 			if (pouringElapsedTime >= DROPS_INTERVAL)
 			{
@@ -184,12 +182,13 @@ void LiquidModel::update(int deltaTime)
 			}
 
 			pouringElapsedTime += deltaTime;
-			timeToPour -= deltaTime;
+			scheduledLiquidPouringElapsedTime += deltaTime;
 		}
 
-		if (timeToPour <= 0)
+		if (scheduledLiquidPouringElapsedTime >= OUNCE_POURING_DURATION)
 		{
-			timeToPour = 0;
+			scheduledLiquidPouringElapsedTime = 0;
+			scheduledDrinks.dequeue();
 		}
 
 		this->draw();
@@ -247,9 +246,9 @@ void LiquidModel::spawnParticles()
 
 		// Def
 		b2ParticleDef pdef;
-		pdef.color = drinkColors[currentDrink];
+		pdef.color = drinkColors[scheduledDrinks.head()];
 		pdef.flags = b2_elasticParticle;
-		pdef.velocity = {0.0f, -4.9f * GRAVITY_SCALE};
+		pdef.velocity = {0.0f, PARTICLE_DROP_VELOCITY * GRAVITY_SCALE};
 
 		// Y coordinate.
 		//particlePos.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;

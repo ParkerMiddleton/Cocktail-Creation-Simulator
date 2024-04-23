@@ -7,11 +7,10 @@
 
 BarModel::BarModel(QObject *parent)
 	: QObject{parent}
-	, isGlasswarePlaced{false}
+	, currentGlassware{nullptr}
 	, isGlasswareEmpty{true}
 	, isProcessing{false}
 	, processingElapsedTime{0}
-	, currentGlassware{nullptr}
 {
 	glasswares.insert("rocks glass", new Glassware{Glassware::Type::Rocks});
 	glasswares.insert("collins glass", new Glassware{Glassware::Type::Collins});
@@ -75,7 +74,6 @@ void BarModel::update(int deltaTime)
 void BarModel::ingredientPressed(const QString &liquorName)
 {
 	currentLiquor = liquorName;
-	liquid.updateDrinkColor(currentLiquor);
 
 	processingElapsedTime = 0;
 	isProcessing = true;
@@ -85,7 +83,7 @@ void BarModel::ingredientPressed(const QString &liquorName)
 void BarModel::processLiquor()
 {
 	// TODO:: Review why pressing wrong liquor decrements it by double the amount.
-	if (!isGlasswarePlaced)
+	if (!currentGlassware)
 		return;
 
 	if (isGlasswareEmpty)
@@ -116,7 +114,7 @@ void BarModel::processLiquor()
 				ingredient.second--;
 				if (currentLiquor != "shake")
 				{
-					liquid.pour(1);
+					liquid.pour(1, currentLiquor);
 				}
 				qDebug() << currentLiquor << " " << ingredient.second;
 				if (ingredient.second == 0)
@@ -139,7 +137,7 @@ void BarModel::processLiquor()
 
 void BarModel::ingredientReleased()
 {
-	if (!isGlasswarePlaced)
+	if (!currentGlassware)
 		return;
 
 	pressedLiquor = false;
@@ -151,16 +149,15 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	if (stepNumber >= userRecipe.ingredients.size())
 		return;
 
-	if (!isGlasswarePlaced || isGlasswareEmpty)
+	if (!currentGlassware || isGlasswareEmpty)
 	{
 		if (glasswares.contains(ingredientName))
 		{
-			isGlasswarePlaced = true;
 			currentGlassware = glasswares.value(ingredientName);
-			emit newGlasswarePlaced(currentGlassware);
+			emit glasswareUpdated(*currentGlassware);
 			liquid.updateGlassware(*currentGlassware);
 		}
-		else if (!isGlasswarePlaced)
+		else if (!currentGlassware)
 		{
 			return;
 		}
@@ -169,17 +166,17 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	if (ingredientName == "olives")
 	{
 		currentGlassware->placeGarnish(Glassware::Garnish::Olive);
-		emit currentGlasswareUpdated();
+		emit glasswareUpdated(*currentGlassware);
 	}
 	else if (ingredientName == "lime wedge")
 	{
 		currentGlassware->placeGarnish(Glassware::Garnish::Lime);
-		emit currentGlasswareUpdated();
+		emit glasswareUpdated(*currentGlassware);
 	}
 	else if (ingredientName == "orange peele")
 	{
 		currentGlassware->placeGarnish(Glassware::Garnish::Orange);
-		emit currentGlasswareUpdated();
+		emit glasswareUpdated(*currentGlassware);
 	}
 	else if (ingredientName == "ice")
 	{
@@ -254,7 +251,8 @@ void BarModel::emptyDrink()
 		iter.value()->placeGarnish(Glassware::Garnish::None);
 	}
 
-	emit currentGlasswareUpdated();
+	if (currentGlassware)
+		emit glasswareUpdated(*currentGlassware);
 
 	// inform view to empty drink
 	emit drinkEmptied();
@@ -296,7 +294,7 @@ void BarModel::getRandomRecipe()
 
 void BarModel::removeGlassware()
 {
-	isGlasswarePlaced = false;
+	currentGlassware = nullptr;
 	liquid.removeGlassware();
 	emit currentGlasswareRemoved();
 }
