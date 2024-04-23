@@ -64,7 +64,6 @@
         <file>images/ingredients/Sprite_Hover.png</file>
         <file>images/ingredients/SSMix.png</file>
         <file>images/ingredients/SSMix_Hover.png</file>
-        <file>images/maindrink/icecube_16.png</file>
         <file>images/maindrink/collins.png</file>
         <file>images/maindrink/collins_lime.png</file>
         <file>images/maindrink/collins_olive.png</file>
@@ -81,5 +80,7 @@
         <file>images/maindrink/rocks_lime.png</file>
         <file>images/maindrink/rocks_olive.png</file>
         <file>images/maindrink/rocks_orange.png</file>
+        <file>images/maindrink/icecube.png</file>
+        <file>images/maindrink/icesphere.png</file>
     </qresource>
 </RCC>

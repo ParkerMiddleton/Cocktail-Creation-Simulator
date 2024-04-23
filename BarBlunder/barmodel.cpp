@@ -53,9 +53,6 @@ LiquidModel* BarModel::liquidModel()
 
 void BarModel::update(int deltaTime)
 {
-	if (stepNumber >= userRecipe.ingredients.size()) // If recipe is complete, do nothing
-		return;
-
 	if (isProcessing)
 	{
 		if (processingElapsedTime >= 1000) // Process every 1000 milliseconds
@@ -146,9 +143,6 @@ void BarModel::ingredientReleased()
 
 void BarModel::ingredientClicked(const QString &ingredientName)
 {
-	if (stepNumber >= userRecipe.ingredients.size())
-		return;
-
 	if (!currentGlassware || isGlasswareEmpty)
 	{
 		if (glasswares.contains(ingredientName))
@@ -185,6 +179,10 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	else if (ingredientName == "stir")
 	{
 		liquid.mix();
+	}
+	else if (ingredientName == "bitters")
+	{
+		liquid.dash();
 	}
 
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
@@ -286,7 +284,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-	assignedRecipe = listOfRecipes[0]; // randomNumber
+	assignedRecipe = listOfRecipes[randomNumber]; // randomNumber
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.recipeSteps);

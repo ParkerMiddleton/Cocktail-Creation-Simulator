@@ -50,6 +50,9 @@ public:
 	/// @param drinkName Determines the color of the new liquid to pour.
 	void pour(int ounce, const QString &drinkName);
 
+	/// @brief Creates dash particles.
+	void dash();
+
 	/// @brief Mixes the color of different liquids in the drink.
 	void mix();
 
@@ -66,20 +69,26 @@ signals:
 	void simulationUpdated(const QPixmap &pixmap);
 
 private:
-	static constexpr float GRAVITY_SCALE = 30.0f;
+	static constexpr float FROM_PIXEL_FACTOR = 0.01f;
 
-	static constexpr float PARTICLE_RADIUS = 3.75f;
-	static constexpr float PARTICLE_DROP_VELOCITY = -4.9f;
-	static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
+	// _M == Meters
+	static constexpr float LIQUID_PARTICLE_RADIUS_M = 0.0250f;
+	static constexpr float DASH_PARTICLE_RADIUS_M = 0.01f;
+	static constexpr float ICE_RADIUS_M = 0.1f;
+	static constexpr float ICE_DENSITY = 10.0f;
 
-	static constexpr int DROPS_INTERVAL = 80;
-	static constexpr int OUNCE_POURING_DURATION = 1000;
+	static constexpr float LIQUID_PARTICLE_DROP_VELOCITY = -2.0f;
+	static constexpr int LIQUID_PARTICLES_NUM_SPAWN_VERTICAL = 4;
+
+	static constexpr int DROPS_INTERVAL_MS = 30;
+	static constexpr int OUNCE_POURING_DURATION_MS = 1000;
 
 	QMap<QString, b2ParticleColor> drinkColors;
 	QQueue<QString> scheduledDrinks;
 
-	bool isStirring;
+	bool isMixing;
 	bool isPouring;
+	bool isDashing;
 	int pouringElapsedTime;
 	int scheduledLiquidPouringElapsedTime;
 
@@ -87,22 +96,27 @@ private:
 	QPixmap *iceTexture;
 
 	// Box2D
-	bool addIceBody;
-	bool removeIceBodies;
+	bool scheduleAddIceBody;
+	bool scheduleRemoveIceBodies;
 
 	b2Vec2 gravity;
-	b2ParticleSystemDef particleSystemDef;
+	b2ParticleSystemDef liquidParticlesDef;
+	b2ParticleSystemDef dashParticlesDef;
 	b2Vec2 pouringSource;
 
 	b2World *world;
 	b2ParticleSystem *liquidParticles;
+	b2ParticleSystem *dashParticles;
 	QList<b2Body*> iceBodies;
 
 	/// @brief Updates the liquid and ice cubes draw data.
 	void draw();
 
 	/// @brief Spawns new particles of liquid.
-	void spawnParticles();
+	void spawnLiquidParticles();
+
+	/// @brief Spawns temporary dash particles.
+	void spawnDashParticles();
 
 	/// @brief If scheduled, adds new ice cube.
 	void checkScheduledAddIceBody();
