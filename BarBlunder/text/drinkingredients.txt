@@ -12,7 +12,7 @@ whiskey: 2
 ice: 1
 bitters: 6
 stir: 1
-orange peeles: 1
+orange peel: 1
 
 To Serve: "Moscow Mule"
 1. Take one copper mug

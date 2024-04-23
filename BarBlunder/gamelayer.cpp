@@ -70,7 +70,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 });
 	connectIngredient(LimeWedgeButton,		"lime wedge")
-    connectIngredient(OrangeButton,			"orange peele")
+    connectIngredient(OrangeButton,			"orange peel")
 	connectIngredient(OliveButton,			"olives")
 	connectIngredient(BittersButton,		"bitters")
 	connectIngredient(IceButton,			"ice")
