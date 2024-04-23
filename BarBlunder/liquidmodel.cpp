@@ -1,24 +1,26 @@
 #include "liquidmodel.h"
-#include "drinkview_size.h"
 
 #include "glassware.h"
 
 #include <QWidget>
 #include <QPainter>
 #include <QPen>
+#include <QRandomGenerator>
 
 #include <Box2D/Box2D.h>
 
 LiquidModel::LiquidModel(QWidget *parent)
 	: QObject{parent}
 
+	, currentDash{""}
+
 	, isMixing{false}
 	, isPouring{false}
 	, isDashing{false}
 	, pouringElapsedTime{0}
 	, scheduledLiquidPouringElapsedTime{0}
-
-	, liquidPixmap{DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT}
+	
+	, liquidPixmap{PIXMAP_WIDTH, PIXMAP_HEIGHT}
 	, iceTexture{nullptr}
 
 	, scheduleAddIceBody{false}
@@ -32,11 +34,11 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, dashParticles{nullptr}
 {
 	QPixmap image(":/images/maindrink/icesphere.png");
-	iceTexture = new QPixmap(image.scaled((ICE_RADIUS_M / FROM_PIXEL_FACTOR) * 2, (ICE_RADIUS_M / FROM_PIXEL_FACTOR) * 2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	iceTexture = new QPixmap(image.scaled((ICE_RADIUS_M / CONVERSION_FACTOR) * 2, (ICE_RADIUS_M / CONVERSION_FACTOR) * 2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
 	uchar ALPHA = 200;
 
-	// setup colors for each drink
+	// Setup colors for drinks.
 	drinkColors["whiskey"] =		{165, 113, 10, ALPHA};				// Whiskey color
 	drinkColors["tequila"] =		{172, 73, 25, ALPHA};				// Tequila color
 	drinkColors["rum"] =			{236, 233, 226, ALPHA};				// Rum color
@@ -57,29 +59,19 @@ LiquidModel::LiquidModel(QWidget *parent)
 	drinkColors["olive juice"] =	{207, 178, 112, ALPHA};				// olive juice
 	drinkColors["bitters"] =		{179, 102, 110, ALPHA};				// bitters
 
-	// Setup liquid particle system.
-	liquidParticlesDef.colorMixingStrength = 0.25f;
-	liquidParticlesDef.destroyByAge = true;
+	// Setup colors for dashes.
+	dashColors["bitters"] =						{179, 102, 110};
+	dashColors["orange liquor splash"] =		{210, 196, 112};
 
-	liquidParticlesDef.dampingStrength = 0.2f;
-	liquidParticlesDef.surfaceTensionPressureStrength = 0.1f;
-	liquidParticlesDef.surfaceTensionNormalStrength = 1.0f;
-	liquidParticlesDef.springStrength = 0.0f;
-	liquidParticlesDef.elasticStrength = 0.1f;
-	liquidParticlesDef.staticPressureStrength = 0.2f;
-	liquidParticlesDef.powderStrength = 0.0f;
-	liquidParticlesDef.viscousStrength = 1.0f;
+	// Setup liquid particle system.
+	liquidParticlesDef.destroyByAge = true;
+	liquidParticlesDef.colorMixingStrength = 0.1f;
 
 	liquidParticlesDef.radius = LIQUID_PARTICLE_RADIUS_M;
-	liquidParticlesDef.gravityScale = 0.4f;
-	//liquidParticlesDef.density = 1.2f;
 
 	// Setup dash particle system.
 	dashParticlesDef.destroyByAge = true;
 	dashParticlesDef.radius = DASH_PARTICLE_RADIUS_M;
-	dashParticlesDef.density = 1.2f;
-
-	//dashParticlesDef.dampingStrength = 0.2f;
 }
 
 LiquidModel::~LiquidModel()
@@ -95,21 +87,27 @@ void LiquidModel::updateGlassware(const Glassware &glassware)
 
 	world = new b2World(gravity);
 
-	pouringSource.x = glassware.getPhysicsPouringSource().x() * FROM_PIXEL_FACTOR;
-	pouringSource.y = (DRINKVIEW_HEIGHT - glassware.getPhysicsPouringSource().y()) * FROM_PIXEL_FACTOR;
+	// Get source of pourings.
+	pouringSource.x = glassware.getPhysicsPouringSource().x() * CONVERSION_FACTOR;
+	pouringSource.y = (PIXMAP_HEIGHT - glassware.getPhysicsPouringSource().y()) * CONVERSION_FACTOR;
 
+	// Get vertices of glassware collision.
 	const QList<QPointF> &qVs = glassware.getPhysicsCollisionVertices();
-
 	b2Vec2 collisionVertices[6];
-	collisionVertices[0].Set(qVs[0].x() * FROM_PIXEL_FACTOR, (DRINKVIEW_HEIGHT - qVs[0].y()) * FROM_PIXEL_FACTOR);
-	collisionVertices[1].Set(qVs[1].x() * FROM_PIXEL_FACTOR, (DRINKVIEW_HEIGHT - qVs[1].y()) * FROM_PIXEL_FACTOR);
-	collisionVertices[2].Set(qVs[2].x() * FROM_PIXEL_FACTOR, (DRINKVIEW_HEIGHT - qVs[2].y()) * FROM_PIXEL_FACTOR);
-	collisionVertices[3].Set(qVs[3].x() * FROM_PIXEL_FACTOR, (DRINKVIEW_HEIGHT - qVs[3].y()) * FROM_PIXEL_FACTOR);
+	collisionVertices[0].Set(qVs[0].x() * CONVERSION_FACTOR, (PIXMAP_HEIGHT - qVs[0].y()) * CONVERSION_FACTOR);
+	collisionVertices[1].Set(qVs[1].x() * CONVERSION_FACTOR, (PIXMAP_HEIGHT - qVs[1].y()) * CONVERSION_FACTOR);
+	collisionVertices[2].Set(qVs[2].x() * CONVERSION_FACTOR, (PIXMAP_HEIGHT - qVs[2].y()) * CONVERSION_FACTOR);
+	collisionVertices[3].Set(qVs[3].x() * CONVERSION_FACTOR, (PIXMAP_HEIGHT - qVs[3].y()) * CONVERSION_FACTOR);
 
-	// To create a loop:
+	// Close the chain that will form the body.
 	collisionVertices[4].Set(collisionVertices[2].x, collisionVertices[2].y);
 	collisionVertices[5].Set(collisionVertices[1].x, collisionVertices[1].y);
 
+	// Get ice horizontal spawn range.
+	iceHorizontalSpawnRange[0] = collisionVertices[0].x + (ICE_RADIUS_M * 2.0f); // Left Bound.
+	iceHorizontalSpawnRange[1] = collisionVertices[3].x - (ICE_RADIUS_M * 2.0f); // Right Bound.
+
+	// Construct collision body.
 	b2BodyDef collisionBodyDef;
 	b2Body *collisionBody = world->CreateBody(&collisionBodyDef);
 
@@ -117,7 +115,7 @@ void LiquidModel::updateGlassware(const Glassware &glassware)
 	collisionShape.CreateLoop(collisionVertices, 6);
 	collisionBody->CreateFixture(&collisionShape, 0.0f);
 
-	// Create the liquid particle system
+	// Create particle systems.
 	liquidParticles = world->CreateParticleSystem(&liquidParticlesDef);
 	dashParticles = world->CreateParticleSystem(&liquidParticlesDef);
 	dashParticles->SetRadius(DASH_PARTICLE_RADIUS_M);
@@ -162,21 +160,19 @@ void LiquidModel::addIce()
 
 void LiquidModel::pour(int ounce, const QString &drinkName)
 {
-
     for (int index = 0; index < ounce; ++index)
     {
         scheduledDrinks.enqueue(drinkName);
     }
-
-
 
 	scheduledLiquidPouringElapsedTime = 0;
 	pouringElapsedTime = 0;
 	isPouring = true;
 }
 
-void LiquidModel::dash()
+void LiquidModel::dash(const QString &dashName)
 {
+	currentDash = dashName;
 	isDashing = true;
 }
 
@@ -191,8 +187,8 @@ void LiquidModel::update(int deltaTime)
 
 	if (world)
 	{
-		world->Step(1.0f / 60.0f, 8, 3); // Step the Box2D simulation
-		this->checkSheduledRemoveIceBodies();
+		world->Step(1.0f / 60.0f, 8, 3, 3); // Step the Box2D simulation
+		this->checkScheduledRemoveIceBodies();
 		this->checkScheduledAddIceBody();
 
 		if (isPouring && !scheduledDrinks.isEmpty())
@@ -235,8 +231,21 @@ void LiquidModel::draw()
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
 
+	b2Vec2 *posBuffer;
+
+	// Draw dash particles
+	posBuffer = dashParticles->GetPositionBuffer();
+	for (int i = 0; i < dashParticles->GetParticleCount(); ++i)
+	{
+		b2Vec2 particlePosition = posBuffer[i];
+		QColor color = dashColors[currentDash];
+		painter.setPen(color.darker(125));
+		painter.setBrush(color);
+		painter.drawEllipse(QPointF(particlePosition.x / CONVERSION_FACTOR, PIXMAP_HEIGHT - (particlePosition.y / CONVERSION_FACTOR)), 1.5, 1.5);
+	}
+
 	// Draw liquid particles
-	b2Vec2 *posBuffer = liquidParticles->GetPositionBuffer();
+	posBuffer = liquidParticles->GetPositionBuffer();
 	b2ParticleColor *colorBuffer = liquidParticles->GetColorBuffer();
 
 	for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
@@ -247,20 +256,9 @@ void LiquidModel::draw()
 		b2Vec2 particlePosition = posBuffer[i];
 		painter.setPen(Qt::NoPen);
 		painter.setBrush(QColor(colorBuffer[i].r, colorBuffer[i].g, colorBuffer[i].b, colorBuffer[i].a));
-		painter.drawEllipse(QPointF(particlePosition.x / FROM_PIXEL_FACTOR,
-									DRINKVIEW_HEIGHT - (particlePosition.y / FROM_PIXEL_FACTOR)),
-							LIQUID_PARTICLE_RADIUS_M / FROM_PIXEL_FACTOR + 1.0f, LIQUID_PARTICLE_RADIUS_M / FROM_PIXEL_FACTOR + 1.0f);
-	}
-
-	// Draw dash particles
-	posBuffer = dashParticles->GetPositionBuffer();
-
-	for (int i = 0; i < dashParticles->GetParticleCount(); ++i)
-	{
-		b2Vec2 particlePosition = posBuffer[i];
-		painter.setPen(Qt::NoPen);
-		painter.setBrush(QColor(166, 99, 41));
-		painter.drawEllipse(QPointF(particlePosition.x / FROM_PIXEL_FACTOR, DRINKVIEW_HEIGHT - (particlePosition.y / FROM_PIXEL_FACTOR)), 5, 5);
+		painter.drawEllipse(QPointF(particlePosition.x / CONVERSION_FACTOR,
+									PIXMAP_HEIGHT - (particlePosition.y / CONVERSION_FACTOR)),
+							LIQUID_PARTICLE_RADIUS_M / CONVERSION_FACTOR + 1.0f, LIQUID_PARTICLE_RADIUS_M / CONVERSION_FACTOR + 1.0f);
 	}
 
 	// Draw ice bodies.
@@ -268,8 +266,8 @@ void LiquidModel::draw()
 	{
 		b2Vec2 bodyPos = iceBody->GetPosition();
 
-		int x = (bodyPos.x / FROM_PIXEL_FACTOR) - (iceTexture->size().width() / 2);
-		int y = DRINKVIEW_HEIGHT - ((bodyPos.y / FROM_PIXEL_FACTOR) + (iceTexture->size().height() / 2));
+		int x = (bodyPos.x / CONVERSION_FACTOR) - (iceTexture->size().width() / 2);
+		int y = PIXMAP_HEIGHT - ((bodyPos.y / CONVERSION_FACTOR) + (iceTexture->size().height() / 2));
 
 		painter.drawPixmap(x, y, *iceTexture);
 	}
@@ -283,13 +281,13 @@ void LiquidModel::spawnLiquidParticles()
 
 	for (int j = 0; j < LIQUID_PARTICLES_NUM_SPAWN_VERTICAL; ++j)
 	{
-		int a = j % 2;
+		int a = j % 2; // Randomise x coordinate.
 
 		// Def
 		b2ParticleDef pdef;
 		pdef.color = drinkColors[scheduledDrinks.head()];
-		pdef.flags = b2_viscousParticle;
-		pdef.velocity = {0.0f, LIQUID_PARTICLE_DROP_VELOCITY};
+		pdef.flags = b2_waterParticle;
+		pdef.velocity = {0.0f, DROP_VELOCITY};
 
 		// Y coordinate.
 		//particlePos.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
@@ -311,31 +309,26 @@ void LiquidModel::spawnDashParticles()
 {
 	b2Vec2 particlePos;
 
-	for (int index = 0; index < 2; index++)
+	for (int j = 0; j < 8; ++j)
 	{
-		for (int j = 0; j < 4; ++j)
-		{
-			int a = j % 2;
+		int a = j % 2; // Randomise x coordinate.
 
-			// Def
-			b2ParticleDef pdef;
-			pdef.flags = b2_elasticParticle;
-			pdef.velocity = {0.0f, LIQUID_PARTICLE_DROP_VELOCITY};
+		b2ParticleDef pdef;
+		pdef.flags = b2_powderParticle;
+		pdef.velocity = {0.0f, DROP_VELOCITY};
 
-			// Y coordinate.
-			//particlePos.y = pouringSource.y() - (numParticlesY / 2.0f) * particleSpacingY + j * particleSpacingY;
-			particlePos.y = (pouringSource.y - (DASH_PARTICLE_RADIUS_M * j)) - DASH_PARTICLE_RADIUS_M;
+		// Y coordinate.
+		particlePos.y = (pouringSource.y - (DASH_PARTICLE_RADIUS_M * j)) - DASH_PARTICLE_RADIUS_M;
 
-			// Left Particle
-			particlePos.x = (pouringSource.x - DASH_PARTICLE_RADIUS_M) - ((DASH_PARTICLE_RADIUS_M / 2) * a);
-			pdef.position = particlePos; // Particle position its spawned at.
-			dashParticles->CreateParticle(pdef); // Spawn
+		// Left Particle
+		particlePos.x = (pouringSource.x - DASH_PARTICLE_RADIUS_M) - ((DASH_PARTICLE_RADIUS_M / 2) * a);
+		pdef.position = particlePos; // Particle position its spawned at.
+		dashParticles->SetParticleLifetime(dashParticles->CreateParticle(pdef), 0.8f); // Spawn.
 
-			// Right Particle
-			particlePos.x = (pouringSource.x + DASH_PARTICLE_RADIUS_M) - ((DASH_PARTICLE_RADIUS_M / 2) * a);
-			pdef.position = particlePos; // Particle position its spawned at.
-			dashParticles->CreateParticle(pdef); // Spawn.
-		}
+		// Right Particle
+		particlePos.x = (pouringSource.x + DASH_PARTICLE_RADIUS_M) - ((DASH_PARTICLE_RADIUS_M / 2) * a);
+		pdef.position = particlePos; // Particle position its spawned at.
+		dashParticles->SetParticleLifetime(dashParticles->CreateParticle(pdef), 0.8f); // Spawn.
 	}
 }
 
@@ -343,15 +336,18 @@ void LiquidModel::checkScheduledAddIceBody()
 {
 	if (scheduleAddIceBody)
 	{
+		// Random x coordinate within the defined range.
+		int xPixels = QRandomGenerator::global()->bounded((int)(iceHorizontalSpawnRange[0] / CONVERSION_FACTOR), (int)(iceHorizontalSpawnRange[1] / CONVERSION_FACTOR));
+
 		b2BodyDef bdef;
 		bdef.type = b2_dynamicBody;
-		bdef.position.Set(pouringSource.x, pouringSource.y);
+		bdef.position.Set(xPixels * CONVERSION_FACTOR, pouringSource.y);
 
 		b2Body *iceBody = world->CreateBody(&bdef);
 		b2CircleShape circle;
 		circle.m_radius = ICE_RADIUS_M;
 		iceBody->CreateFixture(&circle, ICE_DENSITY);
-		//iceBody->SetLinearVelocity({0.0f, -9.8f * GRAVITY_SCALE});
+		iceBody->SetLinearVelocity({0.0f, DROP_VELOCITY});
 
 		iceBodies.push_back(iceBody);
 
@@ -359,7 +355,7 @@ void LiquidModel::checkScheduledAddIceBody()
 	}
 }
 
-void LiquidModel::checkSheduledRemoveIceBodies()
+void LiquidModel::checkScheduledRemoveIceBodies()
 {
 	if (scheduleRemoveIceBodies)
 	{

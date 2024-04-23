@@ -33,6 +33,9 @@ public slots:
 	/// @param liquid New QPixmap to display.
 	void updateLiquidDisplay(const QPixmap &liquid);
 
+	/// @brief Stops displaying the last image of liquid.
+	void removeLiquidDisplay();
+
 	/// @brief Displays the given QPixmap of glassware.
 	/// @param glassware Contains new QPixmap to display.
 	void setNewGlassware(const Glassware &glassware);
@@ -41,6 +44,9 @@ public slots:
 	void removeGlasswareDisplay();
 
 private:
+	static constexpr int WIDTH = 256;
+	static constexpr int HEIGHT = 280;
+
 	QGraphicsScene gScene;
 	QGraphicsItemGroup gItemGroup;
 

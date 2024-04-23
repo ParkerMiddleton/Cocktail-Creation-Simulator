@@ -50,9 +50,9 @@ public:
 	/// @param drinkName Determines the color of the new liquid to pour.
     void pour(int ounce, const QString &drinkName);
 
-
 	/// @brief Creates dash particles.
-	void dash();
+	/// @param dashName Determines the color of particles.
+	void dash(const QString &dashName);
 
 	/// @brief Mixes the color of different liquids in the drink.
 	void mix();
@@ -70,22 +70,27 @@ signals:
 	void simulationUpdated(const QPixmap &pixmap);
 
 private:
-	static constexpr float FROM_PIXEL_FACTOR = 0.01f;
+	static constexpr int PIXMAP_WIDTH = 256;
+	static constexpr int PIXMAP_HEIGHT = 280;
+
+	static constexpr float CONVERSION_FACTOR = 0.01f;
 
 	// _M == Meters
-	static constexpr float LIQUID_PARTICLE_RADIUS_M = 0.0250f;
+	static constexpr float LIQUID_PARTICLE_RADIUS_M = 0.0275f;
 	static constexpr float DASH_PARTICLE_RADIUS_M = 0.01f;
-	static constexpr float ICE_RADIUS_M = 0.1f;
-	static constexpr float ICE_DENSITY = 10.0f;
+	static constexpr float ICE_RADIUS_M = 0.08f;
+	static constexpr float ICE_DENSITY = 3.0f;
 
-	static constexpr float LIQUID_PARTICLE_DROP_VELOCITY = -2.0f;
+	static constexpr float DROP_VELOCITY = -2.0f;
 	static constexpr int LIQUID_PARTICLES_NUM_SPAWN_VERTICAL = 4;
 
 	static constexpr int DROPS_INTERVAL_MS = 30;
-	static constexpr int OUNCE_POURING_DURATION_MS = 1000;
+	static constexpr int OUNCE_POURING_DURATION_MS = 500;
 
 	QMap<QString, b2ParticleColor> drinkColors;
+	QMap<QString, QColor> dashColors;
 	QQueue<QString> scheduledDrinks;
+	QString currentDash;
 
 	bool isMixing;
 	bool isPouring;
@@ -104,6 +109,7 @@ private:
 	b2ParticleSystemDef liquidParticlesDef;
 	b2ParticleSystemDef dashParticlesDef;
 	b2Vec2 pouringSource;
+	float iceHorizontalSpawnRange[2];
 
 	b2World *world;
 	b2ParticleSystem *liquidParticles;
@@ -123,7 +129,7 @@ private:
 	void checkScheduledAddIceBody();
 
 	/// @brief If scheduled, removes all ice cubes.
-	void checkSheduledRemoveIceBodies();
+	void checkScheduledRemoveIceBodies();
 
 };
 

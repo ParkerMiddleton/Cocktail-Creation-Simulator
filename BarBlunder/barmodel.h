@@ -55,6 +55,8 @@ signals:
 	/// @param glassware the specific form of glassware being called
 	void glasswareUpdated(const Glassware &glassware);
 
+	void shaking();
+
 	/// @brief this signal removes glassware
 	void currentGlasswareRemoved();
 
@@ -81,6 +83,7 @@ private:
 
 	bool isProcessing;
 	int processingElapsedTime;
+	bool isShaking;
 
 	QList<Recipe> listOfRecipes;
 	Recipe assignedRecipe;

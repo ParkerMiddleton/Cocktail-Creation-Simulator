@@ -13,7 +13,7 @@ Glassware::Glassware(Glassware::Type type)
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
-		physicsPouringSource.setY(110.0f);
+		physicsPouringSource.setY(111.0f);
 
 		// Always Four Vertices.
 		// Starting from top left.
@@ -33,7 +33,7 @@ Glassware::Glassware(Glassware::Type type)
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
-		physicsPouringSource.setY(0.0f);
+		physicsPouringSource.setY(26.0f);
 
 		// Always Four Vertices.
 		// Starting from top left.
@@ -53,7 +53,7 @@ Glassware::Glassware(Glassware::Type type)
 		transparent = false;
 
 		physicsPouringSource.setX(130.0f);
-		physicsPouringSource.setY(0.0f);
+		physicsPouringSource.setY(82.0f);
 
 		// Always Four Vertices.
 		// Starting from top left.
@@ -73,7 +73,7 @@ Glassware::Glassware(Glassware::Type type)
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
-		physicsPouringSource.setY(70.0f);
+		physicsPouringSource.setY(35.0f);
 
 		// Always Four Vertices.
 		// Starting from top left.

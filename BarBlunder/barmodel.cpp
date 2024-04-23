@@ -11,6 +11,7 @@ BarModel::BarModel(QObject *parent)
 	, isGlasswareEmpty{true}
 	, isProcessing{false}
 	, processingElapsedTime{0}
+	, isShaking{false}
 {
 	glasswares.insert("rocks glass", new Glassware{Glassware::Type::Rocks});
 	glasswares.insert("collins glass", new Glassware{Glassware::Type::Collins});
@@ -30,7 +31,7 @@ BarModel::BarModel(QObject *parent)
 		listOfRecipes.push_back(Recipe(inStream));
 	}
 
-    connect(&pressTimer, &QTimer::timeout, this, &BarModel::updatePressedTimer);
+	connect(&pressTimer, &QTimer::timeout, this, &BarModel::updatePressedTimer);
 }
 
 BarModel::~BarModel()
@@ -67,76 +68,93 @@ void BarModel::update(int deltaTime)
 		processingElapsedTime += deltaTime;
 	}
 
-	liquid.update(deltaTime);
+	if (!isShaking)
+	{
+		liquid.update(deltaTime);
+	}
 }
 
 void BarModel::ingredientPressed(const QString &liquorName)
 {
-
-    // setup display timer to signal every second.
-    pressTimer.start(1000);
-    elapsedTimer.start();
+	// setup display timer to signal every second.
+	pressTimer.start(1000);
+	elapsedTimer.start();
 
 	currentLiquor = liquorName;
 
 	processingElapsedTime = 0;
 	isProcessing = true;
 	pressedLiquor = true;
+
+	if (currentLiquor == "shake")
+	{
+		isShaking = true;
+		emit shaking();
+	}
 }
 
 void BarModel::processLiquor()
 {
-    // TODO:: Review why pressing wrong liquor decrements it by double the amount.
-    if (!currentGlassware)
-        return;
+	// TODO:: Review why pressing wrong liquor decrements it by double the amount.
+	if (!currentGlassware)
+		return;
 
-    if (isGlasswareEmpty)
-        isGlasswareEmpty = false;
+	if (isGlasswareEmpty)
+		isGlasswareEmpty = false;
 
-    bool found = false;
+	bool found = false;
 
-    QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
+	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
 
-    if (ingredient.first == currentLiquor)
-    {
-        found = true;
-    }
+	if (ingredient.first == currentLiquor)
+	{
+		found = true;
+	}
 
-    if (!found)
-    {
-        liquid.pour(1, currentLiquor);
-        qDebug() << "wrong ingredient pressed" << currentLiquor;
-        outOfOrder = true;
-        userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
-        emit incorrectIngredientUsed(stepNumber);
-    }
-    else if (pressedLiquor)
-    { // Check if the whiskey button is still pressed
-        for (QPair<QString, int> &ingredient : userRecipe.ingredients)
-        {
-            if (ingredient.first == currentLiquor)
-            {
-                ingredient.second--;
-                if (currentLiquor != "shake")
-                {
-                    liquid.pour(1, currentLiquor);
-                }
-                qDebug() << currentLiquor << " " << ingredient.second;
-                if (ingredient.second == 0)
-                {
-                    stepNumber++;
-                    qDebug() << "Step Number 1:" << stepNumber;
-                    emit correctIngredientUsed(stepNumber);
-                }
-                else if(ingredient.second < 0)
-                {
-                    stepNumber++;
-                    qDebug() << "Step Number 2:" << stepNumber;
-                    emit incorrectIngredientUsed(stepNumber);
-                }
-            }
-        }
-    }
+	if (!found)
+	{
+		liquid.pour(1, currentLiquor);
+		qDebug() << "wrong ingredient pressed" << currentLiquor;
+		outOfOrder = true;
+		userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
+		emit incorrectIngredientUsed(stepNumber);
+	}
+	else if (pressedLiquor)
+	{ // Check if the whiskey button is still pressed
+		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
+		{
+			if (ingredient.first == currentLiquor)
+			{
+				ingredient.second--;
+
+				if (currentLiquor != "shake")
+				{
+					liquid.pour(1, currentLiquor);
+				}
+
+				qDebug() << currentLiquor << " " << ingredient.second;
+
+				if (ingredient.second == 0)
+				{
+					stepNumber++;
+					qDebug() << "Step Number 1:" << stepNumber;
+					emit correctIngredientUsed(stepNumber);
+
+					if (currentLiquor == "shake")
+						liquid.mix();
+				}
+				else if(ingredient.second < 0)
+				{
+					stepNumber++;
+					qDebug() << "Step Number 2:" << stepNumber;
+					emit incorrectIngredientUsed(stepNumber);
+
+					if (currentLiquor == "shake")
+						liquid.mix();
+				}
+			}
+		}
+	}
 }
 
 void BarModel::ingredientReleased()
@@ -144,13 +162,16 @@ void BarModel::ingredientReleased()
 	if (!currentGlassware)
 		return;
 
-    elapsedTimer.invalidate();
-    pressTimer.stop();
+	elapsedTimer.invalidate();
+	pressTimer.stop();
 
-    emit elapsedTimePressed(0);
+	emit elapsedTimePressed(0);
 
 	pressedLiquor = false;
 	isProcessing = false;
+
+	if (currentLiquor == "shake")
+		isShaking = false;
 }
 
 void BarModel::ingredientClicked(const QString &ingredientName)
@@ -179,7 +200,7 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		currentGlassware->placeGarnish(Glassware::Garnish::Lime);
 		emit glasswareUpdated(*currentGlassware);
 	}
-    else if (ingredientName == "orange peel")
+	else if (ingredientName == "orange peel")
 	{
 		currentGlassware->placeGarnish(Glassware::Garnish::Orange);
 		emit glasswareUpdated(*currentGlassware);
@@ -192,9 +213,9 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	{
 		liquid.mix();
 	}
-	else if (ingredientName == "bitters")
+	else if (ingredientName == "bitters" || ingredientName == "orange liquor splash")
 	{
-		liquid.dash();
+		liquid.dash(ingredientName);
 	}
 
 	QPair<QString, int> &ingredient = userRecipe.ingredients[stepNumber];
@@ -250,7 +271,7 @@ void BarModel::emptyDrink()
 {
 	// reassign user drink to assigned recipe effectivly emptying the drink.
 	isGlasswareEmpty = true;
-    userRecipe = assignedRecipe; // doesnt this need to restart the recipe?
+	userRecipe = assignedRecipe; // doesnt this need to restart the recipe?
 	stepNumber = 0;
 	outOfOrder = false;
 
@@ -266,8 +287,8 @@ void BarModel::emptyDrink()
 
 	// inform view to empty drink
 	emit drinkEmptied();
-    emit newDrink(assignedRecipe.recipeSteps);
-    this->removeGlassware();
+	emit newDrink(assignedRecipe.recipeSteps);
+	this->removeGlassware();
 	qDebug() << "drink emptied";
 
 
@@ -314,7 +335,7 @@ void BarModel::removeGlassware()
 }
 
 void BarModel::updatePressedTimer() {
-    int elapsedTime = elapsedTimer.elapsed();
-    int roundedTime = qRound(static_cast<qreal>(elapsedTime) / 1000.0); // Round to the nearest second
-    emit elapsedTimePressed(roundedTime);
+	int elapsedTime = elapsedTimer.elapsed();
+	int roundedTime = qRound(static_cast<qreal>(elapsedTime) / 1000.0); // Round to the nearest second
+	emit elapsedTimePressed(roundedTime);
 }

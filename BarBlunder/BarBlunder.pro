@@ -141,7 +141,6 @@ HEADERS += \
     applicationmodel.h \
     barmodel.h \
     drinkview.h \
-    drinkview_size.h \
     gamelayer.h \
     glassware.h \
     liquidmodel.h \

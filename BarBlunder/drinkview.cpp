@@ -1,12 +1,11 @@
 #include "drinkview.h"
-#include "drinkview_size.h"
 
 #include "barmodel.h"
 #include "glassware.h"
 
 DrinkView::DrinkView(QWidget *parent)
 	: QGraphicsView{parent}
-	, gScene(0, 0, DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT)
+	, gScene(0, 0, WIDTH, HEIGHT)
 	, emptyPixmap{256, 280}
 {
 	emptyPixmap.fill(Qt::transparent);
@@ -36,6 +35,9 @@ void DrinkView::initializeConnections(BarModel *bar)
 	connect(bar->liquidModel(), &LiquidModel::simulationUpdated,
 			this, &DrinkView::updateLiquidDisplay);
 
+	connect(bar, &BarModel::shaking,
+			this, &DrinkView::removeLiquidDisplay);
+
 	connect(bar, &BarModel::glasswareUpdated,
 			this, &DrinkView::setNewGlassware);
 
@@ -46,6 +48,11 @@ void DrinkView::initializeConnections(BarModel *bar)
 void DrinkView::updateLiquidDisplay(const QPixmap &liquid)
 {
 	gLiquid.setPixmap(liquid);
+}
+
+void DrinkView::removeLiquidDisplay()
+{
+	gLiquid.setPixmap(emptyPixmap);
 }
 
 void DrinkView::setNewGlassware(const Glassware &glassware)
