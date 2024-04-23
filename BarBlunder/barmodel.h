@@ -48,6 +48,8 @@ public slots:
 	/// @brief this slot emties drinks
 	void emptyDrink();
 
+    void updateGlassClicked();
+
 signals:
 	void newDrink(const QList<QString> &recipeSteps);
 	void drinkEmptied();
@@ -95,8 +97,7 @@ private:
 
 	QString currentLiquor;
 
-	// Currently not in use
-	bool doublePour;
+    bool glasswareClicked;
 
 	/// @brief starts a new round
 	void startNewRound();
