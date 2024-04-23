@@ -230,6 +230,7 @@ void GameLayer::playSoundEffect(const QString &soundFilePath) {
 void GameLayer::playPourSound(const QString &soundFilePath) {
     // allow for current sound to finish before restarting
     if (!soundBoard->isPlaying()) {
+        soundBoard->setLoops(QMediaPlayer::Infinite);
         soundBoard->setSource(QUrl(soundFilePath));
         soundBoard->play();
     }
