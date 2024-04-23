@@ -16,7 +16,7 @@ public:
 	/// @brief Constructor.
 	explicit ApplicationModel(QObject *parent = nullptr);
 
-	/// @brief Loads settings and emits signals to the view.
+	/// @brief Loads settings, eemits signals to the view, and runs the game loop.
 	/// Must be called after the constructor due to QT limitations.
 	void run();
 
@@ -81,6 +81,8 @@ signals:
 	void windowSizeChanged(const QSize &newSize);
 
 private slots:
+	/// @brief The main update method of the game loop.
+	/// Calls the update method of the bar model every 16 milliseconds.
 	void update();
 
 private:

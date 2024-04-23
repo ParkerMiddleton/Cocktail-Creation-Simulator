@@ -9,11 +9,8 @@
 class Glassware
 {
 public:
-    enum class Type { Rocks, Collins, Copper, Martini,
-                      RocksOrange, RocksLime, RocksOlives,
-CollinsOrange, CollinsLime, CollinsOlives,
-CopperOrange, CopperLime, CopperOlives,
-MartiniLime, MartiniOrange, MartiniOlives };
+	enum class Type { Rocks, Collins, Copper, Martini };
+	enum class Garnish { None, Olive, Lime, Orange };
 
 	/// @brief Constructor.
 	/// @param type Type of glassware.
@@ -22,11 +19,17 @@ MartiniLime, MartiniOrange, MartiniOlives };
 	/// @brief Destructor.
 	~Glassware();
 
+	/// @brief Returns pixmap of this glassware.
+	/// @return const QPixmap&
 	const QPixmap& getDisplayPixmap() const;
 
-	/// @brief Returns whether this glassware transparent or not.
+	/// @brief Returns whether this glassware is transparent or not.
 	/// @return bool
 	bool isTransparent() const;
+
+	/// @brief Places the given garnish on the glassware.
+	/// @param garnish Type of garnish to place.
+	void placeGarnish(Glassware::Garnish garnish);
 
 	/// @brief Returns the coordinates of where the liquid should pour out.
 	/// @return QPointF&
@@ -39,6 +42,12 @@ MartiniLime, MartiniOrange, MartiniOlives };
 
 private:
 	QPixmap *displayPixmap;
+
+	QPixmap *glasswarePixmap;
+	QPixmap *olivePixmap;
+	QPixmap *limePixmap;
+	QPixmap *orangePixmap;
+
 	bool transparent;
 
 	QPointF physicsPouringSource;

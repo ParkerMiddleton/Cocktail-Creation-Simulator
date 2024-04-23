@@ -8,6 +8,7 @@ DrinkView::DrinkView(QWidget *parent)
 	: QGraphicsView{parent}
 	, gScene(0, 0, DRINKVIEW_WIDTH, DRINKVIEW_HEIGHT)
 	, emptyPixmap{256, 280}
+	, currentGlassware{nullptr}
 {
 	emptyPixmap.fill(Qt::transparent);
 
@@ -36,11 +37,14 @@ void DrinkView::initializeConnections(BarModel *bar)
 	connect(bar->liquidModel(), &LiquidModel::simulationUpdated,
 			this, &DrinkView::updateLiquidDisplay);
 
-	connect(bar, &BarModel::glasswareUpdated,
-			this, &DrinkView::updateGlasswareDisplay);
+	connect(bar, &BarModel::newGlasswarePlaced,
+			this, &DrinkView::setNewGlassware);
 
-	connect(bar, &BarModel::glasswareRemoved,
+	connect(bar, &BarModel::currentGlasswareRemoved,
 			this, &DrinkView::removeGlasswareDisplay);
+
+	connect(bar, &BarModel::currentGlasswareUpdated,
+			this, &DrinkView::updateCurrentGlasswareDisplay);
 }
 
 void DrinkView::updateLiquidDisplay(const QPixmap &liquid)
@@ -48,21 +52,27 @@ void DrinkView::updateLiquidDisplay(const QPixmap &liquid)
 	gLiquid.setPixmap(liquid);
 }
 
-void DrinkView::removeLiquidDisplay(){
-    gLiquid.setPixmap(emptyPixmap);
+void DrinkView::setNewGlassware(Glassware *glassware)
+{
+	currentGlassware = glassware;
+
+	this->updateCurrentGlasswareDisplay();
 }
 
-void DrinkView::updateGlasswareDisplay(const Glassware &glassware)
+void DrinkView::updateCurrentGlasswareDisplay()
 {
-	if (glassware.isTransparent())
+	if (currentGlassware)
 	{
-		gMug.setPixmap(emptyPixmap);
-		gGlass.setPixmap(glassware.getDisplayPixmap());
-	}
-	else
-	{    
-		gMug.setPixmap(glassware.getDisplayPixmap());
-		gGlass.setPixmap(emptyPixmap);
+		if (currentGlassware->isTransparent())
+		{
+			gMug.setPixmap(emptyPixmap);
+			gGlass.setPixmap(currentGlassware->getDisplayPixmap());
+		}
+		else
+		{
+			gMug.setPixmap(currentGlassware->getDisplayPixmap());
+			gGlass.setPixmap(emptyPixmap);
+		}
 	}
 }
 

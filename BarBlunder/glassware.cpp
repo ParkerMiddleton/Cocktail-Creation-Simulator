@@ -4,7 +4,12 @@ Glassware::Glassware(Glassware::Type type)
 {
 	if (type == Glassware::Type::Rocks)
 	{
-		displayPixmap = new QPixmap(":/images/maindrink/rocks_liquid.png");
+		glasswarePixmap = new QPixmap(":/images/maindrink/rocks.png");
+		olivePixmap = new QPixmap(":/images/maindrink/rocks_olive.png");
+		limePixmap = new QPixmap(":/images/maindrink/rocks_lime.png");
+		orangePixmap = new QPixmap(":/images/maindrink/rocks_orange.png");
+
+		displayPixmap = glasswarePixmap;
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
@@ -17,55 +22,14 @@ Glassware::Glassware(Glassware::Type type)
 		physicsCollisionVertices.push_back({167.0f, 235.0f});
 		physicsCollisionVertices.push_back({174.0f, 156.0f});
 	}
-    else if (type == Glassware::Type::RocksLime)
-    {
-        displayPixmap = new QPixmap(""); //TODO::
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(145.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({167.0f, 235.0f});
-        physicsCollisionVertices.push_back({172.0f, 156.0f});
-    }
-    else if (type == Glassware::Type::RocksOlives)
-    {
-        displayPixmap = new QPixmap(""); //TODO::
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(145.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({167.0f, 235.0f});
-        physicsCollisionVertices.push_back({172.0f, 156.0f});
-    }
-    else if (type == Glassware::Type::RocksOrange)
-    {
-        displayPixmap = new QPixmap(":/images/glasses/RocksGlassWithOrangePeele.png");
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(145.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({167.0f, 235.0f});
-        physicsCollisionVertices.push_back({172.0f, 156.0f});
-    }
-
 	else if (type == Glassware::Type::Collins)
 	{
-		displayPixmap = new QPixmap(":/images/maindrink/collins_liquid.png");
+		glasswarePixmap = new QPixmap(":/images/maindrink/collins.png");
+		olivePixmap = new QPixmap(":/images/maindrink/collins_olive.png");
+		limePixmap = new QPixmap(":/images/maindrink/collins_lime.png");
+		orangePixmap = new QPixmap(":/images/maindrink/collins_orange.png");
+
+		displayPixmap = glasswarePixmap;
 		transparent = true;
 
 		physicsPouringSource.setX(130.0f);
@@ -78,54 +42,14 @@ Glassware::Glassware(Glassware::Type type)
 		physicsCollisionVertices.push_back({163.0f, 249.0f});
 		physicsCollisionVertices.push_back({173.0f, 75.0f});
 	}
-    else if (type == Glassware::Type::CollinsOrange)
-    {
-        displayPixmap = new QPixmap("");//TODO::
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(57.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({86.0f, 75.0f});
-        physicsCollisionVertices.push_back({104.0f, 249.0f});
-        physicsCollisionVertices.push_back({154.0f, 249.0f});
-        physicsCollisionVertices.push_back({171.0f, 75.0f});
-    }
-    else if (type == Glassware::Type::CollinsLime)
-    {
-        displayPixmap = new QPixmap("");//TODO::
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(57.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({86.0f, 75.0f});
-        physicsCollisionVertices.push_back({104.0f, 249.0f});
-        physicsCollisionVertices.push_back({154.0f, 249.0f});
-        physicsCollisionVertices.push_back({171.0f, 75.0f});
-    }
-    else if (type == Glassware::Type::CollinsOlives)
-    {
-        displayPixmap = new QPixmap("");//TODO::
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(57.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({86.0f, 75.0f});
-        physicsCollisionVertices.push_back({104.0f, 249.0f});
-        physicsCollisionVertices.push_back({154.0f, 249.0f});
-        physicsCollisionVertices.push_back({171.0f, 75.0f});
-    }
 	else if (type == Glassware::Type::Copper)
 	{
-		displayPixmap = new QPixmap(":/images/maindrink/copper_liquid.png");
+		glasswarePixmap = new QPixmap(":/images/maindrink/copper.png");
+		olivePixmap = new QPixmap(":/images/maindrink/copper_olive.png");
+		limePixmap = new QPixmap(":/images/maindrink/copper_lime.png");
+		orangePixmap = new QPixmap(":/images/maindrink/copper_orange.png");
+
+		displayPixmap = glasswarePixmap;
 		transparent = false;
 
 		physicsPouringSource.setX(130.0f);
@@ -138,54 +62,14 @@ Glassware::Glassware(Glassware::Type type)
 		physicsCollisionVertices.push_back({169.0f, 261.0f});
 		physicsCollisionVertices.push_back({170.0f, 122.0f});
 	}
-    else if (type == Glassware::Type::CopperLime)
-    {
-        displayPixmap = new QPixmap(""); //TODO::
-        transparent = false;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(165.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({163.0f, 235.0f});
-        physicsCollisionVertices.push_back({170.0f, 156.0f});
-    }
-    else if (type == Glassware::Type::CopperOrange)
-    {
-        displayPixmap = new QPixmap(""); //TODO::
-        transparent = false;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(165.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({163.0f, 235.0f});
-        physicsCollisionVertices.push_back({170.0f, 156.0f});
-    }
-    else if (type == Glassware::Type::CopperOlives)
-    {
-        displayPixmap = new QPixmap(""); //TODO::
-        transparent = false;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(165.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({88.0f, 156.0f});
-        physicsCollisionVertices.push_back({93.0f, 235.0f});
-        physicsCollisionVertices.push_back({163.0f, 235.0f});
-        physicsCollisionVertices.push_back({170.0f, 156.0f});
-    }
 	else if (type == Glassware::Type::Martini)
 	{
-		displayPixmap = new QPixmap(":/images/maindrink/martini_liquid.png");
+		glasswarePixmap = new QPixmap(":/images/maindrink/martini.png");
+		olivePixmap = new QPixmap(":/images/maindrink/martini_olive.png");
+		limePixmap = new QPixmap(":/images/maindrink/martini_lime.png");
+		orangePixmap = new QPixmap(":/images/maindrink/martini_orange.png");
+
+		displayPixmap = glasswarePixmap;
 		transparent = true;
 
 		physicsPouringSource.setX(166.0f);
@@ -197,58 +81,15 @@ Glassware::Glassware(Glassware::Type type)
 		physicsCollisionVertices.push_back({122.0f, 158.0f});
 		physicsCollisionVertices.push_back({140.0f, 158.0f});
 		physicsCollisionVertices.push_back({193.0f, 88.0f});
-    }
-    else if (type == Glassware::Type::MartiniLime)
-    {
-        displayPixmap = new QPixmap("");
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(71.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({69.0f, 88.0f});
-        physicsCollisionVertices.push_back({122.0f, 158.0f});
-        physicsCollisionVertices.push_back({140.0f, 158.0f});
-        physicsCollisionVertices.push_back({193.0f, 88.0f});
-    }
-    else if (type == Glassware::Type::MartiniOrange)
-    {
-        displayPixmap = new QPixmap("");
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(71.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({69.0f, 88.0f});
-        physicsCollisionVertices.push_back({122.0f, 158.0f});
-        physicsCollisionVertices.push_back({140.0f, 158.0f});
-        physicsCollisionVertices.push_back({193.0f, 88.0f});
-    }
-    else if (type == Glassware::Type::MartiniOlives)
-    {
-        displayPixmap = new QPixmap("");
-        transparent = true;
-
-        physicsPouringSource.setX(130.0f);
-        physicsPouringSource.setY(71.0f);
-
-        // Always Four Vertices.
-        // Starting from top left.
-        physicsCollisionVertices.push_back({69.0f, 88.0f});
-        physicsCollisionVertices.push_back({122.0f, 158.0f});
-        physicsCollisionVertices.push_back({140.0f, 158.0f});
-        physicsCollisionVertices.push_back({193.0f, 88.0f});
-    }
-
+	}
 }
 
 Glassware::~Glassware()
 {
-	delete displayPixmap;
+	delete glasswarePixmap;
+	delete olivePixmap;
+	delete limePixmap;
+	delete orangePixmap;
 }
 
 const QPixmap& Glassware::getDisplayPixmap() const
@@ -256,9 +97,29 @@ const QPixmap& Glassware::getDisplayPixmap() const
 	return *displayPixmap;
 }
 
+
 bool Glassware::isTransparent() const
 {
 	return transparent;
+}
+
+void Glassware::placeGarnish(Garnish garnish)
+{
+	switch (garnish)
+	{
+	case Glassware::Garnish::None:
+		displayPixmap = glasswarePixmap;
+		break;
+	case Glassware::Garnish::Olive:
+		displayPixmap = olivePixmap;
+		break;
+	case Glassware::Garnish::Lime:
+		displayPixmap = limePixmap;
+		break;
+	case Glassware::Garnish::Orange:
+		displayPixmap = orangePixmap;
+		break;
+	}
 }
 
 const QPointF& Glassware::getPhysicsPouringSource() const

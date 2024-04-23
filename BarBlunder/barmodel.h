@@ -6,6 +6,7 @@
 #include "glassware.h"
 
 #include <QObject>
+#include <QMap>
 
 /// @brief Responsible for game logic. Part of Model.
 class BarModel : public QObject
@@ -15,6 +16,8 @@ class BarModel : public QObject
 public:
 	/// @brief Constructor.
 	explicit BarModel(QObject *parent = nullptr);
+
+	~BarModel();
 
 	/// @brief starts game
 	void startNewGame();
@@ -48,10 +51,12 @@ signals:
 
 	/// @brief glasswareUpdated this signal updates the glassware by calling a specific type
 	/// @param glassware the specific form of glassware being called
-	void glasswareUpdated(const Glassware &glassware);
+	void newGlasswarePlaced(Glassware *glassware);
 
 	/// @brief this signal removes glassware
-	void glasswareRemoved();
+	void currentGlasswareRemoved();
+
+	void currentGlasswareUpdated();
 
 	void correctIngredientUsed(int stepNumber);
 	void incorrectIngredientUsed(int stepNumber);
@@ -65,23 +70,8 @@ private slots:
 
 private:
 	LiquidModel liquid;
-	Glassware rocksGlass;
-	Glassware collinsGlass;
-	Glassware copperMug;
-	Glassware martiniGlass;
-    Glassware rocksGlassOrange;
-    Glassware rocksGlassLime;
-    Glassware rocksGlassOlives;
-    Glassware collinsGlassLime;
-    Glassware collinsGlassOrange;
-    Glassware collinsGlassOlives;
-    Glassware copperMugLime;
-    Glassware copperMugOlive;
-    Glassware copperMugOrange;
-    Glassware martiniGlassOrange;
-    Glassware martiniGlassLime;
-    Glassware martiniGlassOlives;
-
+	QMap<QString, Glassware*> glasswares;
+	Glassware *currentGlassware;
 
 	bool isGlasswarePlaced;
 	bool isGlasswareEmpty;
@@ -94,13 +84,13 @@ private:
 	Recipe userRecipe;
 	int stepNumber;
 	int score;
-	int volume;
 	bool outOfOrder;
 	bool pressedLiquor;
-	bool doublePour;
-	QString liquorSelection;
 
-    QString currentGlassware;
+	QString currentLiquor;
+
+	// Currently not in use
+	bool doublePour;
 
 	/// @brief starts a new round
 	void startNewRound();
