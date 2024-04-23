@@ -75,9 +75,18 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
     connect(bar, &BarModel::elapsedTimePressed
             , this, &GameLayer::updatePourTimer);
 
-    // pour sound
-    // connect(bar, &BarModel::startLoopSound
-    //         , this, &GameLayer::playPourSound);
+// Glassware buttons connections.
+// "buttonName" without "d_" prefix!
+#define connectGlassware(buttonName) \
+    connect(ui->d_##buttonName, &QPushButton::clicked, bar, &BarModel::updateGlassClicked);
+
+    connectGlassware(CollinsGlassButton)
+        connectGlassware(MartiniGlassButton)
+        connectGlassware(RocksGlassButton)
+        connectGlassware(CopperMugButton)
+
+#undef connectGlassware
+
 
 	// Ingredient buttons connections.
 	// "buttonName" without "d_" prefix!

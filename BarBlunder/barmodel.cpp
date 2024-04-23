@@ -61,8 +61,10 @@ void BarModel::update(int deltaTime)
 		if (processingElapsedTime >= 1000) // Process every 1000 milliseconds
 		{
 			processingElapsedTime = -deltaTime; // Reset.
-
-			this->processLiquor();
+            // dont process liquor unless glass is clicked
+            if(glasswareClicked) {
+                this->processLiquor();
+            }
 		}
 
 		processingElapsedTime += deltaTime;
@@ -76,9 +78,12 @@ void BarModel::update(int deltaTime)
 
 void BarModel::ingredientPressed(const QString &liquorName)
 {
-	// setup display timer to signal every second.
-	pressTimer.start(1000);
-	elapsedTimer.start();
+    if(!glasswareClicked) {
+        return;
+    }
+
+    pressTimer.start(1000);
+    elapsedTimer.start();
 
 	currentLiquor = liquorName;
 
@@ -111,7 +116,7 @@ void BarModel::processLiquor()
 		found = true;
 	}
 
-	if (!found)
+    if (!found)
 	{
 		liquid.pour(1, currentLiquor);
 		qDebug() << "wrong ingredient pressed" << currentLiquor;
@@ -119,7 +124,7 @@ void BarModel::processLiquor()
 		userRecipe.ingredients.push_back(QPair<QString, int>(currentLiquor, -1));
 		emit incorrectIngredientUsed(stepNumber);
 	}
-	else if (pressedLiquor)
+    else if (pressedLiquor)
 	{ // Check if the whiskey button is still pressed
 		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
 		{
@@ -294,6 +299,7 @@ void BarModel::emptyDrink()
 
 void BarModel::startNewRound()
 {
+    glasswareClicked = false;
 	this->emptyDrink();
 	this->removeGlassware();
 	this->getRandomRecipe();
@@ -335,4 +341,8 @@ void BarModel::updatePressedTimer() {
 	int elapsedTime = elapsedTimer.elapsed();
 	int roundedTime = qRound(static_cast<qreal>(elapsedTime) / 1000.0); // Round to the nearest second
 	emit elapsedTimePressed(roundedTime);
+}
+
+void BarModel::updateGlassClicked() {
+    glasswareClicked = true;
 }
