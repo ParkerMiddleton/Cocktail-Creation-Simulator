@@ -92,7 +92,6 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
 	connect(ui->d_##buttonName, &QPushButton::released,				\
 			bar, &BarModel::ingredientReleased);
 
-	connectLiquor(OrangeLiquorButton,		"orange liquor");
 	connectLiquor(KahluaButton,				"kahlua");
 	connectLiquor(VodkaButton,				"vodka");
 	connectLiquor(TequilaButton,			"tequila");
@@ -110,6 +109,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectLiquor(SimpleSyrup,              "simple syrup");
     connectLiquor(Sprite,                   "sprite");
     connectLiquor(Coke,                     "coke");
+    connectLiquor(OliveJuice,               "olive juice");
 
 
 #undef connectLiquor

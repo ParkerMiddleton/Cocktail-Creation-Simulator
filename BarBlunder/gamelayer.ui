@@ -1240,6 +1240,19 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="d_OliveJuice">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>490</y>
+     <width>80</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Olive Juice</string>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1289,6 +1302,7 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <zorder>d_SweetNSourMix</zorder>
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>
+  <zorder>d_OliveJuice</zorder>
  </widget>
  <customwidgets>
   <customwidget>

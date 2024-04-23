@@ -106,7 +106,7 @@ void BarModel::processLiquor()
 	}
 
 	if (pressedLiquor)
-	{ // Check if the whiskey button is still pressed
+    {
 		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
 		{
 			if (ingredient.first == currentLiquor)
@@ -115,7 +115,10 @@ void BarModel::processLiquor()
 				if (currentLiquor != "shake")
 				{
 					liquid.pour(1, currentLiquor);
-				}
+                }else{
+
+                }
+
 				qDebug() << currentLiquor << " " << ingredient.second;
 				if (ingredient.second == 0)
 				{
@@ -240,7 +243,7 @@ void BarModel::emptyDrink()
 {
 	// reassign user drink to assigned recipe effectivly emptying the drink.
 	isGlasswareEmpty = true;
-	userRecipe = assignedRecipe;
+    userRecipe = assignedRecipe; // doesnt this need to restart the recipe?
 	stepNumber = 0;
 	outOfOrder = false;
 
@@ -256,9 +259,13 @@ void BarModel::emptyDrink()
 
 	// inform view to empty drink
 	emit drinkEmptied();
-
+    emit newDrink(assignedRecipe.recipeSteps);
+    this->removeGlassware();
 	qDebug() << "drink emptied";
+
+
 }
+
 
 void BarModel::startNewRound()
 {
@@ -286,7 +293,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-	assignedRecipe = listOfRecipes[0]; // randomNumber
+    assignedRecipe = listOfRecipes[randomNumber]; // randomNumber
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.recipeSteps);

@@ -48,7 +48,8 @@ public:
 	/// If already pouring, adds the given amount to the total amount to pour.
 	/// @param ounce Amount to schedule.
 	/// @param drinkName Determines the color of the new liquid to pour.
-	void pour(int ounce, const QString &drinkName);
+    void pour(int ounce, const QString &drinkName);
+
 
 	/// @brief Mixes the color of different liquids in the drink.
 	void mix();
@@ -68,9 +69,9 @@ signals:
 private:
 	static constexpr float GRAVITY_SCALE = 30.0f;
 
-	static constexpr float PARTICLE_RADIUS = 3.75f;
+    static constexpr float PARTICLE_RADIUS = 2.75f;
 	static constexpr float PARTICLE_DROP_VELOCITY = -4.9f;
-	static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
+    static constexpr int PARTICLES_NUM_SPAWN_VERTICAL = 4;
 
 	static constexpr int DROPS_INTERVAL = 80;
 	static constexpr int OUNCE_POURING_DURATION = 1000;
