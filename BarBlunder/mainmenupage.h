@@ -15,13 +15,13 @@ class MainMenu;
 QT_END_NAMESPACE
 
 /// @brief Main(as well as Pause) Menu. Part of View.
+/// @extends QWidget
 class MainMenuPage : public QWidget
 {
 	Q_OBJECT
 
 public:
-	/// @brief Constructor.
-	/// Initializes the UI and connections.
+    /// @brief Constructor - Initializes the UI and connections.
 	/// @param app Model responsible for managing states and settings.
 	explicit MainMenuPage(ApplicationModel *app, QWidget *parent = nullptr);
 

@@ -19,6 +19,7 @@ class b2Body;
 class b2ParticleSystem;
 
 /// @brief Responsible for the main drink physics and liquid. Part of Model.
+/// @extends QObject
 class LiquidModel : public QObject
 {
 	Q_OBJECT

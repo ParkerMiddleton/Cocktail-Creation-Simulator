@@ -17,6 +17,7 @@ class GameLayer;
 QT_END_NAMESPACE
 
 /// @brief The viewport layer with game contents. Part of View.
+/// @extends QWidget
 class GameLayer : public QWidget
 {
 	Q_OBJECT

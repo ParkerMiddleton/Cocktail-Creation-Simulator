@@ -8,6 +8,7 @@
 #include <QTimer>
 
 /// @brief Responsible for managing states and settings. Part of Model.
+/// @extends QObject
 class ApplicationModel : public QObject
 {
 	Q_OBJECT

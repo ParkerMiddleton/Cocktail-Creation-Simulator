@@ -15,6 +15,7 @@ class SettingsMenu;
 QT_END_NAMESPACE
 
 /// @brief Settings Menu. Part of View.
+/// @extends QWidget
 class SettingsMenuPage : public QWidget
 {
 	Q_OBJECT

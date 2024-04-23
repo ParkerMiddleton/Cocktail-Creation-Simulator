@@ -48,8 +48,8 @@
                           </DElement>
                          </base-DElement>
                          <object>{9760407a-d6eb-4126-b9dc-3fb87d02a089}</object>
-                         <name>recipe</name>
-                         <pos>x:345;y:360</pos>
+                         <name>Recipe</name>
+                         <pos>x:335;y:245</pos>
                          <rect>x:-140;y:-65;w:280;h:130</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -93,7 +93,7 @@
                          <object>{dfd42bd9-87f2-4cc1-9947-d073359ca45a}</object>
                          <name>BarModel</name>
                          <pos>x:305;y:-215</pos>
-                         <rect>x:-155;y:-310;w:310;h:620</rect>
+                         <rect>x:-155;y:-305;w:310;h:610</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -177,7 +177,7 @@
                          </base-DElement>
                          <object>{b07bf858-5cd8-42ac-b174-6910e96bd6ec}</object>
                          <name>LiquidModel</name>
-                         <pos>x:-180;y:180</pos>
+                         <pos>x:-240;y:190</pos>
                          <rect>x:-155;y:-250;w:310;h:500</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -187,9 +187,114 @@
                       </DClass>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{730d2f4f-7b58-4d7e-9106-5c953621d197}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{75b155a7-27b6-472f-a80d-452d749d8d1d}</object>
+                         <name>MainMenuPage</name>
+                         <pos>x:35;y:5</pos>
+                         <rect>x:-90;y:-55;w:180;h:110</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{f7277a91-5c7b-487d-982a-cf1880495f93}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{86159c05-18d9-4bb9-aba1-c722cde57e7f}</object>
+                         <name>MainWindow</name>
+                         <pos>x:45;y:210</pos>
+                         <rect>x:-110;y:-105;w:220;h:210</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{e7425038-80fe-4418-a496-84cc5edbdb55}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{125a8057-4cc6-4041-9c72-ac778ea6c69e}</object>
+                         <name>RecipeStep</name>
+                         <pos>x:615;y:215</pos>
+                         <rect>x:-80;y:-65;w:160;h:130</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{3600eacc-5aa6-442a-9bf7-9d51f74ca5bb}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{a9793c0a-413e-4798-8ae9-ae310504e05f}</object>
+                         <name>RecipeNote</name>
+                         <pos>x:920;y:-20</pos>
+                         <rect>x:-150;y:-80;w:300;h:160</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{86bd77be-6a02-4403-aa42-a21ad90462b1}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{a575bead-aa75-4083-94d6-19608524a6eb}</object>
+                         <name>SettingsMenuPage</name>
+                         <pos>x:1055;y:-425</pos>
+                         <rect>x:-240;y:-95;w:480;h:190</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1713684866234</last-modified>
+                  <last-modified>1713874302687</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -211,37 +316,37 @@
                     <uid>{9760407a-d6eb-4126-b9dc-3fb87d02a089}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>recipe</name>
+                  <name>Recipe</name>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{21ae62c1-9d0d-4509-96af-f577fa652d60}</uid>
+                    <uid>{a6d531c8-a8f7-49b3-a529-5cc55c5eac37}</uid>
+                    <type>2</type>
+                    <declaration>bool checkServedDrink(Recipe correctRecipe)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2722cabb-8ec9-4383-946b-49b8a66f2386}</uid>
                     <type>1</type>
                     <declaration>QString drinkName</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ad69a8d8-2cc5-4e8a-8162-6c0cbcdfe411}</uid>
+                    <uid>{8c35118a-5f1a-4f10-9a38-ce95af025c74}</uid>
+                    <type>1</type>
+                    <declaration>QList&lt;QString&gt; recipeSteps</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f71ef53c-8544-421b-9c54-f2dc30b3ef9a}</uid>
                     <type>1</type>
                     <declaration>QList&lt;QPair&lt;QString, int&gt;&gt; ingredients</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{4bb395ad-8a55-4b74-b098-a8805e2a03f5}</uid>
-                    <type>2</type>
-                    <declaration>void addIngredient(QString ingredient, int amount)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{e21c097c-0b0c-47cf-b494-a149078e7a35}</uid>
-                    <type>2</type>
-                    <declaration>bool checkRecipe(recipe drinkRecipe)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -471,259 +576,252 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{1d3fcb76-456d-4b0e-9383-810be1ca24a8}</uid>
-                    <type>2</type>
-                    <declaration>explicit BarModel(QObject *parent = nullptr)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{2defdc51-404f-43c9-8dfd-ae593b0be78f}</uid>
+                    <uid>{8aee13ce-2ade-4fd0-bda3-f2c2f90922c7}</uid>
                     <type>2</type>
                     <declaration>void startNewGame()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{593eb814-04b5-40b9-b7f4-7b46a94c5254}</uid>
+                    <uid>{71ce52f2-10c4-47ff-afa4-f0b22ec5bbac}</uid>
                     <type>2</type>
                     <declaration>void setIsPaused(bool state)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{911d0c13-617f-4ce8-966e-ce4f081fd189}</uid>
+                    <uid>{5b954774-814a-473e-9a10-e416b97449b8}</uid>
                     <type>2</type>
                     <declaration>LiquidModel* liquidModel()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0f20b8ea-c2c7-407d-9a96-c9785811397e}</uid>
+                    <uid>{e517943f-2d9b-4533-a2e1-437dae2a3643}</uid>
                     <type>2</type>
                     <declaration>void ingredientPressed(const QString &amp;liqourName)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0e36171e-c6ee-492e-bec0-c131b634acd0}</uid>
+                    <uid>{8f908b91-7ee8-42dc-9141-e699ebc8f6a3}</uid>
                     <type>2</type>
                     <declaration>void ingredientReleased()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d035cca0-9b9e-42fe-8daf-4cb62f5b27d1}</uid>
+                    <uid>{c73c1de3-6f44-4786-89a0-d13777238f47}</uid>
                     <type>2</type>
                     <declaration>void ingredientClicked(const QString &amp;ingredientName)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{6c2b4e99-84ed-40ad-9978-2a70a4de9458}</uid>
+                    <uid>{e1849ee0-72c0-454a-b07b-fdead3ee1f08}</uid>
                     <type>2</type>
                     <declaration>void serveDrink()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{21faa5d5-d4ba-4939-ac29-9b94878cdbd2}</uid>
+                    <uid>{d11bad75-e3c7-47e3-9497-bddc13d6231a}</uid>
                     <type>2</type>
                     <declaration>void emptyDrink()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f07b37bc-bc49-4c7c-97b3-9615dba97e1f}</uid>
+                    <uid>{8a91438f-4dd2-403d-a713-766002a4b1cc}</uid>
                     <type>2</type>
                     <declaration>void hideDrink()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{4daa30f1-9938-4237-9104-a336702dc30b}</uid>
+                    <uid>{4540f6a3-02c5-48f3-9bf6-7e1d19ea814d}</uid>
                     <type>2</type>
                     <declaration>void exposeDrink()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1cdffe2d-4969-43a5-ab77-736f6284307b}</uid>
+                    <uid>{85955f99-3c8b-45b0-a164-17c546fa4713}</uid>
                     <type>2</type>
                     <declaration>void newDrink(const QString &amp;recipe)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{190bf014-5ee8-4932-b5b7-65eeb775c01f}</uid>
+                    <uid>{02645961-62b5-40d8-8fcc-525f97f340dc}</uid>
                     <type>2</type>
                     <declaration>void drinkEmptied()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{4d4b7b4b-c3b5-4f09-8f16-262ecf719872}</uid>
+                    <uid>{937ed61d-7df5-4bd4-afd1-7fd54467486d}</uid>
                     <type>2</type>
                     <declaration>void glasswareUpdated(const Glassware &amp;glassware)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{77acfa79-6e68-4d39-a707-43da0f1994e5}</uid>
+                    <uid>{6b6e6508-a5f0-4dd3-8fa3-c28fb9306ba9}</uid>
                     <type>2</type>
                     <declaration>void glasswareRemoved()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{145e80f2-fc81-4110-8ab5-9d6b2c94e6be}</uid>
+                    <uid>{d55b7447-f7cc-4d0a-b52b-551b30b9afeb}</uid>
                     <type>2</type>
                     <declaration>void processLiquor()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c2009732-7efb-41fd-a238-bfb7497d5665}</uid>
+                    <uid>{a3957857-c35a-41f0-9576-d91df8b847fb}</uid>
                     <type>1</type>
                     <declaration>LiquidModel liquid</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fc61a8ae-fd84-4826-9f86-dd44b818af0b}</uid>
+                    <uid>{e2105a8e-beb9-4985-bb83-2a3fdc2ec77f}</uid>
                     <type>1</type>
                     <declaration>Glassware rocksGlass</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{46e16db8-5582-4b30-9356-62716583ffae}</uid>
+                    <uid>{32802bb6-f01a-4534-8441-0a24ea2c7bd0}</uid>
                     <type>1</type>
                     <declaration>Glassware copperMug</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ebec9596-82ff-40b2-962e-3a795a5e34ab}</uid>
+                    <uid>{7b1b3f90-9961-44a7-ad4e-7cbc690e0a28}</uid>
                     <type>1</type>
                     <declaration>Glassware collinsGlass</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d5e12172-25b0-48b3-baee-8618a63de13b}</uid>
+                    <uid>{4a89b5c2-3da7-4700-9bd6-91d890ff8795}</uid>
                     <type>1</type>
                     <declaration>Glassware martiniGlass</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{26ed1068-fdbb-462c-a3a4-ed16e321ade8}</uid>
+                    <uid>{c03d9629-9c3e-4c57-a25a-a97435d74f3f}</uid>
                     <type>1</type>
                     <declaration>bool isGlasswarePlaced</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d407d242-613a-4270-bc57-1994cbc81f39}</uid>
+                    <uid>{5bf0b47a-4757-46c2-92c6-e35b95476eb2}</uid>
                     <type>1</type>
                     <declaration>bool isGlasswareEmpty</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{406c32be-768e-4198-abd6-d51c409b0784}</uid>
+                    <uid>{54191fcc-8a03-4b1b-ac01-524c46ba9d95}</uid>
                     <type>1</type>
                     <declaration>QList&lt;Recipe&gt; listOfRecipes</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0633d185-fec6-4bfe-962f-d4b0904ce6d4}</uid>
+                    <uid>{6d91059e-dd4b-409f-b3de-860d19eec009}</uid>
                     <type>1</type>
                     <declaration>Recipe assignedRecipe</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{aa7cb9fd-d52d-45fd-93a2-970fb7b70b36}</uid>
+                    <uid>{aa1825e7-cab7-41a0-a9f7-93762beeefb5}</uid>
                     <type>1</type>
                     <declaration>Recipe userRecipe</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7eb98edc-f139-43ec-a4d1-50f745a8c601}</uid>
+                    <uid>{29eab027-9f97-4e33-a9a2-9f342a8acabc}</uid>
                     <type>1</type>
                     <declaration>int stepNumber</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{13fa53cb-096b-4113-8e12-7836cc20d892}</uid>
+                    <uid>{d1a60e1c-d97d-4cb8-8fc8-823b3966c7a7}</uid>
                     <type>1</type>
                     <declaration>int score</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c3576623-2a2c-45fb-b970-2a2350b3c56d}</uid>
+                    <uid>{b62054a5-8a32-49e9-b859-fe6a581949e6}</uid>
                     <type>1</type>
                     <declaration>int volume</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d31fd7b9-8973-448e-b76c-39df59009f42}</uid>
+                    <uid>{402f3457-3f5a-4508-91fb-ae60928dac4b}</uid>
                     <type>1</type>
                     <declaration>bool outOfOrder</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{92061fc8-7dff-401a-9e57-67faddc938e4}</uid>
+                    <uid>{0e24e05e-a157-44ba-98ed-f6dbd542490e}</uid>
                     <type>1</type>
                     <declaration>bool pressedLiquor</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{2aef77a1-1e0a-481f-8580-039cab4f3130}</uid>
+                    <uid>{73f2c393-5aef-4493-bc61-e9515650a874}</uid>
                     <type>1</type>
                     <declaration>bool doublePour</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7a27eeb0-2045-43d5-8101-aac8927556d1}</uid>
+                    <uid>{2267adff-3e8c-4929-b509-109616a7f927}</uid>
                     <type>1</type>
                     <declaration>QTimer timer</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{82ad0228-3f73-4dc4-98a1-cdf9101b360f}</uid>
+                    <uid>{1513a0b4-a054-470c-9914-728ffac04f30}</uid>
                     <type>1</type>
                     <declaration>QString liquorSelection</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{eb9d65dd-b724-431e-b45c-2447da784267}</uid>
+                    <uid>{748a1ea2-93b3-4b86-800e-da1a0a6e95ee}</uid>
                     <type>2</type>
                     <declaration>void startNewRound()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{097628fa-035e-4d84-899b-310db92a7aa2}</uid>
+                    <uid>{af18ef9f-485c-4b47-a7b7-747ed341f254}</uid>
                     <type>2</type>
                     <declaration>void getRandomRecipe()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{40f80f52-1ac9-4d34-be55-ae171e2b03c8}</uid>
+                    <uid>{d1f66174-4f01-4010-9869-775afc288689}</uid>
                     <type>2</type>
                     <declaration>void removeGlassware()</declaration>
                    </MClassMember>
@@ -1033,205 +1131,554 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{042b7dd7-b236-45c7-8955-47a4d0f79313}</uid>
+                    <uid>{5e97f8b2-3b8d-4937-920b-abdfde60be09}</uid>
                     <type>2</type>
                     <declaration>void updateCollisionLayout(const Glassware &amp;glassware)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e79cd80d-59da-4677-b636-cf287ffa5618}</uid>
+                    <uid>{2b8f701f-14d3-4a95-9571-46788919babc}</uid>
                     <type>2</type>
                     <declaration>void removeCollisionLayout()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e5bbf428-7232-42c4-8091-3f1189bd6a48}</uid>
+                    <uid>{4e3ff4bc-4b16-4209-bbce-d120c2842226}</uid>
                     <type>2</type>
                     <declaration>void setVolume(int v)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a078de59-55f0-4ba5-8697-128a7edb0d1b}</uid>
+                    <uid>{799f235f-9ff7-4747-997c-37c70b1963e6}</uid>
                     <type>2</type>
                     <declaration>void setDrinkColor(QString drinkName)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ad2193d0-1b24-4980-9f1d-c5e47151525e}</uid>
+                    <uid>{fc57c967-c419-4b56-bc60-45b5d40cf97e}</uid>
                     <type>2</type>
                     <declaration>void clear()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{50b3dcb0-3f92-48ca-812d-96d922d4e7b7}</uid>
+                    <uid>{b2f66d64-2b48-435b-83f0-5a0e259fda38}</uid>
                     <type>2</type>
                     <declaration>void setIsSimulationPaused(bool state)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{405ac22f-8298-4995-b0d1-dca4d62b2fde}</uid>
+                    <uid>{a239efb7-758f-4287-9e60-c99d5c5e9db8}</uid>
                     <type>2</type>
                     <declaration>void hideLiquid()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{2b256314-2dfb-4246-b44a-92b5d9e07ba0}</uid>
+                    <uid>{196c303a-e6b1-4f80-b601-25e8dd7afaee}</uid>
                     <type>2</type>
                     <declaration>void exposeLiquid()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{063734bd-fafd-4360-b7b4-8d4e4d4136c7}</uid>
+                    <uid>{20f5c185-ffcf-4aa2-9c57-a5000bcfa644}</uid>
                     <type>2</type>
                     <declaration>void emptyLiquid()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{63365c9f-0257-4623-be7b-29a217df937b}</uid>
+                    <uid>{28eec1a7-fd05-41ef-9b60-3ca4a23aa439}</uid>
                     <type>2</type>
                     <declaration>void removeLiquid()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{320f7291-9f1b-4de8-8a90-32f337e6909e}</uid>
+                    <uid>{aef8f760-b4f6-439e-ab07-54074c64be33}</uid>
                     <type>2</type>
                     <declaration>void simulationUpdated(const QPixmap &amp;pixmap)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{42c46f52-e4ae-4b3a-96f4-9fa5158682a3}</uid>
+                    <uid>{82426b12-546c-48b6-8903-d685afa252b3}</uid>
                     <type>2</type>
                     <declaration>void updateSimulation()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1b9b4273-32bf-4562-8535-8086e7abfc7a}</uid>
+                    <uid>{5bbecb65-155e-4baa-b64a-bb07af1ae9c1}</uid>
                     <type>1</type>
                     <declaration>bool isDrinkEmpty</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d53bb0e5-bca9-4d40-9f91-0528e216b757}</uid>
+                    <uid>{a88fed2d-6077-4a99-9ad2-a56c10257c66}</uid>
                     <type>1</type>
                     <declaration>int volume</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{745da029-4312-4c97-abf3-65c8ab2b817b}</uid>
+                    <uid>{60f1e87f-0a3e-40df-a21d-b3c58c662a6d}</uid>
                     <type>1</type>
                     <declaration>QMap&lt;QString, QColor&gt; drinkColors</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1146b78c-96c9-44c8-87d3-60ea945eab58}</uid>
+                    <uid>{03dc263e-7049-4827-a2fc-004a6d821817}</uid>
                     <type>1</type>
                     <declaration>QString currentDrink</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{8179e0de-cc24-4f50-aa82-ab1ea265387b}</uid>
+                    <uid>{7871bb85-e65c-4562-a024-6dfece48f5d9}</uid>
                     <type>1</type>
                     <declaration>QTimer *updateTimer</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d3bb468d-de10-41d4-a253-eda024caeb4c}</uid>
+                    <uid>{50017909-5867-4dd2-8e3b-2f53c5807086}</uid>
                     <type>1</type>
                     <declaration>bool isSimulationPaused</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f608909d-d63b-42cc-a74a-5977b5dd4263}</uid>
+                    <uid>{c01a7d8c-5fa2-44c1-91e4-4fc07c3e30d1}</uid>
                     <type>1</type>
                     <declaration>QPixmap liquidPixmap</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0283c1cf-f5d7-4c13-8997-b3bebbbbd9e4}</uid>
+                    <uid>{8d3c0676-0a15-4fb3-8448-f9687b81b1e2}</uid>
                     <type>1</type>
                     <declaration>QPixmap blankPixmap</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fd8b20d6-c1af-41d1-83f5-f1e626202efa}</uid>
+                    <uid>{1a943126-bee3-42f7-80ae-535333c28dbf}</uid>
                     <type>1</type>
                     <declaration>QPointF pouringSource</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{678862fb-7a33-43c5-ba21-c6939cc48a24}</uid>
+                    <uid>{52f0381c-6506-4510-9607-14dc1607ab4c}</uid>
                     <type>1</type>
                     <declaration>b2World *world</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7aef4b13-7f4a-4d19-86c2-1ff661aa90a3}</uid>
+                    <uid>{025f0a33-7e85-4920-aaaf-fad972d98085}</uid>
                     <type>1</type>
                     <declaration>b2Body *collisionBottom</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5558f849-bfb3-4c08-9262-081a1540aaf2}</uid>
+                    <uid>{02082eca-1408-419e-b2f3-9e87403e9909}</uid>
                     <type>1</type>
                     <declaration>b2Body *collisionLeft</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{3e68697b-28e0-4d8e-8304-5a59ff7d363d}</uid>
+                    <uid>{920455cf-1b3f-4cdc-a7fd-dc1837436ae8}</uid>
                     <type>1</type>
                     <declaration>b2Body *collisionRight</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1db42912-7bb5-4ec2-90a3-a4b55b274e2b}</uid>
+                    <uid>{68768a7f-f8c9-4e07-aacf-ef1e821669b7}</uid>
                     <type>1</type>
                     <declaration>b2ParticleSystem *particleSystem</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{156470b6-98cc-421d-b6bf-e9fa6b0ed262}</uid>
+                    <uid>{bfe6b61e-9049-4478-8b9e-3b9f3bccabae}</uid>
                     <type>1</type>
                     <declaration>std::vector&lt;b2ParticleSystem*&gt; particleSystemsList</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{630cd1b7-4009-4755-a131-44b896582d5a}</uid>
+                    <uid>{436407e1-fb38-440a-97cc-3957560d0729}</uid>
                     <type>2</type>
                     <declaration>void setupLiquidParticleSystem()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9b733802-5c28-4604-a343-82e8794bab17}</uid>
+                    <uid>{72474a77-5ed0-4614-a4bf-90a96fb51749}</uid>
                     <type>2</type>
                     <declaration>void addLiquid(int volume)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{75b155a7-27b6-472f-a80d-452d749d8d1d}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{75b155a7-27b6-472f-a80d-452d749d8d1d}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>MainMenuPage</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{e0e98201-81f3-417b-82a8-69f21b4f6047}</uid>
+                    <type>2</type>
+                    <declaration>void settingsButtonClicked()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{506834a4-f1a3-4c9d-a13e-370bfc2bd3c3}</uid>
+                    <type>2</type>
+                    <declaration>void onSettingsButtonClicked()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{778e5fae-d4ee-4f20-91d1-0b0879c7dc1a}</uid>
+                    <type>1</type>
+                    <declaration>Ui::MainMenu *ui</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{86159c05-18d9-4bb9-aba1-c722cde57e7f}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{86159c05-18d9-4bb9-aba1-c722cde57e7f}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>MainWindow</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{7f3f4d38-c388-48ae-9d6d-ecf33cf2d5cd}</uid>
+                    <type>2</type>
+                    <declaration>void enableOverlayMenuPauseLayout()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8c5682f3-5d84-4c50-8e25-c04509c0567d}</uid>
+                    <type>2</type>
+                    <declaration>void showOverlayMenu()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ff821426-89e3-4f23-b55f-3f1fe3bce1f2}</uid>
+                    <type>2</type>
+                    <declaration>void hideOverlayMenu()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f5e2f8ca-6123-420c-8d2f-72c61399fca8}</uid>
+                    <type>2</type>
+                    <declaration>void switchOverlayMenuToMain()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e6779b0e-eefb-4e8f-8ed0-1d2d2ac1bbe6}</uid>
+                    <type>2</type>
+                    <declaration>void switchOverlayMenuToSettings()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1ae5c793-49a3-4823-82cd-3201b5f189d5}</uid>
+                    <type>2</type>
+                    <declaration>void setupNewGame()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{07460852-7348-4b2b-8158-dc65343837c8}</uid>
+                    <type>2</type>
+                    <declaration>void playMenuMusic()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{42fd1c42-6b07-414f-b977-750f6d48f087}</uid>
+                    <type>2</type>
+                    <declaration>void playGameMusic()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{340d4434-604d-4ccc-976c-8aa095ce48df}</uid>
+                    <type>2</type>
+                    <declaration>void setFullscreenMode(bool state)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a2dffd23-6dff-4047-87e8-ec3a2d8e53e0}</uid>
+                    <type>2</type>
+                    <declaration>void setSize(const QSize &amp;newSize)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{125a8057-4cc6-4041-9c72-ac778ea6c69e}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{125a8057-4cc6-4041-9c72-ac778ea6c69e}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>RecipeStep</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{1577e4a7-6790-497a-af50-28547e06e94a}</uid>
+                    <type>2</type>
+                    <declaration>void setIsCorrect(bool state)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a527b940-705b-4726-8dc2-9e3f24268ddb}</uid>
+                    <type>1</type>
+                    <declaration>QFormLayout layout</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8525feff-fde8-4116-9cb8-afbf12711761}</uid>
+                    <type>1</type>
+                    <declaration>QLabel iconLabel</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fcc75b71-9558-4a7a-b0f2-5b60678c996c}</uid>
+                    <type>1</type>
+                    <declaration>QLabel textLabel</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{a9793c0a-413e-4798-8ae9-ae310504e05f}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{a9793c0a-413e-4798-8ae9-ae310504e05f}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>RecipeNote</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{3430afd8-527a-4aba-8106-be149300ac1b}</uid>
+                    <type>2</type>
+                    <declaration>void setupLayout(QWidget *contents)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{85fe3bb0-8927-4131-bc97-d3c090c1bab7}</uid>
+                    <type>2</type>
+                    <declaration>void updateRecipe(const QList&lt;QString&gt; &amp;recipeSteps)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2096c7a4-f5d2-4fa6-9708-a0b7d8dbfc94}</uid>
+                    <type>2</type>
+                    <declaration>void showStepIsCorrect(int stepNumber)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f0ef158c-7bd3-4408-b250-de107631419c}</uid>
+                    <type>2</type>
+                    <declaration>void showStepIsIncorrect(int stepNumber)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{75b4fb96-62ea-45bc-9b83-a9ff50d2c1eb}</uid>
+                    <type>1</type>
+                    <declaration>QVBoxLayout *contentsLayout</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5a867e32-39c6-426c-b2a0-64cfa73df5e4}</uid>
+                    <type>1</type>
+                    <declaration>QList&lt;RecipeStep*&gt; steps</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{a575bead-aa75-4083-94d6-19608524a6eb}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{a575bead-aa75-4083-94d6-19608524a6eb}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>SettingsMenuPage</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{1f7225b1-7b20-484c-be5c-8a9973bf3c2a}</uid>
+                    <type>2</type>
+                    <declaration>void setCurrentValues(float audioVolume, bool fullscreenState, const QSize &amp;windowSize)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2eb7da9e-3457-416f-95ee-d9c42a80376b}</uid>
+                    <type>2</type>
+                    <declaration>void volumeSpinBoxValueChanged(float volume)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5fb80293-7169-4706-8fb0-3a60e8d164ad}</uid>
+                    <type>2</type>
+                    <declaration>void fullscreenCheckBoxStateChanged(bool isChecked)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2cbd6281-6533-49a9-a8cb-596c732b6f88}</uid>
+                    <type>2</type>
+                    <declaration>void windowSizeComboBoxIndexChanged(const QSize &amp;windowSize)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f01e22ad-a823-4cea-8443-79139a009410}</uid>
+                    <type>2</type>
+                    <declaration>void backButtonClicked()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{380dd411-2c30-46c5-92fb-4fb439e1ec5a}</uid>
+                    <type>2</type>
+                    <declaration>void checkVolumeSpinBoxValue(int volume)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f2002738-435d-4233-9996-3d107993698d}</uid>
+                    <type>2</type>
+                    <declaration>void checkFullscreenCheckBoxState()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{88253677-43a4-4b5e-b8d6-15d821c012f0}</uid>
+                    <type>2</type>
+                    <declaration>void checkWindowSizeComboBoxIndex(int index)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{106a99a4-75ea-4af2-a5b9-312e8eebdf32}</uid>
+                    <type>2</type>
+                    <declaration>void onBackButtonClicked()</declaration>
                    </MClassMember>
                   </item>
                  </qlist>

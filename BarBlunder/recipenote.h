@@ -11,6 +11,7 @@
 class QVBoxLayout;
 
 /// @brief An entry displaying a step information inside the RecipeNote.
+/// @extends QWidget
 class RecipeStep : public QWidget
 {
 	Q_OBJECT
@@ -32,12 +33,14 @@ private:
 };
 
 /// @brief Displays recipe steps. Part of View.
+/// @extends QScrollArea
 class RecipeNote : public QScrollArea
 {
 	Q_OBJECT
 
 public:
 	/// @brief Constructor.
+    /// @param Parent - a address of a QWidget that is a parent defaul ti s anul pointer
 	explicit RecipeNote(QWidget *parent = nullptr);
 
 	/// @brief Destructor.

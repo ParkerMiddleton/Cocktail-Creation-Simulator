@@ -11,6 +11,7 @@
 #include <QTimer>
 
 /// @brief Responsible for game logic. Part of Model.
+/// @extends QObject
 class BarModel : public QObject
 {
 	Q_OBJECT

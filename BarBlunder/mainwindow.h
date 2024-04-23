@@ -28,6 +28,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 /// @brief Educational Application main window. Part of View.
+/// @extends QMainWindow
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
