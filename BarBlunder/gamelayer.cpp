@@ -134,7 +134,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectLiquor(SimpleSyrup,              "simple syrup");
     connectLiquor(Sprite,                   "sprite");
     connectLiquor(Coke,                     "coke");
-    connectLiquor(OliveJuice,               "olive juice");
+    connectLiquor(OliveJuiceButton,               "olive juice");
     connectLiquor(StirButton,               "stir");
     connectLiquor(OrangeLiquorButton,       "orange liquor splash");
 
@@ -173,7 +173,7 @@ bar, [bar]() {bar->ingredientClicked(ingredientString);		\
     connectPourSoundButton(Agave_Nectar,        "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(Grenadine,           "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(SimpleSyrup,         "qrc:/soundBoard/liquid_pour_2.mp3");
-    connectPourSoundButton(OliveJuice,          "qrc:/soundBoard/liquid_pour_2.mp3");
+    connectPourSoundButton(OliveJuiceButton,          "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(OrangeLiquorButton,  "qrc:/soundBoard/liquid_pour_2.mp3");
     connectPourSoundButton(Sprite,              "qrc:/soundBoard/soda_pour.mp3");
     connectPourSoundButton(Coke,                "qrc:/soundBoard/soda_pour.mp3");
@@ -220,7 +220,7 @@ void GameLayer::switchToRecipeNote()
 }
 
 void GameLayer::updatePourTimer(int time) {
-    ui->PourTimer->setText("Pour time: " + QString::number(time));
+    ui->PourTimer->setText("Time: " + QString::number(time));
 }
 
 void GameLayer::setupSoundBoard() {

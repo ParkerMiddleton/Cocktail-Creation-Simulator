@@ -1264,6 +1264,33 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="PourTimer">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>20</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(0, 0, 0, 190);
+border: 1px solid transparent;
+color: #e5e5e5;
+text-align:center;
+font: bold &quot;Ebrima&quot;;
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>Timer:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1314,6 +1341,7 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
   <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>
   <zorder>d_OliveJuiceButton</zorder>
+  <zorder>PourTimer</zorder>
  </widget>
  <customwidgets>
   <customwidget>

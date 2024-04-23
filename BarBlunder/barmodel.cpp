@@ -181,6 +181,11 @@ void BarModel::ingredientReleased()
 
 void BarModel::ingredientClicked(const QString &ingredientName)
 {
+    // disable all ingredient click functionality until glass selected
+    if(!glasswareClicked && (ingredientName != "rocks glass" || ingredientName != "martini glass" || ingredientName != "collins glass" || ingredientName != "copper mug")) {
+        return;
+    }
+
 	if (!currentGlassware || isGlasswareEmpty)
 	{
 		if (glasswares.contains(ingredientName))
