@@ -160,6 +160,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 		connectIngredient(OrangeButton,			"orange peel")
 		connectIngredient(OliveButton,			"olives")
 		connectIngredient(BittersButton,		"bitters")
+		connectIngredient(MintButton,			"mint")
 		connectIngredient(IceButton,			"ice")
 		connectIngredient(RocksGlassButton,		"rocks glass")
 		connectIngredient(CollinsGlassButton,	"collins glass")
@@ -197,6 +198,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connectLiquor(Sprite,                   "sprite");
 	connectLiquor(Coke,                     "coke");
 	connectLiquor(OliveJuiceButton,         "olive juice");
+	connectLiquor(ProseccoButton,			"prosecco");
 
 
 #undef connectLiquor

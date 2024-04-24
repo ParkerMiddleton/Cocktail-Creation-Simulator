@@ -159,6 +159,10 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 	{
 		liquid.addIce();
 	}
+	else if (ingredientName == "mint")
+	{
+
+	}
 	else if (ingredientName == "stir")
 	{
 		liquid.mix();
@@ -317,7 +321,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-	assignedRecipe = listOfRecipes[randomNumber];
+	assignedRecipe = listOfRecipes[7];
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.steps);

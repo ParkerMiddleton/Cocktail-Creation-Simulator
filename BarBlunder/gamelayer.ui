@@ -334,8 +334,8 @@ image: url(:/images/glasses/rocks_hover.png);
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>480</y>
+     <x>990</x>
+     <y>340</y>
      <width>100</width>
      <height>91</height>
     </rect>
@@ -358,8 +358,8 @@ image: url(:/images/garnish/lime_wedges_hover);
   <widget class="QPushButton" name="d_OliveButton">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>470</y>
+     <x>1070</x>
+     <y>320</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -382,8 +382,8 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>480</y>
+     <x>1150</x>
+     <y>340</y>
      <width>100</width>
      <height>91</height>
     </rect>
@@ -605,7 +605,7 @@ image: url(:/images/ingredients/bitters_hover);
   <widget class="QPushButton" name="d_ShakertinButton">
    <property name="geometry">
     <rect>
-     <x>940</x>
+     <x>880</x>
      <y>330</y>
      <width>91</width>
      <height>81</height>
@@ -757,7 +757,7 @@ color: #5e5e5e;
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>780</x>
+     <x>740</x>
      <y>340</y>
      <width>121</width>
      <height>81</height>
@@ -1498,6 +1498,32 @@ number of seconds.</string>
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="d_ProseccoButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>470</y>
+     <width>71</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prosecco</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="d_MintButton">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>470</y>
+     <width>91</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mint</string>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1555,6 +1581,8 @@ number of seconds.</string>
   <zorder>ControlsCheckbox</zorder>
   <zorder>v_DrinkView</zorder>
   <zorder>shakertin</zorder>
+  <zorder>d_ProseccoButton</zorder>
+  <zorder>d_MintButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

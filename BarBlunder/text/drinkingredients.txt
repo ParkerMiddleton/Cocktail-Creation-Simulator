@@ -1,10 +1,10 @@
 To Serve: "Old Fashioned"
-1. Take one rocks glass
-2. Pour 2 oz of whiskey
-3. Add Ice (3 Cubes)
-4. Add 6 bitters
+1. Grab Rocks glass
+2. Pour 2 oz Whiskey
+3. Fill with Ice (3 cubes)
+4. Add 6 Bitters
 5. Stir
-6. Garnish with orange peel
+6. Garnish with Orange Peel
 
 Old Fashioned
 rocks glass: 1
@@ -15,12 +15,12 @@ stir: 1
 orange peel: 1
 
 To Serve: "Moscow Mule"
-1. Take one copper mug
-2. Pour 1 oz of lime Juice
-3. Pour 2 oz of vodka
-4. Fill glass with ice (6 Cubes)
-5. Pour 4 oz of ginger beer
-6. garnish with a lime wedge
+1. Grab a Copper mug
+2. Pour 1 oz Lime Juice
+3. Pour 2 oz Vodka
+4. Fill with Ice (6 cubes)
+5. Pour 4 oz Ginger Beer
+6. Garnish with Lime Wedge
 
 Moscow Mule
 copper mug: 1
@@ -31,11 +31,11 @@ ginger beer: 4
 lime wedge: 1
 
 To Serve: "White Russian"
-1. Grab a rocks glass
-2. Pour 1 oz vodka
+1. Grab a Rocks glass
+2. Pour 1 oz Vodka
 3. Pour 1 oz Kahlua
-4. Fill with ice (3 cubes)
-5. 2 oz half n half
+4. Fill with Ice (3 cubes)
+5. 2 oz Half-n-Half
 
 White Russian.
 rocks glass: 1
@@ -45,15 +45,15 @@ ice: 3
 half n half: 2
 
 To Serve: "Rocks Margarita"
-Grab a Collins Glass
-Pour 1 oz Lime Juice
-Pour 1 oz Agave Nectar
-Pour 1 oz Sweet'n'sour mix
-Pour 2 oz Tequila
-add a splash Orange Liquor
-Fill with ice (3 cubes)
-Shake for 5 seconds
-Garnish with a lime wedge
+1. Grab a Collins glass
+2. Pour 1 oz Lime Juice
+3. Pour 1 oz Agave Nectar
+4. Pour 1 oz Sweet'n'sour mix
+5. Pour 2 oz Tequila
+6. Add a splash of Orange Liquor
+7. Fill with Ice (3 cubes)
+8. Shake for 5 seconds
+9. Garnish with Lime Wedge
 
 Rocks Margarita.
 collins glass: 1
@@ -68,10 +68,10 @@ lime wedge: 1
 
 To Serve: "Dirty Martini"
 1. Grab a Martini glass
-2. Pour 2 oz vodka
-3. Pour 1 oz olive Juice
+2. Pour 2 oz Vodka
+3. Pour 1 oz Olive Juice
 4. Shake for 5 seconds
-5. Garnish with an olive skewer
+5. Garnish with Olive Skewer
 
 Dirty Martini.
 martini glass: 1
@@ -79,3 +79,63 @@ vodka: 2
 olive juice: 1
 shake: 5
 olives: 1
+
+To Serve: "French 75"
+1. Grab a Martini Glass
+2. Fill with Ice (2 cubes)
+3. Pour 1 oz Simple Syrup
+4. Pour 1 oz Lime Juice
+5. Pour 2 oz Gin
+6. Shake for 10 seconds
+7. Pour 1 oz Prosecco
+
+French 75.
+martini glass: 1
+ice: 2
+simple syrup: 1
+lime juice: 1
+gin: 2
+shake: 10
+prosecco: 1
+
+To Serve: "Dirty Shirley"
+1. Grab a Collins Glass
+2. Pour 2 oz Vodka
+3. Fill with Ice (10 cubes)
+4. Pour 9 oz Lime Juice
+5. Pour 1 oz Grenadine
+6. Garnish with Lime Wedge
+
+Dirty Shirley.
+collins glass: 1
+vodka: 2
+ice: 10
+lime juice: 9
+grenadine: 1
+lime wedge: 1
+
+To Serve: "Mojito"
+1. Grab a Collins Glass
+2. Pour 2 oz Simple Syrup
+3. Place 1 Spring of Mint
+4. Pour 1 oz Lime Juice
+5. Pour 2 oz Rum
+6. Shake for 8 seconds
+7. Fill with Ice (10 cubes)
+8. Pour 4 oz Coke
+9. Stir 2 times
+10. Pour 1 oz Sprite
+11. Garnish with Lime Wedge
+
+Mojito.
+collins glass: 1
+simple syrup: 2
+mint: 1
+lime juice: 1
+rum: 2
+shake: 8
+ice: 10
+coke: 4
+stir: 2
+sprite: 1
+lime wedge: 1

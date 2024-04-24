@@ -56,6 +56,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	drinkColors["lime juice"] =					{158, 180, 80, ALPHA};				// lime juice
 	drinkColors["ginger beer"] =				{253, 237, 115, ALPHA};				// ginger beer
 	drinkColors["olive juice"] =				{207, 178, 112, ALPHA};				// olive juice
+	drinkColors["prosecco"] =					{231, 225, 209, ALPHA};				// prosecco
 
 	// Setup colors for dashes.
 	dashColors["bitters"] =						{179, 102, 110};
