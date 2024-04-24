@@ -28,7 +28,6 @@ BarModel::BarModel(QObject *parent)
 	QFile file(":/text/drinkingredients.txt");
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
-		qDebug() << "Failed to open file from resources";
 		return;
 	}
 
@@ -54,7 +53,6 @@ LiquidModel* BarModel::liquidModel()
 
 void BarModel::startNewGame()
 {
-	qDebug() << "------------- NEW GAME -------------------------";
 	score = 0;
 	this->startNewRound();
 }
@@ -108,7 +106,7 @@ void BarModel::ingredientPressed(const QString &ingredientName)
 
 void BarModel::ingredientReleased()
 {
-	if (!currentGlassware)
+    if (!currentGlassware) //if its not correct glassware just return.
 		return;
 
 	isProcessingIngredient = false;
@@ -178,21 +176,16 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 			isGlasswareEmpty  = false;
 
 		ingredient.second--;
-		qDebug() << ingredientName << " " << ingredient.second;
 
 		if (ingredient.second == 0)
 			recipeStepNumber++;
-
-		qDebug() << recipeStepNumber;
 
 		emit correctIngredientUsed(recipeStepNumber);
 		emit correctIngredientName(ingredientName);
 	}
 	else if (!isGlasswareEmpty && !glasswares.contains(ingredientName))
 	{
-		qDebug() << "wrong ingredient clicked" << ingredientName;
 		userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
-
 		emit incorrectIngredientUsed(0);
 	}
 }
@@ -206,18 +199,14 @@ void BarModel::serveDrink()
 	if (correctDrink && !isOutOfOrder)
 	{
 		emit drinkIsCorrect();
-		qDebug() << "Congratulations! you made the drink correct";
 		score++;
 		this->startNewRound();
 	}
 	else
 	{
 		emit drinkIsIncorrect();
-		qDebug() << "Drink ingredients is out of order: " << isOutOfOrder;
-		qDebug() << "Correct drink portions: " << correctDrink;
 		this->startNewRound();
 	}
-	// else maybe give a error that they made the drink incorrect and start new game or retry that recipe
 }
 
 void BarModel::emptyDrink()
@@ -242,7 +231,6 @@ void BarModel::emptyDrink()
 	emit drinkEmptied();
 	emit newDrink(assignedRecipe.steps);
 	this->removeGlassware();
-	qDebug() << "drink emptied";
 }
 
 void BarModel::processPressedIngredient()
@@ -264,7 +252,6 @@ void BarModel::processPressedIngredient()
 			liquid.pour(1, currentProcessingIngredient);
 		}
 
-		qDebug() << "wrong ingredient pressed" << currentProcessingIngredient;
 		isOutOfOrder = true;
 		userRecipe.ingredients.push_back(QPair<QString, int>(currentProcessingIngredient, -1));
 		emit incorrectIngredientUsed(0);
@@ -282,12 +269,10 @@ void BarModel::processPressedIngredient()
 					liquid.pour(1, currentProcessingIngredient);
 				}
 
-				qDebug() << currentProcessingIngredient << " " << ingredient.second;
 
 				if (ingredient.second == 0)
 				{
 					recipeStepNumber++;
-					qDebug() << "Step Number 1:" << recipeStepNumber;
 					emit correctIngredientUsed(recipeStepNumber);
 					emit correctIngredientName(ingredient.first);
 
@@ -297,7 +282,6 @@ void BarModel::processPressedIngredient()
 				else if (ingredient.second < 0)
 				{
 					recipeStepNumber++;
-					qDebug() << "Step Number 2:" << recipeStepNumber;
 					emit incorrectIngredientUsed(0);
 					emit correctIngredientName(ingredient.first);
 
@@ -314,8 +298,6 @@ void BarModel::startNewRound()
 	this->emptyDrink();
 	this->removeGlassware();
 	this->getRandomRecipe();
-
-	qDebug() << "------------- NEW ROUND -------------------------";
 }
 
 void BarModel::getRandomRecipe()
@@ -335,7 +317,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-	assignedRecipe = listOfRecipes[randomNumber];
+    assignedRecipe = listOfRecipes[3];
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.steps);
