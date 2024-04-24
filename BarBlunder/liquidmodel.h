@@ -86,7 +86,7 @@ private:
 	static constexpr float ICE_DENSITY = 1.25f;
 
 	static constexpr float MINT_RADIUS_M = 0.08f;
-	static constexpr float MINT_DENSITY = 3.25f;
+	static constexpr float MINT_DENSITY = 2.25f;
 
 	static constexpr float DROP_VELOCITY = -2.0f;
 	static constexpr int LIQUID_PARTICLES_NUM_SPAWN_VERTICAL = 4;
