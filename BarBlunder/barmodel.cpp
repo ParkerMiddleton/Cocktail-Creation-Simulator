@@ -84,7 +84,7 @@ void BarModel::update(int deltaTime)
 
 void BarModel::ingredientPressed(const QString &ingredientName)
 {
-	if (recipeStepNumber >= userRecipe.ingredients.size()) // If recipe is complete.
+	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
 		return;
 
 	if (!currentGlassware) // If no glassware is placed
@@ -108,7 +108,7 @@ void BarModel::ingredientPressed(const QString &ingredientName)
 
 void BarModel::ingredientReleased()
 {
-	if (recipeStepNumber >= userRecipe.ingredients.size()) // If recipe is complete.
+	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
 		return;
 
 	if (!currentGlassware)
@@ -127,7 +127,7 @@ void BarModel::ingredientReleased()
 
 void BarModel::ingredientClicked(const QString &ingredientName)
 {
-	if (recipeStepNumber >= userRecipe.ingredients.size()) // If recipe is complete.
+	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
 		return;
 
 	// Disable all ingredient click functionality until glass is selected
@@ -230,6 +230,7 @@ void BarModel::emptyDrink()
 	userRecipe = assignedRecipe; // doesnt this need to restart the recipe?
 	recipeStepNumber = 0;
 	isOutOfOrder = false;
+	isProcessingIngredient = false;
 
 	liquid.empty();
 
@@ -250,7 +251,7 @@ void BarModel::emptyDrink()
 
 void BarModel::processPressedIngredient()
 {
-	if (recipeStepNumber >= userRecipe.ingredients.size()) // If recipe is complete.
+	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
 		return;
 
 	// TODO:: Review why pressing wrong liquor decrements it by double the amount. // FIXED?
