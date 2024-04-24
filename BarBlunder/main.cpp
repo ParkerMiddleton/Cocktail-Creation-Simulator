@@ -1,3 +1,9 @@
+//>>================== CS 3505 - Assignment 9: Educational App ==================<<
+//
+//>> Bar Blunder
+//
+//>>===========================================================================<<
+
 #include "mainwindow.h"
 #include "applicationmodel.h"
 

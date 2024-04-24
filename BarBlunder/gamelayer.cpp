@@ -14,7 +14,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	, ui{new Ui::GameLayer}
 {
 	ui->setupUi(this);
-    ui->shakertin->setVisible(false);
+	ui->shakertin->setVisible(false);
 	currentRecipeStep = 0;
 	RecipeNote *recipeNote = ui->Recipe;
 	recipeNote->setupLayout(ui->Steps);
@@ -58,12 +58,12 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(ui->d_SinkButton, &QPushButton::clicked,
 			bar, &BarModel::emptyDrink);
 
-    //Shake connections
-    connect(bar, &BarModel::shaking
-            , this, &GameLayer::shake);
+	//Shake connections
+	connect(bar, &BarModel::shaking
+			, this, &GameLayer::shake);
 
-    connect(bar, &BarModel::stopShaking
-            , this, &GameLayer::shakeRelease);
+	connect(bar, &BarModel::stopShaking
+			, this, &GameLayer::shakeRelease);
 
 	// Recipe Note Connections.
 	connect(bar, &BarModel::newDrink
@@ -97,20 +97,20 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 // Ingredient buttons connections.
 // "buttonName" without "d_" prefix!
 #define connectIngredient(buttonName, ingredientString)						\
-		connect(ui->d_##buttonName, &QPushButton::clicked,					\
-				bar, [bar]() {bar->ingredientClicked(ingredientString);		\
-				});
+	connect(ui->d_##buttonName, &QPushButton::clicked,					\
+			bar, [bar]() {bar->ingredientClicked(ingredientString);		\
+			});
 	connectIngredient(LimeWedgeButton,		"lime wedge")
-	connectIngredient(OrangeButton,			"orange peel")
-	connectIngredient(OliveButton,			"olives")
-	connectIngredient(BittersButton,		"bitters")
-	connectIngredient(IceButton,			"ice")
-	connectIngredient(RocksGlassButton,		"rocks glass")
-	connectIngredient(CollinsGlassButton,	"collins glass")
-	connectIngredient(CopperMugButton,		"copper mug")
-	connectIngredient(MartiniGlassButton,	"martini glass")
-	connectIngredient(OrangeLiquorButton,   "orange liquor splash")
-	connectIngredient(StirButton,			"stir")
+		connectIngredient(OrangeButton,			"orange peel")
+		connectIngredient(OliveButton,			"olives")
+		connectIngredient(BittersButton,		"bitters")
+		connectIngredient(IceButton,			"ice")
+		connectIngredient(RocksGlassButton,		"rocks glass")
+		connectIngredient(CollinsGlassButton,	"collins glass")
+		connectIngredient(CopperMugButton,		"copper mug")
+		connectIngredient(MartiniGlassButton,	"martini glass")
+		connectIngredient(OrangeLiquorButton,   "orange liquor splash")
+		connectIngredient(StirButton,			"stir")
 
 #undef connectIngredient
 
@@ -151,7 +151,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 
 		// TODO:: add more sounds for the different clicked ingriedients
 		// TODO:: maybe add functionality for sound with ice emptying, and without
-	connectSoundButton(IceButton,			"qrc:/sounds/ice_cubes.mp3");
+		connectSoundButton(IceButton,			"qrc:/sounds/ice_cubes.mp3");
 	connectSoundButton(SinkButton,          "qrc:/sounds/empty_liquid.mp3");
 	connectSoundButton(StirButton,          "qrc:/sounds/ice_stir.mp3");
 
@@ -335,35 +335,38 @@ void GameLayer::setupSoundBoard()
 	audioOutputSBClicked->setVolume(0.0f);
 }
 
-void GameLayer::shake(){
-    int originalX, originalY;
+void GameLayer::shake()
+{
+	int originalX, originalY;
 
-    ui->shakertin->setVisible(true);
+	ui->shakertin->setVisible(true);
 
-    originalX = ui->shakertin->x();
-    originalY = ui->shakertin->y();
+	originalX = ui->shakertin->x();
+	originalY = ui->shakertin->y();
 
-    animationTimer = new QTimer(this);
-    // Set timeout interval (in milliseconds)
-    animationTimer->setInterval(50); // Timer will time out every second
+	animationTimer = new QTimer(this);
+	// Set timeout interval (in milliseconds)
+	animationTimer->setInterval(50); // Timer will time out every second
 
-    // Connect a slot to the timeout signal (optional)
-    connect(animationTimer, &QTimer::timeout, this, [this, originalX, originalY](){
-        performShake(originalX, originalY);
-    });
-    animationTimer->start();
+	// Connect a slot to the timeout signal (optional)
+	connect(animationTimer, &QTimer::timeout, this, [this, originalX, originalY](){
+		performShake(originalX, originalY);
+	});
+	animationTimer->start();
 }
 
 
-void GameLayer::performShake(int originalX, int originalY){
-    int deltaX = QRandomGenerator::global()->bounded(-5, 6);
-    int deltaY = QRandomGenerator::global()->bounded(-5, 6);
+void GameLayer::performShake(int originalX, int originalY)
+{
+	int deltaX = QRandomGenerator::global()->bounded(-5, 6);
+	int deltaY = QRandomGenerator::global()->bounded(-5, 6);
 
-    ui->shakertin->move(originalX + deltaX, originalY + deltaY);
+	ui->shakertin->move(originalX + deltaX, originalY + deltaY);
 }
 
-void GameLayer::shakeRelease(){
-    animationTimer->stop();
-    delete animationTimer;
-    ui->shakertin->setVisible(false);
+void GameLayer::shakeRelease()
+{
+	animationTimer->stop();
+	delete animationTimer;
+	ui->shakertin->setVisible(false);
 }

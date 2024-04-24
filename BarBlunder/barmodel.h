@@ -98,9 +98,8 @@ signals:
 	/// @param totalProcessingElapsedTime Timer elapsed time.
 	void totalProcessingTimerUpdated(int totalProcessingElapsedTime);
 
-    void elapsedTimePressed(int time);
-
-    void stopShaking();
+	/// @brief Stops using shader tins.
+	void stopShaking();
 
 private:
 	LiquidModel liquid;

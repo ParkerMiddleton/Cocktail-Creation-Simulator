@@ -119,7 +119,7 @@ void BarModel::ingredientReleased()
 	if (currentProcessingIngredient == "shake")
 	{
 		isShaking = false;
-        emit stopShaking();
+		emit stopShaking();
 	}
 
 	emit totalProcessingTimerUpdated(0);
@@ -262,14 +262,18 @@ void BarModel::processPressedIngredient()
 
 	if (!found)
 	{
-		liquid.pour(1, currentProcessingIngredient);
+		if (currentProcessingIngredient != "shake")
+		{
+			liquid.pour(1, currentProcessingIngredient);
+		}
+
 		qDebug() << "wrong ingredient pressed" << currentProcessingIngredient;
 		isOutOfOrder = true;
 		userRecipe.ingredients.push_back(QPair<QString, int>(currentProcessingIngredient, -1));
 		emit incorrectIngredientUsed(recipeStepNumber);
 	}
 	else if (isProcessingIngredient)
-	{ // Check if the whiskey button is still pressed
+	{
 		for (QPair<QString, int> &ingredient : userRecipe.ingredients)
 		{
 			if (ingredient.first == currentProcessingIngredient)
@@ -293,7 +297,7 @@ void BarModel::processPressedIngredient()
 					if (currentProcessingIngredient == "shake")
 						liquid.mix();
 				}
-				else if(ingredient.second < 0)
+				else if (ingredient.second < 0)
 				{
 					recipeStepNumber++;
 					qDebug() << "Step Number 2:" << recipeStepNumber;
