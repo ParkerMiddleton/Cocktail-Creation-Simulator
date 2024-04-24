@@ -708,10 +708,10 @@ image: url(:/images/tools/icewell_hover);
   <widget class="QPushButton" name="d_ServeDrinkButton">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>40</y>
-     <width>121</width>
-     <height>61</height>
+     <x>520</x>
+     <y>20</y>
+     <width>171</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -733,7 +733,7 @@ image: url(:/images/tools/icewell_hover);
    <property name="styleSheet">
     <string notr="true">QPushButton {
 background-color: rgba(0, 0, 0, 190);
-border: 1px solid transparent;
+border: 1px solid  #e5e5e5;
 color: #e5e5e5;
 text-align:center;
 font: bold &quot;Ebrima&quot;;
@@ -993,7 +993,7 @@ image: url(:/images/liquor/whiskey_Hover.png);
      <x>930</x>
      <y>0</y>
      <width>321</width>
-     <height>301</height>
+     <height>311</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -1016,7 +1016,7 @@ border: 2px dotted black;
        <x>0</x>
        <y>0</y>
        <width>321</width>
-       <height>301</height>
+       <height>311</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -1037,7 +1037,7 @@ border: 2px dotted black;
         <x>0</x>
         <y>0</y>
         <width>319</width>
-        <height>299</height>
+        <height>309</height>
        </rect>
       </property>
      </widget>
@@ -1267,9 +1267,9 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
   <widget class="QLabel" name="PourTimer">
    <property name="geometry">
     <rect>
-     <x>790</x>
+     <x>760</x>
      <y>20</y>
-     <width>141</width>
+     <width>171</width>
      <height>71</height>
     </rect>
    </property>
@@ -1278,14 +1278,15 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
 border: 1px solid transparent;
 color: #e5e5e5;
 text-align:center;
+padding: 8px;
 font: bold &quot;Ebrima&quot;;
-font-size: 14px;</string>
+font-size: 22px;</string>
    </property>
    <property name="text">
-    <string>Timer:</string>
+    <string>T i m e r:  0</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -1335,11 +1336,18 @@ font-size: 14px;</string>
   <widget class="QLabel" name="DrunkGuyTxt">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>160</x>
      <y>90</y>
-     <width>211</width>
+     <width>231</width>
      <height>71</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ebrima</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: black;</string>
@@ -1423,8 +1431,8 @@ font-size: 14px;</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="gamegraphics.qrc"/>
   <include location="menugraphics.qrc"/>
+  <include location="gamegraphics.qrc"/>
  </resources>
  <connections/>
 </ui>

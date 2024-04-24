@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>music/lofi.mp3</file>
         <file>music/ragtime.mp3</file>
+        <file>music/husky.mp3</file>
+        <file>music/seafood.mp3</file>
+        <file>music/warm.mp3</file>
     </qresource>
 </RCC>

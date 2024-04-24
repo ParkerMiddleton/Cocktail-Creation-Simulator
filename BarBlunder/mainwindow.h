@@ -13,6 +13,8 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
+#include <QList>
+
 // Forward declaration.
 class ApplicationModel;
 
@@ -108,6 +110,7 @@ private:
 	QMediaPlayer *menuMusic;
 	QMediaPlayer *gameMusic;
 	QPropertyAnimation *gameVolumeFadeInAnim;
+	QList<QString> gameMusicList;
 
 	/// @brief Helper method to initialize animation fields.
 	void setupOverlayMenuAnimations();

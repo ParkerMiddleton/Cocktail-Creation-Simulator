@@ -11,6 +11,7 @@
 #include <QPropertyAnimation>
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	: QMainWindow{parent}
@@ -101,10 +102,14 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	connect(app, &ApplicationModel::applicationExitRequested,
 			this, &MainWindow::close);
 
+	// Setup list of game music.
+	gameMusicList.push_back("qrc:/music/ragtime.mp3");
+	gameMusicList.push_back("qrc:/music/seafood.mp3");
+	gameMusicList.push_back("qrc:/music/warm.mp3");
+	gameMusicList.push_back("qrc:/music/husky.mp3");
+
 	// Play music.
 	this->playMenuMusic();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -184,7 +189,8 @@ void MainWindow::setupNewGame()
 		gameMusic->stop();
 	}
 
-	gameMusic->setSource(QUrl("qrc:/music/ragtime.mp3"));
+	int rand = QRandomGenerator::global()->bounded(gameMusicList.size());
+	gameMusic->setSource(QUrl(gameMusicList[rand]));
 	gameMusic->play();
 	this->hideOverlayMenu();
 }

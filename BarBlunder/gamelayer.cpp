@@ -216,19 +216,23 @@ void GameLayer::switchToRecipeNote()
 
 void GameLayer::updatePourTimer(int time)
 {
-	ui->PourTimer->setText("Time: " + QString::number(time));
+	ui->PourTimer->setText("T i m e r:  " + QString::number(time));
 }
 
-void GameLayer::playSoundEffect(const QString &soundFilePath) {
+void GameLayer::playSoundEffect(const QString &soundFilePath)
+{
 	soundBoardClicked->stop();
 	soundBoardClicked->setSource(QUrl(soundFilePath));
 	soundBoardClicked->play();
 }
 
-void GameLayer::playPourSound(const QString &soundFilePath) {
+void GameLayer::playPourSound(const QString &soundFilePath)
+{
 	soundBoardClicked->stop();
+
 	// allow for current sound to finish before restarting
-	if (!soundBoardPour->isPlaying()) {
+	if (!soundBoardPour->isPlaying())
+	{
 		soundBoardPour->setLoops(QMediaPlayer::Infinite);
 		soundBoardPour->setSource(QUrl(soundFilePath));
 		soundBoardPour->play();

@@ -33,7 +33,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, liquidParticles{nullptr}
 	, dashParticles{nullptr}
 {
-	QPixmap image(":/images/maindrink/icesphere.png");
+	QPixmap image(":/images/maindrink/icecube.png");
 	iceTexture = new QPixmap(image.scaled((ICE_RADIUS_M / CONVERSION_FACTOR) * 2, (ICE_RADIUS_M / CONVERSION_FACTOR) * 2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
 	uchar ALPHA = 200;
