@@ -279,7 +279,7 @@ void GameLayer::updateDrunkGuyTextCorrect(int recipeStepNumber)
 		QString correctPhrase = correctPhrases[QRandomGenerator::global()->bounded(correctPhrases.size())];
 		ui->DrunkGuyTxt->setText(correctPhrase);
 
-		QTimer::singleShot(2000, this, [this]() {
+		QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
 			ui->DrunkGuyTxt->setText("");
 			ui->DrunkGuyTxtBox->setVisible(false);
 		});
@@ -305,7 +305,7 @@ void GameLayer::updateDrunkGuyTextIncorrect()
 	QString incorrectPhrase = incorrectPhrases[QRandomGenerator::global()->bounded(incorrectPhrases.size())];
 	ui->DrunkGuyTxt->setText(incorrectPhrase);
 
-	QTimer::singleShot(2000, this, [this]() {
+	QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
 		ui->DrunkGuyTxt->setText("");
 		ui->DrunkGuyTxtBox->setVisible(false);
 	});
@@ -330,7 +330,7 @@ void GameLayer::setDrinkGuyNewOrder(const QString &drinkName)
 	QString addonPhrase = addonPhrases[QRandomGenerator::global()->bounded(addonPhrases.size())];
 	ui->DrunkGuyTxt->setText(addonPhrase + " " + drinkName);
 
-	QTimer::singleShot(2000, this, [this]() {
+	QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
 		ui->DrunkGuyTxt->setText("");
 		ui->DrunkGuyTxtBox->setVisible(false);
 	});

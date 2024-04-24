@@ -86,11 +86,12 @@ private slots:
 	void checkControlsCheckBox();
 
 private:
-	QTimer* animationTimer;
 	static constexpr int ROUND_END_MESSAGE_DURATION_MS = 1000;
+	static constexpr int FRANK_MESSAGE_DURATION_MS = 3000;
 
 	Ui::GameLayer *ui;
 	QWidget *pauseOverlay;
+	QTimer *animationTimer;
 	int currentRecipeStep;
 
 	// Sound effects

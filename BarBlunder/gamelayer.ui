@@ -993,7 +993,7 @@ image: url(:/images/liquor/whiskey_Hover.png);
      <x>930</x>
      <y>0</y>
      <width>321</width>
-     <height>311</height>
+     <height>321</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -1016,7 +1016,7 @@ border: 2px dotted black;
        <x>0</x>
        <y>0</y>
        <width>321</width>
-       <height>311</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -1037,7 +1037,7 @@ border: 2px dotted black;
         <x>0</x>
         <y>0</y>
         <width>319</width>
-        <height>309</height>
+        <height>319</height>
        </rect>
       </property>
      </widget>
@@ -1051,7 +1051,7 @@ border: 2px dotted black;
        <x>0</x>
        <y>0</y>
        <width>321</width>
-       <height>311</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="font">
@@ -1387,7 +1387,7 @@ font-size: 22px;</string>
    <property name="geometry">
     <rect>
      <x>1200</x>
-     <y>260</y>
+     <y>270</y>
      <width>51</width>
      <height>51</height>
     </rect>
@@ -1425,12 +1425,12 @@ QCheckBox::indicator:unchecked:pressed {
 }
 
 QCheckBox::indicator:checked {
-image: url(:/images/menu/checkbox_checked);
+image: url(:/images/menu/checkbox_squared);
 }
 
 QCheckBox::indicator:checked:hover {
-image: url(:/images/menu/checkbox_checked_hover);
-border-image: url(:/images/menu/checkbox_checked_hover) 1;
+image: url(:/images/menu/checkbox_squared_hover);
+border-image: url(:/images/menu/checkbox_squared_hover) 1;
 }
 
 QCheckBox::indicator:checked:pressed {
@@ -1458,14 +1458,22 @@ QCheckBox::indicator:indeterminate:pressed {
      <x>930</x>
      <y>0</y>
      <width>321</width>
-     <height>311</height>
+     <height>321</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe Print</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: white;
 color: black;
 padding: 8px;
-font: bold &quot;Ebrima&quot;;
+font: bold &quot;Segoe Print&quot;;
 font-size: 12px;
 
 border: 2px dotted black;</string>
@@ -1478,15 +1486,13 @@ CONTROLS:
 All interactions are performed
 with the use of the left mouse button.
 
-To pour liquor,
-hold for 1 second to pour 1 oz.
+To pour liquor, hold for 1 second to pour 1 oz.
 
-To add a single ingredient,
-stir, and place a glassware,
-simply click.
+To add a single ingredient, stir,
+or place a glassware, simply click.
 
-To shake,
-hold for a specified number of seconds.</string>
+To shake, hold for a specified
+number of seconds.</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
