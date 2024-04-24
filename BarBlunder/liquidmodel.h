@@ -49,7 +49,7 @@ public:
 	/// If already pouring, adds the given amount to the total amount to pour.
 	/// @param ounce Amount to schedule.
 	/// @param drinkName Determines the color of the new liquid to pour.
-    void pour(int ounce, const QString &drinkName);
+	void pour(int ounce, const QString &drinkName);
 
 	/// @brief Creates dash particles.
 	/// @param dashName Determines the color of particles.
@@ -80,7 +80,7 @@ private:
 	static constexpr float LIQUID_PARTICLE_RADIUS_M = 0.0275f;
 	static constexpr float DASH_PARTICLE_RADIUS_M = 0.01f;
 	static constexpr float ICE_RADIUS_M = 0.08f;
-	static constexpr float ICE_DENSITY = 3.0f;
+	static constexpr float ICE_DENSITY = 1.25f;
 
 	static constexpr float DROP_VELOCITY = -2.0f;
 	static constexpr int LIQUID_PARTICLES_NUM_SPAWN_VERTICAL = 4;

@@ -4,6 +4,7 @@
 #include <QScrollBar>
 #include <QFont>
 
+// Global within this translation unit.
 QFont defaultFont;
 QFont strikedOutFont;
 QString defaultSS;
@@ -15,7 +16,7 @@ RecipeStep::RecipeStep(const QString &instruction, QWidget *parent)
 {
 	int iconSize = 25;
 	this->setFixedHeight(iconSize);
-	this->setStyleSheet("background-color: transparent; padding: 4px;"); //border: 0px solid #444444
+	this->setStyleSheet("background-color: transparent; padding: 4px;");
 
 	iconLabel.setFixedWidth(iconSize);
 	iconLabel.setFixedHeight(iconSize);

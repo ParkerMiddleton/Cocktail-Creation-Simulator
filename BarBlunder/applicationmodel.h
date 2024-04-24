@@ -21,7 +21,7 @@ public:
 	/// Must be called after the constructor due to QT limitations.
 	void run();
 
-	/// @brief Returns a pointer to the bar model.
+	/// @brief Returns a pointer to the BarModel.
 	/// @return BarModel*
 	BarModel* barModel();
 

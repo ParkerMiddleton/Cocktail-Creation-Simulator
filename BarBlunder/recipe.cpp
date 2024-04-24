@@ -9,7 +9,7 @@ Recipe::Recipe(QTextStream &recipe)
 
 	while (!line.isEmpty())
 	{
-		recipeSteps.push_back(line);
+		steps.push_back(line);
 		line = recipe.readLine();
 	}
 
@@ -32,7 +32,7 @@ Recipe::Recipe(QTextStream &recipe)
 	}
 }
 
-bool Recipe::checkServedDrink(Recipe correctRecipe)
+bool Recipe::checkServedDrink(const Recipe &correctRecipe)
 {
 	// Different number of ingredients, so it's not a match
 	if (ingredients.size() != correctRecipe.ingredients.size())

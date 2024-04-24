@@ -5,12 +5,12 @@
 
 int main(int argc, char **argv)
 {
-	QApplication application(argc, argv);
+	QApplication QtApplication(argc, argv);
 
-	ApplicationModel app;
-	MainWindow window(&app);
+	ApplicationModel gameApplication;
+	MainWindow window(&gameApplication);
 	window.show();
-	app.run();
+	gameApplication.run();
 
-	return application.exec();
+	return QtApplication.exec();
 }

@@ -40,7 +40,7 @@ class RecipeNote : public QScrollArea
 
 public:
 	/// @brief Constructor.
-    /// @param Parent - a address of a QWidget that is a parent defaul ti s anul pointer
+	/// @param Parent - a address of a QWidget that is a parent defaul ti s anul pointer
 	explicit RecipeNote(QWidget *parent = nullptr);
 
 	/// @brief Destructor.

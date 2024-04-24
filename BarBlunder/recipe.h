@@ -6,28 +6,31 @@
 
 class QTextStream;
 
+/// @brief Holds technical and descriptive information about recipe. Part of Model.
 class Recipe
 {
 public:
-    /// @brief default constructior
-	Recipe() = default;
-    /**
-     * @brief another constructor
-     * @param recipeTextthe projected text for the recipe
-     */
-	Recipe(QTextStream &recipeText);
-    /**
-     * @brief checkServedDrink checks the served drink against the correct recipe
-     * @param correctRecipe -  the correct recipe
-     * @return is the served drink correct?
-     */
-	bool checkServedDrink(Recipe correctRecipe);
-    /// @brief the name of the drink
+	/// @brief Name of this recipe's drink.
 	QString drinkName;
-    /// @brief the steps of the recipes as a series of strings
-	QList<QString> recipeSteps;
-    /// @brief the ingredients in the recipe in amounts represented as a series of QPairs.
+
+	/// @brief Recipe steps.
+	QList<QString> steps;
+
+	/// @brief Recipe steps that require specific (time to perform)/(volume to pour).
 	QList<QPair<QString, int>> ingredients;
+
+	/// @brief Default constructor.
+	Recipe() = default;
+
+	/// @brief Constructor.
+	/// Loads recipe information from the given text buffer.
+	/// @param recipeText Text buffer.
+	Recipe(QTextStream &recipeText);
+
+	/// @brief Checks the given recipe of made drink against the correct recipe.
+	/// @param correctRecipe Recipe with steps performed by the player.
+	/// @return true if correct, false otherwise.
+	bool checkServedDrink(const Recipe &correctRecipe);
 
 };
 

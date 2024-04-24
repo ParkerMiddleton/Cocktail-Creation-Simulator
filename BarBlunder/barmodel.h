@@ -18,68 +18,92 @@ class BarModel : public QObject
 
 public:
 	/// @brief Constructor.
+	/// Loads file with all of the ingredients.
 	explicit BarModel(QObject *parent = nullptr);
 
+	/// @brief Destructor.
 	~BarModel();
 
-	/// @brief starts game
-	void startNewGame();
-
-	void update(int deltaTime);
-
-	/// @brief model of the liquid system
+	/// @brief Returns a pointer to the LiquidModel.
+	/// @return LiquidModel*
 	LiquidModel* liquidModel();
 
-public slots:
-	/// @brief ingredientPressed - slot to handle pressing an ingredient
-	/// @param liqourName -- the string representing that specific ingredient as a qstring
-	void ingredientPressed(const QString &liqourName);
+	/// @brief Starts a new game.
+	void startNewGame();
 
-	/// @brief slot to handle releasing hte ingredient list
+	/// @brief Updates the game logic, and controls the update method of LiquidModel.
+	/// @param deltaTime Time between the last and current update.
+	void update(int deltaTime);
+
+public slots:
+	/// @brief Sets the given ingredient as pressed.
+	/// Meaning it will be processed until the player releases it.
+	/// @param ingredientName Ingredient to set as pressed.
+	void ingredientPressed(const QString &ingredientName);
+
+	/// @brief Releases the current pressed ingredient.
+	/// Meaning the processing of it will stop.
 	void ingredientReleased();
 
-	/// @brief ingredientClicked-slot to handle pressing an ingredient
-	/// @param ingredientName- the name of the ingredient as a qstring
+	/// @brief Processes the given ingredient one time.
+	/// @param ingredientName Ingredient to process.
 	void ingredientClicked(const QString &ingredientName);
 
-	/// @brief this slot serves a drink
+	/// @brief Serves the drink made by player and starts a new round.
 	void serveDrink();
 
-	/// @brief this slot emties drinks
+	/// @brief Empties the drink and removes the glassware.
 	void emptyDrink();
 
-    void updateGlassClicked();
+	// TODO: REFACTOR!!!
+	/// @brief Places the glassware.
+	void updateGlassClicked();
 
 signals:
+	/// @brief Notifies that the new recipe steps were assigned to make.
+	/// @param recipeSteps List of recipe steps.
 	void newDrink(const QList<QString> &recipeSteps);
+
+	/// @brief Notifies that the drink was emptied.
 	void drinkEmptied();
 
-	/// @brief glasswareUpdated this signal updates the glassware by calling a specific type
-	/// @param glassware the specific form of glassware being called
+	/// @brief Notifies that either the new glassware was placed or garnishes were placed on the current one.
 	void glasswareUpdated(const Glassware &glassware);
 
+	/// @brief Notifies that shaker tins are currently in use.
 	void shaking();
 
-	/// @brief this signal removes glassware
+	/// @brief Notifies that the places glassware was removed.
 	void currentGlasswareRemoved();
 
-	void correctIngredientUsed(int stepNumber);
-	void incorrectIngredientUsed(int stepNumber);
-    void correctIngredientName(QString currentIngredient);
-    void incorrectIngredientName(QString currentIngredient);
+	/// @brief Notifies that the current step was done correctly.
+	/// @param recipeStepNumber Recipe's step number.
+	void correctIngredientUsed(int recipeStepNumber);
 
+	/// @brief Notifies that the current step was done incorrectly.
+	/// @param recipeStepNumber Recipe's step number.
+	void incorrectIngredientUsed(int recipeStepNumber);
+
+	/// @brief Notifies the name of the correct ingredient used during the current step.
+	/// @param currentIngredient Correct ingredient.
+	void correctIngredientName(const QString &currentIngredient);
+
+	/// @brief Notifes that the recipe was completed correctly.
 	void drinkIsCorrect();
+
+	/// @brief Notifes that the recipe was completed incorrectly.
 	void drinkIsIncorrect();
 
-    void elapsedTimePressed(int time);
+	/// @brief Notifies the name of the drink to make.
+	/// @param drinkName Current recipe's drink name.
+	void drinkOrder(const QString &drinkName);
 
-    void drinkOrder(QString drinkName);
+	// TODO: REFACTOR?
+	void elapsedTimePressed(int time);
 
 private slots:
-	/// @brief this slot process the the liquor
-	void processLiquor();
-
-    void updatePressedTimer();
+	// REFACTOR?
+	void updatePressedTimer();
 
 private:
 	LiquidModel liquid;
@@ -101,17 +125,23 @@ private:
 
 	QString currentLiquor;
 
-    bool glasswareClicked;
+	bool glasswareClicked;
 
-	/// @brief starts a new round
+	QElapsedTimer elapsedTimer;
+	QTimer pressTimer;
+
+	/// @brief Processes currently pressed ingredient.
+	/// Currently runs every 1000 milliseconds from the update method.
+	void processPressedIngredient();
+
+	/// @brief Starts a new round.
 	void startNewRound();
-	/// @brief this method retrives a random recipe
-	void getRandomRecipe();
-	/// @brief this method removes the glassware
-	void removeGlassware();
 
-    QElapsedTimer elapsedTimer;
-    QTimer pressTimer;
+	/// @brief Assigns a new random recipe to follow.
+	void getRandomRecipe();
+
+	/// @brief Removes the currently placed glassware and emits appropriate signal.
+	void removeGlassware();
 
 };
 

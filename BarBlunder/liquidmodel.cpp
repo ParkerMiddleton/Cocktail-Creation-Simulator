@@ -19,7 +19,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, isDashing{false}
 	, pouringElapsedTime{0}
 	, scheduledLiquidPouringElapsedTime{0}
-	
+
 	, liquidPixmap{PIXMAP_WIDTH, PIXMAP_HEIGHT}
 	, iceTexture{nullptr}
 
@@ -39,25 +39,23 @@ LiquidModel::LiquidModel(QWidget *parent)
 	uchar ALPHA = 200;
 
 	// Setup colors for drinks.
-	drinkColors["whiskey"] =		{165, 113, 10, ALPHA};				// Whiskey color
-	drinkColors["tequila"] =		{172, 73, 25, ALPHA};				// Tequila color
-	drinkColors["rum"] =			{236, 233, 226, ALPHA};				// Rum color
-	drinkColors["vodka"] =			{236, 233, 226, 50};				// Vodka color
-	drinkColors["gin"] =			{236, 233, 226, ALPHA};				// Gin color
-	drinkColors["kahlua"] =			{28, 1, 2, ALPHA};					// kahlua
-	drinkColors["burbon"] =			{165, 113, 10, ALPHA};				// burbon
-    drinkColors["orange liquor splash"] =		{236, 233, 226, ALPHA};				// triple sec
-    drinkColors["sweet and sour mix"] =	{210, 196, 112, ALPHA};				// sweet n sour
-	drinkColors["grenadine"] =		{180, 19, 41, ALPHA};				// grenadine
-	drinkColors["simple syrup"] =	{236, 233, 226, ALPHA};				// simpe syrup
-	drinkColors["agave nectar"] =	{245, 183, 10, ALPHA};				// agave nectar
-	drinkColors["sprite"] =			{236, 233, 226, ALPHA};				// sprite
-	drinkColors["coke"] =			{56, 45, 43, ALPHA};				// coke
-	drinkColors["half n half"] =	{255, 255, 255, ALPHA};				// half n half
-	drinkColors["lime juice"] =		{158, 180, 80, ALPHA};				// lime juice
-	drinkColors["ginger beer"] =	{253, 237, 115, ALPHA};				// ginger beer
-	drinkColors["olive juice"] =	{207, 178, 112, ALPHA};				// olive juice
-	drinkColors["bitters"] =		{179, 102, 110, ALPHA};				// bitters
+	drinkColors["whiskey"] =					{165, 113, 10, ALPHA};				// Whiskey color
+	drinkColors["tequila"] =					{172, 73, 25, ALPHA};				// Tequila color
+	drinkColors["rum"] =						{236, 233, 226, ALPHA};				// Rum color
+	drinkColors["vodka"] =						{236, 233, 226, 50};				// Vodka color
+	drinkColors["gin"] =						{236, 233, 226, ALPHA};				// Gin color
+	drinkColors["kahlua"] =						{28, 1, 2, ALPHA};					// kahlua
+	drinkColors["burbon"] =						{165, 113, 10, ALPHA};				// burbon
+	drinkColors["sweet and sour mix"] =			{210, 196, 112, ALPHA};				// sweet n sour
+	drinkColors["grenadine"] =					{180, 19, 41, ALPHA};				// grenadine
+	drinkColors["simple syrup"] =				{236, 233, 226, ALPHA};				// simpe syrup
+	drinkColors["agave nectar"] =				{245, 183, 10, ALPHA};				// agave nectar
+	drinkColors["sprite"] =						{236, 233, 226, ALPHA};				// sprite
+	drinkColors["coke"] =						{56, 45, 43, ALPHA};				// coke
+	drinkColors["half n half"] =				{255, 255, 255, ALPHA};				// half n half
+	drinkColors["lime juice"] =					{158, 180, 80, ALPHA};				// lime juice
+	drinkColors["ginger beer"] =				{253, 237, 115, ALPHA};				// ginger beer
+	drinkColors["olive juice"] =				{207, 178, 112, ALPHA};				// olive juice
 
 	// Setup colors for dashes.
 	dashColors["bitters"] =						{179, 102, 110};
@@ -160,10 +158,10 @@ void LiquidModel::addIce()
 
 void LiquidModel::pour(int ounce, const QString &drinkName)
 {
-    for (int index = 0; index < ounce; ++index)
-    {
-        scheduledDrinks.enqueue(drinkName);
-    }
+	for (int index = 0; index < ounce; ++index)
+	{
+		scheduledDrinks.enqueue(drinkName);
+	}
 
 	scheduledLiquidPouringElapsedTime = 0;
 	pouringElapsedTime = 0;

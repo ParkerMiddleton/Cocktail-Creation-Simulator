@@ -25,11 +25,6 @@ DrinkView::DrinkView(QWidget *parent)
 	this->resetTransform();
 }
 
-DrinkView::~DrinkView()
-{
-
-}
-
 void DrinkView::initializeConnections(BarModel *bar)
 {
 	connect(bar->liquidModel(), &LiquidModel::simulationUpdated,

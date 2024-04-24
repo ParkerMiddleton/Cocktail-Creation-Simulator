@@ -43,14 +43,27 @@ public slots:
 	/// @brief Displays a message about the incorrectly made drink inside the note.
 	void showRoundEndIncorrectMessage();
 
-    void updatePourTimer(int time);
+	/// @brief Sets the displayed time value of the pouring timer.
+	void updatePourTimer(int time);
 
-    void playSoundEffect(const QString &soundFilePath);
-    void playPourSound(const QString &soundFilePath);
+	/// @brief Plays a single, short sound.
+	/// @param soundFilePath Path and name of the sound to play.
+	void playSoundEffect(const QString &soundFilePath);
 
-    void updateDrunkGuyTextCorrect(int stepNumber);
-    void updateDrunkGuyTextInCorrect(int stepNumber);
-    void currentOrder(QString drinkName);
+	/// @brief Plays a continous sound.
+	/// @param soundFilePath Path and name of the sound to play.
+	void playPourSound(const QString &soundFilePath);
+
+	/// @brief Makes the customer (aka drink guy) say a phrase if recipe step was done correctly.
+	/// @param recipeStepNumber Number of the recipe step.
+	void updateDrunkGuyTextCorrect(int recipeStepNumber);
+
+	/// @brief Makes the customer (aka drink guy) say a phrase if recipe step was done incorrectly.
+	void updateDrunkGuyTextIncorrect();
+
+	/// @brief Makes the customer (aka drink guy) say a phrase when he orders a new drink.
+	/// @param drinkName Ordered drink.
+	void setDrinkGuyNewOrder(const QString &drinkName);
 
 private slots:
 	/// @brief Displays the recipe note.
@@ -61,17 +74,17 @@ private:
 	static constexpr int ROUND_END_MESSAGE_DURATION_MS = 1000;
 
 	Ui::GameLayer *ui;
-
 	QWidget *pauseOverlay;
+	int currentRecipeStep;
 
 	// Sound effects
-    QMediaPlayer *soundBoardPour;
-    QAudioOutput *audioOutputSBPour;
-    QMediaPlayer *soundBoardClicked;
-    QAudioOutput *audioOutputSBClicked;
-    void setupSoundBoard();
+	QMediaPlayer *soundBoardPour;
+	QAudioOutput *audioOutputSBPour;
+	QMediaPlayer *soundBoardClicked;
+	QAudioOutput *audioOutputSBClicked;
 
-    int currentStep;
+	/// @brief Helper method to initialize audio fields.
+	void setupSoundBoard();
 
 };
 

@@ -12,6 +12,7 @@ class BarModel;
 class Glassware;
 
 /// @brief Displays liquid with the glassware. Part of View.
+/// @extends QGraphicsView
 class DrinkView : public QGraphicsView
 {
 	Q_OBJECT
@@ -19,9 +20,6 @@ class DrinkView : public QGraphicsView
 public:
 	/// @brief Constructor.
 	DrinkView(QWidget *parent = nullptr);
-
-	/// @brief Destructor.
-	~DrinkView();
 
 	/// @brief Set ups connections between this widget and the given bar model object.
 	/// Must be called after the QT's UI holding the instance of this widget is initialized.
