@@ -94,6 +94,11 @@ private:
 	QTimer *animationTimer;
 	int currentRecipeStep;
 
+	QTimer *frankMessageTimer;
+	QStringList frankPhrasesCorrect;
+	QStringList frankPhrasesIncorrect;
+	QStringList frankPhrasesNewOrder;
+
 	// Sound effects
 	QMediaPlayer *soundBoardPour;
 	QAudioOutput *audioOutputSBPour;

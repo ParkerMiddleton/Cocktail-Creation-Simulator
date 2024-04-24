@@ -21,6 +21,57 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	ui->v_Notes->setCurrentWidget(ui->Note1);
 	ui->DrunkGuyTxtBox->setVisible(false);
 
+	// Setup Frank.
+	frankMessageTimer = new QTimer(this);
+	frankMessageTimer->setInterval(FRANK_MESSAGE_DURATION_MS);
+	connect(frankMessageTimer, &QTimer::timeout,
+		this, [this]() { ui->DrunkGuyTxt->setText(""); ui->DrunkGuyTxtBox->setVisible(false); });
+
+	frankPhrasesCorrect = {
+		"That oughta take the edge off!!",
+		"You might have to drag me out of here making a drink like that!",
+		"You single? id like you to make me a drink sometime!",
+		"You went from a 3 to an 8 in the span of one pour.",
+		"yeah, im friends with the owner ya know?",
+		"I'm starting to think your drinks are the real reason people come to this bar!",
+		"You're like a scientist, but instead of lab coats, you wear aprons and serve up liquid gold!",
+		"Well done!",
+		"You got it!",
+		"Nice job!",
+		"Great!",
+		"Perfect!",
+		"Excellent!",
+		"Awesome!",
+		"Fantastic!"
+	};
+
+
+	frankPhrasesIncorrect = {
+		"Are you new here?",
+		"Long day of work and this what I get?",
+		"Have you even made this drink before?",
+		"Do I need to do this for you?",
+		"Umm excuse me? what is that?",
+		"My arthritis ridden grandmother could've made something better than this" ,
+		"Wow, I'd come here to quit drinking by the way you make drinks",
+		"Respectfully...start over",
+		"I hope that drink isn't mine",
+		"is it always this slow?"
+	};
+
+	frankPhrasesNewOrder = {
+		"Can I get a",
+		"I'd like a",
+		"Give me a",
+		"How about a",
+		"I'll take a",
+		"Could you make me a",
+		"Pour me a",
+		"Fix me a",
+		"Mix up a"
+	};
+
+	// Setup Controls Label.
 	ui->ControlsLabel->setVisible(false);
 
 	connect(ui->ControlsCheckbox, &QCheckBox::clicked,
@@ -257,83 +308,31 @@ void GameLayer::updateDrunkGuyTextCorrect(int recipeStepNumber)
 	if (recipeStepNumber != currentRecipeStep)
 	{
 		currentRecipeStep = recipeStepNumber;
-		QStringList correctPhrases = {
-			"That oughta take the edge off!!",
-			"You might have to drag me out of here making a drink like that!",
-			"You single? id like you to make me a drink sometime!",
-			"You went from a 3 to an 8 in the span of one pour.",
-			"yeah, im friends with the owner ya know?",
-			"I'm starting to think your drinks are the real reason people come to this bar!",
-			"You're like a scientist, but instead of lab coats, you wear aprons and serve up liquid gold!",
-			"Well done!",
-			"You got it!",
-			"Nice job!",
-			"Great!",
-			"Perfect!",
-			"Excellent!",
-			"Awesome!",
-			"Fantastic!"
-		};
 
 		ui->DrunkGuyTxtBox->setVisible(true);
-		QString correctPhrase = correctPhrases[QRandomGenerator::global()->bounded(correctPhrases.size())];
+		QString correctPhrase = frankPhrasesCorrect[QRandomGenerator::global()->bounded(frankPhrasesCorrect.size())];
 		ui->DrunkGuyTxt->setText(correctPhrase);
 
-		QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
-			ui->DrunkGuyTxt->setText("");
-			ui->DrunkGuyTxtBox->setVisible(false);
-		});
+		frankMessageTimer->start();
 	}
 }
 
 void GameLayer::updateDrunkGuyTextIncorrect()
 {
-	QStringList incorrectPhrases = {
-		"Are you new here?",
-		"Long day of work and this what I get?",
-		"Have you even made this drink before?",
-		"Do I need to do this for you?",
-		"Umm excuse me? what is that?",
-		"My arthritis ridden grandmother could've made something better than this" ,
-		"Wow, I'd come here to quit drinking by the way you make drinks",
-		"Respectfully...start over",
-		"I hope that drink isn't mine",
-		"is it always this slow?"
-	};
-
 	ui->DrunkGuyTxtBox->setVisible(true);
-	QString incorrectPhrase = incorrectPhrases[QRandomGenerator::global()->bounded(incorrectPhrases.size())];
+	QString incorrectPhrase = frankPhrasesIncorrect[QRandomGenerator::global()->bounded(frankPhrasesIncorrect.size())];
 	ui->DrunkGuyTxt->setText(incorrectPhrase);
 
-	QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
-		ui->DrunkGuyTxt->setText("");
-		ui->DrunkGuyTxtBox->setVisible(false);
-	});
+	frankMessageTimer->start();
 }
-
 
 void GameLayer::setDrinkGuyNewOrder(const QString &drinkName)
 {
-	QStringList addonPhrases = {
-		"Can I get a",
-		"I'd like a",
-		"Give me a",
-		"How about a",
-		"I'll take a",
-		"Could you make me a",
-		"Pour me a",
-		"Fix me a",
-		"Mix up a"
-	};
-
 	ui->DrunkGuyTxtBox->setVisible(true);
-	QString addonPhrase = addonPhrases[QRandomGenerator::global()->bounded(addonPhrases.size())];
+	QString addonPhrase = frankPhrasesNewOrder[QRandomGenerator::global()->bounded(frankPhrasesNewOrder.size())];
 	ui->DrunkGuyTxt->setText(addonPhrase + " " + drinkName);
 
-	QTimer::singleShot(FRANK_MESSAGE_DURATION_MS, this, [this]() {
-		ui->DrunkGuyTxt->setText("");
-		ui->DrunkGuyTxtBox->setVisible(false);
-	});
+	frankMessageTimer->start();
 }
 
 void GameLayer::setupSoundBoard()
