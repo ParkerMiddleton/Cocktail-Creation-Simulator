@@ -253,6 +253,13 @@ void GameLayer::updateDrunkGuyTextCorrect(int recipeStepNumber)
 	{
 		currentRecipeStep = recipeStepNumber;
 		QStringList correctPhrases = {
+			"That oughta take the edge off!!",
+			"You might have to drag me out of here making a drink like that!",
+			"You single? id like you to make me a drink sometime!",
+			"You went from a 3 to an 8 in the span of one pour.",
+			"yeah, im friends with the owner ya know?",
+			"I'm starting to think your drinks are the real reason people come to this bar!",
+			"You're like a scientist, but instead of lab coats, you wear aprons and serve up liquid gold!",
 			"Well done!",
 			"You got it!",
 			"Nice job!",
@@ -277,14 +284,16 @@ void GameLayer::updateDrunkGuyTextCorrect(int recipeStepNumber)
 void GameLayer::updateDrunkGuyTextIncorrect()
 {
 	QStringList incorrectPhrases = {
-		"Oops!",
-		"Not quite!",
-		"Try again!",
-		"Uh oh!",
-		"Incorrect!",
-		"That's wrong!",
-		"Better luck next time!",
-		"Keep trying!"
+		"Are you new here?",
+		"Long day of work and this what I get?",
+		"Have you even made this drink before?",
+		"Do I need to do this for you?",
+		"Umm excuse me? what is that?",
+		"My arthritis ridden grandmother could've made something better than this" ,
+		"Wow, I'd come here to quit drinking by the way you make drinks",
+		"Respectfully...start over",
+		"I hope that drink isn't mine",
+		"is it always this slow?"
 	};
 
 	ui->DrunkGuyTxtBox->setVisible(true);

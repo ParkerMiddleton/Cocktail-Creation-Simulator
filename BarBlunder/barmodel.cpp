@@ -172,11 +172,11 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 
 	QPair<QString, int> &ingredient = userRecipe.ingredients[recipeStepNumber];
 
-	if (isGlasswareEmpty && !glasswares.contains(ingredientName)) // If ingredient is not one of the glasses.
-		isGlasswareEmpty  = false;
-
 	if (ingredient.first == ingredientName)
 	{
+		if (isGlasswareEmpty)
+			isGlasswareEmpty  = false;
+
 		ingredient.second--;
 		qDebug() << ingredientName << " " << ingredient.second;
 
@@ -188,12 +188,12 @@ void BarModel::ingredientClicked(const QString &ingredientName)
 		emit correctIngredientUsed(recipeStepNumber);
 		emit correctIngredientName(ingredientName);
 	}
-	else
+	else if (!isGlasswareEmpty && !glasswares.contains(ingredientName))
 	{
 		qDebug() << "wrong ingredient clicked" << ingredientName;
 		userRecipe.ingredients.push_back(QPair<QString, int>(ingredientName, -1));
 
-		emit incorrectIngredientUsed(recipeStepNumber);
+		emit incorrectIngredientUsed(0);
 	}
 }
 
@@ -267,7 +267,7 @@ void BarModel::processPressedIngredient()
 		qDebug() << "wrong ingredient pressed" << currentProcessingIngredient;
 		isOutOfOrder = true;
 		userRecipe.ingredients.push_back(QPair<QString, int>(currentProcessingIngredient, -1));
-		emit incorrectIngredientUsed(recipeStepNumber);
+		emit incorrectIngredientUsed(0);
 	}
 	else if (isProcessingIngredient)
 	{
@@ -298,7 +298,7 @@ void BarModel::processPressedIngredient()
 				{
 					recipeStepNumber++;
 					qDebug() << "Step Number 2:" << recipeStepNumber;
-					emit incorrectIngredientUsed(recipeStepNumber);
+					emit incorrectIngredientUsed(0);
 					emit correctIngredientName(ingredient.first);
 
 					if (currentProcessingIngredient == "shake")
