@@ -11,6 +11,7 @@ BarModel::BarModel(QObject *parent)
 	, isGlasswareEmpty{true}
 	, isProcessing{false}
 	, processingElapsedTime{0}
+	, processingElapsedTimeTotal{0}
 	, isShaking{false}
 {
 	glasswares.insert("rocks glass", new Glassware{Glassware::Type::Rocks});
@@ -30,8 +31,6 @@ BarModel::BarModel(QObject *parent)
 	{
 		listOfRecipes.push_back(Recipe(inStream));
 	}
-
-	connect(&pressTimer, &QTimer::timeout, this, &BarModel::updatePressedTimer);
 }
 
 BarModel::~BarModel()
@@ -60,9 +59,14 @@ void BarModel::update(int deltaTime)
 	{
 		if (processingElapsedTime >= 1000) // Process every 1000 milliseconds
 		{
+			processingElapsedTimeTotal += processingElapsedTime;
+			emit totalProcessingTimerUpdated(qRound(((float)processingElapsedTimeTotal) / 1000.0f)); // Round to the nearest second and notify.
+
 			processingElapsedTime = -deltaTime; // Reset.
+
 			// dont process liquor unless glass is clicked
-			if(glasswareClicked) {
+			if (glasswareClicked)
+			{
 				this->processPressedIngredient();
 			}
 		}
@@ -82,12 +86,10 @@ void BarModel::ingredientPressed(const QString &ingredientName)
 		return;
 	}
 
-	pressTimer.start(1000);
-	elapsedTimer.start();
-
 	currentLiquor = ingredientName;
 
 	processingElapsedTime = 0;
+	processingElapsedTimeTotal = 0;
 	isProcessing = true;
 	pressedLiquor = true;
 
@@ -103,10 +105,7 @@ void BarModel::ingredientReleased()
 	if (!currentGlassware)
 		return;
 
-	elapsedTimer.invalidate();
-	pressTimer.stop();
-
-	emit elapsedTimePressed(0);
+	emit totalProcessingTimerUpdated(0);
 
 	pressedLiquor = false;
 	isProcessing = false;
@@ -243,14 +242,6 @@ void BarModel::updateGlassClicked()
 {
 	glasswareClicked = true;
 }
-
-void BarModel::updatePressedTimer()
-{
-	int elapsedTime = elapsedTimer.elapsed();
-	int roundedTime = qRound(static_cast<qreal>(elapsedTime) / 1000.0); // Round to the nearest second
-	emit elapsedTimePressed(roundedTime);
-}
-
 
 void BarModel::processPressedIngredient()
 {

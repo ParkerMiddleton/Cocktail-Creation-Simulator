@@ -98,12 +98,9 @@ signals:
 	/// @param drinkName Current recipe's drink name.
 	void drinkOrder(const QString &drinkName);
 
-	// TODO: REFACTOR?
-	void elapsedTimePressed(int time);
-
-private slots:
-	// REFACTOR?
-	void updatePressedTimer();
+	/// @brief Notifies the total time elapsed after processing of some ingredient started.
+	/// @param totalProcessingElapsedTime Timer elapsed time.
+	void totalProcessingTimerUpdated(int totalProcessingElapsedTime);
 
 private:
 	LiquidModel liquid;
@@ -113,6 +110,7 @@ private:
 
 	bool isProcessing;
 	int processingElapsedTime;
+	int processingElapsedTimeTotal;
 	bool isShaking;
 
 	QList<Recipe> listOfRecipes;
@@ -126,9 +124,6 @@ private:
 	QString currentLiquor;
 
 	bool glasswareClicked;
-
-	QElapsedTimer elapsedTimer;
-	QTimer pressTimer;
 
 	/// @brief Processes currently pressed ingredient.
 	/// Currently runs every 1000 milliseconds from the update method.

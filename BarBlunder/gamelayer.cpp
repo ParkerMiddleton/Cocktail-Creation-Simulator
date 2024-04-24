@@ -81,7 +81,7 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 			, this, &GameLayer::showRoundEndIncorrectMessage);
 
 	// update pouring timer
-	connect(bar, &BarModel::elapsedTimePressed
+	connect(bar, &BarModel::totalProcessingTimerUpdated
 			, this, &GameLayer::updatePourTimer);
 
 	connect(bar, &BarModel::drinkOrder
