@@ -55,10 +55,6 @@ public slots:
 	/// @brief Empties the drink and removes the glassware.
 	void emptyDrink();
 
-	// TODO: REFACTOR!!!
-	/// @brief Places the glassware.
-	void updateGlassClicked();
-
 signals:
 	/// @brief Notifies that the new recipe steps were assigned to make.
 	/// @param recipeSteps List of recipe steps.
@@ -108,22 +104,18 @@ private:
 	Glassware *currentGlassware;
 	bool isGlasswareEmpty;
 
-	bool isProcessing;
-	int processingElapsedTime;
-	int processingElapsedTimeTotal;
-	bool isShaking;
-
 	QList<Recipe> listOfRecipes;
 	Recipe assignedRecipe;
 	Recipe userRecipe;
-	int stepNumber;
+	int recipeStepNumber;
+	QString currentProcessingIngredient;
 	int score;
-	bool outOfOrder;
-	bool pressedLiquor;
 
-	QString currentLiquor;
-
-	bool glasswareClicked;
+	bool isProcessingIngredient;
+	int processingElapsedTime;
+	int processingElapsedTimeTotal;
+	bool isShaking;
+	bool isOutOfOrder;
 
 	/// @brief Processes currently pressed ingredient.
 	/// Currently runs every 1000 milliseconds from the update method.

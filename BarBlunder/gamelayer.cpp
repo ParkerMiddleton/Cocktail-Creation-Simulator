@@ -87,19 +87,6 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	connect(bar, &BarModel::drinkOrder
 			, this, &GameLayer::setDrinkGuyNewOrder);
 
-// Glassware buttons connections.
-// "buttonName" without "d_" prefix!
-#define connectGlassware(buttonName) \
-	connect(ui->d_##buttonName, &QPushButton::clicked, bar, &BarModel::updateGlassClicked);
-
-	connectGlassware(CollinsGlassButton)
-		connectGlassware(MartiniGlassButton)
-		connectGlassware(RocksGlassButton)
-		connectGlassware(CopperMugButton)
-
-#undef connectGlassware
-
-
 // Ingredient buttons connections.
 // "buttonName" without "d_" prefix!
 #define connectIngredient(buttonName, ingredientString)						\
