@@ -45,18 +45,18 @@ ice: 3
 half n half: 2
 
 To Serve: "Rocks Margarita"
-1. Grab a Rocks Glass
-2. Pour 1 oz Lime Juice
-3. Pour 1 oz Agave Nectar
-4. Pour 1 oz Sweet'n'sour mix
-5. Pour 2 oz Tequila
-6. add a splash Orange Liquor
-7. Fill with ice (3 cubes)
-8. Shake for 5 seconds
-9. Garnish with a lime wedge
+Grab a Collins Glass
+Pour 1 oz Lime Juice
+Pour 1 oz Agave Nectar
+Pour 1 oz Sweet'n'sour mix
+Pour 2 oz Tequila
+add a splash Orange Liquor
+Fill with ice (3 cubes)
+Shake for 5 seconds
+Garnish with a lime wedge
 
 Rocks Margarita.
-rocks glass: 1
+collins glass: 1
 lime juice: 1
 agave nectar: 1
 sweet and sour mix: 1
