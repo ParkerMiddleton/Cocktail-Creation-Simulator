@@ -119,6 +119,7 @@ void BarModel::ingredientReleased()
 	if (currentProcessingIngredient == "shake")
 	{
 		isShaking = false;
+        emit stopShaking();
 	}
 
 	emit totalProcessingTimerUpdated(0);

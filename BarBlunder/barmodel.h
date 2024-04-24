@@ -98,6 +98,10 @@ signals:
 	/// @param totalProcessingElapsedTime Timer elapsed time.
 	void totalProcessingTimerUpdated(int totalProcessingElapsedTime);
 
+    void elapsedTimePressed(int time);
+
+    void stopShaking();
+
 private:
 	LiquidModel liquid;
 	QMap<QString, Glassware*> glasswares;
