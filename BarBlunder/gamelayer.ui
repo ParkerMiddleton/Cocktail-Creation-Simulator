@@ -1043,6 +1043,7 @@ border: 2px dotted black;
      </widget>
     </widget>
    </widget>
+   <widget class="QWidget" name="RulesNote"/>
    <widget class="QWidget" name="Note2">
     <widget class="QLabel" name="RoundEndMessage">
      <property name="geometry">
@@ -1050,7 +1051,7 @@ border: 2px dotted black;
        <x>0</x>
        <y>0</y>
        <width>321</width>
-       <height>301</height>
+       <height>311</height>
       </rect>
      </property>
      <property name="font">
@@ -1382,6 +1383,115 @@ font-size: 22px;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QCheckBox" name="ControlsCheckbox">
+   <property name="geometry">
+    <rect>
+     <x>1200</x>
+     <y>260</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ebrima</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox {
+spacing: 0px;
+padding: 6px;
+background-color:rgba(0, 0, 0, 190);
+}
+
+QCheckBox::indicator {
+width: 38px;
+height: 38px;
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/images/menu/checkbox_unchecked);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/images/menu/checkbox_unchecked_hover);
+border-image: url(:/images/menu/checkbox_unchecked_hover) 1;
+}
+
+QCheckBox::indicator:unchecked:pressed {
+   /* image: url(:/images/checkbox_unchecked_pressed.png);*/
+}
+
+QCheckBox::indicator:checked {
+image: url(:/images/menu/checkbox_checked);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/images/menu/checkbox_checked_hover);
+border-image: url(:/images/menu/checkbox_checked_hover) 1;
+}
+
+QCheckBox::indicator:checked:pressed {
+    /*image: url(:/images/checkbox_checked_pressed.png);*/
+}
+
+/*QCheckBox::indicator:indeterminate:hover {
+    image: url(:/images/checkbox_indeterminate_hover.png);
+}
+
+QCheckBox::indicator:indeterminate:pressed {
+    image: url(:/images/checkbox_indeterminate_pressed.png);
+}*/</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="tristate">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ControlsLabel">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>0</y>
+     <width>321</width>
+     <height>311</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: white;
+color: black;
+padding: 8px;
+font: bold &quot;Ebrima&quot;;
+font-size: 12px;
+
+border: 2px dotted black;</string>
+   </property>
+   <property name="text">
+    <string>TIPS:
+1 second = 1 oz
+
+CONTROLS:
+All interactions are performed
+with the use of the left mouse button.
+
+To pour liquor,
+hold for 1 second to pour 1 oz.
+
+To add a single ingredient,
+stir, and place a glassware,
+simply click.
+
+To shake,
+hold for a specified number of seconds.</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1437,6 +1547,8 @@ font-size: 22px;</string>
   <zorder>DrunkGuyTxtBox</zorder>
   <zorder>DrunkGuyTxt</zorder>
   <zorder>shakertin</zorder>
+  <zorder>ControlsLabel</zorder>
+  <zorder>ControlsCheckbox</zorder>
  </widget>
  <customwidgets>
   <customwidget>

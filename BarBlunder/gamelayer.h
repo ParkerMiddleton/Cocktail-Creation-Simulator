@@ -76,7 +76,14 @@ private slots:
 	/// Used after the round end message was displayed for a specified amount of time.
 	void switchToRecipeNote();
 
+	/// @brief Advances shaking animation.
+	/// @param originalX Original x.
+	/// @param originalY Original y.
 	void performShake(int orginalX, int originalY);
+
+private slots:
+	/// @brief If checked, shows ControlsLabel.s
+	void checkControlsCheckBox();
 
 private:
 	QTimer* animationTimer;

@@ -21,6 +21,11 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	ui->v_Notes->setCurrentWidget(ui->Note1);
 	ui->DrunkGuyTxtBox->setVisible(false);
 
+	ui->ControlsLabel->setVisible(false);
+
+	connect(ui->ControlsCheckbox, &QCheckBox::clicked,
+			this, &GameLayer::checkControlsCheckBox);
+
 	// Pause overlay and button.
 	pauseOverlay = new QWidget(this);
 	pauseOverlay->resize(this->size());
@@ -371,6 +376,18 @@ void GameLayer::performShake(int originalX, int originalY)
 	int deltaY = QRandomGenerator::global()->bounded(-5, 6);
 
 	ui->shakertin->move(originalX + deltaX, originalY + deltaY);
+}
+
+void GameLayer::checkControlsCheckBox()
+{
+	if (ui->ControlsCheckbox->checkState() == Qt::CheckState::Checked)
+	{
+		ui->ControlsLabel->setVisible(true);
+	}
+	else if (ui->ControlsCheckbox->checkState() == Qt::CheckState::Unchecked)
+	{
+		ui->ControlsLabel->setVisible(false);
+	}
 }
 
 void GameLayer::shakeRelease()
