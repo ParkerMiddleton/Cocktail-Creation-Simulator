@@ -1354,6 +1354,26 @@ font-size: 14px;</string>
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="shakertin">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>130</y>
+     <width>221</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/glasses/shakertin.png);
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>UnderBar</zorder>
   <zorder>UnderBarCenter</zorder>
   <zorder>d_Agave_Nectar</zorder>
@@ -1408,6 +1428,7 @@ font-size: 14px;</string>
   <zorder>d_MartiniGlassButton</zorder>
   <zorder>DrunkGuyTxtBox</zorder>
   <zorder>DrunkGuyTxt</zorder>
+  <zorder>shakertin</zorder>
  </widget>
  <customwidgets>
   <customwidget>

@@ -86,5 +86,6 @@
         <file>images/ingredients/OliveJuice_Hover.png</file>
         <file>images/bar/drunk_guy.png</file>
         <file>images/bar/text_box2.png</file>
+        <file>images/glasses/shakertin.png</file>
     </qresource>
 </RCC>

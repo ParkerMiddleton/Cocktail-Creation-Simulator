@@ -65,12 +65,18 @@ public slots:
 	/// @param drinkName Ordered drink.
 	void setDrinkGuyNewOrder(const QString &drinkName);
 
+    void shake();
+
+    void shakeRelease();
 private slots:
 	/// @brief Displays the recipe note.
 	/// Used after the round end message was displayed for a specified amount of time.
 	void switchToRecipeNote();
 
+    void performShake(int orginalX, int originalY);
+
 private:
+    QTimer* animationTimer;
 	static constexpr int ROUND_END_MESSAGE_DURATION_MS = 1000;
 
 	Ui::GameLayer *ui;
