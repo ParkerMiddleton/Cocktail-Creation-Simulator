@@ -2,7 +2,7 @@
 #include "recipe.h"
 
 #include <QFile>
-#include <QDebug>
+#include <QTextStream>
 #include <QRandomGenerator>
 
 BarModel::BarModel(QObject *parent)
@@ -106,7 +106,7 @@ void BarModel::ingredientPressed(const QString &ingredientName)
 
 void BarModel::ingredientReleased()
 {
-    if (!currentGlassware) //if its not correct glassware just return.
+	if (!currentGlassware) //if its not correct glassware just return.
 		return;
 
 	isProcessingIngredient = false;
@@ -317,7 +317,7 @@ void BarModel::getRandomRecipe()
 		}
 	}
 
-    assignedRecipe = listOfRecipes[3];
+	assignedRecipe = listOfRecipes[randomNumber];
 	userRecipe = assignedRecipe;
 
 	emit newDrink(assignedRecipe.steps);
