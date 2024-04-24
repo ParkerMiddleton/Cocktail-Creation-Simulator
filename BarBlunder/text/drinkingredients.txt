@@ -121,7 +121,7 @@ To Serve: "Mojito"
 4. Pour 1 oz Lime Juice
 5. Pour 2 oz Rum
 6. Shake for 8 seconds
-7. Fill with Ice (10 cubes)
+7. Fill with Ice (8 cubes)
 8. Pour 4 oz Coke
 9. Stir 2 times
 10. Pour 1 oz Sprite
@@ -134,7 +134,7 @@ mint: 1
 lime juice: 1
 rum: 2
 shake: 8
-ice: 10
+ice: 8
 coke: 4
 stir: 2
 sprite: 1

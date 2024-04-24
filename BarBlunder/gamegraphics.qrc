@@ -87,5 +87,6 @@
         <file>images/bar/drunk_guy.png</file>
         <file>images/bar/text_box2.png</file>
         <file>images/glasses/shakertin.png</file>
+        <file>images/maindrink/mintspring.png</file>
     </qresource>
 </RCC>

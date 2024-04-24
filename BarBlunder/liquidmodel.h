@@ -45,6 +45,9 @@ public:
 	/// @brief Schedules new ice cubes to place in the drink.
 	void addIce();
 
+	/// @brief Schedules new mint springs to place in the drink.
+	void addMint();
+
 	/// @brief Schedules the given amount of liquid to pour.
 	/// If already pouring, adds the given amount to the total amount to pour.
 	/// @param ounce Amount to schedule.
@@ -82,6 +85,9 @@ private:
 	static constexpr float ICE_RADIUS_M = 0.08f;
 	static constexpr float ICE_DENSITY = 1.25f;
 
+	static constexpr float MINT_RADIUS_M = 0.08f;
+	static constexpr float MINT_DENSITY = 3.25f;
+
 	static constexpr float DROP_VELOCITY = -2.0f;
 	static constexpr int LIQUID_PARTICLES_NUM_SPAWN_VERTICAL = 4;
 
@@ -101,21 +107,26 @@ private:
 
 	QPixmap liquidPixmap;
 	QPixmap *iceTexture;
+	QPixmap *mintTexture;
 
 	// Box2D
 	bool scheduleAddIceBody;
 	bool scheduleRemoveIceBodies;
 
+	bool scheduleAddMintBody;
+	bool scheduleRemoveMintBodies;
+
 	b2Vec2 gravity;
 	b2ParticleSystemDef liquidParticlesDef;
 	b2ParticleSystemDef dashParticlesDef;
 	b2Vec2 pouringSource;
-	float iceHorizontalSpawnRange[2];
+	float bodiesHorizontalSpawnRange[2];
 
 	b2World *world;
 	b2ParticleSystem *liquidParticles;
 	b2ParticleSystem *dashParticles;
 	QList<b2Body*> iceBodies;
+	QList<b2Body*> mintBodies;
 
 	/// @brief Updates the liquid and ice cubes draw data.
 	void draw();
@@ -131,6 +142,12 @@ private:
 
 	/// @brief If scheduled, removes all ice cubes.
 	void checkScheduledRemoveIceBodies();
+
+	/// @brief If scheduled, adds new mint spring.
+	void checkScheduledAddMintBody();
+
+	/// @brief If scheduled, removes all mint springs.
+	void checkScheduledRemoveMintBodies();
 
 };
 

@@ -22,9 +22,13 @@ LiquidModel::LiquidModel(QWidget *parent)
 
 	, liquidPixmap{PIXMAP_WIDTH, PIXMAP_HEIGHT}
 	, iceTexture{nullptr}
+	, mintTexture{nullptr}
 
 	, scheduleAddIceBody{false}
 	, scheduleRemoveIceBodies{false}
+
+	, scheduleAddMintBody{false}
+	, scheduleRemoveMintBodies{false}
 
 	, gravity{0.0f, -9.8f}
 	, pouringSource{0.0f, 0.0f}
@@ -33,8 +37,11 @@ LiquidModel::LiquidModel(QWidget *parent)
 	, liquidParticles{nullptr}
 	, dashParticles{nullptr}
 {
-	QPixmap image(":/images/maindrink/icecube.png");
-	iceTexture = new QPixmap(image.scaled((ICE_RADIUS_M / CONVERSION_FACTOR) * 2, (ICE_RADIUS_M / CONVERSION_FACTOR) * 2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	QPixmap iceImage(":/images/maindrink/icecube.png");
+	iceTexture = new QPixmap(iceImage.scaled((ICE_RADIUS_M / CONVERSION_FACTOR) * 2, (ICE_RADIUS_M / CONVERSION_FACTOR) * 2, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+	QPixmap mintImage(":/images/maindrink/mintspring.png");
+	mintTexture = new QPixmap(mintImage.scaled(((MINT_RADIUS_M * 3) / CONVERSION_FACTOR), ((MINT_RADIUS_M * 3) / CONVERSION_FACTOR), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
 	uchar ALPHA = 200;
 
@@ -76,6 +83,7 @@ LiquidModel::LiquidModel(QWidget *parent)
 LiquidModel::~LiquidModel()
 {
 	delete iceTexture;
+	delete mintTexture;
 
 	this->removeGlassware();
 }
@@ -102,9 +110,9 @@ void LiquidModel::updateGlassware(const Glassware &glassware)
 	collisionVertices[4].Set(collisionVertices[2].x, collisionVertices[2].y);
 	collisionVertices[5].Set(collisionVertices[1].x, collisionVertices[1].y);
 
-	// Get ice horizontal spawn range.
-	iceHorizontalSpawnRange[0] = collisionVertices[0].x + (ICE_RADIUS_M * 2.0f); // Left Bound.
-	iceHorizontalSpawnRange[1] = collisionVertices[3].x - (ICE_RADIUS_M * 2.0f); // Right Bound.
+	// Get ice and mint horizontal spawn range.
+	bodiesHorizontalSpawnRange[0] = collisionVertices[0].x + (ICE_RADIUS_M * 2.0f); // Left Bound.
+	bodiesHorizontalSpawnRange[1] = collisionVertices[3].x - (ICE_RADIUS_M * 2.0f); // Right Bound.
 
 	// Construct collision body.
 	b2BodyDef collisionBodyDef;
@@ -129,6 +137,7 @@ void LiquidModel::removeGlassware()
 	liquidParticles = nullptr;
 	dashParticles = nullptr;
 	iceBodies.clear();
+	mintBodies.clear();
 	scheduledDrinks.clear();
 }
 
@@ -139,8 +148,9 @@ void LiquidModel::empty()
 
 	if (world)
 	{
-		// Schedule ice bodies for removal.
+		// Schedule ice and mint bodies for removal.
 		scheduleRemoveIceBodies = true;
+		scheduleRemoveMintBodies = true;
 
 		// Schedule particles for removal.
 		for (int i = 0; i < liquidParticles->GetParticleCount(); ++i)
@@ -155,6 +165,11 @@ void LiquidModel::empty()
 void LiquidModel::addIce()
 {
 	scheduleAddIceBody = true;
+}
+
+void LiquidModel::addMint()
+{
+	scheduleAddMintBody = true;
 }
 
 void LiquidModel::pour(int ounce, const QString &drinkName)
@@ -188,7 +203,10 @@ void LiquidModel::update(int deltaTime)
 	{
 		world->Step(1.0f / 60.0f, 8, 3, 3); // Step the Box2D simulation
 		this->checkScheduledRemoveIceBodies();
+		this->checkScheduledRemoveMintBodies();
+
 		this->checkScheduledAddIceBody();
+		this->checkScheduledAddMintBody();
 
 		if (isPouring && !scheduledDrinks.isEmpty())
 		{
@@ -258,6 +276,17 @@ void LiquidModel::draw()
 		painter.drawEllipse(QPointF(particlePosition.x / CONVERSION_FACTOR,
 									PIXMAP_HEIGHT - (particlePosition.y / CONVERSION_FACTOR)),
 							LIQUID_PARTICLE_RADIUS_M / CONVERSION_FACTOR + 1.0f, LIQUID_PARTICLE_RADIUS_M / CONVERSION_FACTOR + 1.0f);
+	}
+
+	// Draw mint bodies.
+	for (b2Body *mintBody : mintBodies)
+	{
+		b2Vec2 bodyPos = mintBody->GetPosition();
+
+		int x = (bodyPos.x / CONVERSION_FACTOR) - (mintTexture->size().width() / 2);
+		int y = PIXMAP_HEIGHT - ((bodyPos.y / CONVERSION_FACTOR) + (mintTexture->size().height() / 2));
+
+		painter.drawPixmap(x, y, *mintTexture);
 	}
 
 	// Draw ice bodies.
@@ -336,7 +365,7 @@ void LiquidModel::checkScheduledAddIceBody()
 	if (scheduleAddIceBody)
 	{
 		// Random x coordinate within the defined range.
-		int xPixels = QRandomGenerator::global()->bounded((int)(iceHorizontalSpawnRange[0] / CONVERSION_FACTOR), (int)(iceHorizontalSpawnRange[1] / CONVERSION_FACTOR));
+		int xPixels = QRandomGenerator::global()->bounded((int)(bodiesHorizontalSpawnRange[0] / CONVERSION_FACTOR), (int)(bodiesHorizontalSpawnRange[1] / CONVERSION_FACTOR));
 
 		b2BodyDef bdef;
 		bdef.type = b2_dynamicBody;
@@ -364,5 +393,41 @@ void LiquidModel::checkScheduledRemoveIceBodies()
 		iceBodies.clear();
 
 		scheduleRemoveIceBodies = false;
+	}
+}
+
+void LiquidModel::checkScheduledAddMintBody()
+{
+	if (scheduleAddMintBody)
+	{
+		// Random x coordinate within the defined range.
+		int xPixels = QRandomGenerator::global()->bounded((int)(bodiesHorizontalSpawnRange[0] / CONVERSION_FACTOR), (int)(bodiesHorizontalSpawnRange[1] / CONVERSION_FACTOR));
+
+		b2BodyDef bdef;
+		bdef.type = b2_dynamicBody;
+		bdef.position.Set(xPixels * CONVERSION_FACTOR, pouringSource.y);
+
+		b2Body *mintBody = world->CreateBody(&bdef);
+		b2CircleShape circle;
+		circle.m_radius = MINT_RADIUS_M;
+		mintBody->CreateFixture(&circle, MINT_DENSITY);
+		mintBody->SetLinearVelocity({0.0f, DROP_VELOCITY});
+
+		mintBodies.push_back(mintBody);
+
+		scheduleAddMintBody = false;
+	}
+}
+
+void LiquidModel::checkScheduledRemoveMintBodies()
+{
+	if (scheduleRemoveMintBodies)
+	{
+		for (b2Body *mintBody : mintBodies)
+			world->DestroyBody(mintBody);
+
+		mintBodies.clear();
+
+		scheduleRemoveMintBodies = false;
 	}
 }
