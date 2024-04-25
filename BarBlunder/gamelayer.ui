@@ -1394,10 +1394,10 @@ font-size: 22px;</string>
   <widget class="QCheckBox" name="ControlsCheckbox">
    <property name="geometry">
     <rect>
-     <x>1200</x>
-     <y>270</y>
-     <width>51</width>
-     <height>51</height>
+     <x>1170</x>
+     <y>0</y>
+     <width>81</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -1411,8 +1411,9 @@ font-size: 22px;</string>
     <string notr="true">QCheckBox {
 spacing: 0px;
 padding: 6px;
-background-color:rgba(0, 0, 0, 210);
+background-color:rgba(0, 0, 0, 220);
 border-radius: 1px;
+color: #e5e5e5;
 }
 
 QCheckBox::indicator {
@@ -1421,12 +1422,12 @@ height: 38px;
 }
 
 QCheckBox::indicator:unchecked {
-image: url(:/images/menu/checkbox_unchecked);
+image: url(:/images/menu/minicheckbox);
 }
 
 QCheckBox::indicator:unchecked:hover {
-image: url(:/images/menu/checkbox_unchecked_hover);
-border-image: url(:/images/menu/checkbox_unchecked_hover) 1;
+image: url(:/images/menu/minicheckbox_hover);
+border-image: url(:/images/menu/minicheckbox_hover) 1;
 }
 
 QCheckBox::indicator:unchecked:pressed {
@@ -1434,12 +1435,12 @@ QCheckBox::indicator:unchecked:pressed {
 }
 
 QCheckBox::indicator:checked {
-image: url(:/images/menu/checkbox_squared);
+image: url(:/images/menu/minicheckbox_checked);
 }
 
 QCheckBox::indicator:checked:hover {
-image: url(:/images/menu/checkbox_squared_hover);
-border-image: url(:/images/menu/checkbox_squared_hover) 1;
+image: url(:/images/menu/minicheckbox_checked_hover);
+border-image: url(:/images/menu/minicheckbox_checked_hover) 1;
 }
 
 QCheckBox::indicator:checked:pressed {
@@ -1455,7 +1456,7 @@ QCheckBox::indicator:indeterminate:pressed {
 }*/</string>
    </property>
    <property name="text">
-    <string/>
+    <string>TIPS</string>
    </property>
    <property name="tristate">
     <bool>false</bool>

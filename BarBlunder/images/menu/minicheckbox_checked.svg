@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #e5e5e5;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: #e5e5e5;
+      }
+    </style>
+  </defs>
+  <g id="box">
+    <rect class="cls-1" x="7" y="7" width="24" height="24" rx="6"/>
+  </g>
+  <g id="check">
+    <path class="cls-2" d="M11.84,19.35l4.32,5.06a3.39,3.39,0,0,0,2.44.82,2.54,2.54,0,0,0,2.14-.82l6.55-9.83.93-1.41c.62-.92-1-1.64-1.62-1.77-1-.19-2.51-.22-3.13.72L16.91,22,16,23.36h4.58l-4.32-5.06a3.66,3.66,0,0,0-3.38-.73c-.82.23-1.78.89-1,1.77Z"/>
+  </g>
+</svg>

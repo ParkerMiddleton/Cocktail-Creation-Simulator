@@ -14,7 +14,9 @@
         <file>images/menu/pause.svg</file>
         <file>images/menu/pause_hover.svg</file>
         <file>images/menu/triqa_pause.svg</file>
-        <file>images/menu/checkbox_squared.svg</file>
-        <file>images/menu/checkbox_squared_hover.svg</file>
+        <file>images/menu/minicheckbox.svg</file>
+        <file>images/menu/minicheckbox_checked.svg</file>
+        <file>images/menu/minicheckbox_checked_hover.svg</file>
+        <file>images/menu/minicheckbox_hover.svg</file>
     </qresource>
 </RCC>
