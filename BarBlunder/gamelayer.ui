@@ -122,7 +122,7 @@ border-bottom: 3px solid black;</string>
   <widget class="QPushButton" name="d_VodkaButton">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>320</x>
      <y>580</y>
      <width>122</width>
      <height>125</height>
@@ -263,7 +263,7 @@ image: url(:/images/liquor/burbon_hover);
   <widget class="QPushButton" name="d_CollinsGlassButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>100</x>
      <y>270</y>
      <width>71</width>
      <height>141</height>
@@ -310,7 +310,7 @@ border-bottom: none;</string>
   <widget class="QPushButton" name="d_RocksGlassButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>0</x>
      <y>300</y>
      <width>91</width>
      <height>111</height>
@@ -334,7 +334,7 @@ image: url(:/images/glasses/rocks_hover.png);
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>989</x>
+     <x>980</x>
      <y>340</y>
      <width>91</width>
      <height>91</height>
@@ -359,7 +359,7 @@ image: url(:/images/garnish/lime_wedges_hover);
    <property name="geometry">
     <rect>
      <x>1070</x>
-     <y>320</y>
+     <y>330</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -382,8 +382,8 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>470</y>
+     <x>890</x>
+     <y>340</y>
      <width>101</width>
      <height>91</height>
     </rect>
@@ -450,7 +450,7 @@ image: url(:/images/garnish/orange_peels_hover);
   <widget class="QPushButton" name="d_MartiniGlassButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>150</x>
      <y>290</y>
      <width>121</width>
      <height>121</height>
@@ -476,7 +476,7 @@ image: url(:/images/glasses/martini_hover.png);
   <widget class="QPushButton" name="d_GinButton">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>490</x>
      <y>570</y>
      <width>77</width>
      <height>133</height>
@@ -500,7 +500,7 @@ image: url(:/images/liquor/gin_hover);
   <widget class="QPushButton" name="d_KahluaButton">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>580</x>
      <y>570</y>
      <width>61</width>
      <height>141</height>
@@ -533,7 +533,7 @@ image: url(:/images/liquor/kahlua_hover);
   <widget class="QPushButton" name="d_OrangeLiquorButton">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>750</x>
      <y>570</y>
      <width>61</width>
      <height>141</height>
@@ -557,7 +557,7 @@ image: url(:/images/ingredients/tripleSec_Hover.png);
   <widget class="QPushButton" name="d_CopperMugButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>230</x>
      <y>320</y>
      <width>131</width>
      <height>91</height>
@@ -581,7 +581,7 @@ image: url(:/images/glasses/CopperMug_Hover.png);
   <widget class="QPushButton" name="d_BittersButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>190</x>
      <y>460</y>
      <width>100</width>
      <height>100</height>
@@ -605,7 +605,7 @@ image: url(:/images/ingredients/bitters_hover);
   <widget class="QPushButton" name="d_ShakertinButton">
    <property name="geometry">
     <rect>
-     <x>880</x>
+     <x>770</x>
      <y>330</y>
      <width>91</width>
      <height>81</height>
@@ -757,10 +757,10 @@ color: #5e5e5e;
   <widget class="QPushButton" name="d_StirButton">
    <property name="geometry">
     <rect>
-     <x>740</x>
-     <y>340</y>
-     <width>121</width>
-     <height>81</height>
+     <x>360</x>
+     <y>350</y>
+     <width>111</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -781,7 +781,7 @@ image: url(:/images/tools/Spoon_Hover.png);
   <widget class="QPushButton" name="d_LimeJuiceButton">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>520</x>
      <y>470</y>
      <width>81</width>
      <height>91</height>
@@ -805,7 +805,7 @@ image: url(:/images/ingredients/LimeJuice_Hover.png);
   <widget class="QPushButton" name="d_GingerBeerButton">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>400</x>
      <y>470</y>
      <width>101</width>
      <height>91</height>
@@ -853,7 +853,7 @@ image: url(:/images/bar/empty_icewell_Hover.png);
   <widget class="QPushButton" name="d_TequilaButton">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>390</x>
      <y>580</y>
      <width>122</width>
      <height>125</height>
@@ -957,7 +957,7 @@ background-color: transparent;</string>
   <widget class="QPushButton" name="d_WhiskeyButton">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>660</x>
      <y>570</y>
      <width>61</width>
      <height>141</height>
@@ -1076,7 +1076,7 @@ color: black;</string>
   <widget class="QPushButton" name="d_HalfNHalf">
    <property name="geometry">
     <rect>
-     <x>750</x>
+     <x>650</x>
      <y>470</y>
      <width>81</width>
      <height>91</height>
@@ -1100,7 +1100,7 @@ image: url(:/images/ingredients/HalfNHalf_Hover.png);
   <widget class="QPushButton" name="d_SweetNSourMix">
    <property name="geometry">
     <rect>
-     <x>840</x>
+     <x>830</x>
      <y>570</y>
      <width>71</width>
      <height>131</height>
@@ -1148,7 +1148,7 @@ image: url(:/images/ingredients/Grenadine_Hover.png);
   <widget class="QPushButton" name="d_Coke">
    <property name="geometry">
     <rect>
-     <x>850</x>
+     <x>780</x>
      <y>470</y>
      <width>71</width>
      <height>91</height>
@@ -1172,7 +1172,7 @@ image: url(:/images/ingredients/Coke_Hover.png);
   <widget class="QPushButton" name="d_Sprite">
    <property name="geometry">
     <rect>
-     <x>920</x>
+     <x>890</x>
      <y>470</y>
      <width>91</width>
      <height>91</height>
@@ -1244,7 +1244,7 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <widget class="QPushButton" name="d_OliveJuiceButton">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>290</x>
      <y>470</y>
      <width>91</width>
      <height>91</height>
@@ -1510,7 +1510,7 @@ number of seconds.</string>
   <widget class="QPushButton" name="d_ProseccoButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>260</x>
      <y>570</y>
      <width>101</width>
      <height>141</height>
@@ -1534,7 +1534,7 @@ image: url(:/images/liquor/prosecco_hover);
   <widget class="QPushButton" name="d_MintButton">
    <property name="geometry">
     <rect>
-     <x>1170</x>
+     <x>1160</x>
      <y>340</y>
      <width>101</width>
      <height>81</height>
@@ -1576,7 +1576,6 @@ image: url(:/images/garnish/mintbowl_hover);
   <zorder>d_GinButton</zorder>
   <zorder>d_KahluaButton</zorder>
   <zorder>d_OrangeLiquorButton</zorder>
-  <zorder>d_ShakertinButton</zorder>
   <zorder>d_OliveButton</zorder>
   <zorder>d_IceButton</zorder>
   <zorder>d_ServeDrinkButton</zorder>
@@ -1614,6 +1613,7 @@ image: url(:/images/garnish/mintbowl_hover);
   <zorder>v_Notes</zorder>
   <zorder>ControlsLabel</zorder>
   <zorder>ControlsCheckbox</zorder>
+  <zorder>d_ShakertinButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
