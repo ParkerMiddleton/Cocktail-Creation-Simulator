@@ -88,7 +88,7 @@ void BarModel::ingredientPressed(const QString &ingredientName)
 	if (!currentGlassware) // If no glassware is placed
 		return;
 
-	if (isGlasswareEmpty && !glasswares.contains(ingredientName)) // If ingredient is not one of the glasses.
+	if (isGlasswareEmpty && !glasswares.contains(ingredientName) && ingredientName != "shake") // If ingredient is not one of the glasses.
 		isGlasswareEmpty  = false;
 
 	currentProcessingIngredient = ingredientName;

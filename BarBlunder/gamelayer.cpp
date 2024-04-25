@@ -21,6 +21,8 @@ GameLayer::GameLayer(ApplicationModel *app, QWidget *parent)
 	ui->v_Notes->setCurrentWidget(ui->Note1);
 	ui->DrunkGuyTxtBox->setVisible(false);
 
+	ui->d_BurbonButton->setVisible(false);
+
 	// Setup Frank.
 	frankMessageTimer = new QTimer(this);
 	frankMessageTimer->setInterval(FRANK_MESSAGE_DURATION_MS);

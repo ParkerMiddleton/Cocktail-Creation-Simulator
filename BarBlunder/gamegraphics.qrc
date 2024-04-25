@@ -88,5 +88,9 @@
         <file>images/bar/text_box2.png</file>
         <file>images/glasses/shakertin.png</file>
         <file>images/maindrink/mintspring.png</file>
+        <file>images/garnish/mintbowl.png</file>
+        <file>images/garnish/mintbowl_hover.png</file>
+        <file>images/liquor/prosecco.png</file>
+        <file>images/liquor/prosecco_hover.png</file>
     </qresource>
 </RCC>

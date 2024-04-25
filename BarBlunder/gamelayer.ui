@@ -215,7 +215,7 @@ image: url(:/images/liquor/vodka_hover);
   <widget class="QPushButton" name="d_RumButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>210</x>
      <y>580</y>
      <width>75</width>
      <height>125</height>
@@ -239,8 +239,8 @@ image: url(:/images/liquor/rum_hover);
   <widget class="QPushButton" name="d_BurbonButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>580</y>
+     <x>40</x>
+     <y>460</y>
      <width>111</width>
      <height>125</height>
     </rect>
@@ -334,9 +334,9 @@ image: url(:/images/glasses/rocks_hover.png);
   <widget class="QPushButton" name="d_LimeWedgeButton">
    <property name="geometry">
     <rect>
-     <x>990</x>
+     <x>989</x>
      <y>340</y>
-     <width>100</width>
+     <width>91</width>
      <height>91</height>
     </rect>
    </property>
@@ -382,9 +382,9 @@ image: url(:/images/garnish/olives_hover);
   <widget class="QPushButton" name="d_OrangeButton">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>340</y>
-     <width>100</width>
+     <x>300</x>
+     <y>470</y>
+     <width>101</width>
      <height>91</height>
     </rect>
    </property>
@@ -805,9 +805,9 @@ image: url(:/images/ingredients/LimeJuice_Hover.png);
   <widget class="QPushButton" name="d_GingerBeerButton">
    <property name="geometry">
     <rect>
-     <x>570</x>
+     <x>560</x>
      <y>470</y>
-     <width>91</width>
+     <width>101</width>
      <height>91</height>
     </rect>
    </property>
@@ -1244,7 +1244,7 @@ image: url(:/images/ingredients/SimpleSyrup_Hover.png);
   <widget class="QPushButton" name="d_OliveJuiceButton">
    <property name="geometry">
     <rect>
-     <x>496</x>
+     <x>470</x>
      <y>470</y>
      <width>91</width>
      <height>91</height>
@@ -1501,27 +1501,49 @@ number of seconds.</string>
   <widget class="QPushButton" name="d_ProseccoButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>470</y>
-     <width>71</width>
-     <height>91</height>
+     <x>270</x>
+     <y>570</y>
+     <width>101</width>
+     <height>141</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/liquor/prosecco);
+}
+
+QPushButton::hover {
+image: url(:/images/liquor/prosecco_hover);
+}</string>
+   </property>
    <property name="text">
-    <string>Prosecco</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="d_MintButton">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>470</y>
-     <width>91</width>
-     <height>91</height>
+     <x>1170</x>
+     <y>340</y>
+     <width>101</width>
+     <height>81</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+background-color: transparent;
+border: none;
+image: url(:/images/garnish/mintbowl);
+}
+
+QPushButton::hover {
+image: url(:/images/garnish/mintbowl_hover);
+}</string>
+   </property>
    <property name="text">
-    <string>Mint</string>
+    <string/>
    </property>
   </widget>
   <zorder>UnderBar</zorder>
@@ -1541,12 +1563,10 @@ number of seconds.</string>
   <zorder>d_CollinsGlassButton</zorder>
   <zorder>d_RocksGlassButton</zorder>
   <zorder>d_LimeWedgeButton</zorder>
-  <zorder>d_OrangeButton</zorder>
   <zorder>DrinkMakeArea</zorder>
   <zorder>d_GinButton</zorder>
   <zorder>d_KahluaButton</zorder>
   <zorder>d_OrangeLiquorButton</zorder>
-  <zorder>d_BittersButton</zorder>
   <zorder>d_ShakertinButton</zorder>
   <zorder>d_OliveButton</zorder>
   <zorder>d_IceButton</zorder>
@@ -1568,7 +1588,6 @@ number of seconds.</string>
   <zorder>d_Coke</zorder>
   <zorder>d_Sprite</zorder>
   <zorder>d_SweetNSourMix</zorder>
-  <zorder>DrinksPanel</zorder>
   <zorder>d_HalfNHalf</zorder>
   <zorder>d_OliveJuiceButton</zorder>
   <zorder>PourTimer</zorder>
@@ -1583,6 +1602,9 @@ number of seconds.</string>
   <zorder>shakertin</zorder>
   <zorder>d_ProseccoButton</zorder>
   <zorder>d_MintButton</zorder>
+  <zorder>DrinksPanel</zorder>
+  <zorder>d_OrangeButton</zorder>
+  <zorder>d_BittersButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1598,8 +1620,8 @@ number of seconds.</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="menugraphics.qrc"/>
   <include location="gamegraphics.qrc"/>
+  <include location="menugraphics.qrc"/>
  </resources>
  <connections/>
 </ui>
