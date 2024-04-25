@@ -50,7 +50,7 @@ To Serve: "Rocks Margarita"
 3. Pour 1 oz Agave Nectar
 4. Pour 1 oz Sweet'n'sour mix
 5. Pour 2 oz Tequila
-6. Add a splash of Orange Liquor
+6. Add a splash of Triple sec
 7. Fill with Ice (3 cubes)
 8. Shake for 5 seconds
 9. Garnish with Lime Wedge
@@ -83,18 +83,18 @@ olives: 1
 To Serve: "French 75"
 1. Grab a Martini Glass
 2. Pour 1 oz Simple Syrup
-3. Fill with Ice (2 cubes)
+3. Fill with Ice (1 cube)
 4. Pour 1 oz Lime Juice
-5. Pour 2 oz Gin
+5. Pour 1 oz Gin
 6. Shake for 10 seconds
 7. Pour 1 oz Prosecco
 
 French 75.
 martini glass: 1
 simple syrup: 1
-ice: 2
+ice: 1
 lime juice: 1
-gin: 2
+gin: 1
 shake: 10
 prosecco: 1
 

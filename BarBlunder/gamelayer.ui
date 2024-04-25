@@ -732,8 +732,8 @@ image: url(:/images/tools/icewell_hover);
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-background-color: rgba(0, 0, 0, 190);
-border: 1px solid  #e5e5e5;
+background-color: rgba(0, 0, 0, 210);
+border: 0px solid  transparent;
 color: #e5e5e5;
 text-align:center;
 font: bold &quot;Ebrima&quot;;
@@ -743,7 +743,7 @@ font-size: 24px;
 QPushButton::hover {
 border-color: #FFE770;
 color: #FFE770;
-font-size: 23px;
+font-size: 25px;
 }
 
 QPushButton::disabled {
@@ -751,7 +751,7 @@ color: #5e5e5e;
 }</string>
    </property>
    <property name="text">
-    <string>S e r v e</string>
+    <string>Serve!</string>
    </property>
   </widget>
   <widget class="QPushButton" name="d_StirButton">
@@ -1268,16 +1268,24 @@ image: url(:/images/ingredients/OliveJuice_Hover.png);
   <widget class="QLabel" name="PourTimer">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>740</x>
      <y>20</y>
-     <width>171</width>
+     <width>511</width>
      <height>71</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe Print</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(0, 0, 0, 190);
-border: 1px solid transparent;
-color: #e5e5e5;
+    <string notr="true">background-color: white;
+border: 2px dotted black;
+color: black;
 text-align:center;
 padding: 8px;
 font: bold &quot;Ebrima&quot;;
@@ -1403,7 +1411,8 @@ font-size: 22px;</string>
     <string notr="true">QCheckBox {
 spacing: 0px;
 padding: 6px;
-background-color:rgba(0, 0, 0, 190);
+background-color:rgba(0, 0, 0, 210);
+border-radius: 1px;
 }
 
 QCheckBox::indicator {
@@ -1582,7 +1591,6 @@ image: url(:/images/garnish/mintbowl_hover);
   <zorder>triqa_pause</zorder>
   <zorder>PauseButton</zorder>
   <zorder>d_WhiskeyButton</zorder>
-  <zorder>v_Notes</zorder>
   <zorder>d_Grenadine</zorder>
   <zorder>d_SimpleSyrup</zorder>
   <zorder>d_Coke</zorder>
@@ -1596,8 +1604,6 @@ image: url(:/images/garnish/mintbowl_hover);
   <zorder>d_MartiniGlassButton</zorder>
   <zorder>DrunkGuyTxtBox</zorder>
   <zorder>DrunkGuyTxt</zorder>
-  <zorder>ControlsLabel</zorder>
-  <zorder>ControlsCheckbox</zorder>
   <zorder>v_DrinkView</zorder>
   <zorder>shakertin</zorder>
   <zorder>d_ProseccoButton</zorder>
@@ -1605,6 +1611,9 @@ image: url(:/images/garnish/mintbowl_hover);
   <zorder>DrinksPanel</zorder>
   <zorder>d_OrangeButton</zorder>
   <zorder>d_BittersButton</zorder>
+  <zorder>v_Notes</zorder>
+  <zorder>ControlsLabel</zorder>
+  <zorder>ControlsCheckbox</zorder>
  </widget>
  <customwidgets>
   <customwidget>
