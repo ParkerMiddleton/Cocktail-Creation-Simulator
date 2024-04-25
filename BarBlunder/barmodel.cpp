@@ -82,9 +82,6 @@ void BarModel::update(int deltaTime)
 
 void BarModel::ingredientPressed(const QString &ingredientName)
 {
-	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
-		return;
-
 	if (!currentGlassware) // If no glassware is placed
 		return;
 
@@ -120,7 +117,9 @@ void BarModel::ingredientReleased()
 void BarModel::ingredientClicked(const QString &ingredientName)
 {
 	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
+	{
 		return;
+	}
 
 	// Disable all ingredient click functionality until glass is selected
 	if (!currentGlassware || isGlasswareEmpty)
@@ -236,6 +235,11 @@ void BarModel::emptyDrink()
 
 void BarModel::processPressedIngredient()
 {
+	if (recipeStepNumber >= assignedRecipe.ingredients.size()) // If recipe is complete.
+	{
+		return;
+	}
+
 	if (isGlasswareEmpty && !glasswares.contains(currentProcessingIngredient)) // If ingredient is not one of the glasses.
 		isGlasswareEmpty  = false;
 

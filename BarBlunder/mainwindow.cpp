@@ -58,6 +58,9 @@ MainWindow::MainWindow(ApplicationModel *app, QWidget *parent)
 	// Setup audio.
 	this->setupMusic();
 
+	connect(gameMusic, &QMediaPlayer::mediaStatusChanged,
+			this, &MainWindow::checkGamePlayerStatus);
+
 	// Connections for the overlay menu.
 	connect(&mainMenu, &MainMenuPage::settingsButtonClicked,
 			this, &MainWindow::switchOverlayMenuToSettings);
@@ -189,8 +192,7 @@ void MainWindow::setupNewGame()
 		gameMusic->stop();
 	}
 
-	int rand = QRandomGenerator::global()->bounded(gameMusicList.size());
-	gameMusic->setSource(QUrl(gameMusicList[rand]));
+	this->pickNewGameMusic();
 	gameMusic->play();
 	this->hideOverlayMenu();
 }
@@ -262,6 +264,15 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 	QWidget::resizeEvent(event);
 }
 
+void MainWindow::checkGamePlayerStatus(QMediaPlayer::MediaStatus status)
+{
+	if (status == QMediaPlayer::MediaStatus::EndOfMedia)
+	{
+		this->pickNewGameMusic();
+		gameMusic->play();
+	}
+}
+
 void MainWindow::setupOverlayMenuAnimations()
 {
 	triAnim = new QPropertyAnimation(&tri, "pos", this);
@@ -288,11 +299,17 @@ void MainWindow::setupMusic()
 	gameMusicOutput = new QAudioOutput(this);
 	gameMusic = new QMediaPlayer(this);
 	gameMusic->setAudioOutput(gameMusicOutput);
-	gameMusic->setLoops(QMediaPlayer::Infinite);
+	//gameMusic->setLoops(QMediaPlayer::Infinite);
 	gameMusicOutput->setVolume(0.0f);
 
 	gameVolumeFadeInAnim = new QPropertyAnimation(gameMusicOutput, "volume", this);
 	gameVolumeFadeInAnim->setDuration(350);
 	gameVolumeFadeInAnim->setStartValue(0.0f);
 	gameVolumeFadeInAnim->setEndValue(gameMusicOutput->volume());
+}
+
+void MainWindow::pickNewGameMusic()
+{
+	int rand = QRandomGenerator::global()->bounded(gameMusicList.size());
+	gameMusic->setSource(QUrl(gameMusicList[rand]));
 }

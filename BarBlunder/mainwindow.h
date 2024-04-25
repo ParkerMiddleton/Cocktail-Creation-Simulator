@@ -14,12 +14,12 @@
 #include <QStackedWidget>
 
 #include <QList>
+#include <QMediaPlayer>
 
 // Forward declaration.
 class ApplicationModel;
 
 class QPropertyAnimation;
-class QMediaPlayer;
 class QAudioOutput;
 
 QT_BEGIN_NAMESPACE
@@ -80,6 +80,12 @@ public slots:
 protected:
 	void resizeEvent(QResizeEvent *event) override;
 
+private slots:
+	/// @brief Called when current game music end.
+	/// Picks a new one.
+	/// @param status Player status.
+	void checkGamePlayerStatus(QMediaPlayer::MediaStatus status);
+
 private:
 	static constexpr int RENDER_NATIVE_WIDTH = 1280;
 	static constexpr int RENDER_NATIVE_HEIGHT = 720;
@@ -117,6 +123,9 @@ private:
 
 	/// @brief Helper method to initialize audio fields.
 	void setupMusic();
+
+	/// @brief Randomly selects game music.
+	void pickNewGameMusic();
 
 };
 

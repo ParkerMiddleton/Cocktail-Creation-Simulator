@@ -263,7 +263,7 @@ image: url(:/images/liquor/burbon_hover);
   <widget class="QPushButton" name="d_CollinsGlassButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>270</y>
      <width>71</width>
      <height>141</height>
@@ -1629,8 +1629,8 @@ image: url(:/images/garnish/mintbowl_hover);
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="gamegraphics.qrc"/>
   <include location="menugraphics.qrc"/>
+  <include location="gamegraphics.qrc"/>
  </resources>
  <connections/>
 </ui>
